@@ -18,7 +18,6 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
-" npm install -g prettier
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation 
 " sudo apt install exuberant-ctags
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion 
