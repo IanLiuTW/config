@@ -18,9 +18,10 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
-Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+" npm install -g prettier
+Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation 
 " sudo apt install exuberant-ctags
-Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
+Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion 
 " sudo apt install nodejs npm && sudo npm i -g yarn
 " cd ~/.local/share/nvim/plugged/coc.nvim/ && yarn install && yarn build
 
@@ -42,11 +43,18 @@ nmap <F8> :TagbarToggle<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
 "
+" :CocInstall coc-marketplace
+" :CocList marketplace
+" :CocList marketplace python
+"
+" :CocInstall coc-sh
 " :CocInstall coc-python
 " python3 -m pip install jedi
+" :CocInstall coc-json coc-tsserver
 " :CocInstall coc-clangd
 " :CocInstall coc-snippets
 " :CocCommand snippets.edit... FOR EACH FILE TYPE
@@ -66,5 +74,3 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
