@@ -31,7 +31,7 @@ New-Item -Path '~/.ohmyposhv1-ian.omp.json' -ItemType File
 notepad $HOME/.ohmyposhv1-ian.omp.json
 ```
 
-- Copy [ohmyposhv1-ian.omp.json](https://www.notion.so/ohmyposhv1-ian-omp-json-05f17e3952a44ffea3d68eb6718e4be0) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
+- Copy [ohmyposhv1-ian.omp.json](https://github.com/IanLiuTW/config/blob/main/Oh%20My%20Posh/ohmyposhv1-ian.omp.json) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
 
 **Setting `$PROFILE`**
 
@@ -72,7 +72,7 @@ mkdir ~/.poshthemes
 vim ~/.poshthemes/ohmyposhv1-ian.omp.json
 ```
 
-- Copy [ohmyposhv1-ian.omp.json](https://www.notion.so/ohmyposhv1-ian-omp-json-05f17e3952a44ffea3d68eb6718e4be0) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
+- Copy [ohmyposhv1-ian.omp.json](https://github.com/IanLiuTW/config/blob/main/Oh%20My%20Posh/ohmyposhv1-ian.omp.json) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
 
 Add this line to `.bashrc`
 
@@ -80,5 +80,3 @@ Add this line to `.bashrc`
 # Oh My Posh theme
 eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/ohmyposhv1-ian.omp.json)"
 ```
-
-[themes](https://www.notion.so/themes-909f33ff8d964d429ac6f3a1ed1856c8)
