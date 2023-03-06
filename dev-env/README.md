@@ -32,70 +32,9 @@ sudo vim ~/.bashrc
 source ~/.bashrc
 ```
 
-### ****Quick workflow****
+### ****Languages Installation Guide****
 
-Remember to check dependencies from the plugin page before install a version.
-
-[Python](https://github.com/danhper/asdf-python)
-
-```bash
-sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev libedit-dev
-
-asdf plugin add python
-asdf install python latest
-asdf global python latest
-
-python --version
-python -m pip --version
-```
-
-[Node.js](https://github.com/asdf-vm/asdf-nodejs)
-
-```bash
-sudo apt install dirmngr gpg curl gawk
-
-asdf plugin add nodejs
-asdf install nodejs latest
-asdf global nodejs latest
-
-node -v
-```
-
-[Go](https://github.com/kennyp/asdf-golang)
-
-```bash
-apt install coreutils curl
-
-asdf plugin add golang
-asdf install golang latest
-asdf global golang latest
-
-go version
-```
-
-[Rust](https://github.com/asdf-community/asdf-rust)
-
-```bash
-asdf plugin add rust
-asdf list all rust
-asdf install rust latest
-asdf global rust latest
-
-rustc --version
-```
-
-[Java](https://github.com/halcyon/asdf-java)
-
-```bash
-asdf plugin add java
-asdf list all java
-asdf install java adoptopenjdk-16.0.1+9 # select version from list
-asdf global java adoptopenjdk-16.0.1+9 # select version from list
-
-java --version
-```
+Remember to check dependencies from the plugin page before install a version. Check the document for each language in the directory.
 
 ## ****Plugins****
 
