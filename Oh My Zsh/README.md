@@ -14,6 +14,6 @@ vim ~/.zshrc
 
 ```plaintext
 ... // example options
-plugins=(git macos asdf poetry)
+plugins=(git macos asdf poetry web-search)
 ...
 ```
