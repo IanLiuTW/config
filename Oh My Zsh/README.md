@@ -13,7 +13,13 @@ vim ~/.zshrc
 ```
 
 ```plaintext
-... // example options
-plugins=(git macos asdf poetry web-search)
+... 
+plugins=(git macos asdf poetry web-search)  # example options
 ...
+```
+
+### Install Font
+
+```shell
+brew tap homebrew/cask-fonts && brew install --cask font-caskaydia-cove-nerd-font
 ```
