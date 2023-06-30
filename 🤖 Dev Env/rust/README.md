@@ -1,5 +1,12 @@
 # Rust
 
+<https://www.rust-lang.org/tools/install>
+
+```shell
+rustc --version
+cargo --version
+```
+
 [Rust](https://github.com/asdf-community/asdf-rust)
 
 ```bash
