@@ -1,5 +1,10 @@
 # git
 
+## Git Credential Manager
+
+<https://github.com/git-ecosystem/git-credential-manager>
+<https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md>
+
 ## .git-setup.sh
 
 ### Create a file named `.git-setup.sh`
@@ -11,8 +16,6 @@ install -m 755 /dev/null ~/.git-setup.sh && vim $_ && ~/.git-setup.sh
 ### Paste and run the script
 
 [.git-setup.sh](https://github.com/IanLiuTW/config/blob/main/git/.git-setup.sh)
-
-## 
 
 ## Sync folder with existing repo
 
