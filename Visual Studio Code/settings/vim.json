@@ -1,329 +1,378 @@
-{
-    "vim.easymotion": true,
-    "vim.handleKeys": {
-        "<C-f>": false
+  "vim.useSystemClipboard": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.easymotion": true,
+  "vim.handleKeys": {
+    "<C-f>": false,
+    "<C-a>": false,
+  },
+  "vim.leader": "<space>",
+  "vim.insertModeKeyBindings": [
+    {
+      "after": [
+        "<esc>"
+      ],
+      "before": [
+        "j",
+        "k"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<Leader>",
+        "j"
+      ],
+      "after": [
+        "5",
+        "j"
+      ]
     },
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "after": [
-                "<esc>"
-            ],
-            "before": [
-                "j",
-                "k"
-            ]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<Leader>",
-                "j"
-            ],
-            "after": [
-                "5",
-                "j"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "k"
-            ],
-            "after": [
-                "5",
-                "k"
-            ]
-        },
-        {
-            "after": [
-                "y",
-                "$"
-            ],
-            "before": [
-                "Y"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
-                "t"
-            ],
-            "commands": [
-                ":tabnew"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
-                "n"
-            ],
-            "commands": [
-                ":tabnext"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
-                "p"
-            ],
-            "commands": [
-                ":tabprev"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
-                "o"
-            ],
-            "commands": [
-                ":tabo"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "/"
-            ],
-            "commands": [
-                ":noh"
-            ]
-        },
-        {
-            "after": [
-                "o",
-                "<esc>"
-            ],
-            "before": [
-                "<Leader>",
-                "o"
-            ]
-        },
-        {
-            "after": [
-                "O",
-                "<esc>"
-            ],
-            "before": [
-                "<Leader>",
-                "O"
-            ]
-        },
-        // Vim - Harpoon keybindings
-        {
-            "before": [
-                "<leader>",
-                "a"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "p",
-            ],
-            "commands": [
-                "vscode-harpoon.editorQuickPick"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "P",
-            ],
-            "commands": [
-                "vscode-harpoon.gotoPreviousHarpoonEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "e"
-            ],
-            "commands": [
-                "vscode-harpoon.editEditors"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "1"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor1"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "2"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor2"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "3"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor3"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "4"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor4"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "5"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor5"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "6"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor6"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "7"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor7"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "8"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor8"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "9"
-            ],
-            "commands": [
-                "vscode-harpoon.addEditor9"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "1"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor1"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "2"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor2"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "3"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor3"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "4"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor4"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "5"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor5"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "6"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor6"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "7"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor7"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "8"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor8"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "9"
-            ],
-            "commands": [
-                "vscode-harpoon.gotoEditor9"
-            ]
-        }
-    ],
-    "vim.useSystemClipboard": true
-}
+    {
+      "before": [
+        "<Leader>",
+        "k"
+      ],
+      "after": [
+        "5",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "lineBreakInsert"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save",
+      ]
+    },
+    {
+      "before": [
+        "Y"
+      ],
+      "after": [
+        "y",
+        "$"
+      ],
+    },
+    {
+      "before": [
+        "<Leader>",
+        "t",
+        "t"
+      ],
+      "commands": [
+        ":tabnew"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "t",
+        "n"
+      ],
+      "commands": [
+        ":tabnext"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "t",
+        "p"
+      ],
+      "commands": [
+        ":tabprev"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "t",
+        "o"
+      ],
+      "commands": [
+        ":tabo"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "/"
+      ],
+      "commands": [
+        ":noh"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "o"
+      ],
+      "after": [
+        "o",
+        "<esc>"
+      ],
+    },
+    {
+      "before": [
+        "<Leader>",
+        "O"
+      ],
+      "after": [
+        "O",
+        "<esc>"
+      ],
+    },
+    // Vim - Harpoon keybindings
+    {
+      "before": [
+        "<leader>",
+        "a"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "q",
+      ],
+      "commands": [
+        "vscode-harpoon.editorQuickPick"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "Q",
+      ],
+      "commands": [
+        "vscode-harpoon.gotoPreviousHarpoonEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "e"
+      ],
+      "commands": [
+        "vscode-harpoon.editEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "1"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor1"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "2"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor2"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "3"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor3"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "4"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor4"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "5"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor5"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "6"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor6"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "7"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor7"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "8"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor8"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "9"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor9"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "1"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor1"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "2"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor2"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "3"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor3"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "4"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor4"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "5"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor5"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "6"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor6"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "7"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor7"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "8"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor8"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "9"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor9"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "p",
+      ],
+      "after": [
+        "p",
+        "g",
+        "v",
+        "y"
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+  ],
+  "vim.operatorPendingModeKeyBindings": [],
