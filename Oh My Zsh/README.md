@@ -11,12 +11,7 @@
 ```shell
 vim ~/.zshrc
 ```
-
-```plaintext
-... 
-plugins=(git macos asdf poetry web-search)  # example options
-...
-```
+See the `.zshrc` file.
 
 ### Install Font
 
