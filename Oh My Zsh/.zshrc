@@ -72,9 +72,10 @@ ZSH_THEME="dst"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	copypath dirhistory history
-	zsh-autosuggestions macos
+	zsh-autosuggestions zsh-syntax-highlighting
 	git asdf poetry  
-	web-search
+	web-search 
+	macos
 )
 
 ZSH_WEB_SEARCH_ENGINES=(
@@ -84,6 +85,7 @@ ZSH_WEB_SEARCH_ENGINES=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
