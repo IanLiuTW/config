@@ -35,7 +35,11 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 vim ~/.zshrc
 ```
 
-- Optional: `fzf`
+- Complete plugins requirements and add more plugins
 
-<https://github.com/junegunn/fzf?tab=readme-ov-file>
+  <https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins>
+
+- [Optional] Install `fzf`
+
+  <https://github.com/junegunn/fzf?tab=readme-ov-file>
 
