@@ -1,7 +1,12 @@
+  /* Vim Section Start */
   "vim.useSystemClipboard": true,
   "vim.incsearch": true,
   "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.smartRelativeLine": true,
+  "vim.showMarksInGutter": true,
   "vim.easymotion": true,
+  "vim.sneak": true,
   "vim.handleKeys": {
     "<C-f>": false,
     "<C-a>": false,
@@ -19,26 +24,6 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<Leader>",
-        "j"
-      ],
-      "after": [
-        "5",
-        "j"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "k"
-      ],
-      "after": [
-        "5",
-        "k"
-      ]
-    },
     {
       "before": [
         "K"
@@ -107,6 +92,42 @@
     {
       "before": [
         "<Leader>",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.navigateLeft"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.navigateRight"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "j"
+      ],
+      "commands": [
+        "workbench.action.navigateDown"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.navigateUp"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
         "t",
         "t"
       ],
@@ -142,6 +163,16 @@
       ],
       "commands": [
         ":tabo"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "t",
+        "q"
+      ],
+      "commands": [
+        ":tabc"
       ]
     },
     {
@@ -412,25 +443,6 @@
         "editor.action.outdentLines"
       ]
     },
-    {
-      "before": [
-        "<Leader>",
-        "j"
-      ],
-      "after": [
-        "5",
-        "j"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "k"
-      ],
-      "after": [
-        "5",
-        "k"
-      ]
-    },
   ],
   "vim.operatorPendingModeKeyBindings": [],
+  /* Vim Section End */
