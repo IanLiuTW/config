@@ -1,3 +1,4 @@
+  // [Vim section]
   "vim.useSystemClipboard": true,
   "vim.incsearch": true,
   "vim.hlsearch": true,
@@ -87,15 +88,6 @@
     },
     {
       "before": [
-        "<Leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save",
-      ]
-    },
-    {
-      "before": [
         "Y"
       ],
       "after": [
@@ -124,10 +116,28 @@
     {
       "before": [
         "<Leader>",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save",
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
         "f"
       ],
       "commands": [
         "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "m"
+      ],
+      "commands": [
+        "editor.action.showContextMenu"
       ]
     },
     {
@@ -456,6 +466,51 @@
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<Leader>",
+        "/"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "?"
+      ],
+      "commands": [
+        "editor.action.blockComment"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save",
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "<Leader>",
+        "m"
+      ],
+      "commands": [
+        "editor.action.showContextMenu"
+      ]
+    },
     {
       "before": [
         "<leader>",
