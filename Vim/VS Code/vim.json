@@ -1,3 +1,4 @@
+{
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
     },
@@ -553,4 +554,5 @@
                 "editor.action.outdentLines"
             ]
         }
-    ],
+    ]
+}

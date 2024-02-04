@@ -1,0 +1,242 @@
+[
+    {
+        "key": "ctrl+space",
+        "command": "-extension.vim_ctrl+space",
+        "when": "editorTextFocus && vim.active && vim.use<C-space> && !inDebugRepl && vim.mode != 'Insert'"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-cursorUp",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-extension.vim_ctrl+p",
+        "when": "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-extension.vim_ctrl+n",
+        "when": "editorTextFocus && vim.active && vim.use<C-n> && !inDebugRepl || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
+    },
+    {
+        "key": "alt+k alt+p",
+        "command": "workbench.action.showEditorsInActiveGroup"
+    },
+    {
+        "key": "alt+g c",
+        "command": "git.commitAll"
+    },
+    {
+        "key": "alt+g b",
+        "command": "git.branchFrom"
+    },
+    {
+        "key": "alt+g f",
+        "command": "git.fetchAll"
+    },
+    {
+        "key": "alt+g p",
+        "command": "git.pull"
+    },
+    {
+        "key": "alt+g shift+p",
+        "command": "git.push"
+    },
+    {
+        "key": "alt+g s",
+        "command": "git.checkout"
+    },
+    {
+        "key": "alt+g u",
+        "command": "git.undoCommit"
+    },
+    {
+        "key": "shift+space",
+        "command": "hideSuggestWidget",
+        "when": "suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "shift+escape",
+        "command": "-hideSuggestWidget",
+        "when": "suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "alt+g shift+c",
+        "command": "git.clone"
+    },
+    {
+        "key": "alt+b",
+        "command": "gitlens.toggleLineBlame"
+    },
+    {
+        "key": "alt+b",
+        "command": "-gitlens.toggleFileBlame",
+        "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+    },
+    {
+        "key": "alt+h b",
+        "command": "workbench.action.tasks.build",
+        "when": "taskCommandsRegistered"
+    },
+    {
+        "key": "shift+alt+b",
+        "command": "-workbench.action.tasks.build",
+        "when": "taskCommandsRegistered"
+    },
+    {
+        "key": "alt+h r",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "alt+h t",
+        "command": "workbench.action.tasks.test"
+    },
+    {
+        "key": "alt+h d",
+        "command": "workbench.action.tasks.terminate"
+    },
+    {
+        "key": "alt+h l",
+        "command": "workbench.action.tasks.showLog"
+    },
+    {
+        "key": "alt+h u",
+        "command": "workbench.action.tasks.openUserTasks"
+    },
+    {
+        "key": "alt+h e",
+        "command": "workbench.action.tasks.configureTaskRunner"
+    },
+    {
+        "key": "alt+h shift+b",
+        "command": "workbench.action.tasks.configureDefaultBuildTask"
+    },
+    {
+        "key": "alt+h shift+t",
+        "command": "workbench.action.tasks.configureDefaultTestTask"
+    },
+    {
+        "key": "alt+h shift+r",
+        "command": "workbench.action.tasks.reRunTask"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+up",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.selectNextSuggestion",
+        "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen && terminalSuggestWidgetVisible || terminalFocus && terminalIsOpen && terminalProcessSupported && terminalSuggestWidgetVisible"
+    },
+    {
+        "key": "down",
+        "command": "-workbench.action.terminal.selectNextSuggestion",
+        "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen && terminalSuggestWidgetVisible || terminalFocus && terminalIsOpen && terminalProcessSupported && terminalSuggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "history.showNext",
+        "when": "historyNavigationForwardsEnabled && historyNavigationWidgetFocus && !isComposing && !suggestWidgetVisible"
+    },
+    {
+        "key": "down",
+        "command": "-history.showNext",
+        "when": "historyNavigationForwardsEnabled && historyNavigationWidgetFocus && !isComposing && !suggestWidgetVisible"
+    },
+    {
+        "key": "down",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "showNextParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "down",
+        "command": "-showNextParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.pageUpHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.pageDownHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "k",
+        "command": "editor.action.scrollUpHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "j",
+        "command": "editor.action.scrollDownHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "extension.vim_escape",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "down",
+        "command": "-selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "up",
+        "command": "-selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "up",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    }
+]
