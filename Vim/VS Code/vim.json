@@ -1,546 +1,556 @@
-  // [Vim section]
-  "vim.useSystemClipboard": true,
-  "vim.incsearch": true,
-  "vim.hlsearch": true,
-  "vim.highlightedyank.enable": true,
-  "vim.smartRelativeLine": true,
-  "vim.showMarksInGutter": true,
-  "vim.easymotion": true,
-  "vim.handleKeys": {
-    "<C-f>": false,
-    "<C-a>": false,
-  },
-  "vim.leader": "<space>",
-  "vim.insertModeKeyBindings": [
-    {
-      "after": [
-        "<esc>"
-      ],
-      "before": [
-        "j",
-        "k"
-      ]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "s"
-      ],
-      "commands": [
-        "leap.findForward"
-      ]
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
     },
-    {
-      "before": [
-        "S"
-      ],
-      "commands": [
-        "leap.findBackward"
-      ]
+    "vim.showMarksInGutter": true,
+    "vim.smartRelativeLine": true,
+    "vim.useSystemClipboard": true,
+    "vim.easymotion": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-b>": false,
+        "<C-f>": false,
+        "<C-i>": false,
+        "<C-k>": false
     },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "lineBreakInsert"
-      ],
-      "silent": true
-    },
-    {
-      "before": [
-        "<Leader>",
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ]
-    },
-    {
-      "before": [
-        "<C-u>"
-      ],
-      "after": [
-        "<C-u>",
-        "z",
-        "z"
-      ]
-    },
-    {
-      "before": [
-        "<C-d>"
-      ],
-      "after": [
-        "<C-d>",
-        "z",
-        "z"
-      ]
-    },
-    {
-      "before": [
-        "Y"
-      ],
-      "after": [
-        "y",
-        "$"
-      ],
-    },
-    {
-      "before": [
-        "<Leader>",
-        "/"
-      ],
-      "commands": [
-        "editor.action.commentLine"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "?"
-      ],
-      "commands": [
-        "editor.action.blockComment"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save",
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "f"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "m"
-      ],
-      "commands": [
-        "editor.action.showContextMenu"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "h"
-      ],
-      "commands": [
-        "workbench.action.navigateLeft"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "l"
-      ],
-      "commands": [
-        "workbench.action.navigateRight"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "j"
-      ],
-      "commands": [
-        "workbench.action.navigateDown"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "k"
-      ],
-      "commands": [
-        "workbench.action.navigateUp"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "t",
-        "t"
-      ],
-      "commands": [
-        ":tabnew"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "t",
-        "n"
-      ],
-      "commands": [
-        ":tabnext"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "t",
-        "p"
-      ],
-      "commands": [
-        ":tabprev"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "t",
-        "o"
-      ],
-      "commands": [
-        ":tabo"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "t",
-        "q"
-      ],
-      "commands": [
-        ":tabc"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "n"
-      ],
-      "commands": [
-        ":noh"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "o"
-      ],
-      "after": [
-        "o",
-        "<esc>"
-      ],
-    },
-    {
-      "before": [
-        "<Leader>",
-        "O"
-      ],
-      "after": [
-        "O",
-        "<esc>"
-      ],
-    },
-    // Vim - Harpoon keybindings
-    {
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "q",
-      ],
-      "commands": [
-        "vscode-harpoon.editorQuickPick"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "Q",
-      ],
-      "commands": [
-        "vscode-harpoon.gotoPreviousHarpoonEditor"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "e"
-      ],
-      "commands": [
-        "vscode-harpoon.editEditors"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "1"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor1"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "2"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor2"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "3"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor3"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "4"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor4"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "5"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor5"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "6"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor6"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "7"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor7"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "8"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor8"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e",
-        "9"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor9"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "1"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor1"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "2"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor2"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "3"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor3"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "4"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor4"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "5"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor5"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "6"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor6"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "7"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor7"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "8"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor8"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "9"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor9"
-      ]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<Leader>",
-        "/"
-      ],
-      "commands": [
-        "editor.action.commentLine"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "?"
-      ],
-      "commands": [
-        "editor.action.blockComment"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save",
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "f"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ]
-    },
-    {
-      "before": [
-        "<Leader>",
-        "m"
-      ],
-      "commands": [
-        "editor.action.showContextMenu"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "p",
-      ],
-      "after": [
-        "p",
-        "g",
-        "v",
-        "y"
-      ]
-    },
-    {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
-    },
-    {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
-    },
-  ],
-  "vim.operatorPendingModeKeyBindings": [],
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindings": [
+        {
+            "after": [
+                "<esc>"
+            ],
+            "before": [
+                "j",
+                "k"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "s"
+            ],
+            "commands": [
+                "leap.findForward"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "commands": [
+                "leap.findBackward"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "h"
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<Leader>",
+                "K"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "J"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
+        {
+            "after": [
+                "<C-u>",
+                "z",
+                "z"
+            ],
+            "before": [
+                "<C-u>"
+            ]
+        },
+        {
+            "after": [
+                "<C-d>",
+                "z",
+                "z"
+            ],
+            "before": [
+                "<C-d>"
+            ]
+        },
+        {
+            "after": [
+                "y",
+                "$"
+            ],
+            "before": [
+                "Y"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "/"
+            ],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "?"
+            ],
+            "commands": [
+                "editor.action.blockComment"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "m"
+            ],
+            "commands": [
+                "editor.action.showContextMenu"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.navigateLeft"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.navigateRight"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "j"
+            ],
+            "commands": [
+                "workbench.action.navigateDown"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.navigateUp"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "t"
+            ],
+            "commands": [
+                ":tabnew"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "n"
+            ],
+            "commands": [
+                ":tabnext"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "p"
+            ],
+            "commands": [
+                ":tabprev"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "o"
+            ],
+            "commands": [
+                ":tabo"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "q"
+            ],
+            "commands": [
+                ":tabc"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "n"
+            ],
+            "commands": [
+                ":noh"
+            ]
+        },
+        {
+            "after": [
+                "o",
+                "<esc>"
+            ],
+            "before": [
+                "<Leader>",
+                "o"
+            ]
+        },
+        {
+            "after": [
+                "O",
+                "<esc>"
+            ],
+            "before": [
+                "<Leader>",
+                "O"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "a"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "q"
+            ],
+            "commands": [
+                "vscode-harpoon.editorQuickPick"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "Q"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoPreviousHarpoonEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "e"
+            ],
+            "commands": [
+                "vscode-harpoon.editEditors"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "1"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor1"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "2"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor2"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "3"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor3"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "4"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor4"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "5"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor5"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "6"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor6"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "7"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor7"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "8"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor8"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e",
+                "9"
+            ],
+            "commands": [
+                "vscode-harpoon.addEditor9"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "1"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor1"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "2"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor2"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "3"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor3"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "4"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor4"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "5"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor5"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "6"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor6"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "7"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor7"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "8"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor8"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "9"
+            ],
+            "commands": [
+                "vscode-harpoon.gotoEditor9"
+            ]
+        }
+    ],
+    "vim.operatorPendingModeKeyBindings": [],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<Leader>",
+                "/"
+            ],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "?"
+            ],
+            "commands": [
+                "editor.action.blockComment"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "m"
+            ],
+            "commands": [
+                "editor.action.showContextMenu"
+            ]
+        },
+        {
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ],
+            "before": [
+                "<leader>",
+                "p"
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ],
