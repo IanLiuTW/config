@@ -30,7 +30,7 @@
     },
     {
         "key": "alt+g c",
-        "command": "git.commitAll"
+        "command": "git.commit"
     },
     {
         "key": "alt+g b",
