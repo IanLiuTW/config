@@ -306,5 +306,71 @@
     {
         "key": "shift+cmd+k",
         "command": "workbench.profiles.actions.switchProfile"
+    },
+    {
+        "key": "alt+i oem_5",
+        "command": "github.copilot.terminal.suggestCommand",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-github.copilot.terminal.suggestCommand",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+i oem_5",
+        "command": "github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !inInteractiveInput && !interactiveEditorFocused"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !inInteractiveInput && !interactiveEditorFocused"
+    },
+    {
+        "key": "alt+i o",
+        "command": "workbench.action.openChat.copilot"
+    },
+    {
+        "key": "alt+i i",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
+    {
+        "key": "alt+i q",
+        "command": "workbench.action.openQuickChat.copilot"
+    },
+    {
+        "key": "alt+i e",
+        "command": "github.copilot.interactiveEditor.explain"
+    },
+    {
+        "key": "alt+i f",
+        "command": "github.copilot.interactiveEditor.fix"
+    },
+    {
+        "key": "alt+i d",
+        "command": "github.copilot.interactiveEditor.generateDocs"
+    },
+    {
+        "key": "alt+i t",
+        "command": "github.copilot.interactiveEditor.generateTests"
+    },
+    {
+        "key": "alt+i n",
+        "command": "workbench.action.chat.copilot.newChat"
+    },
+    {
+        "key": "alt+i space",
+        "command": "workbench.action.quickchat.launchInlineChat"
+    },
+    {
+        "key": "alt+i v",
+        "command": "workbench.action.chat.startVoiceChat",
+        "when": "!voiceChatInProgress"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "workbench.action.chat.stopListeningAndSubmit",
+        "when": "voiceChatInProgress"
     }
 ]
