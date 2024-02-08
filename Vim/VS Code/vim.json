@@ -32,16 +32,22 @@
             "before": [
                 "s"
             ],
-            "commands": [
-                "leap.findForward"
+            "after": [
+                "<leader>",
+                "<leader>",
+                "2",
+                "f"
             ]
         },
         {
             "before": [
                 "S"
             ],
-            "commands": [
-                "leap.findBackward"
+            "after": [
+                "<leader>",
+                "<leader>",
+                "2",
+                "F"
             ]
         },
         {
@@ -225,6 +231,16 @@
             ],
             "commands": [
                 ":tabnew"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "T"
+            ],
+            "commands": [
+                "workbench.action.reopenClosedEditor"
             ]
         },
         {
@@ -516,6 +532,28 @@
     ],
     "vim.operatorPendingModeKeyBindings": [],
     "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "2",
+                "f"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "2",
+                "F"
+            ]
+        },
         {
             "before": [
                 "<Leader>",
