@@ -202,6 +202,24 @@
         {
             "before": [
                 "<Leader>",
+                "L"
+            ],
+            "commands": [
+                ":tabnext"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "H"
+            ],
+            "commands": [
+                ":tabprev"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
                 "t",
                 "t"
             ],
@@ -213,30 +231,30 @@
             "before": [
                 "<Leader>",
                 "t",
-                "n"
-            ],
-            "commands": [
-                ":tabnext"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
-                "p"
-            ],
-            "commands": [
-                ":tabprev"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "t",
                 "o"
             ],
             "commands": [
                 ":tabo"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.showAllEditors"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "r"
+            ],
+            "commands": [
+                "workbench.action.showAllEditorsByMostRecentlyUsed"
             ]
         },
         {
@@ -256,6 +274,15 @@
             ],
             "commands": [
                 ":noh"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "m"
+            ],
+            "commands": [
+                ":delm!"
             ]
         },
         {
