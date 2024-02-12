@@ -25,10 +25,6 @@
         "when": "editorTextFocus && vim.active && vim.use<C-n> && !inDebugRepl || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
     },
     {
-        "key": "cmd+k cmd+p",
-        "command": "workbench.action.showEditorsInActiveGroup"
-    },
-    {
         "key": "alt+g c",
         "command": "git.commit"
     },
@@ -55,6 +51,18 @@
     {
         "key": "alt+g u",
         "command": "git.undoCommit"
+    },
+    {
+        "key": "alt+g o",
+        "command": "git.publish"
+    },
+    {
+        "key": "alt+g r",
+        "command": "git.rebase"
+    },
+    {
+        "key": "alt+g i",
+        "command": "git.ignore"
     },
     {
         "key": "shift+space",
@@ -298,6 +306,10 @@
     {
         "key": "alt+p o",
         "command": "projectManager.listProjects"
+    },
+    {
+        "key": "alt+p shift+o",
+        "command": "projectManager.listProjectsNewWindow"
     },
     {
         "key": "alt+cmd+p",

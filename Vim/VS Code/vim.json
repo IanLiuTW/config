@@ -18,12 +18,12 @@
     "vim.leader": "<space>",
     "vim.insertModeKeyBindings": [
         {
-            "after": [
-                "<esc>"
-            ],
             "before": [
                 "j",
                 "k"
+            ],
+            "after": [
+                "<esc>"
             ]
         }
     ],
@@ -52,26 +52,16 @@
         },
         {
             "before": [
-                "g",
-                "h"
-            ],
-            "commands": [
-                "editor.action.showDefinitionPreviewHover"
-            ]
-        },
-        {
-            "before": [
                 "K"
             ],
             "commands": [
                 "lineBreakInsert"
-            ],
-            "silent": true
+            ]
         },
         {
             "before": [
                 "<Leader>",
-                "K"
+                "k"
             ],
             "commands": [
                 "editor.action.moveLinesUpAction"
@@ -80,39 +70,39 @@
         {
             "before": [
                 "<Leader>",
-                "J"
+                "j"
             ],
             "commands": [
                 "editor.action.moveLinesDownAction"
             ]
         },
         {
+            "before": [
+                "<C-u>"
+            ],
             "after": [
                 "<C-u>",
                 "z",
                 "z"
-            ],
-            "before": [
-                "<C-u>"
             ]
         },
         {
+            "before": [
+                "<C-d>"
+            ],
             "after": [
                 "<C-d>",
                 "z",
                 "z"
-            ],
-            "before": [
-                "<C-d>"
             ]
         },
         {
+            "before": [
+                "Y"
+            ],
             "after": [
                 "y",
                 "$"
-            ],
-            "before": [
-                "Y"
             ]
         },
         {
@@ -162,8 +152,17 @@
         },
         {
             "before": [
+                "g",
+                "h"
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover"
+            ]
+        },
+        {
+            "before": [
                 "<Leader>",
-                "m"
+                ","
             ],
             "commands": [
                 "editor.action.showContextMenu"
@@ -172,7 +171,7 @@
         {
             "before": [
                 "<Leader>",
-                "h"
+                "H"
             ],
             "commands": [
                 "workbench.action.navigateLeft"
@@ -181,7 +180,7 @@
         {
             "before": [
                 "<Leader>",
-                "l"
+                "L"
             ],
             "commands": [
                 "workbench.action.navigateRight"
@@ -190,7 +189,7 @@
         {
             "before": [
                 "<Leader>",
-                "j"
+                "J"
             ],
             "commands": [
                 "workbench.action.navigateDown"
@@ -199,7 +198,7 @@
         {
             "before": [
                 "<Leader>",
-                "k"
+                "K"
             ],
             "commands": [
                 "workbench.action.navigateUp"
@@ -208,7 +207,7 @@
         {
             "before": [
                 "<Leader>",
-                "L"
+                "l"
             ],
             "commands": [
                 ":tabnext"
@@ -217,7 +216,7 @@
         {
             "before": [
                 "<Leader>",
-                "H"
+                "h"
             ],
             "commands": [
                 ":tabprev"
@@ -257,6 +256,26 @@
             "before": [
                 "<Leader>",
                 "t",
+                "q"
+            ],
+            "commands": [
+                ":tabc"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "Q"
+            ],
+            "commands": [
+                ":q!"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
                 "a"
             ],
             "commands": [
@@ -277,10 +296,60 @@
             "before": [
                 "<Leader>",
                 "t",
-                "q"
+                "`"
             ],
             "commands": [
-                ":tabc"
+                "workbench.action.createTerminalEditorSide"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.moveEditorLeftInGroup"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.moveEditorRightInGroup"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "H"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToPreviousGroup"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "L"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToNextGroup"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "m"
+            ],
+            "commands": [
+                "workbench.action.toggleMaximizeEditorGroup"
             ]
         },
         {
@@ -302,23 +371,53 @@
             ]
         },
         {
-            "after": [
-                "o",
-                "<esc>"
-            ],
             "before": [
                 "<Leader>",
                 "o"
+            ],
+            "after": [
+                "o",
+                "<esc>"
             ]
         },
         {
-            "after": [
-                "O",
-                "<esc>"
-            ],
             "before": [
                 "<Leader>",
                 "O"
+            ],
+            "after": [
+                "O",
+                "<esc>"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "editor.action.insertCursorAbove"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                "editor.action.insertCursorBelow"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "editor.action.addSelectionToNextFindMatch"
             ]
         },
         {
@@ -592,23 +691,14 @@
         },
         {
             "before": [
-                "<Leader>",
-                "m"
+                "<leader>",
+                "p"
             ],
-            "commands": [
-                "editor.action.showContextMenu"
-            ]
-        },
-        {
             "after": [
                 "p",
                 "g",
                 "v",
                 "y"
-            ],
-            "before": [
-                "<leader>",
-                "p"
             ]
         },
         {
@@ -625,6 +715,36 @@
             ],
             "commands": [
                 "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "editor.action.insertCursorAbove"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                "editor.action.insertCursorBelow"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "editor.action.addSelectionToNextFindMatch"
             ]
         }
     ]
