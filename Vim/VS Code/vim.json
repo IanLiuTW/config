@@ -10,7 +10,6 @@
     "vim.hlsearch": true,
     "vim.incsearch": true,
     "vim.handleKeys": {
-        "<C-a>": false,
         "<C-b>": false,
         "<C-f>": false,
         "<C-k>": false
@@ -52,10 +51,22 @@
         },
         {
             "before": [
-                "K"
+                "<Leader>",
+                "o"
             ],
-            "commands": [
-                "lineBreakInsert"
+            "after": [
+                "o",
+                "<esc>"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "O"
+            ],
+            "after": [
+                "O",
+                "<esc>"
             ]
         },
         {
@@ -78,6 +89,44 @@
         },
         {
             "before": [
+                "<leader>",
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "editor.action.insertCursorAbove"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                "editor.action.insertCursorBelow"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "editor.action.addSelectionToNextFindMatch"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ]
+        },
+        {
+            "before": [
                 "<C-u>"
             ],
             "after": [
@@ -94,6 +143,22 @@
                 "<C-d>",
                 "z",
                 "z"
+            ]
+        },
+        {
+            "before": [
+                "<C-o>"
+            ],
+            "commands": [
+                "workbench.action.navigatePreviousInEditLocations"
+            ]
+        },
+        {
+            "before": [
+                "<C-i>"
+            ],
+            "commands": [
+                "workbench.action.navigateForwardInEditLocations"
             ]
         },
         {
@@ -129,7 +194,7 @@
                 "w"
             ],
             "commands": [
-                "workbench.action.files.save"
+                "workbench.action.files.saveWithoutFormatting"
             ]
         },
         {
@@ -138,7 +203,7 @@
                 "W"
             ],
             "commands": [
-                "workbench.action.files.saveWithoutFormatting"
+                "workbench.action.files.save"
             ]
         },
         {
@@ -296,6 +361,36 @@
             "before": [
                 "<Leader>",
                 "t",
+                "s"
+            ],
+            "commands": [
+                "search.action.openNewEditorToSide"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinitionAside"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "m"
+            ],
+            "commands": [
+                "markdown.showPreviewToSide"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
                 "`"
             ],
             "commands": [
@@ -346,7 +441,7 @@
             "before": [
                 "<Leader>",
                 "t",
-                "m"
+                "<Leader>"
             ],
             "commands": [
                 "workbench.action.toggleMaximizeEditorGroup"
@@ -368,56 +463,6 @@
             ],
             "commands": [
                 ":delm!"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "o"
-            ],
-            "after": [
-                "o",
-                "<esc>"
-            ]
-        },
-        {
-            "before": [
-                "<Leader>",
-                "O"
-            ],
-            "after": [
-                "O",
-                "<esc>"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "k"
-            ],
-            "commands": [
-                "editor.action.insertCursorAbove"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "j"
-            ],
-            "commands": [
-                "editor.action.insertCursorBelow"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "d"
-            ],
-            "commands": [
-                "editor.action.addSelectionToNextFindMatch"
             ]
         },
         {
@@ -659,7 +704,8 @@
                 "/"
             ],
             "commands": [
-                "editor.action.commentLine"
+                "editor.action.commentLine",
+                "extension.vim_escape"
             ]
         },
         {
@@ -668,7 +714,8 @@
                 "?"
             ],
             "commands": [
-                "editor.action.blockComment"
+                "editor.action.blockComment",
+                "extension.vim_escape"
             ]
         },
         {
@@ -745,6 +792,24 @@
             ],
             "commands": [
                 "editor.action.addSelectionToNextFindMatch"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "k"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "j"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
             ]
         }
     ]
