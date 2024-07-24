@@ -1,0 +1,67 @@
+[user]
+	name = Ian Liu
+	email = ian.liu@tupl.com
+[help]
+	autocorrect = 30
+[core]
+	autocrlf = false
+	quotepath = false
+	editor = vim
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	aa = add .
+	c = commit
+	cm = commit --amend -C HEAD
+	co = checkout
+	cb = checkout -b
+	sw = switch
+	cl = clone
+	s = status
+	ss = status -sb
+	b = branch
+	bu = branch -u
+	bm = branch -m
+	bv = branch -vv
+	mg = merge
+	re = remote
+	rev = remote -v
+	rea = remote add
+	res = remote set-url
+	rer = remote rename
+	reem = remote remove
+	rs = reset
+	rsh = reset HEAD
+	rshs = reset HEAD --soft
+	rshh = reset HEAD --hard
+	sta = stash
+	stap = stash pop
+	staa = stash apply
+	stad = stash drop
+	rv = revert
+	f = fetch
+	pu = push
+	puu = push -u
+	pl = pull
+	di = diff
+	type = cat-file -t
+	dump = cat-file -p
+	rl = reflog
+	l = log
+	ls = log --stat
+	lo = log --oneline
+	lc = log --pretty=oneline
+	lss = log --show-signature
+	ll = log --pretty=format:'%h [%Cgreen%an%Creset] %ad - %ar : %s%d' --graph --date=short
+	lg = log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short
+	alias = config --get-regexp ^alias\\.
+	ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
+	iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
+	iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
