@@ -1,6 +1,6 @@
 # config
 
-Use [GNU Stow](https://www.gnu.org/software/stow/) to install the configs.
+Use [GNU Stow](https://www.gnu.org/software/stow/) to install the configs. (Need to place this config repo in the home directory)
 
 ## VS Code
 

@@ -116,10 +116,20 @@ export ARCHFLAGS="-arch x86_64"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
 alias zshrc="nvim ~/.zshrc"
 alias zshrcs="source ~/.zshrc"
+alias v="nvim"
+alias ls="ls -G"
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
