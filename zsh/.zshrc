@@ -1,3 +1,7 @@
+autoload -Uz compinit
+compinit
+zstyle ':completion::complete:*' gain-privileges 1
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -98,21 +102,16 @@ source $ZSH/oh-my-zsh.sh
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
-
+export LANG=en_US.UTF-8
+export ARCHFLAGS="-arch x86_64"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -121,6 +120,8 @@ export ARCHFLAGS="-arch x86_64"
 alias zshrc="nvim ~/.zshrc"
 alias zshrcs="source ~/.zshrc"
 alias v="nvim"
+alias lg="lazygit"
+
 alias ls="ls -G"
 alias ll="ls -alF"
 alias la="ls -A"
@@ -132,14 +133,15 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Alias for directories
 alias cdtp="cd '/Users/tupl/Desktop/OneDrive - Tupl Inc'"
 alias cdpg="cd '/Users/tupl/Desktop/playground'"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# Set up diff-so-fancy for lazygit
 export PATH=$HOME/diff-so-fancy:$PATH
