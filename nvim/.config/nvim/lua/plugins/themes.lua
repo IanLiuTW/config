@@ -16,19 +16,70 @@ return {
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    lazy=false,
+    lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    opts = {
-      transparent = true,
-    },
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    config = function()
+      require('tokyonight').setup {
+        style = 'night',
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+          sidebars = 'dark', -- style for sidebars, see below
+          floats = 'dark', -- style for floating windows
+        },
+        transparent = true,
+        -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+        on_colors = function(colors)
+          colors.hint = colors.orange
+          colors.error = '#ff0000'
+        end,
+        on_highlights = function(hl, c)
+          local prompt = '#2d3149'
+          hl.TelescopeNormal = {
+            bg = c.bg_dark,
+            fg = c.fg_dark,
+          }
+          hl.TelescopeBorder = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+          }
+          hl.TelescopePromptNormal = {
+            bg = prompt,
+          }
+          hl.TelescopePromptBorder = {
+            bg = prompt,
+            fg = prompt,
+          }
+          hl.TelescopePromptTitle = {
+            bg = prompt,
+            fg = prompt,
+          }
+          hl.TelescopePreviewTitle = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+          }
+          hl.TelescopeResultsTitle = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+          }
+        end,
+      }
 
-      vim.cmd.colorscheme 'tokyonight-night'
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- A fix to make toggleterm's background to be dark
+      local colors = require('tokyonight.colors').setup()
+      local toggleterm = require 'toggleterm'
+      toggleterm.setup {
+        shade_terminals = false,
+        highlights = {
+          Normal = {
+            guibg = colors.bg_dark,
+          },
+        },
+      }
+
+      vim.cmd.colorscheme 'tokyonight'
     end,
-  },
+  }
 }
