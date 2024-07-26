@@ -12,7 +12,7 @@ local function alpha_dashboard_layout()
       align_shortcut = 'right',
       hl = 'Title',
       hl_shortcut = 'WarningMsg',
-      width = 50,
+      width = 40,
       position = 'center',
     }
     opts = opts and vim.tbl_extend('force', def_opts, opts) or def_opts
@@ -116,7 +116,7 @@ local function alpha_dashboard_layout()
   vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#9575CD' }) -- Medium Purple
   vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#B39DDB' }) -- Light Purple
   vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#D1C4E9' }) -- Very Light Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#D1C4E9' }) -- light purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#fa8ea7' }) -- light purple
 
   return {
     { type = 'padding', val = 2 },
@@ -172,7 +172,7 @@ local function alpha_dashboard_layout()
         position = 'center',
       },
     },
-    { type = 'padding', val = 1 },
+    { type = 'padding', val = 0 },
     {
       type = 'group',
       val = lazycache 'mru',

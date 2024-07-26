@@ -122,16 +122,19 @@ alias zshrcs="source ~/.zshrc"
 alias v="nvim"
 alias lg="lazygit"
 
-alias ls="ls -G"
-alias ll="ls -alF"
-alias la="ls -A"
-alias l="ls -CF"
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+alias l="ls -CF"
+alias ls="ls -G"
+alias la="ls -A"
+alias ll="ls -alF"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
 
 # Alias for directories
 alias cdtp="cd '/Users/tupl/Desktop/OneDrive - Tupl Inc'"
