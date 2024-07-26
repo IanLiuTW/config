@@ -78,6 +78,7 @@ config.keys = {
   -- Lastly, workspace
   { key = "`", mods = "LEADER",           action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
+  { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom 'Clipboard' }
 }
 
 for i = 1, 9 do
@@ -105,10 +106,6 @@ config.key_tables = {
     { key = "Escape", action = "PopKeyTable" },
     { key = "Enter",  action = "PopKeyTable" },
   }
-}
-
-config.key = {
-  { key = "v", mods = "CTRL", action = act.PasteFrom 'Clipboard' }
 }
 
 -- Tab bar
