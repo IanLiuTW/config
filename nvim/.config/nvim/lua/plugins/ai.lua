@@ -141,7 +141,7 @@ return {
       -- Add which-key mappings
       local wk = require 'which-key'
       wk.add {
-        { '<leader>i', group = 'A[I]' }, -- group
+        { '<leader>i', group = 'A[I]', mode = { 'n', 'x' } }, -- group
         { '<leader>im', group = 'CopilotChat - Git' }, -- group
         { '<leader>imd', desc = 'Show diff' },
         { '<leader>imp', desc = 'System prompt' },

@@ -111,10 +111,28 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ User Keymaps ]]
+vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add a line below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add a line above' })
 vim.keymap.set('n', '<leader><CR>', 'i<CR><Esc>', { desc = 'Add a line break' })
 
+-- Pane keybindings
+vim.keymap.set('n', '<A-s>', '<Cmd>sp<CR>', { noremap = true, silent = true, desc = 'Pane Horizontal Split' })
+vim.keymap.set('n', '<A-v>', '<Cmd>vs<CR>', { noremap = true, silent = true, desc = 'Pane Vertical Split' })
+vim.keymap.set('n', '<A-h>', '<C-w><C->>', { noremap = true, silent = true, desc = 'Pane increase width' })
+vim.keymap.set('n', '<A-l>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
+vim.keymap.set('n', '<A-k>', '<C-w><C-+>', { noremap = true, silent = true, desc = 'Pane increase height' })
+vim.keymap.set('n', '<A-j>', '<C-w><C-->', { noremap = true, silent = true, desc = 'Pane decrease height' })
+vim.keymap.set('n', '<A-=>', '<C-w><C-=>', { noremap = true, silent = true, desc = 'Pane reset size' })
+vim.keymap.set('n', '<A-|>', '<C-w><C-|>', { noremap = true, silent = true, desc = 'Pane max height' })
+vim.keymap.set('n', '<A-_>', '<C-w><C-_>', { noremap = true, silent = true, desc = 'Pane max width' })
+vim.keymap.set('n', '<A-o>', '<C-w><C-o>', { noremap = true, silent = true, desc = 'Pane close other panes' })
+vim.keymap.set('n', '<A-T>', '<C-w><C-T>', { noremap = true, silent = true, desc = 'Pane into a new Tab' })
+vim.keymap.set('n', '<A-Tab>', '<C-w><C-w>', { noremap = true, silent = true, desc = 'Pane switch windows' })
+vim.keymap.set('n', '<A-x>', '<C-w><C-x>', { noremap = true, silent = true, desc = 'Pane swap windows' })
+vim.keymap.set('n', '<A-q>', '<C-w><C-q>', { noremap = true, silent = true, desc = 'Pane quit' })
+
+-- Tab keybindings
 vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Previous' })
 vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', { noremap = true, silent = true, desc = 'Buffer Next' })
 vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Move Privious' })
@@ -129,7 +147,7 @@ vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { noremap = true, silent =
 vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 8' })
 vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 9' })
 vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { noremap = true, silent = true, desc = 'Buffer Last' })
-vim.keymap.set('n', '<A-q>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true, desc = 'Buffer Pick' })
+vim.keymap.set('n', '<A-e>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true, desc = 'Buffer Pick' })
 vim.keymap.set('n', '<A-t>', '<Cmd>ene<CR>', { noremap = true, silent = true, desc = 'Buffer New' })
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
 vim.keymap.set('n', '<Space>bp', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin Buffer' })
@@ -139,12 +157,17 @@ vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', { noremap = 
 vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Language' })
 vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by WindowNumber' })
 
+-- Insert mode keymaps
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
+-- Visual mode keymaps
 vim.keymap.set('x', '<leader>p', 'pgvy', { desc = 'Paste yanked text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
+vim.keymap.set('x', '<leader>j', 'ddp', { desc = 'Quit' })
+vim.keymap.set('x', '<leader>k', 'ddkP', { desc = 'Quit' })
 
+-- Terminal mode keymaps
 vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
@@ -221,10 +244,8 @@ require('lazy').setup({
       require('which-key').setup()
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
-        { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]erminal/[T]oggle' },
         { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer' },
@@ -258,7 +279,7 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -266,11 +287,9 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
-
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
         build = 'make',
-
         -- `cond` is a condition used to determine whether this plugin should be
         -- installed and loaded.
         cond = function()
@@ -278,8 +297,6 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -340,18 +357,26 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', function()
         builtin.find_files { hidden = true }
       end, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', function()
+        builtin.live_grep { hidden = true }
+      end, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch Current [W]ord' })
+      vim.keymap.set(
+        'x',
+        '<leader>sw',
+        '"zy<Cmd>lua require("telescope.builtin").grep_string({search=vim.fn.getreg("z")})<CR>',
+        { desc = '[S]earch Current [W]ord' }
+      )
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ([.] for repeat)' })
+      vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = '[S]earch [B]uiltin of Telescope' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find Existing Buffers' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -465,11 +490,11 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch Document [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[S]earch Workspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -767,7 +792,7 @@ require('lazy').setup({
       --
       -- Examples:
       require('which-key').add {
-        { '<leader>z', group = '[Z]urround/[Z]en' }, -- group
+        { '<leader>z', group = '[Z]urround/[Z]en', mode = { 'n', 'x' } }, -- group
       }
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote

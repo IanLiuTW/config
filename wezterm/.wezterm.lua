@@ -28,32 +28,32 @@ config.default_workspace = "main"
 -- }
 
 -- Keys
-config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2000 }
+config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
   { key = "q",          mods = "LEADER|CTRL", action = act.SendKey { key = "q", mods = "CTRL" } },
   { key = "c",          mods = "LEADER",      action = act.ActivateCopyMode },
   { key = "F1",         mods = "LEADER",      action = act.ActivateCommandPalette },
 
   -- Pane keybindings
-  { key = "v",          mods = "LEADER",      action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-  { key = "s",          mods = "LEADER",      action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-  { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
-  { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
-  { key = "k",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
-  { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
-  { key = "w",          mods = "LEADER",      action = act.CloseCurrentPane { confirm = true } },
-  { key = "Space",      mods = "LEADER",      action = act.TogglePaneZoomState },
-  { key = "o",          mods = "LEADER",      action = act.RotatePanes "Clockwise" },
-  { key = "r",          mods = "LEADER",      action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
+  { key = "s",          mods = "LEADER|ALT",  action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = "v",          mods = "LEADER|ALT",  action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = "h",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
+  { key = "j",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
+  { key = "k",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
+  { key = "l",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
+  { key = "q",          mods = "LEADER|ALT",  action = act.CloseCurrentPane { confirm = true } },
+  { key = "z",          mods = "LEADER|ALT",  action = act.TogglePaneZoomState },
+  { key = "g",          mods = "LEADER|ALT",  action = act.RotatePanes "Clockwise" },
+  { key = "r",          mods = "LEADER|ALT",  action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 
   -- Tab keybindings
   { key = "t",          mods = "LEADER|ALT",  action = act.SpawnTab("CurrentPaneDomain") },
   { key = ",",          mods = "LEADER|ALT",  action = act.ActivateTabRelative(-1) },
   { key = ".",          mods = "LEADER|ALT",  action = act.ActivateTabRelative(1) },
-  { key = "q",          mods = "LEADER|ALT",  action = act.ShowTabNavigator },
+  { key = "e",          mods = "LEADER|ALT",  action = act.ShowTabNavigator },
   { key = "w",          mods = "LEADER|ALT",  action = wezterm.action.CloseCurrentTab { confirm = true } },
   {
-    key = "r",
+    key = "R",
     mods = "LEADER|ALT",
     action = act.PromptInputLine {
       description = wezterm.format {
@@ -73,7 +73,7 @@ config.keys = {
   { key = ">", mods = "LEADER|SHIFT|ALT",     action = act.MoveTabRelative(1) },
 
   -- Lastly, workspace
-  { key = "q", mods = "LEADER",               action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
+  { key = "`", mods = "LEADER",               action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
 }
 

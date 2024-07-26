@@ -221,6 +221,43 @@ return {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = false, -- add a border to hover docs and signature help
         },
+        routes = {
+          {
+            view = 'notify',
+            filter = { event = 'msg_showmode' },
+          },
+          -- {
+          --   filter = {
+          --     event = 'msg_show',
+          --     kind = '',
+          --     find = 'written',
+          --   },
+          --   opts = { skip = true },
+          -- },
+          {
+            filter = {
+              event = 'lsp',
+              kind = 'progress',
+              cond = function(message)
+                local client = vim.tbl_get(message.opts, 'progress', 'client')
+                return client == 'lua_ls'
+              end,
+            },
+            opts = { skip = true },
+          },
+        },
+        views = {
+          cmdline_popup = {
+            border = {
+              style = 'none',
+              padding = { 2, 3 },
+            },
+            filter_options = {},
+            win_options = {
+              winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+            },
+          },
+        },
       }
     end,
   },
