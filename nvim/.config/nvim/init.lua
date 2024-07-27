@@ -1,6 +1,6 @@
 --[[
 Kickstart Guide:
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
+  NOTE: The very first thing you should do is to run the command `:Tutor` in Neovim.
     (If you already know the Neovim basics, you can skip this step.)
 
   Once you've completed that, you can continue working through **AND READING** the rest
@@ -31,6 +31,7 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -90,8 +91,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.opt.termguicolors = false
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -111,6 +110,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ User Keymaps ]]
+vim.keymap.set('n', '<leader>j', '5j', { desc = '[J] * 5' })
+vim.keymap.set('n', '<leader>k', '5k', { desc = '[K] * 5' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add a line below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add a line above' })
@@ -150,12 +151,12 @@ vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { noremap = true, silent = t
 vim.keymap.set('n', '<A-e>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true, desc = 'Buffer Pick' })
 vim.keymap.set('n', '<A-t>', '<Cmd>ene<CR>', { noremap = true, silent = true, desc = 'Buffer New' })
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
-vim.keymap.set('n', '<Space>bp', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin Buffer' })
-vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Number' })
-vim.keymap.set('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Name' })
-vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Directory' })
-vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Language' })
-vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by WindowNumber' })
+vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin Buffer' })
+vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Number' })
+vim.keymap.set('n', '<leader>bn', '<Cmd>BufferOrderByName<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Name' })
+vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Directory' })
+vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Language' })
+vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by WindowNumber' })
 
 -- Insert mode keymaps
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
@@ -168,7 +169,7 @@ vim.keymap.set('x', '<leader>j', 'ddp', { desc = 'Quit' })
 vim.keymap.set('x', '<leader>k', 'ddkP', { desc = 'Quit' })
 
 -- Terminal mode keymaps
-vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]])
@@ -297,6 +298,7 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-telescope/telescope-project.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -348,12 +350,27 @@ require('lazy').setup({
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
+          project = {
+            base_dirs = {
+              '~/dev/src',
+              { '~/dev/src2' },
+              { '~/dev/src3', max_depth = 4 },
+              { path = '~/dev/src4' },
+              { path = '~/dev/src5', max_depth = 2 },
+            },
+            hidden_files = true, -- default: false
+            theme = 'dropdown',
+            order_by = 'asc',
+            search_by = 'title',
+            sync_with_nvim_tree = true, -- default false
+          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'project')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -375,8 +392,11 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find Existing Buffers' })
+      vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorscheme' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>sn', '<cmd>Telescope notify<CR>', { desc = '[S]earch [N]otification' })
+      vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = '[S]earch [T]odo' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -397,9 +417,17 @@ require('lazy').setup({
       end, { desc = '[S]earch [/] in Open Files' })
 
       -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
+      vim.keymap.set('n', '<leader>s,', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
+      end, { desc = '[S]earch Neovim Config' })
+
+      -- Project extension
+      vim.api.nvim_set_keymap(
+        'n',
+        '<leader>p',
+        "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
+        { desc = '[P]roject', noremap = true, silent = true }
+      )
     end,
   },
 
@@ -542,9 +570,9 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
+            map('<leader>ch', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, 'Toggle [C]ode Inlay [H]ints')
           end
         end,
       })
@@ -602,6 +630,7 @@ require('lazy').setup({
       --
       --  You can press `g?` for help in this menu.
       require('mason').setup()
+      vim.keymap.set('n', '<leader>zm', '<cmd>Mason<CR>', { desc = '[M]ason menu' })
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -732,8 +761,9 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          -- ['<C-y>'] = cmp.mapping.confirm { select = true },
-          ['<Tab>'] = cmp.mapping.confirm { select = true },
+          -- ['<Tab>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
@@ -783,7 +813,33 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      search = {
+        command = 'rg',
+        args = {
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--hidden'
+        },
+      },
+    },
+    init = function()
+      vim.keymap.set('n', 'xt', function()
+        require('todo-comments').jump_next()
+      end, { desc = 'Next todo comment' })
+
+      vim.keymap.set('n', 'xT', function()
+        require('todo-comments').jump_prev()
+      end, { desc = 'Previous todo comment' })
+    end,
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -792,7 +848,7 @@ require('lazy').setup({
       --
       -- Examples:
       require('which-key').add {
-        { '<leader>z', group = '[Z]urround/[Z]en', mode = { 'n', 'x' } }, -- group
+        { '<leader>z', group = '[Z]urround/Extra[Z]', mode = { 'n', 'x' } }, -- group
       }
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
@@ -818,34 +874,31 @@ require('lazy').setup({
           suffix_next = 'n', -- Suffix to search with "next" method
         },
       }
-      require('which-key').add {
-        { '<leader>z', group = '[Z]urround' }, -- group
-      }
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- -- Simple and easy statusline.
+      -- --  You could remove this setup call if you don't like it,
+      -- --  and try some other statusline plugin
+      -- local statusline = require 'mini.statusline'
+      -- -- set use_icons to true if you have a Nerd Font
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
+      --
+      -- -- You can configure sections in the statusline by overriding their
+      -- -- default behavior. For example, here we set the section for
+      -- -- cursor location to LINE:COLUMN
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      require('mini.files').setup {
-        windows = {
-          preview = true,
-          width_preview = 80,
-        },
-      }
-      vim.keymap.set('n', '<leader>.', '<cmd>:lua MiniFiles.open(nil, false)<CR>', { desc = '[.] Open Mini Files' })
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      -- require('mini.files').setup {
+      --   windows = {
+      --     preview = true,
+      --     width_preview = 80,
+      --   },
+      -- }
+      -- vim.keymap.set('n', '<leader>.', '<cmd>:lua MiniFiles.open(nil, false)<CR>', { desc = '[.] Open Mini Files' })
+      -- -- ... and there is more!
+      -- --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   { -- Highlight, edit, and navigate code

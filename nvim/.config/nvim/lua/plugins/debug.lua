@@ -34,6 +34,11 @@ return {
         '<cmd>Trouble qflist toggle<cr>',
         desc = 'Quickfix List (Trouble)',
       },
+      {
+        '<leader>xt',
+        '<cmd>Trouble todo toggle<cr>',
+        desc = 'Todo List (Trouble)',
+      },
     },
     config = function()
       require('trouble').setup()

@@ -13,7 +13,7 @@ return {
             return 20
           end
         end,
-        open_mapping = [[<c-\>]],
+        open_mapping = [[<C-\>]],
         direction = 'horizontal',
         float_opts = {
           border = 'curved',

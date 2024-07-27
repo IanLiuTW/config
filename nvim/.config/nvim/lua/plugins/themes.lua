@@ -2,13 +2,27 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
+    lazy = false,
     priority = 1000,
     config = function()
       require('catppuccin').setup {
-        flavour = 'macchiato',
+        flavour = 'mocha',
         transparent_background = true,
       }
     end,
+  },
+  {
+    "vague2k/vague.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("vague").setup({
+        transparent = true,
+        style = {
+          keywords = "italic",
+        }
+      })
+    end
   },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -27,7 +41,7 @@ return {
           functions = {},
           variables = {},
           sidebars = 'dark', -- style for sidebars, see below
-          floats = 'dark', -- style for floating windows
+          floats = 'dark',   -- style for floating windows
         },
         transparent = true,
         -- Change the "hint" color to the "orange" color, and make the "error" color bright red
@@ -78,8 +92,14 @@ return {
           },
         },
       }
-
-      vim.cmd.colorscheme 'tokyonight'
     end,
+  },
+  {
+    'raddari/last-color.nvim',
+    lazy = false,
+    config = function()
+      local theme = require('last-color').recall() or 'default'
+      vim.cmd.colorscheme(theme)
+    end
   }
 }

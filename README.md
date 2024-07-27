@@ -2,6 +2,10 @@
 
 ## Standard Configuration
 
+### asdf
+
+- https://asdf-vm.com/
+Use asdf as the tool version manager. Use `rustup` for Rust.
 
 ### Stow
 
@@ -42,7 +46,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - https://github.com/neovim/neovim
 
-### WezTerm
+### WezTerm (there's a different config for Window's WSL)
 
 - https://wezfurlong.org/wezterm/index.html
 

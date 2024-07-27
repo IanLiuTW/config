@@ -1,7 +1,3 @@
-autoload -Uz compinit
-compinit
-zstyle ':completion::complete:*' gain-privileges 1
-
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -22,6 +18,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,8 +100,15 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Set up asdf
+fpath=(${ASDF_DIR}/completions $fpath)
+
 # User configuration
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
 export ARCHFLAGS="-arch x86_64"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -112,6 +118,10 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+zstyle ':completion::complete:*' gain-privileges 1
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -135,16 +145,15 @@ alias ll="ls -alF"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
+alias rg='rg --hidden'
 
 # Alias for directories
 alias cdtp="cd '/Users/tupl/Desktop/OneDrive - Tupl Inc'"
 alias cdpg="cd '/Users/tupl/Desktop/playground'"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
 # Set up diff-so-fancy for lazygit
 export PATH=$HOME/diff-so-fancy:$PATH
+
