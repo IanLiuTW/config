@@ -110,15 +110,15 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ User Keymaps ]]
-vim.keymap.set('n', '<leader><leader>', '<cmd>gcc<CR>', { desc = '[ ] Toggle Comment' })
-vim.keymap.set('n', '<leader>j', 'ddp', { desc = 'Move Line Up' })
-vim.keymap.set('n', '<leader>k', 'ddkP', { desc = 'Move Line Down' })
-vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add a line below' })
-vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add a line above' })
-vim.keymap.set('n', '<leader><J>', 'i<CR><Esc>', { desc = 'Add a line break' })
+vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
+vim.keymap.set('n', '<leader>j', '5j', { desc = '[J] * 5' })
+vim.keymap.set('n', '<leader>k', '5k', { desc = '[K] * 5' })
+vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
 vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
+vim.keymap.set('n', '<<space>', 'ddkP', { desc = 'Move Line Up' })
+vim.keymap.set('n', '><space>', 'ddp', { desc = 'Move Line Down' })
 
 -- Pane keybindings
 vim.keymap.set('n', '<A-s>', '<Cmd>sp<CR>', { noremap = true, silent = true, desc = 'Pane Horizontal Split' })
@@ -165,7 +165,7 @@ vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { norema
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Visual mode keymaps
-vim.keymap.set('x', '<leader><leader>', '<cmd>gc<CR>', { desc = '[ ] Toggle Comment' })
+vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment' })
 vim.keymap.set('x', '<leader>p', 'pgvy', { desc = 'Paste yanked text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
@@ -226,7 +226,7 @@ require('lazy').setup({
   -- keys can be used to configure plugin behavior/loading/etc.
   -- Use `opts = {}` to force a plugin to be loaded.
 
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
+  -- OTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
   -- lazy loading plugins that don't need to be loaded immediately at startup.
@@ -378,13 +378,13 @@ require('lazy').setup({
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sf', function()
-        builtin.find_files { hidden = true, no_ignore = true }
+        builtin.find_files { hidden = true }
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sg', function()
-        builtin.live_grep { hidden = true, no_ignore = true }
+        builtin.live_grep { hidden = true }
       end, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sw', function()
-        builtin.grep_string { hidden = true, no_ignore = true }
+        builtin.grep_string { hidden = true }
       end, { desc = '[S]earch Current [W]ord' })
       vim.keymap.set(
         'x',
@@ -602,7 +602,13 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              command = 'clippy',
+            },
+          },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -622,7 +628,7 @@ require('lazy').setup({
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -836,13 +842,13 @@ require('lazy').setup({
       },
     },
     init = function()
-      vim.keymap.set('n', 'xt', function()
+      vim.keymap.set('n', '].', function()
         require('todo-comments').jump_next()
-      end, { desc = 'Next todo comment' })
+      end, { desc = 'Jump to next todo' })
 
-      vim.keymap.set('n', 'xT', function()
+      vim.keymap.set('n', '[.', function()
         require('todo-comments').jump_prev()
-      end, { desc = 'Previous todo comment' })
+      end, { desc = 'Jump to previous todo' })
     end,
   },
 
