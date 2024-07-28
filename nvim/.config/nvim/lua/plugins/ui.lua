@@ -71,20 +71,23 @@ local function alpha_dashboard_layout()
     return string.format('󰂖 %d Plugins ⋄ v%d.%d.%d @ %s ⋄ %s', plugins, v.major, v.minor, v.patch, platform, datetime)
   end
 
+  --stylua: ignore
   ---@return table
   lazycache.menu = function()
     return {
+      button('      n',        '  New file', '<cmd>ene<CR>'),
       button('      \\', '  File Browser'),
-      button('SPC   p', '  Project Manager'),
-      button('SPC s f', '  Search Files'),
-      button('SPC s .', '  Search Recent Files'),
-      button('SPC s g', '󰊄  Seach with Live Grep'),
-      button('SPC s .', '  Seach Neovim Config'),
-      button('n', '  New file', '<cmd>ene<CR>'),
-      button('u', '  Update Plugins', '<cmd>Lazy sync<CR>'),
-      button('SPC z l', '󰂖  Show Lazy Plugin'),
-      button('SPC z ;', '󰀬  Show Mason Plugin'),
-      button('q', '󰅚  Quit', '<cmd>qa<CR>'),
+      button('SPC p l',  '󰑓  Load Session'),
+      button('SPC p .',  '  Load Last Session'),
+      button('SPC p p',  '  Project Manager'),
+      button('SPC s f',  '  Search Files'),
+      button('SPC s .',  '  Search Recent Files'),
+      button('SPC s g',  '󰊄  Seach with Live Grep'),
+      button('SPC s ,',  '  Seach Neovim Config'),
+      button('SPC p L',  '󰂖  Show Lazy Plugin'),
+      button('SPC p M',  '󰀬  Show Mason Plugin'),
+      button('u',        '  Quick Update Plugins', '<cmd>Lazy sync<CR>'),
+      button('q',        '󰅚  Quit', '<cmd>qa<CR>'),
     }
   end
 

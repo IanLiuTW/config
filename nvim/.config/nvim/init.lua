@@ -111,8 +111,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- [[ User Keymaps ]]
 vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
-vim.keymap.set('n', '<leader>j', '5j', { desc = '[J] * 5' })
-vim.keymap.set('n', '<leader>k', '5k', { desc = '[K] * 5' })
+vim.keymap.set('n', '<leader>j', '10j', { desc = '[J] * 10' })
+vim.keymap.set('n', '<leader>k', '10k', { desc = '[K] * 10' })
 vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
@@ -166,13 +166,12 @@ vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Visual mode keymaps
 vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment' })
-vim.keymap.set('x', '<leader>p', 'pgvy', { desc = 'Paste yanked text' })
+vim.keymap.set('x', '<leader>p', '"0p', { desc = 'Paste copied text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
 
 -- Terminal mode keymaps
-vim.keymap.set('t', '<C-BackSpace>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('t', 'jk', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]])
 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]])
@@ -204,7 +203,7 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<leader>zl', '<Cmd>Lazy<CR>', { desc = '[L]azy Plugin' })
+vim.keymap.set('n', '<leader>pL', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
 
 -- [[ Configure and install plugins ]]
 --
@@ -253,6 +252,8 @@ require('lazy').setup({
         { '<leader>t', group = '[T]erminal/[T]oggle' },
         { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer' },
+        { '<leader>p', group = '[P]lugin/[P]orject/Session' },
+        { '<leader>z', group = '[Z]urround/Extra[Z]', mode = { 'n', 'x' } },
       }
     end,
   },
@@ -429,9 +430,9 @@ require('lazy').setup({
       -- Project extension
       vim.api.nvim_set_keymap(
         'n',
-        '<leader>p',
+        '<leader>pp',
         "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
-        { desc = '[P]roject', noremap = true, silent = true }
+        { desc = '[P]roject Manager', noremap = true, silent = true }
       )
     end,
   },
@@ -641,7 +642,7 @@ require('lazy').setup({
       --
       --  You can press `g?` for help in this menu.
       require('mason').setup()
-      vim.keymap.set('n', '<leader>z;', '<cmd>Mason<CR>', { desc = '[M]ason Plugin' })
+      vim.keymap.set('n', '<leader>pM', '<cmd>Mason<CR>', { desc = '[P]lugin [M]ason' })
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -858,9 +859,6 @@ require('lazy').setup({
       -- Better Around/Inside textobjects
       --
       -- Examples:
-      require('which-key').add {
-        { '<leader>z', group = '[Z]urround/Extra[Z]', mode = { 'n', 'x' } }, -- group
-      }
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
