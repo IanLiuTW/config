@@ -16,12 +16,12 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("vague").setup({
+      require("vague").setup{
         transparent = true,
         style = {
           keywords = "italic",
         }
-      })
+      }
     end
   },
   { -- You can easily change to a different colorscheme.
@@ -97,6 +97,7 @@ return {
   {
     'raddari/last-color.nvim',
     lazy = false,
+    priority = 1000,
     config = function()
       local theme = require('last-color').recall() or 'default'
       vim.cmd.colorscheme(theme)

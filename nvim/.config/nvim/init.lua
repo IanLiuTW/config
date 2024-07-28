@@ -110,12 +110,14 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ User Keymaps ]]
-vim.keymap.set('n', '<leader>j', '5j', { desc = '[J] * 5' })
-vim.keymap.set('n', '<leader>k', '5k', { desc = '[K] * 5' })
+vim.keymap.set('n', '<leader>j', 'ddp', { desc = 'Move Line Up' })
+vim.keymap.set('n', '<leader>k', 'ddkP', { desc = 'Move Line Down' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add a line below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add a line above' })
 vim.keymap.set('n', '<leader><CR>', 'i<CR><Esc>', { desc = 'Add a line break' })
+vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
+vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
 
 -- Pane keybindings
 vim.keymap.set('n', '<A-s>', '<Cmd>sp<CR>', { noremap = true, silent = true, desc = 'Pane Horizontal Split' })
@@ -165,11 +167,9 @@ vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('x', '<leader>p', 'pgvy', { desc = 'Paste yanked text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
-vim.keymap.set('x', '<leader>j', 'ddp', { desc = 'Quit' })
-vim.keymap.set('x', '<leader>k', 'ddkP', { desc = 'Quit' })
 
 -- Terminal mode keymaps
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<C-BackSpace>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]])
@@ -202,6 +202,7 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+vim.keymap.set('n', '<leader>zl', '<Cmd>Lazy<CR>', { desc = '[L]azy Plugin' })
 
 -- [[ Configure and install plugins ]]
 --
@@ -375,12 +376,14 @@ require('lazy').setup({
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sf', function()
-        builtin.find_files { hidden = true }
+        builtin.find_files { hidden = true, no_ignore = true }
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sg', function()
-        builtin.live_grep { hidden = true }
+        builtin.live_grep { hidden = true, no_ignore = true }
       end, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch Current [W]ord' })
+      vim.keymap.set('n', '<leader>sw', function()
+        builtin.grep_string { hidden = true, no_ignore = true }
+      end, { desc = '[S]earch Current [W]ord' })
       vim.keymap.set(
         'x',
         '<leader>sw',
@@ -630,7 +633,7 @@ require('lazy').setup({
       --
       --  You can press `g?` for help in this menu.
       require('mason').setup()
-      vim.keymap.set('n', '<leader>zm', '<cmd>Mason<CR>', { desc = '[M]ason menu' })
+      vim.keymap.set('n', '<leader>z;', '<cmd>Mason<CR>', { desc = '[M]ason Plugin' })
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -826,7 +829,7 @@ require('lazy').setup({
           '--with-filename',
           '--line-number',
           '--column',
-          '--hidden'
+          '--hidden',
         },
       },
     },
@@ -874,6 +877,18 @@ require('lazy').setup({
           suffix_next = 'n', -- Suffix to search with "next" method
         },
       }
+
+      local map = require 'mini.map'
+      map.setup {
+        integrations = {
+          map.gen_integration.gitsigns(),
+          map.gen_integration.builtin_search(),
+          map.gen_integration.diagnostic(),
+        },
+      }
+      map.close()
+      vim.keymap.set('n', '<Leader>zm', MiniMap.toggle, { desc = '[M]inimap Toggle' })
+      vim.keymap.set('n', '<Leader>zM', MiniMap.toggle_focus, { desc = '[M]inimap Toggle Focus' })
 
       -- -- Simple and easy statusline.
       -- --  You could remove this setup call if you don't like it,

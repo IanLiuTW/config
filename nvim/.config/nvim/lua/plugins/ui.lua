@@ -81,8 +81,9 @@ local function alpha_dashboard_layout()
       button('SPC s g', '󰊄  Seach with Live Grep'),
       button('SPC s .', '  Seach Neovim Config'),
       button('n', '  New file', '<cmd>ene<CR>'),
-      button('p', '󰂖  Show Plugins', '<cmd>Lazy<CR>'),
       button('u', '  Update Plugins', '<cmd>Lazy sync<CR>'),
+      button('SPC z l', '󰂖  Show Lazy Plugin'),
+      button('SPC z ;', '󰀬  Show Mason Plugin'),
       button('q', '󰅚  Quit', '<cmd>qa<CR>'),
     }
   end
