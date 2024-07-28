@@ -110,20 +110,21 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ User Keymaps ]]
+vim.keymap.set('n', '<leader><leader>', '<cmd>gcc<CR>', { desc = '[ ] Toggle Comment' })
 vim.keymap.set('n', '<leader>j', 'ddp', { desc = 'Move Line Up' })
 vim.keymap.set('n', '<leader>k', 'ddkP', { desc = 'Move Line Down' })
-vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Add a line below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Add a line above' })
-vim.keymap.set('n', '<leader><CR>', 'i<CR><Esc>', { desc = 'Add a line break' })
+vim.keymap.set('n', '<leader><J>', 'i<CR><Esc>', { desc = 'Add a line break' })
+vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
 vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
 
 -- Pane keybindings
 vim.keymap.set('n', '<A-s>', '<Cmd>sp<CR>', { noremap = true, silent = true, desc = 'Pane Horizontal Split' })
 vim.keymap.set('n', '<A-v>', '<Cmd>vs<CR>', { noremap = true, silent = true, desc = 'Pane Vertical Split' })
-vim.keymap.set('n', '<A-h>', '<C-w><C->>', { noremap = true, silent = true, desc = 'Pane increase width' })
-vim.keymap.set('n', '<A-l>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
+vim.keymap.set('n', '<A-l>', '<C-w><C->>', { noremap = true, silent = true, desc = 'Pane increase width' })
+vim.keymap.set('n', '<A-h>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
 vim.keymap.set('n', '<A-k>', '<C-w><C-+>', { noremap = true, silent = true, desc = 'Pane increase height' })
 vim.keymap.set('n', '<A-j>', '<C-w><C-->', { noremap = true, silent = true, desc = 'Pane decrease height' })
 vim.keymap.set('n', '<A-=>', '<C-w><C-=>', { noremap = true, silent = true, desc = 'Pane reset size' })
@@ -138,8 +139,8 @@ vim.keymap.set('n', '<A-q>', '<C-w><C-q>', { noremap = true, silent = true, desc
 -- Tab keybindings
 vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Previous' })
 vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', { noremap = true, silent = true, desc = 'Buffer Next' })
-vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Move Privious' })
-vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { noremap = true, silent = true, desc = 'Buffer Move Next' })
+vim.keymap.set('n', '<A-p>', '<Cmd>BufferMovePrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Move Privious' })
+vim.keymap.set('n', '<A-n>', '<Cmd>BufferMoveNext<CR>', { noremap = true, silent = true, desc = 'Buffer Move Next' })
 vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 1' })
 vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 2' })
 vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 3' })
@@ -164,6 +165,7 @@ vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { norema
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Visual mode keymaps
+vim.keymap.set('x', '<leader><leader>', '<cmd>gc<CR>', { desc = '[ ] Toggle Comment' })
 vim.keymap.set('x', '<leader>p', 'pgvy', { desc = 'Paste yanked text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
@@ -394,7 +396,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = '[S]earch [B]uiltin of Telescope' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find Existing Buffers' })
+      vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = '[Tab] Find Existing Buffers' })
       vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorscheme' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
