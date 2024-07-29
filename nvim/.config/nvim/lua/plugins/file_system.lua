@@ -4,7 +4,7 @@ return {
     version = '*',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
     cmd = 'Neotree',
@@ -33,7 +33,7 @@ return {
           show_hidden_count = true,
           hide_dotfiles = false,
           hide_gitignored = true,
-          always_show = { -- remains visible even if other settings would normally hide it
+          always_show = {
             '.gitignored',
           },
           never_show = {},

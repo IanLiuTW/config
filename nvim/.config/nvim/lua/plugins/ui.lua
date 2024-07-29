@@ -77,9 +77,9 @@ local function alpha_dashboard_layout()
     return {
       button('      n',        '  New file', '<cmd>ene<CR>'),
       button('      \\', '  File Browser'),
-      button('SPC p l',  '󰑓  Load Session'),
-      button('SPC p .',  '  Load Last Session'),
-      button('SPC p p',  '  Project Manager'),
+      button('      l',  '󰑓  Load Session', '<cmd>SessionManager load_session<CR>'),
+      button('      .',  '  Load Last Session', '<cmd>SessionManager load_last_session<CR>'),
+      button('      p',  '  Project Manager', "<cmd>lua require'telescope'.extensions.project.project{}<CR>"),
       button('SPC s f',  '  Search Files'),
       button('SPC s .',  '  Search Recent Files'),
       button('SPC s g',  '󰊄  Seach with Live Grep'),

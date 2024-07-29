@@ -27,4 +27,3 @@ nvim .git/config
 ```
 
 Change the remote url to this format `git@github.com:user_name/repo_name.git`
-

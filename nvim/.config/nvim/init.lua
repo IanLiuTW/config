@@ -74,15 +74,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- [[ User Keymaps ]]
 vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('n', '<leader>j', '10j', { desc = '[J] * 10' })
 vim.keymap.set('n', '<leader>k', '10k', { desc = '[K] * 10' })
@@ -96,10 +93,10 @@ vim.keymap.set('n', '><space>', 'ddp', { desc = 'Move Line Down' })
 -- Pane keybindings
 vim.keymap.set('n', '<A-s>', '<Cmd>sp<CR>', { noremap = true, silent = true, desc = 'Pane Horizontal Split' })
 vim.keymap.set('n', '<A-v>', '<Cmd>vs<CR>', { noremap = true, silent = true, desc = 'Pane Vertical Split' })
-vim.keymap.set('n', '<A-l>', '<C-w><C->>', { noremap = true, silent = true, desc = 'Pane increase width' })
-vim.keymap.set('n', '<A-h>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
-vim.keymap.set('n', '<A-k>', '<C-w><C-+>', { noremap = true, silent = true, desc = 'Pane increase height' })
-vim.keymap.set('n', '<A-j>', '<C-w><C-->', { noremap = true, silent = true, desc = 'Pane decrease height' })
+vim.keymap.set('n', '<A-Right>', '<C-w><C->>', { noremap = true, silent = true, desc = 'Pane increase width' })
+vim.keymap.set('n', '<A-Left>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
+vim.keymap.set('n', '<A-Up>', '<C-w><C-+>', { noremap = true, silent = true, desc = 'Pane increase height' })
+vim.keymap.set('n', '<A-Down>', '<C-w><C-->', { noremap = true, silent = true, desc = 'Pane decrease height' })
 vim.keymap.set('n', '<A-=>', '<C-w><C-=>', { noremap = true, silent = true, desc = 'Pane reset size' })
 vim.keymap.set('n', '<A-|>', '<C-w><C-|>', { noremap = true, silent = true, desc = 'Pane max height' })
 vim.keymap.set('n', '<A-_>', '<C-w><C-_>', { noremap = true, silent = true, desc = 'Pane max width' })
@@ -393,7 +390,6 @@ require('lazy').setup({
     'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
-      --
       -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
@@ -401,7 +397,6 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
@@ -420,6 +415,7 @@ require('lazy').setup({
         },
       }
 
+      -- Show minimap of the current buffer
       local map = require 'mini.map'
       map.setup {
         integrations = {
@@ -428,7 +424,6 @@ require('lazy').setup({
           map.gen_integration.diagnostic(),
         },
       }
-      map.close()
       vim.keymap.set('n', '<Leader>zm', MiniMap.toggle, { desc = '[M]inimap Toggle' })
       vim.keymap.set('n', '<Leader>zM', MiniMap.toggle_focus, { desc = '[M]inimap Toggle Focus' })
 
@@ -470,6 +465,7 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'plugins' },
+  { import = 'plugins.session' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -4,12 +4,12 @@
 
 ### asdf
 
-- https://asdf-vm.com/
+- [https://asdf-vm.com/]
 Use asdf as the tool version manager. Use `rustup` for Rust.
 
 ### Stow
 
-- [GNU Stow](https://www.gnu.org/software/stow/) 
+- [GNU Stow](https://www.gnu.org/software/stow/)
 
 Use Stow to install the configs. (Need to place this config repo in the home directory)
 
@@ -19,36 +19,37 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ### Font
 
-- https://github.com/ryanoasis/nerd-fonts
+- [https://github.com/ryanoasis/nerd-fonts]
 
 ### Zsh
 
-- https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH 
-- (On Arch) https://wiki.archlinux.org/title/Zsh
+-[[https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH]
+
+- On Arch: [https://wiki.archlinux.org/title/Zsh]
 
 #### Zsh Plugins (recomending using `Oh My Zsh` method, cloning the repo into `ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom`)
 
-- https://github.com/ohmyzsh/ohmyzsh
-- https://github.com/romkatv/powerlevel10k
-- https://github.com/zsh-users/zsh-autosuggestions 
-- https://github.com/zsh-users/zsh-syntax-highlighting
+- [https://github.com/ohmyzsh/ohmyzsh]
+- [https://github.com/romkatv/powerlevel10k]
+- [https://github.com/zsh-users/zsh-autosuggestions ]
+- [https://github.com/zsh-users/zsh-syntax-highlighting]
 
 ### fzf
 
-- https://github.com/junegunn/fzf
+- [https://github.com/junegunn/fzf]
 
 ### Lazygit
 
-- https://github.com/jesseduffield/lazygit
-- https://github.com/so-fancy/diff-so-fancy
+- [https://github.com/jesseduffield/lazygit]
+- [https://github.com/so-fancy/diff-so-fancy]
 
 ### Neovim
 
-- https://github.com/neovim/neovim
+- [https://github.com/neovim/neovim]
 
-### WezTerm (there's a different config for Window's WSL)
+### Kitty
 
-- https://wezfurlong.org/wezterm/index.html
+- [https://sw.kovidgoyal.net/kitty/]
 
 ## Others
 
@@ -58,4 +59,8 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ### Zellij (use WezTerm if possible)
 
-- https://github.com/zellij-org/zellij
+- [https://github.com/zellij-org/zellij]
+
+### WezTerm (there's a different config for Window's WSL)
+
+- [https://wezfurlong.org/wezterm/index.html]
