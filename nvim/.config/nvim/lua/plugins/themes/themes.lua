@@ -12,6 +12,7 @@ return {
     end,
   },
   { 'rose-pine/neovim', name = 'rose-pine', lazy = false, priority = 1000 },
+  { 'rebelot/kanagawa.nvim', name = 'kanagawa', lazy = false, priority = 1000 },
   {
     'vague2k/vague.nvim',
     lazy = false,

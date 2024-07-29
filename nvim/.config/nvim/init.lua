@@ -134,7 +134,7 @@ vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { norema
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Visual mode keymaps
-vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment' })
+vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('x', '<leader>p', '"0p', { desc = 'Paste copied text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
@@ -145,7 +145,6 @@ vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]])
 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]])
 vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]])
--- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -173,6 +172,12 @@ if not vim.uv.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 vim.keymap.set('n', '<leader>pL', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
+
+local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
+for name, icon in pairs(symbols) do
+  local hl = "DiagnosticSign" .. name
+  vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+end
 
 -- [[ Configure and install plugins ]]
 --

@@ -3,12 +3,21 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     opts = {
+      signcolumn = true,
+      numhl = true,
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        add = { text = '' },
+        change = { text = '󰜥' },
+        delete = { text = '▃' },
+        topdelete = { text = '▔' },
+        chandelete = { text = '󱣳' },
+      },
+      signs_staged = {
+        add = { text = '' },
+        change = { text = '󰜥' },
+        delete = { text = '▃' },
+        topdelete = { text = '▔' },
+        chandelete = { text = '󱣳' },
       },
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
@@ -59,6 +68,8 @@ return {
         -- Toggles
         map('n', '<leader>gB', gitsigns.toggle_current_line_blame, { desc = 'Toggle [G]it show [B]lame line' })
         map('n', '<leader>gq', gitsigns.toggle_deleted, { desc = 'Toggle [G]it show deleted' })
+        map('n', '<leader>gl', gitsigns.toggle_linehl, { desc = 'Toggle [G]it show [L]ine highlights' })
+        map('n', '<leader>gw', gitsigns.toggle_word_diff, { desc = 'Toggle [G]it show [W]ord diff' })
       end,
     },
   },
