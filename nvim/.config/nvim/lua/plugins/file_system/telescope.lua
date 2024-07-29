@@ -58,7 +58,17 @@ return {
             },
           },
         },
-        pickers = {},
+        pickers = {
+          find_files = {
+            find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
+          },
+          grep_string = {
+            additional_args = { '--hidden', '--iglob', '!.git' },
+          },
+          live_grep = {
+            additional_args = { '--hidden', '--iglob', '!.git' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -70,20 +80,20 @@ return {
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          project = {
-            base_dirs = {
-              '~/dev/src',
-              { '~/dev/src2' },
-              { '~/dev/src3', max_depth = 4 },
-              { path = '~/dev/src4' },
-              { path = '~/dev/src5', max_depth = 2 },
-            },
-            hidden_files = true, -- default: false
-            theme = 'dropdown',
-            order_by = 'asc',
-            search_by = 'title',
-            sync_with_nvim_tree = true, -- default false
-          },
+          -- project = {
+          --   base_dirs = {
+          --     '~/dev/src',
+          --     { '~/dev/src2' },
+          --     { '~/dev/src3', max_depth = 4 },
+          --     { path = '~/dev/src4' },
+          --     { path = '~/dev/src5', max_depth = 2 },
+          --   },
+          --   hidden_files = true, -- default: false
+          --   theme = 'dropdown',
+          --   order_by = 'asc',
+          --   search_by = 'title',
+          --   sync_with_nvim_tree = true, -- default false
+          -- },
         },
       }
 
@@ -95,13 +105,13 @@ return {
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sf', function()
-        builtin.find_files { hidden = true }
+        builtin.find_files()
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sg', function()
-        builtin.live_grep { hidden = true }
+        builtin.live_grep()
       end, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sw', function()
-        builtin.grep_string { hidden = true }
+        builtin.grep_string()
       end, { desc = '[S]earch Current [W]ord' })
       vim.keymap.set(
         'x',

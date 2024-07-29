@@ -141,7 +141,7 @@ return {
       require('trouble').setup()
 
       require('which-key').add {
-        { '<leader>x', group = '[X] for Trouble' },
+        { '<leader>x', group = '[X] Trouble' },
       }
 
       local actions = require 'telescope.actions'

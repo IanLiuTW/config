@@ -72,7 +72,7 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
 
 vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('n', '<leader>j', '10j', { desc = '[J] * 10' })
@@ -141,10 +141,10 @@ vim.keymap.set('x', '>', '>gv')
 
 -- Terminal mode keymaps
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])
-vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]])
-vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]])
-vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]])
+vim.keymap.set('t', '<A-h>', [[<Cmd>wincmd h<CR>]])
+vim.keymap.set('t', '<A-j>', [[<Cmd>wincmd j<CR>]])
+vim.keymap.set('t', '<A-k>', [[<Cmd>wincmd k<CR>]])
+vim.keymap.set('t', '<A-l>', [[<Cmd>wincmd l<CR>]])
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -224,8 +224,11 @@ require('lazy').setup({
         { '<leader>t', group = '[T]erminal' },
         { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer' },
+        { '<leader>o', group = '[O]oversee Tasks' },
+        { '<leader>S', group = '[S]urround' },
+        { '<leader>h', group = '[H]arpoon' },
         { '<leader>p', group = '[P]lugin/[P]orject/Session' },
-        { '<leader>z', group = '[Z]urround/Extra[Z]', mode = { 'n', 'x' } },
+        { '<leader>z', group = '[Z] Extra', mode = { 'n', 'x' } },
       }
     end,
   },
@@ -246,13 +249,13 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup {
         mappings = {
-          add = '<leader>za', -- Add surrounding in Normal and Visual modes
-          delete = '<leader>zd', -- Delete surrounding
-          find = '<leader>zf', -- Find surrounding (to the right)
-          find_left = '<leader>zF', -- Find surrounding (to the left)
-          highlight = '<leader>zh', -- Highlight surrounding
-          replace = '<leader>zs', -- Replace surrounding
-          update_n_lines = '<leader>zn', -- Update `n_lines`
+          add = '<leader>Sa', -- Add surrounding in Normal and Visual modes
+          delete = '<leader>Sd', -- Delete surrounding
+          find = '<leader>Sf', -- Find surrounding (to the right)
+          find_left = '<leader>SF', -- Find surrounding (to the left)
+          highlight = '<leader>Sh', -- Highlight surrounding
+          replace = '<leader>Ss', -- Replace surrounding
+          update_n_lines = '<leader>Sn', -- Update `n_lines`
 
           suffix_last = 'l', -- Suffix to search with "prev" method
           suffix_next = 'n', -- Suffix to search with "next" method
