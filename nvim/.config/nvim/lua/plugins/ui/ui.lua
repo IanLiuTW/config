@@ -17,6 +17,7 @@ local function alpha_dashboard_layout()
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonVal', { fg = '#4b6eeb', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonKey', { fg = '#d1a428', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardMRUTitle', { fg = '#0dd1b0', bold = true })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardQuote', { fg = '#808080' })
 
   local function button(sc, txt, keybind, keybind_opts, opts)
     local def_opts = {
@@ -190,7 +191,7 @@ local function alpha_dashboard_layout()
     {
       type = 'text',
       val = lazycache 'fortune',
-      opts = { hl = 'Conceal', position = 'center' },
+      opts = { hl = 'NeovimDashboardQuote', position = 'center' },
     },
     { type = 'padding', val = 2 },
   }

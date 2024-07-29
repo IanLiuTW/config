@@ -11,18 +11,19 @@ return {
       }
     end,
   },
+  { 'rose-pine/neovim', name = 'rose-pine', lazy = false, priority = 1000 },
   {
-    "vague2k/vague.nvim",
+    'vague2k/vague.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      require("vague").setup{
+      require('vague').setup {
         transparent = true,
         style = {
-          keywords = "italic",
-        }
+          keywords = 'italic',
+        },
       }
-    end
+    end,
   },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -40,8 +41,8 @@ return {
           keywords = { italic = true },
           functions = {},
           variables = {},
-          sidebars = 'dark', -- style for sidebars, see below
-          floats = 'dark',   -- style for floating windows
+          sidebars = 'dark',
+          floats = 'dark',
         },
         transparent = true,
         -- Change the "hint" color to the "orange" color, and make the "error" color bright red
@@ -101,6 +102,6 @@ return {
     config = function()
       local theme = require('last-color').recall() or 'default'
       vim.cmd.colorscheme(theme)
-    end
-  }
+    end,
+  },
 }
