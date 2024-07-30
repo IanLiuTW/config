@@ -156,7 +156,7 @@ return {
       -- Project extension
       vim.api.nvim_set_keymap(
         'n',
-        '<leader>pp',
+        '<leader>,p',
         "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
         { desc = '[P]roject Manager', noremap = true, silent = true }
       )

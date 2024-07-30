@@ -1,4 +1,5 @@
-return { {
+return {
+  {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',
     dependencies = {
@@ -23,7 +24,7 @@ return { {
             ['<C-h>'] = 'close_node',
             ['l'] = 'open',
             ['h'] = 'close_node',
-            ['<CR>'] = 'toggle_node',
+            ['<Tab>'] = 'toggle_node',
             ['<space>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
             ['K'] = 'focus_preview',
             ['gh'] = { 'toggle_hidden' },

@@ -35,9 +35,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
-vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
-vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
-vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
 vim.keymap.set('n', '<leader>ck', '<Cmd>m -2<CR>', { desc = 'Move Line Up' })
 vim.keymap.set('n', '<leader>cj', '<Cmd>m +1<CR>', { desc = 'Move Line Down' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
@@ -94,7 +91,6 @@ vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
-vim.keymap.set('x', '<leader>p', '"0p', { desc = 'Paste copied text' })
 vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment', remap = true })
 
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -102,9 +98,6 @@ vim.keymap.set('t', '<A-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<A-j>', [[<Cmd>wincmd j<CR>]])
 vim.keymap.set('t', '<A-k>', [[<Cmd>wincmd k<CR>]])
 vim.keymap.set('t', '<A-l>', [[<Cmd>wincmd l<CR>]])
-
-vim.keymap.set({'n', 'x'}, '<leader>j', '10j', { desc = '[J] * 10' })
-vim.keymap.set({'n', 'x'}, '<leader>k', '10k', { desc = '[K] * 10' })
 
 -- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
 
@@ -136,7 +129,7 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<leader>pL', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
+vim.keymap.set('n', '<leader>,L', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
 
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
 for name, icon in pairs(symbols) do
@@ -173,18 +166,50 @@ require('lazy').setup({
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show { global = false }
+        end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+      require('which-key').setup {
+        win = {
+          width = { min = 30, max = 120 },
+          height = { min = 4, max = 0.9 },
+          padding = { 0, 1 },
+          col = -1,
+          row = -1,
+          border = 'rounded',
+          title = true,
+          title_pos = 'left',
+        },
+        layout = {
+          width = { min = 100, max = 120 },
+        },
+      }
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'x' } },
         { '<leader>t', group = '[T]erminal' },
-        { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it', mode = { 'n', 'x' } },
         { '<leader>b', group = '[B]uffer' },
-        { '<leader>o', group = '[O]oversee Tasks' },
-        { '<leader>r', group = 'Su[R]round' },
-        { '<leader>p', group = '[P]lugin/[P]orject/Session' },
+        { '<leader>l', group = '[L] Tasks' },
+        { '<leader>r', group = 'Su[R]round', mode = { 'n', 'x' } },
+        { '<leader>,', group = '[,] Plugin/Porject/Session' },
         { '<leader>z', group = 'Extra[Z]', mode = { 'n', 'x' } },
+        {
+          mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
+          { '<leader>w', '<cmd>write<CR>', desc = '[W]rite buffer' },
+          { '<leader>zq', '<Cmd>q<CR>', desc = '[Q]uit' },
+          { '<leader>zQ', '<Cmd>qa<CR>', desc = '[Q]uit All' },
+          { '<leader>p', '"0p', desc = 'Paste copied text' },
+          { '<leader>j', '10j', desc = '[J] * 10' },
+          { '<leader>k', '10k', desc = '[K] * 10' },
+        },
       }
     end,
   },
