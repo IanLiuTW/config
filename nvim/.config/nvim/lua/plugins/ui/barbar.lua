@@ -1,0 +1,20 @@
+return {
+  'romgrk/barbar.nvim',
+  version = '^1.0.0',
+  dependencies = {
+    'lewis6991/gitsigns.nvim',
+    'nvim-tree/nvim-web-devicons',
+  },
+  init = function()
+    vim.g.barbar_auto_setup = false
+  end,
+  opts = {
+    icons = {
+      buffer_number = true,
+    },
+    -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+    -- animation = true,
+    -- insert_at_start = true,
+    -- …etc.
+  },
+}

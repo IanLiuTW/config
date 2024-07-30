@@ -57,7 +57,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://www.hammerspoon.org/]
 
-- Use `Hammerspoon` for kitty window management (for creating a iTerm2 hotkey window experience on MacOS)
+- Use `Hammerspoon` for kitty to have a iTerm2 hotkey window experience on MacOS
 
 ### VS Code (use Neovim if possible)
 
