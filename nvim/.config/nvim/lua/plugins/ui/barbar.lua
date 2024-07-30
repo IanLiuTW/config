@@ -9,12 +9,21 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   opts = {
+    focus_on_close = 'previous',
     icons = {
-      buffer_number = true,
+      buffer_index = true,
+      diagnostics = {
+        [vim.diagnostic.severity.ERROR] = { enabled = true },
+        [vim.diagnostic.severity.WARN] = { enabled = true },
+        [vim.diagnostic.severity.INFO] = { enabled = false },
+        [vim.diagnostic.severity.HINT] = { enabled = false },
+      },
+      gitsigns = {
+        added = { enabled = true, icon = '+' },
+        changed = { enabled = true, icon = '~' },
+        deleted = { enabled = true, icon = '-' },
+      },
+      separator = { left = '▌', right = '▐' },
     },
-    -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-    -- animation = true,
-    -- insert_at_start = true,
-    -- …etc.
   },
 }

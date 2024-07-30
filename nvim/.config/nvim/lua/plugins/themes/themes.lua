@@ -1,62 +1,5 @@
 return {
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('catppuccin').setup {
-        flavour = 'mocha',
-        transparent_background = true,
-      }
-    end,
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      styles = {
-        transparency = true,
-      },
-    },
-  },
-  {
-    'rebelot/kanagawa.nvim',
-    name = 'kanagawa',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-      functionStyle = { italic = true, bold = true },
-    },
-    init = function()
-      local toggleterm = require 'toggleterm'
-      toggleterm.setup {
-        shade_terminals = false,
-        highlights = {
-          Normal = {
-            guibg = '#000000'
-          },
-        },
-      }
-    end,
-  },
-  {
-    'vague2k/vague.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('vague').setup {
-        transparent = true,
-        style = {
-          keywords = 'italic',
-        },
-      }
-    end,
-  },
-  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
@@ -110,14 +53,61 @@ return {
     },
     init = function()
       -- A fix to make toggleterm's background to be dark
-      local colors = require('tokyonight.colors').setup()
+      -- local colors = require('tokyonight.colors').setup()
       local toggleterm = require 'toggleterm'
       toggleterm.setup {
         shade_terminals = false,
         highlights = {
           Normal = {
-            guibg = colors.bg_dark,
+            guibg = "#1c1c1c",
           },
+        },
+      }
+    end,
+  },
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    lazy = false,
+    config = function()
+      require('catppuccin').setup {
+        flavour = 'mocha',
+        transparent_background = true,
+      }
+    end,
+  },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    lazy = false,
+    opts = {
+      styles = {
+        transparency = true,
+      },
+    },
+  },
+  {
+    'rebelot/kanagawa.nvim',
+    name = 'kanagawa',
+    lazy = false,
+    opts = {
+      transparent = true,
+      functionStyle = { italic = true, bold = true },
+    },
+  },
+  {
+    'akai54/2077.nvim',
+    name = '2077',
+    lazy = false,
+  },
+  {
+    'vague2k/vague.nvim',
+    lazy = false,
+    config = function()
+      require('vague').setup {
+        transparent = true,
+        style = {
+          keywords = 'italic',
         },
       }
     end,

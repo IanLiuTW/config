@@ -16,7 +16,7 @@ return {
         open_mapping = [[<C-\>]],
         direction = 'horizontal',
         float_opts = {
-          border = 'curved',
+          border = 'curved'
         },
         shade_terminals = false,
       }

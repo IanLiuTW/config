@@ -1,4 +1,5 @@
 {
+  "2077": { "branch": "master", "commit": "ac84f753d225649c95ea86b0157f982c8f694237" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "CopilotChat.nvim": { "branch": "canary", "commit": "4a5e07185b37d3132e5541d8fa42aa874b774476" },
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
@@ -49,6 +50,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "5be6c4e685618b99c3210a69375b38a1202369b4" },
   "oil-git-status.nvim": { "branch": "main", "commit": "a7ea816bac0cc3b8b4c3605e2f2b87960be60a05" },
   "oil.nvim": { "branch": "master", "commit": "fcca212c2e966fc3dec1d4baf888e670631d25d1" },
+  "outline.nvim": { "branch": "main", "commit": "2175b6da5b7b5be9de14fd3f54383a17f5e4609c" },
   "overseer.nvim": { "branch": "master", "commit": "cbcdcbae3704c21d3ff96a1927d952b8a966b08a" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "rose-pine": { "branch": "main", "commit": "e4b08d74b7272cb21e4e9c71b8b9e0830fd722fe" },
