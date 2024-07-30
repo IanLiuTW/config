@@ -1,5 +1,4 @@
-return {
-  {
+return { {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',
     dependencies = {
@@ -17,15 +16,17 @@ return {
         window = {
           mappings = {
             ['\\'] = 'close_window',
-            ['s'] = 'open_split',
-            ['v'] = 'open_vsplit',
-            ['<2-LeftMouse>'] = 'open',
+            ['<C-s>'] = 'open_split',
+            ['<C-v>'] = 'open_vsplit',
+            ['<C-t>'] = 'open_tabnew',
+            ['<C-l>'] = 'open',
+            ['<C-h>'] = 'close_node',
             ['l'] = 'open',
             ['h'] = 'close_node',
             ['<CR>'] = 'toggle_node',
             ['<space>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
             ['K'] = 'focus_preview',
-            ['<c-h>'] = { 'toggle_hidden' },
+            ['gh'] = { 'toggle_hidden' },
           },
         },
         filtered_items = {
@@ -46,11 +47,4 @@ return {
       },
     },
   },
-  -- {
-  -- 'stevearc/oil.nvim',
-  -- opts = {},
-  -- -- -- Optional dependencies
-  -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-  -- }
 }

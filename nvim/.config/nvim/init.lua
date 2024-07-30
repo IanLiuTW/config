@@ -81,8 +81,10 @@ vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
 vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
-vim.keymap.set('n', '<<space>', 'ddkP', { desc = 'Move Line Up' })
-vim.keymap.set('n', '><space>', 'ddp', { desc = 'Move Line Down' })
+vim.keymap.set('n', '<leader>ck', '<Cmd>m -2<CR>', { desc = 'Move Line Up' })
+vim.keymap.set('n', '<leader>cj', '<Cmd>m +1<CR>', { desc = 'Move Line Down' })
+
+vim.keymap.set('n', '<A-z>', '<Cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
 
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -105,6 +107,8 @@ vim.keymap.set('n', '<A-Tab>', '<C-w><C-w>', { noremap = true, silent = true, de
 vim.keymap.set('n', '<A-x>', '<C-w><C-x>', { noremap = true, silent = true, desc = 'Pane swap windows' })
 vim.keymap.set('n', '<A-q>', '<C-w><C-q>', { noremap = true, silent = true, desc = 'Pane quit' })
 -- Tab keybindings
+vim.keymap.set('n', '<A-t>', '<Cmd>ene<CR>', { noremap = true, silent = true, desc = 'Buffer New' })
+vim.keymap.set('n', '<A-e>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true, desc = 'Buffer Pick' })
 vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Previous' })
 vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', { noremap = true, silent = true, desc = 'Buffer Next' })
 vim.keymap.set('n', '<A-p>', '<Cmd>BufferMovePrevious<CR>', { noremap = true, silent = true, desc = 'Buffer Move Privious' })
@@ -119,10 +123,8 @@ vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { noremap = true, silent =
 vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 8' })
 vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 9' })
 vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { noremap = true, silent = true, desc = 'Buffer Last' })
-vim.keymap.set('n', '<A-e>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true, desc = 'Buffer Pick' })
-vim.keymap.set('n', '<A-t>', '<Cmd>ene<CR>', { noremap = true, silent = true, desc = 'Buffer New' })
-vim.keymap.set('n', '<A-o>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
+vim.keymap.set('n', '<A-o>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
 vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin Buffer' })
 vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Number' })
 vim.keymap.set('n', '<leader>bn', '<Cmd>BufferOrderByName<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Name' })
@@ -226,9 +228,8 @@ require('lazy').setup({
         { '<leader>b', group = '[B]uffer' },
         { '<leader>o', group = '[O]oversee Tasks' },
         { '<leader>S', group = '[S]urround' },
-        { '<leader>h', group = '[H]arpoon' },
         { '<leader>p', group = '[P]lugin/[P]orject/Session' },
-        { '<leader>z', group = '[Z] Extra', mode = { 'n', 'x' } },
+        { '<leader>z', group = 'Extra[Z]', mode = { 'n', 'x' } },
       }
     end,
   },
