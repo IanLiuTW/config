@@ -53,14 +53,23 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ## Others
 
+### HammerSpoon
+
+- [https://www.hammerspoon.org/]
+
+- Use `Hammerspoon` for kitty window management (for creating a iTerm2 hotkey window experience on MacOS)
+
 ### VS Code (use Neovim if possible)
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-### Zellij (use WezTerm if possible)
+### Zellij (use kitty if possible)
 
 - [https://github.com/zellij-org/zellij]
 
-### WezTerm (there's a different config for Window's WSL)
+### WezTerm (use kitty if possible)
 
 - [https://wezfurlong.org/wezterm/index.html]
+
+- There's a different config for Window's WSL
+
