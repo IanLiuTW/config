@@ -1,20 +1,3 @@
-local function setupCustomHighlightGroup()
-  vim.api.nvim_command 'hi clear FlashMatch'
-  vim.api.nvim_command 'hi clear FlashCurrent'
-  vim.api.nvim_command 'hi clear FlashLabel'
-
-  vim.api.nvim_command 'hi FlashMatch guifg=#b8b5ff guibg=#4a47a3'
-  vim.api.nvim_command 'hi FlashCurrent guifg=#d0e8f2 guibg=#456268'
-  vim.api.nvim_command 'hi FlashLabel cterm=bold gui=bold guifg=#c0caf5 guibg=#ff007c'
-end
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-  desc = '',
-  callback = function()
-    setupCustomHighlightGroup()
-  end,
-})
-
 return {
   {
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -122,18 +105,32 @@ return {
         },
       },
       'saadparwaiz1/cmp_luasnip',
-
+      'onsails/lspkind.nvim',
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+
       luasnip.config.setup {}
+
+      vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
+      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#569CD6' })
+      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpIntemAbbrMatch' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg = 'NONE', fg = '#9CDCFE' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link = 'CmpItemKindVariable' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindText', { link = 'CmpItemKindVariable' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg = 'NONE', fg = '#C586C0' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link = 'CmpItemKindFunction' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg = 'NONE', fg = '#D4D4D4' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link = 'CmpItemKindKeyword' })
+      vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link = 'CmpItemKindKeyword' })
 
       cmp.setup {
         snippet = {
@@ -197,12 +194,34 @@ return {
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
-        sources = {
-          {
-            name = 'lazydev',
-            -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-            group_index = 0,
+        window = {
+          completion = {
+            winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+            col_offset = -3,
+            side_padding = 0,
           },
+        },
+        formatting = {
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            local kind = require('lspkind').cmp_format {
+              mode = 'symbol_text',
+              maxwidth = 50,
+              show_labelDetails = true,
+              menu = {
+                buffer = '[Buffer]',
+                nvim_lsp = '[LSP]',
+                luasnip = '[LuaSnip]',
+                nvim_lua = '[Lua]',
+                latex_symbols = '[Latex]',
+              },
+            }(entry, vim_item)
+
+            return kind
+          end,
+        },
+        sources = {
+          { name = 'lazydev', group_index = 0 },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
@@ -257,34 +276,6 @@ return {
         require('todo-comments').jump_prev()
       end, { desc = 'Jump to previous todo' })
     end,
-  },
-  {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    ---@type Flash.Config
-    opts = {
-      rainbow = {
-        enabled = true,
-        shade = 5,
-      },
-      highlight = {
-        backdrop = true,
-        groups = {
-          match = 'FlashMatch',
-          current = 'FlashCurrent',
-          backdrop = 'FlashBackdrop',
-          label = 'FlashLabel',
-        },
-      },
-    },
-  -- stylua: ignore
-  keys = {
-    { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-    { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-    { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-    { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
-  },
   },
   {
     'ziontee113/icon-picker.nvim',

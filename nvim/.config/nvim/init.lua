@@ -1,80 +1,36 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.opt.termguicolors = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
+-- [[ Setting options ]] See `:help vim.opt`
+-- NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.number = true
 vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
+vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
+vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim. See `:help 'clipboard'`
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.undofile = true -- Save undo history
+vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
+vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.opt.updatetime = 250 -- Decrease update time
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time. Displays which-key popup sooner
+vim.opt.splitright = true -- Configure how new splits should be opened
 vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
+-- [[ Basic Keymaps ]] See `:help vim.keymap.set()`
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
-
-vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('n', '<leader>j', '10j', { desc = '[J] * 10' })
 vim.keymap.set('n', '<leader>k', '10k', { desc = '[K] * 10' })
 vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
@@ -83,7 +39,8 @@ vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
 vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
 vim.keymap.set('n', '<leader>ck', '<Cmd>m -2<CR>', { desc = 'Move Line Up' })
 vim.keymap.set('n', '<leader>cj', '<Cmd>m +1<CR>', { desc = 'Move Line Down' })
-
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
+vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('n', '<A-z>', '<Cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
 
 --  See `:help wincmd` for a list of all window commands
@@ -132,28 +89,22 @@ vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', { noremap =
 vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', { noremap = true, silent = true, desc = 'Order Buffer by Language' })
 vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { noremap = true, silent = true, desc = 'Order Buffer by WindowNumber' })
 
--- Insert mode keymaps
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
--- Visual mode keymaps
-vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment', remap = true })
-vim.keymap.set('x', '<leader>p', '"0p', { desc = 'Paste copied text' })
 vim.keymap.set('x', '<', '<gv')
 vim.keymap.set('x', '>', '>gv')
+vim.keymap.set('x', '<leader>p', '"0p', { desc = 'Paste copied text' })
+vim.keymap.set('x', '<leader><leader>', 'gc', { desc = '[ ] Toggle Comment', remap = true })
 
--- Terminal mode keymaps
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<A-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<A-j>', [[<Cmd>wincmd j<CR>]])
 vim.keymap.set('t', '<A-k>', [[<Cmd>wincmd k<CR>]])
 vim.keymap.set('t', '<A-l>', [[<Cmd>wincmd l<CR>]])
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
+-- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -162,8 +113,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- Disable automatic comment insertion
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Disable automatic comment insertion',
+  group = vim.api.nvim_create_augroup('AutoComment', {}),
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+  end,
+})
+
+-- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -175,28 +134,21 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 vim.keymap.set('n', '<leader>pL', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
 
-local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
+local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
 for name, icon in pairs(symbols) do
-  local hl = "DiagnosticSign" .. name
+  local hl = 'DiagnosticSign' .. name
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
 -- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
+--  To check the current status of your plugins, run `:Lazy`
 --  You can press `?` in this menu for help. Use `:q` to close the window
+--  To update plugins you can run `:Lazy update`
 --
---  To update plugins you can run
---    :Lazy update
---
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
+  -- with the first argument being the link and the following keys can be used to configure plugin behavior/loading/etc.
   -- Use `opts = {}` to force a plugin to be loaded.
 
   -- OTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -221,13 +173,12 @@ require('lazy').setup({
       require('which-key').setup()
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
-        { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]erminal' },
         { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>o', group = '[O]oversee Tasks' },
-        { '<leader>S', group = '[S]urround' },
+        { '<leader>r', group = 'Su[R]round' },
         { '<leader>p', group = '[P]lugin/[P]orject/Session' },
         { '<leader>z', group = 'Extra[Z]', mode = { 'n', 'x' } },
       }
@@ -250,13 +201,13 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup {
         mappings = {
-          add = '<leader>Sa', -- Add surrounding in Normal and Visual modes
-          delete = '<leader>Sd', -- Delete surrounding
-          find = '<leader>Sf', -- Find surrounding (to the right)
-          find_left = '<leader>SF', -- Find surrounding (to the left)
-          highlight = '<leader>Sh', -- Highlight surrounding
-          replace = '<leader>Ss', -- Replace surrounding
-          update_n_lines = '<leader>Sn', -- Update `n_lines`
+          add = '<leader>ra', -- Add surrounding in Normal and Visual modes
+          delete = '<leader>rd', -- Delete surrounding
+          find = '<leader>rf', -- Find surrounding (to the right)
+          find_left = '<leader>rF', -- Find surrounding (to the left)
+          highlight = '<leader>rh', -- Highlight surrounding
+          replace = '<leader>rs', -- Replace surrounding
+          update_n_lines = '<leader>rn', -- Update `n_lines`
 
           suffix_last = 'l', -- Suffix to search with "prev" method
           suffix_next = 'n', -- Suffix to search with "next" method
@@ -305,13 +256,6 @@ require('lazy').setup({
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'plugins.ai' },
   { import = 'plugins.code' },
   { import = 'plugins.debug' },
