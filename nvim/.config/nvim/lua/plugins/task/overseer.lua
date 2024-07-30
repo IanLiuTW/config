@@ -44,7 +44,7 @@ return {
           overseer.run_action(tasks[1], 'restart')
         end
       end, {})
-      vim.keymap.set('n', '<leader>o.', '<cmd>OverseerRestartLast<cr>', { noremap = true, silent = true, desc = 'Restart last task' })
+      vim.keymap.set('n', '<leader>O', '<cmd>OverseerRestartLast<cr>', { noremap = true, silent = true, desc = 'Restart last task' })
       vim.keymap.set('n', '<leader>oz', function() --Run shell scripts in the current directory
         local files = require 'overseer.files'
         return {

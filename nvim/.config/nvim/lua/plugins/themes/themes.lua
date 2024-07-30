@@ -27,6 +27,21 @@ return {
     name = 'kanagawa',
     lazy = false,
     priority = 1000,
+    opts = {
+      transparent = true,
+      functionStyle = { italic = true, bold = true },
+    },
+    init = function()
+      local toggleterm = require 'toggleterm'
+      toggleterm.setup {
+        shade_terminals = false,
+        highlights = {
+          Normal = {
+            guibg = '#000000'
+          },
+        },
+      }
+    end,
   },
   {
     'vague2k/vague.nvim',

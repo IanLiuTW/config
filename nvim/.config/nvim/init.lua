@@ -31,8 +31,6 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>j', '10j', { desc = '[J] * 10' })
-vim.keymap.set('n', '<leader>k', '10k', { desc = '[K] * 10' })
 vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = '[W]rite buffer' })
 vim.keymap.set('n', '<leader>zq', '<Cmd>q<CR>', { desc = '[Q]uit' })
@@ -40,8 +38,8 @@ vim.keymap.set('n', '<leader>zQ', '<Cmd>qa<CR>', { desc = '[Q]uit All' })
 vim.keymap.set('n', '<leader>ck', '<Cmd>m -2<CR>', { desc = 'Move Line Up' })
 vim.keymap.set('n', '<leader>cj', '<Cmd>m +1<CR>', { desc = 'Move Line Down' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
-vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 vim.keymap.set('n', '<A-z>', '<Cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
+vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -101,6 +99,9 @@ vim.keymap.set('t', '<A-h>', [[<Cmd>wincmd h<CR>]])
 vim.keymap.set('t', '<A-j>', [[<Cmd>wincmd j<CR>]])
 vim.keymap.set('t', '<A-k>', [[<Cmd>wincmd k<CR>]])
 vim.keymap.set('t', '<A-l>', [[<Cmd>wincmd l<CR>]])
+
+vim.keymap.set({'n', 'x'}, '<leader>j', '10j', { desc = '[J] * 10' })
+vim.keymap.set({'n', 'x'}, '<leader>k', '10k', { desc = '[K] * 10' })
 
 -- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
 
