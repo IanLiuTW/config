@@ -12,7 +12,7 @@ return {
       { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
     },
     opts = {
-      -- close_if_last_window = true,
+      close_if_last_window = true,
       filesystem = {
         window = {
           mappings = {
@@ -28,20 +28,32 @@ return {
             ['<Tab>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
             ['<C-Tab>'] = 'focus_preview',
             ['gh'] = { 'toggle_hidden' },
+            ['[c'] = 'prev_git_modified',
+            [']c'] = 'next_git_modified',
+            ['[g'] = '',
+            [']g'] = '',
+            ['o'] = '',
+            ['s'] = '',
+            ['S'] = '',
+            ['C'] = '',
+            ['H'] = '',
+            ['P'] = '',
+            ['t'] = '',
+            ['<space>'] = '',
           },
         },
         filtered_items = {
           visible = true,
           show_hidden_count = true,
           hide_dotfiles = false,
-          hide_gitignored = true,
+          hide_gitignored = false,
           always_show = {
-            '.gitignored',
+            '.gitignore',
           },
           never_show = {},
           hide_by_name = {
             '.git',
-            -- '.DS_Store',
+            '.DS_Store',
             -- 'thumbs.db',
           },
         },

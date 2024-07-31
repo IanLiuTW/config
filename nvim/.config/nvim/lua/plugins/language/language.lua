@@ -70,12 +70,16 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('<leader>d', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
+          map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
+          map('<leader>cd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
+
+          -- WARN: This is not Goto Definition, this is Goto Declaration.
+          --  For example, in C this would take you to the header.
+          map('<leader>cD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -101,10 +105,6 @@ return {
           map('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
           map('<leader>cs', vim.lsp.buf.signature_help, '[C]ode [S]ignature Help')
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('<leader>cd', vim.lsp.buf.declaration, 'Goto [D]eclaration')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
