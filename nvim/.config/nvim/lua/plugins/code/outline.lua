@@ -25,17 +25,17 @@ return {
       -- Open LSP/provider-dependent symbol hover information
       hover_symbol = 'gd',
       -- Preview location code of the symbol under cursor
-      toggle_preview = '<space>',
+      toggle_preview = '<Tab>',
       rename_symbol = 'r',
       code_actions = 'a',
       -- These fold actions are collapsing tree nodes, not code folding
       fold = 'h',
       unfold = 'l',
-      fold_toggle = '<Tab>',
+      fold_toggle = '<Space>',
       -- Toggle folds for all nodes.
       -- If at least one node is folded, this action will fold all nodes.
       -- If all nodes are folded, this action will unfold all nodes.
-      fold_toggle_all = '<S-Tab>',
+      fold_toggle_all = '<C-Space>',
       fold_all = 'z',
       unfold_all = 'Z',
       fold_reset = 'R',

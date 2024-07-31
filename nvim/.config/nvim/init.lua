@@ -304,7 +304,6 @@ require('lazy').setup({
   { import = 'plugins.debug' },
   { import = 'plugins.file_system' },
   { import = 'plugins.git' },
-  { import = 'plugins.keymaps' },
   { import = 'plugins.language' },
   { import = 'plugins.session' },
   { import = 'plugins.task' },

@@ -23,7 +23,7 @@ return {
         ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
         ['<C-l>'] = 'actions.select',
         ['<C-h>'] = 'actions.parent',
-        ['<Space>'] = 'actions.preview',
+        ['<Tab>'] = 'actions.preview',
         ['q'] = 'actions.close',
         ['R'] = 'actions.refresh',
         ['\\'] = 'actions.open_cwd',
