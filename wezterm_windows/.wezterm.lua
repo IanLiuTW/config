@@ -14,9 +14,9 @@ config.default_prog = { shell_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-  { family = "CaskaydiaMono Nerd Font Mono", scale = 1.2 },
-  { family = "CommitMono Nerd Font",         scale = 1.3 },
-  { family = "CaskaydiaCove Nerd Font Mono", scale = 1.3, },
+  { family = "CaskaydiaMono Nerd Font Mono", scale = 1.0 },
+  { family = "CommitMono Nerd Font",         scale = 1.1 },
+  { family = "CaskaydiaCove Nerd Font Mono", scale = 1.1, },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
@@ -79,7 +79,8 @@ config.keys = {
   { key = "`", mods = "LEADER",           action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
   { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom 'Clipboard' },
-  { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo  'ClipboardAndPrimarySelection' }
+  { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo  'Clipboard' },
+  { key = "Backspace", mods = "CTRL|SHIFT",      action = act.ResetFontSize },
 }
 
 for i = 1, 9 do
