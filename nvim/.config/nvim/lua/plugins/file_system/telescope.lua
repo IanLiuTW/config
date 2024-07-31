@@ -59,9 +59,6 @@ return {
           },
         },
         pickers = {
-          find_files = {
-            find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
-          },
           grep_string = {
             additional_args = { '--hidden', '--iglob', '!.git' },
           },
@@ -80,20 +77,12 @@ return {
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          -- project = {
-          --   base_dirs = {
-          --     '~/dev/src',
-          --     { '~/dev/src2' },
-          --     { '~/dev/src3', max_depth = 4 },
-          --     { path = '~/dev/src4' },
-          --     { path = '~/dev/src5', max_depth = 2 },
-          --   },
-          --   hidden_files = true, -- default: false
-          --   theme = 'dropdown',
-          --   order_by = 'asc',
-          --   search_by = 'title',
-          --   sync_with_nvim_tree = true, -- default false
-          -- },
+          project = {
+            hidden_files = true, -- default: false
+            order_by = 'asc',
+            search_by = 'title',
+            sync_with_nvim_tree = true, -- default false
+          },
         },
       }
 
@@ -104,9 +93,12 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sf', function()
-        builtin.find_files()
+      vim.keymap.set('n', '<leader>sF', function()
+        builtin.find_files { no_ignore = true, hidden = true }
       end, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sf', function()
+        builtin.git_files()
+      end, { desc = '[S]earch Git Files' })
       vim.keymap.set('n', '<leader>sg', function()
         builtin.live_grep()
       end, { desc = '[S]earch by [G]rep' })
@@ -119,7 +111,7 @@ return {
         '"zy<Cmd>lua require("telescope.builtin").grep_string({search=vim.fn.getreg("z")})<CR>',
         { desc = '[S]earch Current [W]ord' }
       )
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ([.] for repeat)' })
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files' })
       vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = '[S]earch [B]uiltin of Telescope' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })

@@ -37,7 +37,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>J', 'i<CR><Esc>', { desc = 'Add a line break' })
 vim.keymap.set('n', '<leader>ck', '<Cmd>m -2<CR>', { desc = 'Move Line Up' })
 vim.keymap.set('n', '<leader>cj', '<Cmd>m +1<CR>', { desc = 'Move Line Down' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix diagnostic list' })
 vim.keymap.set('n', '<A-z>', '<Cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
 vim.keymap.set('n', '<leader><leader>', 'gcc', { desc = '[ ] Toggle Comment', remap = true })
 
@@ -209,6 +208,20 @@ require('lazy').setup({
           { '<leader>p', '"0p', desc = 'Paste copied text' },
           { '<leader>j', '10j', desc = '[J] * 10' },
           { '<leader>k', '10k', desc = '[K] * 10' },
+          {
+            '<leader>q',
+            function()
+              vim.diagnostic.open_float()
+            end,
+            desc = '[D]iagnostics Float',
+          },
+          {
+            '<leader>Q',
+            function()
+              vim.diagnostic.setloclist()
+            end,
+            desc = '[Q]uickfix diagnostic list',
+          },
         },
       }
     end,

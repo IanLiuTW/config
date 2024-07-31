@@ -1,10 +1,4 @@
 return {
-  {
-    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  },
-  { 'kana/vim-textobj-entire', dependencies = {
-    'kana/vim-textobj-user',
-  } },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -37,6 +31,7 @@ return {
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+  { 'nvim-treesitter/nvim-treesitter-context' },
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -161,7 +156,7 @@ return {
           --  This will expand snippets if the LSP sent a snippet.
           -- ['<Tab>'] = cmp.mapping.confirm { select = true },
           ['<C-y>'] = cmp.mapping.confirm { select = true },
-          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
@@ -199,7 +194,7 @@ return {
         window = {
           completion = {
             winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-            col_offset = -3,
+            col_offset = -1,
             side_padding = 0,
           },
         },

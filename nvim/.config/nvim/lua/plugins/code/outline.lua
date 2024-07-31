@@ -3,8 +3,8 @@ return {
   lazy = true,
   cmd = { 'Outline', 'OutlineOpen' },
   keys = { -- Example mapping to toggle outline
-    { '<leader>o', '<cmd>Outline<CR>', desc = '[O]utline Toggle' },
-    { '<leader>O', '<cmd>Outline!<CR>', desc = '[O]utline Toggle w/o Switching)' },
+    { '<leader>o', '<cmd>Outline!<CR>', desc = '[O]utline Toggle w/o Switching)' },
+    { '<leader>O', '<cmd>Outline<CR>', desc = '[O]utline Toggle' },
   },
   opts = {
     symbols = { icon_source = 'lspkind' },

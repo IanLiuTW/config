@@ -18,7 +18,6 @@ local prompts = {
 }
 
 return {
-  { 'github/copilot.vim' },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
     branch = 'canary',
