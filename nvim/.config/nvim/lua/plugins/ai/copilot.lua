@@ -47,4 +47,6 @@ return {
     }
   end,
   vim.keymap.set('i', '<C-c>', '<C-c><Cmd>lua require("copilot.suggestion").dismiss()<CR>'),
+  vim.keymap.set('n', '<leader>i\\', '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', '<leader>i<bs>', '<Cmd>Copilot disable<CR>'),
 }
