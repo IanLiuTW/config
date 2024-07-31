@@ -7,7 +7,7 @@ return { -- Useful plugin to show you pending keybinds.
       function()
         require('which-key').show { global = false }
       end,
-      desc = 'Buffer Local Keymaps (which-key)',
+      desc = '[?] Buffer Local Keymaps (which-key)',
     },
   },
   config = function() -- This is the function that runs, AFTER loading
@@ -41,7 +41,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>w', '<cmd>write<CR>', desc = '[W]rite buffer' },
         { '<leader>zq', '<Cmd>q<CR>', desc = '[Q]uit' },
         { '<leader>zQ', '<Cmd>qa<CR>', desc = '[Q]uit All' },
-        { '<leader>p', '"0p', desc = 'Paste copied text' },
+        { '<leader>p', '"0p', desc = '[P]aste copied text' },
         { '<leader>j', '10j', desc = '[J] * 10' },
         { '<leader>k', '10k', desc = '[K] * 10' },
         {
@@ -49,14 +49,14 @@ return { -- Useful plugin to show you pending keybinds.
           function()
             vim.diagnostic.open_float()
           end,
-          desc = '[D]iagnostics Float',
+          desc = '[Q]uick Diagnostics Window',
         },
         {
           '<leader>Q',
           function()
             vim.diagnostic.setloclist()
           end,
-          desc = '[Q]uickfix diagnostic list',
+          desc = '[Q]uickfix Diagnostic List',
         },
       },
     }
