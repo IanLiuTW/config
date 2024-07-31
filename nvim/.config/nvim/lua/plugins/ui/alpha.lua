@@ -76,18 +76,18 @@ local function alpha_dashboard_layout()
   ---@return table
   lazycache.menu = function()
     return {
-      button('      n',        '  New file', '<cmd>ene<CR>'),
-      button('      \\', '  File Browser'),
-      button('      -',  '  File Browser'),
-      button('      l',  '󰑓  Load Session', '<cmd>SessionManager load_session<CR>'),
-      button('      .',  '  Load Last Session', '<cmd>SessionManager load_last_session<CR>'),
-      button('      p',  '  Project Manager', "<cmd>lua require'telescope'.extensions.project.project{}<CR>"),
+      button('n',        '  New file', '<cmd>ene<CR>'),
+      button('\\',       '  File Browser'),
+      button('-',        '  File Browser'),
+      button('l',        '󰑓  Load Session', '<cmd>SessionManager load_session<CR>'),
+      button('.',        '  Load Last Session', '<cmd>SessionManager load_last_session<CR>'),
+      button('p',        '  Project Manager', "<cmd>lua require'telescope'.extensions.project.project{}<CR>"),
       button('SPC s f',  '  Search Files'),
       button('SPC s .',  '  Search Recent Files'),
       button('SPC s g',  '󰊄  Seach with Live Grep'),
       button('SPC s ,',  '  Seach Neovim Config'),
-      button('SPC , L',  '󰂖  Show Lazy Plugin'),
-      button('SPC , M',  '󰀬  Show Mason Plugin'),
+      button('SPC \\ L', '󰂖  Show Lazy Plugin'),
+      button('SPC \\ M', '󰀬  Show Mason Plugin'),
       button('u',        '  Quick Update Plugins', '<cmd>Lazy sync<CR>'),
       button('q',        '󰅚  Quit', '<cmd>qa<CR>'),
     }

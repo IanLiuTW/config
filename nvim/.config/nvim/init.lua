@@ -128,7 +128,7 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<leader>,L', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
+vim.keymap.set('n', '<leader>\\L', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
 
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
 for name, icon in pairs(symbols) do
@@ -178,7 +178,7 @@ require('lazy').setup({
       require('which-key').setup {
         win = {
           width = { min = 30, max = 120 },
-          height = { min = 4, max = 0.9 },
+          height = { min = 4, max = 0.99 },
           padding = { 0, 1 },
           col = -1,
           row = -1,
@@ -198,7 +198,7 @@ require('lazy').setup({
         { '<leader>b', group = '[B]uffer' },
         { '<leader>l', group = '[L] Tasks' },
         { '<leader>r', group = 'Su[R]round', mode = { 'n', 'x' } },
-        { '<leader>,', group = '[,] Plugin/Porject/Session' },
+        { '<leader>\\', group = '[,] Plugin / Session' },
         { '<leader>z', group = 'Extra[Z]', mode = { 'n', 'x' } },
         {
           mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
