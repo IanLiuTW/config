@@ -24,7 +24,7 @@ return {
             ['<C-h>'] = 'close_node',
             ['l'] = 'open',
             ['h'] = 'close_node',
-            ['<Space>'] = 'toggle_node',
+            ['<Cr>'] = 'toggle_node',
             ['<Tab>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
             ['<C-Tab>'] = 'focus_preview',
             ['gh'] = { 'toggle_hidden' },

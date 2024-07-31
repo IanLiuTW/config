@@ -98,7 +98,7 @@ return {
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sf', function()
         builtin.git_files()
-      end, { desc = '[S]earch Git Files' })
+      end, { desc = '[S]earch Git [F]iles' })
       vim.keymap.set('n', '<leader>sg', function()
         builtin.live_grep()
       end, { desc = '[S]earch by [G]rep' })
@@ -111,7 +111,7 @@ return {
         '"zy<Cmd>lua require("telescope.builtin").grep_string({search=vim.fn.getreg("z")})<CR>',
         { desc = '[S]earch Current [W]ord' }
       )
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files' })
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
       vim.keymap.set('n', '<leader>sb', builtin.builtin, { desc = '[S]earch [B]uiltin of Telescope' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -143,7 +143,7 @@ return {
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>s,', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch Neovim Config' })
+      end, { desc = '[S]earch [,] Neovim Config' })
 
       -- Project extension
       vim.api.nvim_set_keymap(
@@ -151,6 +151,14 @@ return {
         '<leader>sp',
         "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
         { desc = '[S]earch [P]roject', noremap = true, silent = true }
+      )
+
+      -- LazyGit extension
+      vim.api.nvim_set_keymap(
+        'n',
+        '<leader>sG',
+        '<cmd>lua require("telescope").extensions.lazygit.lazygit()<CR>',
+        { desc = '[S]earch Lazy[G]it Repos', noremap = true, silent = true }
       )
     end,
   },
