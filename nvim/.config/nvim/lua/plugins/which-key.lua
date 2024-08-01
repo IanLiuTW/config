@@ -7,7 +7,7 @@ return { -- Useful plugin to show you pending keybinds.
       function()
         require('which-key').show { global = false }
       end,
-      desc = '[?] Buffer Local Keymaps (which-key)',
+      desc = '[?] Buffer Local Keymaps',
     },
   },
   config = function() -- This is the function that runs, AFTER loading
@@ -28,6 +28,7 @@ return { -- Useful plugin to show you pending keybinds.
     }
     require('which-key').add {
       { '<leader>c', group = '[C]ode' },
+      { '<leader>d', group = '[D]ebug' },
       { '<leader>s', group = '[S]earch', mode = { 'n', 'x' } },
       { '<leader>t', group = '[T]erminal' },
       { '<leader>g', group = '[G]it', mode = { 'n', 'x' } },
@@ -45,14 +46,14 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>j', '10j', desc = '[J] * 10' },
         { '<leader>k', '10k', desc = '[K] * 10' },
         {
-          '<leader>q',
+          '<leader>Q',
           function()
             vim.diagnostic.open_float()
           end,
           desc = '[Q]uick Diagnostics Window',
         },
         {
-          '<leader>Q',
+          '<leader>q',
           function()
             vim.diagnostic.setloclist()
           end,

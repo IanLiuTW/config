@@ -44,7 +44,7 @@ return {
     -- Toggle previous & next buffers stored within Harpoon list
     vim.keymap.set('n', '<leader>,', function()
       harpoon:list():prev()
-    end, { desc = '[,] Harpoon Previous)' })
+    end, { desc = '[,] Harpoon Previous' })
     vim.keymap.set('n', '<leader>.', function()
       harpoon:list():next()
     end, { desc = '[.] Harpoon Next' })

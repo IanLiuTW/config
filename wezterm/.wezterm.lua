@@ -7,13 +7,18 @@ local config = {}
 -- Use config builder object if possible
 if wezterm.config_builder then config = wezterm.config_builder() end
 
+-- WSL and Windows configuration
+config.default_domain = "WSL:Arch"
+config.send_composed_key_when_left_alt_is_pressed = false
+
 -- Settings
 config.default_prog = { shell_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-  { family = "CommitMono Nerd Font",  scale = 1.3 },
-  { family = "CaskaydiaCove Nerd Font Mono", scale = 1.3, },
+  { family = "CaskaydiaMono Nerd Font Mono", scale = 1.0 },
+  { family = "CommitMono Nerd Font",         scale = 1.1 },
+  { family = "CaskaydiaCove Nerd Font Mono", scale = 1.1, },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
@@ -30,28 +35,28 @@ config.default_workspace = "main"
 -- Keys
 config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
-  { key = "q",          mods = "LEADER|CTRL", action = act.SendKey { key = "q", mods = "CTRL" } },
-  { key = "c",          mods = "LEADER",      action = act.ActivateCopyMode },
-  { key = "F1",         mods = "LEADER",      action = act.ActivateCommandPalette },
+  { key = 'Enter', mods = 'ALT', action = wezterm.action.DisableDefaultAssignment },
+  { key = "q",  mods = "LEADER|CTRL", action = act.SendKey { key = "q", mods = "CTRL" } },
+  { key = "c",  mods = "LEADER",      action = act.ActivateCopyMode },
 
   -- Pane keybindings
-  { key = "s",          mods = "LEADER|ALT",  action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-  { key = "v",          mods = "LEADER|ALT",  action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-  { key = "h",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
-  { key = "j",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
-  { key = "k",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
-  { key = "l",          mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
-  { key = "q",          mods = "LEADER|ALT",  action = act.CloseCurrentPane { confirm = true } },
-  { key = "z",          mods = "LEADER|ALT",  action = act.TogglePaneZoomState },
-  { key = "g",          mods = "LEADER|ALT",  action = act.RotatePanes "Clockwise" },
-  { key = "r",          mods = "LEADER|ALT",  action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
+  { key = "s",  mods = "LEADER|ALT",  action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = "v",  mods = "LEADER|ALT",  action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = "h",  mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Left") },
+  { key = "j",  mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Down") },
+  { key = "k",  mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Up") },
+  { key = "l",  mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Right") },
+  { key = "q",  mods = "LEADER|ALT",  action = act.CloseCurrentPane { confirm = true } },
+  { key = "z",  mods = "LEADER|ALT",  action = act.TogglePaneZoomState },
+  { key = "g",  mods = "LEADER|ALT",  action = act.RotatePanes "Clockwise" },
+  { key = "r",  mods = "LEADER|ALT",  action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 
   -- Tab keybindings
-  { key = "t",          mods = "LEADER|ALT",  action = act.SpawnTab("CurrentPaneDomain") },
-  { key = ",",          mods = "LEADER|ALT",  action = act.ActivateTabRelative(-1) },
-  { key = ".",          mods = "LEADER|ALT",  action = act.ActivateTabRelative(1) },
-  { key = "e",          mods = "LEADER|ALT",  action = act.ShowTabNavigator },
-  { key = "w",          mods = "LEADER|ALT",  action = wezterm.action.CloseCurrentTab { confirm = true } },
+  { key = "t",  mods = "LEADER|ALT",  action = act.SpawnTab("CurrentPaneDomain") },
+  { key = ",",  mods = "LEADER|ALT",  action = act.ActivateTabRelative(-1) },
+  { key = ".",  mods = "LEADER|ALT",  action = act.ActivateTabRelative(1) },
+  { key = "e",  mods = "LEADER|ALT",  action = act.ShowTabNavigator },
+  { key = "w",  mods = "LEADER|ALT",  action = wezterm.action.CloseCurrentTab { confirm = true } },
   {
     key = "R",
     mods = "LEADER|ALT",
@@ -68,13 +73,16 @@ config.keys = {
       end)
     }
   },
-  { key = "m", mods = "LEADER|ALT",           action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
-  { key = "<", mods = "LEADER|SHIFT|ALT",     action = act.MoveTabRelative(-1) },
-  { key = ">", mods = "LEADER|SHIFT|ALT",     action = act.MoveTabRelative(1) },
+  { key = "m", mods = "LEADER|ALT",       action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
+  { key = "<", mods = "LEADER|SHIFT|ALT", action = act.MoveTabRelative(-1) },
+  { key = ">", mods = "LEADER|SHIFT|ALT", action = act.MoveTabRelative(1) },
 
   -- Lastly, workspace
-  { key = "`", mods = "LEADER",               action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
+  { key = "`", mods = "LEADER",           action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
+  { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom 'Clipboard' },
+  { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo  'Clipboard' },
+  { key = "Backspace", mods = "CTRL|SHIFT",      action = act.ResetFontSize },
 }
 
 for i = 1, 9 do
@@ -185,26 +193,26 @@ config.window_padding = {
 
 -- Zen mode plugin from Neovim
 wezterm.on('user-var-changed', function(window, pane, name, value)
-    local overrides = window:get_config_overrides() or {}
-    if name == "ZEN_MODE" then
-        local incremental = value:find("+")
-        local number_value = tonumber(value)
-        if incremental ~= nil then
-            while (number_value > 0) do
-                window:perform_action(wezterm.action.IncreaseFontSize, pane)
-                number_value = number_value - 1
-            end
-            overrides.enable_tab_bar = false
-        elseif number_value < 0 then
-            window:perform_action(wezterm.action.ResetFontSize, pane)
-            overrides.font_size = nil
-            overrides.enable_tab_bar = true
-        else
-            overrides.font_size = number_value
-            overrides.enable_tab_bar = false
-        end
+  local overrides = window:get_config_overrides() or {}
+  if name == "ZEN_MODE" then
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    if incremental ~= nil then
+      while (number_value > 0) do
+        window:perform_action(wezterm.action.IncreaseFontSize, pane)
+        number_value = number_value - 1
+      end
+      overrides.enable_tab_bar = false
+    elseif number_value < 0 then
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.font_size = nil
+      overrides.enable_tab_bar = true
+    else
+      overrides.font_size = number_value
+      overrides.enable_tab_bar = false
     end
-    window:set_config_overrides(overrides)
+  end
+  window:set_config_overrides(overrides)
 end)
 
 return config
