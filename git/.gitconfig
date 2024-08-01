@@ -41,6 +41,7 @@
 	sta = stash
 	stap = stash pop
 	staa = stash apply
+	staash = stash --all
 	stad = stash drop
 	rv = revert
 	f = fetch
