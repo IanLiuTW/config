@@ -108,7 +108,7 @@ return {
         }
         return { fg = 'black', bg = mode_color[vim.fn.mode()] }
       end,
-      padding = { left = 2, right = 2 },
+      padding = { left = 5, right = 5 },
     }
 
     ins_left {
@@ -150,24 +150,39 @@ return {
       -- Lsp server name .
       function()
         local msg = 'No Active Lsp'
-        local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+        local buf_ft = vim.api.nvim_get_option_value('filetype', {})
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then
-          return msg
+          return msg .. ' [' .. buf_ft .. ']'
         end
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
+            return client.name .. ' [' .. buf_ft .. ']'
           end
         end
-        return msg
+        return msg .. ' [' .. buf_ft .. ']'
       end,
       icon = ' LSP:',
       color = { fg = '#ffffff', gui = 'bold' },
     }
 
-    ins_left {
+    -- Add components to right sections
+    ins_right {
+      'o:encoding', -- option component same as &encoding in viml
+      fmt = string.upper, -- I'm not sure why it's upper case either ;)
+      cond = conditions.hide_in_width,
+      color = { fg = colors.green, gui = 'bold' },
+    }
+
+    ins_right {
+      'fileformat',
+      fmt = string.upper,
+      icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+      color = { fg = colors.green, gui = 'bold' },
+    }
+
+    ins_right {
       'copilot',
       symbols = {
         status = {
@@ -191,21 +206,6 @@ return {
       },
       show_colors = true,
       show_loading = true,
-    }
-
-    -- Add components to right sections
-    ins_right {
-      'o:encoding', -- option component same as &encoding in viml
-      fmt = string.upper, -- I'm not sure why it's upper case either ;)
-      cond = conditions.hide_in_width,
-      color = { fg = colors.green, gui = 'bold' },
-    }
-
-    ins_right {
-      'fileformat',
-      fmt = string.upper,
-      icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-      color = { fg = colors.green, gui = 'bold' },
     }
 
     ins_right {

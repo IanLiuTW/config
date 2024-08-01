@@ -38,18 +38,9 @@ return {
           lsp_doc_border = true, -- add a border to hover docs and signature help
         },
         routes = {
-          {
-            view = 'notify',
-            filter = { event = 'msg_showmode' },
-          },
-          -- {
-          --   filter = {
-          --     event = 'msg_show',
-          --     kind = '',
-          --     find = 'written',
-          --   },
-          --   opts = { skip = true },
-          -- },
+          { view = 'cmdline', filter = { event = 'msg_showmode' } },
+          -- { view = 'notify', filter = { event = 'msg_showmode' } },
+          -- { filter = { event = 'msg_show', kind = '', find = 'written' }, opts = { skip = true }, },
           {
             filter = {
               event = 'lsp',
@@ -65,8 +56,8 @@ return {
         views = {
           cmdline_popup = {
             border = {
-              style = 'none',
-              padding = { 2, 3 },
+              style = 'double',
+              padding = { 0, 0 },
             },
             filter_options = {},
             win_options = {
