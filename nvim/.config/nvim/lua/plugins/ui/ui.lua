@@ -40,7 +40,8 @@ return {
         routes = {
           { view = 'cmdline', filter = { event = 'msg_showmode' } },
           -- { view = 'notify', filter = { event = 'msg_showmode' } },
-          -- { filter = { event = 'msg_show', kind = '', find = 'written' }, opts = { skip = true }, },
+          -- { view = 'cmdline', filter = { event = 'msg_show', kind = '', find = 'written' } },
+          { filter = { event = 'msg_show', kind = '', find = 'written' }, opts = { skip = true }, },
           {
             filter = {
               event = 'lsp',

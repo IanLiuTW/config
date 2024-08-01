@@ -18,6 +18,7 @@ return {
         magenta  = '#c678dd',
         blue     = '#51afef',
         red      = '#ec5f67',
+        grey     = '#999999',
       }
 
     local conditions = {
@@ -104,7 +105,7 @@ return {
           rm = colors.cyan,
           ['r?'] = colors.cyan,
           ['!'] = colors.red,
-          t = colors.red,
+          t = colors.grey,
         }
         return { fg = 'black', bg = mode_color[vim.fn.mode()] }
       end,
