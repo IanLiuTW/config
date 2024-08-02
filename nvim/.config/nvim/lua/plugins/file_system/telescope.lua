@@ -148,9 +148,9 @@ return {
       -- Project extension
       vim.api.nvim_set_keymap(
         'n',
-        '<leader>sp',
+        '<leader>\\p',
         "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
-        { desc = '[S]earch [P]roject', noremap = true, silent = true }
+        { desc = '[P]roject (Telescope) - Seaarch', noremap = true, silent = true }
       )
 
       -- LazyGit extension
