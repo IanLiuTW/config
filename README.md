@@ -53,11 +53,17 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ## Others
 
+### DevPod
+
+- [https://devpod.sh/] for devcontainer and more
+
 ### HammerSpoon
 
 - [https://www.hammerspoon.org/]
 
 - Use `Hammerspoon` for kitty to have a iTerm2 hotkey window experience on MacOS
+
+## Deprecated
 
 ### VS Code (use Neovim if possible)
 
@@ -72,4 +78,3 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 - [https://wezfurlong.org/wezterm/index.html]
 
 - There's a different config for Window's WSL
-
