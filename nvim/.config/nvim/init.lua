@@ -128,13 +128,16 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<leader>\\L', '<Cmd>Lazy<CR>', { desc = '[P]lugin [L]azy' })
+vim.keymap.set('n', '<leader>\\L', '<Cmd>Lazy<CR>', { desc = '[L]azy - Open Menu' })
 
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
 for name, icon in pairs(symbols) do
   local hl = 'DiagnosticSign' .. name
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
+
+vim.keymap.set('n', '<leader>\\t', '<Cmd>TSInstallInfo<CR>', { desc = '[T]reesitter - Open Install Info' })
+vim.keymap.set('n', '<leader>\\T', '<Cmd>TSModuleInfo<CR>', { desc = '[T]reesitter - Open Module Info' })
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
@@ -150,14 +153,13 @@ require('lazy').setup({
   -- Then, because we use the `config` key, the configuration only runs
   -- after the plugin has been loaded: config = function() ... end
 
-  { import = 'plugins' },
   { import = 'plugins.ai' },
   { import = 'plugins.code' },
   { import = 'plugins.debug' },
   { import = 'plugins.file_system' },
   { import = 'plugins.git' },
   { import = 'plugins.language' },
-  { import = 'plugins.session' },
+  { import = 'plugins.dev_env' },
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },
   { import = 'plugins.themes' },

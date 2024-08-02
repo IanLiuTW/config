@@ -25,6 +25,7 @@ return {
         ['<C-h>'] = 'actions.parent',
         ['<Tab>'] = 'actions.preview',
         ['q'] = 'actions.close',
+        ['-'] = 'actions.close',
         ['R'] = 'actions.refresh',
         ['\\'] = 'actions.open_cwd',
         ['.'] = 'actions.cd',

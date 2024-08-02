@@ -27,12 +27,29 @@ return {
       { 'nvim-telescope/telescope.nvim' },
     },
     opts = {
-      question_header = '## User ',
-      answer_header = '## Copilot ',
-      error_header = '## Error ',
+      -- auto_follow_cursor = false, -- Don't follow the cursor after getting response
+      -- show_help = true, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
+
+      model = 'gpt-4o', -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
       prompts = prompts,
-      auto_follow_cursor = false, -- Don't follow the cursor after getting response
-      show_help = false, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
+      temperature = 0.1, -- GPT temperature
+
+      question_header = '## User ', -- Header to use for user questions
+      answer_header = '## Copilot ', -- Header to use for AI answers
+      error_header = '## Error ', -- Header to use for errors
+      separator = '───', -- Separator to use in chat
+
+      show_folds = true, -- Shows folds for sections in chat
+      show_help = true, -- Shows help message as virtual lines when waiting for user input
+      auto_follow_cursor = true, -- Auto-follow cursor in chat
+      auto_insert_mode = false, -- Automatically enter insert mode when opening window and if auto follow cursor is enabled on new prompt
+      clear_chat_on_new_prompt = false, -- Clears chat on every new prompt
+      highlight_selection = true, -- Highlight selection in the source buffer when in the chat window
+
+      context = nil, -- Default context to use, 'buffers', 'buffer' or none (can be specified manually in prompt via @).
+      history_path = vim.fn.stdpath 'data' .. '/copilotchat_history', -- Default path to stored history
+      callback = nil, -- Callback to use when ask response is received
+
       mappings = {
         -- Use tab for completion
         complete = {
@@ -233,7 +250,7 @@ return {
       -- Clear buffer and chat history
       { '<leader>il', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
       -- Toggle Copilot Chat Vsplit
-      { '<leader>iv', '<cmd>CopilotChatToggle<cr>', desc = 'CopilotChat - Toggle' },
+      { '<leader>iv', '<cmd>CopilotChatToggle<cr>', desc = 'CopilotChat - Toggle Chat' },
       -- Copilot Chat Models
       { '<leader>i?', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
     },

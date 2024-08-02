@@ -150,8 +150,8 @@ alias rm="rm -i"
 alias rg='rg --hidden'
 
 # Alias for directories
-alias cdtp="cd '/Users/tupl/workspace_tupl/"
-alias cdpg="cd '/Users/tupl/workspace_playground/"
+alias cdtp="cd ~/workspace_tupl/"
+alias cdpg="cd ~/workspace_playground/"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)

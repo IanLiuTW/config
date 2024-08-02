@@ -109,7 +109,7 @@ return {
         }
         return { fg = 'black', bg = mode_color[vim.fn.mode()] }
       end,
-      padding = { left = 5, right = 5 },
+      padding = { left = 2, right = 2 },
     }
 
     ins_left {
