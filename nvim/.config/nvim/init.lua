@@ -159,6 +159,7 @@ require('lazy').setup({
   { import = 'plugins.file_system' },
   { import = 'plugins.git' },
   { import = 'plugins.language' },
+  { import = 'plugins.shell' },
   { import = 'plugins.dev_env' },
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },

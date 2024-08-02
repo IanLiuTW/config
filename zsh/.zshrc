@@ -133,6 +133,7 @@ alias zshrc="nvim ~/.zshrc"
 alias zshrcs="source ~/.zshrc"
 alias v="nvim"
 alias lg="lazygit"
+alias dp="devpod"
 
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
