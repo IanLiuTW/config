@@ -36,7 +36,7 @@ return {
     event = 'BufRead',
     opts = { multiline_threshold = 1 },
     keys = {
-      { '<leader>cc', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter [C]ontext' },
+      { '<leader>cc', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter Conte[X]t' },
     },
   },
 }
