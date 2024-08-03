@@ -1,6 +1,6 @@
 # config
 
-## Standard Configuration
+## Standard Setup
 
 ### asdf
 
@@ -23,7 +23,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ### Zsh
 
--[[https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH]
+- [https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH]
 
 - On Arch: [https://wiki.archlinux.org/title/Zsh]
 
@@ -38,11 +38,6 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/junegunn/fzf]
 
-### Lazygit
-
-- [https://github.com/jesseduffield/lazygit]
-- [https://github.com/so-fancy/diff-so-fancy]
-
 ### Neovim
 
 - [https://github.com/neovim/neovim]
@@ -51,30 +46,84 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://sw.kovidgoyal.net/kitty/]
 
-## Others
+## Additional Setup
 
-### DevPod
+### Git Tools
+
+#### lazygit
+
+- [https://github.com/jesseduffield/lazygit]
+
+#### diff-so-fancy
+
+- [https://github.com/so-fancy/diff-so-fancy]
+
+#### Gitbutler
+
+- [https://gitbutler.com]
+
+### Docker & Tools
+
+#### Docker
+
+- [https://www.docker.com/]
+
+#### DevPod
 
 - [https://devpod.sh/] for devcontainer and more
 
-### HammerSpoon
+### API Tools
+
+#### Postman
+
+- [https://www.postman.com/]
+
+### Database Tools
+
+#### DbVisualizer
+
+- [https://www.dbvis.com/]
+
+#### MangoDB Compass
+
+- [https://www.mongodb.com/products/compass]
+
+### AI Tools
+
+#### ChatGPT
+
+- [https://openai.com/chatgpt/download/]
+
+## MacOS Area
+
+### Automation
+
+#### HammerSpoon
 
 - [https://www.hammerspoon.org/]
 
 - Use `Hammerspoon` for kitty to have a iTerm2 hotkey window experience on MacOS
 
-## Deprecated
+## Windows Area
 
-### VS Code (use Neovim if possible)
+### Terminal
 
-- [Visual Studio Code](https://code.visualstudio.com/download)
-
-### Zellij (use kitty if possible)
-
-- [https://github.com/zellij-org/zellij]
-
-### WezTerm (use kitty if possible)
+#### WezTerm
 
 - [https://wezfurlong.org/wezterm/index.html]
 
 - There's a different config for Window's WSL
+
+## Deprecated
+
+### VS Code
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
+
+### Zed
+
+- [Zed](https://zed.dev/)
+
+### Zellij (use kitty if possible)
+
+- [https://github.com/zellij-org/zellij]

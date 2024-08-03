@@ -3,7 +3,7 @@ return {
   lazy = true,
   event = 'BufRead',
   keys = {
-    { '<leader>gf', '<cmd>Git<cr>', desc = '[G]it [F]ugitive' },
-    { '<leader>gF', '<cmd>tab Git<cr>', desc = '[G]it [F]ugitive' },
+    { '<leader>gf', '<cmd>Git<cr>', desc = '[F]ugitive - Open' },
+    { '<leader>gF', '<cmd>tab Git<cr>', desc = '[F]ugitive - Open in New Tab' },
   }
 }
