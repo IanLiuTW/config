@@ -32,6 +32,7 @@ return { -- Autoformat
       rust = { 'rustfmt', lsp_format = 'fallback' },
       markdown = { 'prettier' },
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      json = { 'prettier'}
     },
     default_format_opts = {
       lsp_format = 'fallback',

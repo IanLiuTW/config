@@ -134,6 +134,7 @@ alias zshrcs="source ~/.zshrc"
 alias v="nvim"
 alias lg="lazygit"
 alias dp="devpod"
+alias ssh="TERM=xterm-256color ssh"
 
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
@@ -156,6 +157,9 @@ alias cdpg="cd ~/workspace_playground/"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# Set up devpod completion
+# source <(devpod completion zsh)
 
 # Set up diff-so-fancy for lazygit
 export PATH=$HOME/diff-so-fancy:$PATH

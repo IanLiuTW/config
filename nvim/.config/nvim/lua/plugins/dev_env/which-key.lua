@@ -42,7 +42,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>w', '<cmd>write<CR>', desc = '[W]rite buffer' },
         { '<leader>zq', '<Cmd>q<CR>', desc = '[Q]uit' },
         { '<leader>zQ', '<Cmd>qa<CR>', desc = '[Q]uit All' },
-        { '<leader>p', '"0p', desc = '[P]aste copied text' },
+        { '<leader>p', '\"_dP', desc = '[P]aste copied text' },
         { '<leader>j', '10j', desc = '[J] * 10' },
         { '<leader>k', '10k', desc = '[K] * 10' },
         {
