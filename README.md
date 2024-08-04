@@ -17,10 +17,6 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 - Homebrew: Run `brew install stow`
 - Others: do search
 
-### Font
-
-- [https://github.com/ryanoasis/nerd-fonts]
-
 ### Zsh
 
 - [https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH]
@@ -42,25 +38,37 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/neovim/neovim]
 
-### Kitty
+## Choose your Font
+
+- [https://github.com/ryanoasis/nerd-fonts]
+
+## Choose your terminal emulator
+
+### Kitty (Recommended)
 
 - [https://sw.kovidgoyal.net/kitty/]
+
+### WezTerm (Maybe on Windows WSL)
+
+- [https://wezfurlong.org/wezterm/index.html]
+
+- There's a different config for Window's WSL
 
 ## Additional Setup
 
 ### Git Tools
 
-#### lazygit
-
-- [https://github.com/jesseduffield/lazygit]
-
-#### diff-so-fancy
-
-- [https://github.com/so-fancy/diff-so-fancy]
-
 #### Gitbutler
 
 - [https://gitbutler.com]
+
+#### lazygit (Optional)
+
+- [https://github.com/jesseduffield/lazygit]
+
+#### diff-so-fancy (Optional)
+
+- [https://github.com/so-fancy/diff-so-fancy]
 
 ### Docker & Tools
 
@@ -104,17 +112,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - Use `Hammerspoon` for kitty to have a iTerm2 hotkey window experience on MacOS
 
-## Windows Area
-
-### Terminal
-
-#### WezTerm
-
-- [https://wezfurlong.org/wezterm/index.html]
-
-- There's a different config for Window's WSL
-
-## Deprecated
+## Not currently in use
 
 ### VS Code
 
