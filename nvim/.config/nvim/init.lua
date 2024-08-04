@@ -10,7 +10,9 @@ vim.opt.termguicolors = true
 -- [[ Setting options ]] See `:help vim.opt`
 -- NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.number = true
+vim.opt.wrap = false
 vim.opt.relativenumber = true
+vim.opt.conceallevel = 0
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim. See `:help 'clipboard'`

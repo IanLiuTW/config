@@ -1,36 +1,29 @@
 return {
   'NeogitOrg/neogit',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- required
-    'sindrets/diffview.nvim', -- optional - Diff integration
-    -- Only one of these is needed, not both.
-    'nvim-telescope/telescope.nvim', -- optional
+    'nvim-lua/plenary.nvim',
+    'sindrets/diffview.nvim',
+    'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>gn', '<Cmd>Neogit<CR>', desc = '[N]eoGit - Open' },
+    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neo[G]it - Open' },
   },
   opts = {
-    -- Hides the hints at the top of the status buffer
     disable_hint = false,
-    -- Disables changing the buffer highlights based on where the cursor is.
     disable_context_highlighting = false,
-    -- Disables signs for sections/items/hunks
     disable_signs = false,
     -- Changes what mode the Commit Editor starts in. `true` will leave nvim in normal mode, `false` will change nvim to
     -- insert mode, and `"auto"` will change nvim to insert mode IF the commit message is empty, otherwise leaving it in
     -- normal mode.
-    disable_insert_on_commit = 'auto',
+    disable_insert_on_commit = true,
     -- When enabled, will watch the `.git/` directory for changes and refresh the status buffer in response to filesystem
     -- events.
     filewatcher = {
       interval = 1000,
       enabled = true,
     },
-    -- "ascii"   is the graph the git CLI generates
-    -- "unicode" is the graph like https://github.com/rbong/vim-flog
-    graph_style = 'ascii',
-    -- Used to generate URL's for branch popup action "pull request".
-    git_services = {
+    graph_style = 'unicode',
+    git_services = { -- Used to generate URL's for branch popup action "pull request".
       ['github.com'] = 'https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1',
       ['bitbucket.org'] = 'https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1',
       ['gitlab.com'] = 'https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}',
@@ -60,7 +53,7 @@ return {
       underline = true,
     },
     -- Set to false if you want to be responsible for creating _ALL_ keymappings
-    use_default_keymaps = true,
+    use_default_keymaps = false,
     -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
     -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
     auto_refresh = true,
@@ -112,7 +105,7 @@ return {
       -- "split_above" Like :top split
       -- "vsplit_left" like :vsplit, but open to the left
       -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
-      staged_diff_split_kind = 'split',
+      staged_diff_split_kind = 'auto',
     },
     commit_select_view = {
       kind = 'tab',
@@ -144,9 +137,9 @@ return {
     },
     signs = {
       -- { CLOSED, OPENED }
-      hunk = { '', '' },
-      item = { '>', 'v' },
-      section = { '>', 'v' },
+      hunk = { '⤑', '⇣' },
+      item = { '', '' },
+      section = { '󰝤', '' },
     },
     -- Each Integration is auto-detected through plugin presence, however, it can be disabled by setting to `false`
     integrations = {
@@ -214,12 +207,15 @@ return {
     mappings = {
       commit_editor = {
         ['q'] = 'Close',
-        ['<c-c><c-c>'] = 'Submit',
-        ['<c-c><c-k>'] = 'Abort',
+        ['<c-y>'] = 'Submit',
+        ['<c-e>'] = 'Abort',
+        ['<c-p>'] = 'PrevMessage',
+        ['<c-n>'] = 'NextMessage',
+        ['<c-r>'] = 'ResetMessage',
       },
       commit_editor_I = {
-        ['<c-c><c-c>'] = 'Submit',
-        ['<c-c><c-k>'] = 'Abort',
+        ['<c-y>'] = 'Submit',
+        ['<c-e>'] = 'Abort',
       },
       rebase_editor = {
         ['p'] = 'Pick',
@@ -232,16 +228,17 @@ return {
         ['b'] = 'Break',
         ['q'] = 'Close',
         ['<cr>'] = 'OpenCommit',
-        ['gk'] = 'MoveUp',
-        ['gj'] = 'MoveDown',
-        ['<c-c><c-c>'] = 'Submit',
-        ['<c-c><c-k>'] = 'Abort',
-        ['[c'] = 'OpenOrScrollUp',
-        [']c'] = 'OpenOrScrollDown',
+        ['<c-l>'] = 'OpenCommit',
+        ['<c-k>'] = 'MoveUp',
+        ['<c-j>'] = 'MoveDown',
+        ['<c-y>'] = 'Submit',
+        ['<c-e>'] = 'Abort',
+        ['<c-b>'] = 'OpenOrScrollUp',
+        ['<c-f>'] = 'OpenOrScrollDown',
       },
       rebase_editor_I = {
-        ['<c-c><c-c>'] = 'Submit',
-        ['<c-c><c-k>'] = 'Abort',
+        ['<c-y>'] = 'Submit',
+        ['<c-e>'] = 'Abort',
       },
       finder = {
         ['<cr>'] = 'Select',
@@ -259,21 +256,23 @@ return {
       popup = {
         ['?'] = 'HelpPopup',
         ['A'] = 'CherryPickPopup',
-        ['D'] = 'DiffPopup',
-        ['M'] = 'RemotePopup',
-        ['P'] = 'PushPopup',
-        ['X'] = 'ResetPopup',
-        ['Z'] = 'StashPopup',
-        ['b'] = 'BranchPopup',
         ['B'] = 'BisectPopup',
+        ['b'] = 'BranchPopup',
         ['c'] = 'CommitPopup',
+        ['d'] = 'DiffPopup',
         ['f'] = 'FetchPopup',
+        ['i'] = 'IgnorePopup',
         ['l'] = 'LogPopup',
         ['m'] = 'MergePopup',
+        ['M'] = 'RemotePopup',
         ['p'] = 'PullPopup',
+        ['P'] = 'PushPopup',
         ['r'] = 'RebasePopup',
+        ['t'] = 'TagPopup',
         ['v'] = 'RevertPopup',
         ['w'] = 'WorktreePopup',
+        ['X'] = 'ResetPopup',
+        ['Z'] = 'StashPopup',
       },
       status = {
         ['k'] = 'MoveUp',
@@ -285,25 +284,27 @@ return {
         ['2'] = 'Depth2',
         ['3'] = 'Depth3',
         ['4'] = 'Depth4',
-        ['<tab>'] = 'Toggle',
+        ['<space>'] = 'Toggle',
         ['x'] = 'Discard',
         ['s'] = 'Stage',
         ['S'] = 'StageUnstaged',
-        ['<c-s>'] = 'StageAll',
+        ['<tab>'] = 'StageAll',
         ['K'] = 'Untrack',
         ['u'] = 'Unstage',
         ['U'] = 'UnstageStaged',
         ['$'] = 'CommandHistory',
+        ['`'] = 'ShowRefs',
         ['Y'] = 'YankSelected',
-        ['<c-r>'] = 'RefreshBuffer',
-        ['<enter>'] = 'GoToFile',
+        ['R'] = 'RefreshBuffer',
+        ['<cr>'] = 'GoToFile',
+        ['<c-l>'] = 'GoToFile',
         ['<c-v>'] = 'VSplitOpen',
-        ['<c-x>'] = 'SplitOpen',
+        ['<c-s>'] = 'SplitOpen',
         ['<c-t>'] = 'TabOpen',
-        ['{'] = 'GoToPreviousHunkHeader',
-        ['}'] = 'GoToNextHunkHeader',
-        ['[c'] = 'OpenOrScrollUp',
-        [']c'] = 'OpenOrScrollDown',
+        ['[c'] = 'GoToPreviousHunkHeader',
+        [']c'] = 'GoToNextHunkHeader',
+        ['<c-b>'] = 'OpenOrScrollUp',
+        ['<c-f>'] = 'OpenOrScrollDown',
       },
     },
   },

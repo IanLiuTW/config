@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     setupCustomHighlightGroup()
   end,
 })
+
 return {
   'folke/flash.nvim',
   event = 'VeryLazy',

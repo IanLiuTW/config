@@ -21,6 +21,7 @@ return {
         ['<C-v>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
         ['<C-s>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
         ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
+        ['<cr>'] = 'actions.select',
         ['<C-l>'] = 'actions.select',
         ['<C-h>'] = 'actions.parent',
         ['<Tab>'] = 'actions.preview',
