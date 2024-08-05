@@ -80,10 +80,12 @@ require('lazy').setup({
   { import = 'plugins.git' },
   { import = 'plugins.http' },
   { import = 'plugins.language' },
+  { import = 'plugins.remote' },
   { import = 'plugins.shell' },
   { import = 'plugins.dev_env' },
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },
+  { import = 'plugins.testing' },
   { import = 'plugins.themes' },
   { import = 'plugins.ui' },
 }, {
