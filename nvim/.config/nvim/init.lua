@@ -59,7 +59,6 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-vim.keymap.set('n', '<leader>\\L', '<Cmd>Lazy<CR>', { desc = '[L]azy - Open Menu' })
 
 -- [[ Configure diagnostic symbols ]]
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }

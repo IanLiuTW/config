@@ -25,6 +25,7 @@ return { -- Useful plugin to show you pending keybinds.
       layout = {
         width = { min = 100, max = 120 },
       },
+      sort = { 'order', 'mod', 'desc' },
     }
     require('which-key').add {
       { '<leader>c', group = '[C]ode' },
@@ -91,6 +92,9 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', noremap = true, silent = true, desc = 'Order Buffer by Directory' },
         { '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', noremap = true, silent = true, desc = 'Order Buffer by Language' },
         { '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', noremap = true, silent = true, desc = 'Order Buffer by WindowNumber' },
+        -- Plugin keybindings
+        { '<leader>\\L', '<Cmd>Lazy<CR>', desc = '[L]azy - Open Menu' },
+        { '<leader>\\M', '<cmd>Mason<CR>', desc = '[M]ason - Open Menu' },
       },
       {
         mode = 'i',
