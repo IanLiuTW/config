@@ -36,6 +36,7 @@ return {
         ['gh'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
       },
+      use_default_keymaps = false,
       win_options = {
         signcolumn = 'yes:2',
       },

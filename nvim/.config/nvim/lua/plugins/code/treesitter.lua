@@ -3,7 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'regex' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'regex', 'http' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -36,7 +36,7 @@ return {
     event = 'BufRead',
     opts = { multiline_threshold = 1 },
     keys = {
-      { '<leader>cc', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter Conte[X]t' },
+      { '<leader>cx', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter Conte[X]t' },
     },
   },
 }

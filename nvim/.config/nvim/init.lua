@@ -54,13 +54,13 @@ vim.keymap.set('n', '<A-Right>', '<C-w><C->>', { noremap = true, silent = true, 
 vim.keymap.set('n', '<A-Left>', '<C-w><C-<>', { noremap = true, silent = true, desc = 'Pane decrease width' })
 vim.keymap.set('n', '<A-Up>', '<C-w><C-+>', { noremap = true, silent = true, desc = 'Pane increase height' })
 vim.keymap.set('n', '<A-Down>', '<C-w><C-->', { noremap = true, silent = true, desc = 'Pane decrease height' })
-vim.keymap.set('n', '<A-=>', '<C-w><C-=>', { noremap = true, silent = true, desc = 'Pane reset size' })
-vim.keymap.set('n', '<A-|>', '<C-w><C-|>', { noremap = true, silent = true, desc = 'Pane max height' })
-vim.keymap.set('n', '<A-_>', '<C-w><C-_>', { noremap = true, silent = true, desc = 'Pane max width' })
-vim.keymap.set('n', '<A-bs>', '<C-w><C-o>', { noremap = true, silent = true, desc = 'Pane close other panes' })
-vim.keymap.set('n', '<A-T>', '<C-w><C-T>', { noremap = true, silent = true, desc = 'Pane into a new Tab' })
-vim.keymap.set('n', '<A-Tab>', '<C-w><C-w>', { noremap = true, silent = true, desc = 'Pane switch windows' })
-vim.keymap.set('n', '<A-x>', '<C-w><C-x>', { noremap = true, silent = true, desc = 'Pane swap windows' })
+-- vim.keymap.set('n', '<A-->', '<C-w><C-_>', { noremap = true, silent = true, desc = 'Pane max width' })
+-- vim.keymap.set('n', '<A-=>', '<C-w><C-|>', { noremap = true, silent = true, desc = 'Pane max height' })
+-- vim.keymap.set('n', '<A-0>', '<C-w><C-=>', { noremap = true, silent = true, desc = 'Pane reset size' })
+vim.keymap.set('n', '<A-x>', '<C-w><C-o>', { noremap = true, silent = true, desc = 'Pane close other panes' })
+vim.keymap.set('n', '<A-g>', '<C-w><C-T>', { noremap = true, silent = true, desc = 'Pane into a new Tab' })
+vim.keymap.set('n', '<A-f>', '<C-w><C-w>', { noremap = true, silent = true, desc = 'Pane switch windows' })
+vim.keymap.set('n', '<A-d>', '<C-w><C-x>', { noremap = true, silent = true, desc = 'Pane swap windows' })
 vim.keymap.set('n', '<A-q>', '<C-w><C-q>', { noremap = true, silent = true, desc = 'Pane quit' })
 -- Tab keybindings
 vim.keymap.set('n', '<A-t>', '<Cmd>ene<CR>', { noremap = true, silent = true, desc = 'Buffer New' })
@@ -78,7 +78,7 @@ vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { noremap = true, silent =
 vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 7' })
 vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 8' })
 vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { noremap = true, silent = true, desc = 'Buffer Goto 9' })
-vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { noremap = true, silent = true, desc = 'Buffer Last' })
+vim.keymap.set('n', '<A-`>', '<Cmd>BufferLast<CR>', { noremap = true, silent = true, desc = 'Buffer Last' })
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
 vim.keymap.set('n', '<A-o>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', { noremap = true, silent = true, desc = 'Buffer Close' })
 vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin Buffer' })
@@ -160,6 +160,7 @@ require('lazy').setup({
   { import = 'plugins.debug' },
   { import = 'plugins.file_system' },
   { import = 'plugins.git' },
+  { import = 'plugins.http' },
   { import = 'plugins.language' },
   { import = 'plugins.shell' },
   { import = 'plugins.dev_env' },

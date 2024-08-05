@@ -1,14 +1,14 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   config = function()
-    -- Better Around/Inside textobjects
+    -- Better Around/Inside textobjects - https://github.com/echasnovski/mini.ai
     -- Examples:
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
 
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
+    -- Add/delete/replace surroundings - https://github.com/echasnovski/mini.surround
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
@@ -28,7 +28,15 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
-    -- Show minimap of the current buffer
+    -- Better alignment functionality - https://github.com/echasnovski/mini.align
+    require('mini.align').setup {
+      mappings = {
+        start = '<leader>ca',
+        start_with_preview = '<leader>cA',
+      },
+    }
+
+    -- Show minimap of the current buffer - https://github.com/echasnovski/mini.map
     local map = require 'mini.map'
     map.setup {
       integrations = {
