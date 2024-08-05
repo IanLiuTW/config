@@ -96,7 +96,7 @@ return {
           },
         },
         lualine_z = {
-          { 'datetime', style = '%Y-%m-%d %H:%M:%S' },
+          { 'datetime', style = ' %H:%M:%S' },
         },
       },
       extensions = { 'oil', 'fugitive', 'fzf', 'lazy', 'man', 'mason', 'neo-tree', 'overseer', 'quickfix', 'symbols-outline', 'toggleterm', 'trouble' },

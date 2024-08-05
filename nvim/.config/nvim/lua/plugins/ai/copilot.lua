@@ -10,7 +10,7 @@ return {
         hide_during_completion = true,
         debounce = 75,
         keymap = {
-          accept = '<A-Cr>',
+          accept = '<A-CR>',
           accept_word = '<A-l>',
           accept_line = '<A-j>',
           prev = '<A-[>',
@@ -24,8 +24,8 @@ return {
         keymap = {
           jump_prev = '<A-[>',
           jump_next = '<A-]>',
-          accept = '<CR>',
-          refresh = 'r',
+          accept = '<A-CR>',
+          refresh = 'R',
           open = '<A-\\>',
         },
         layout = {

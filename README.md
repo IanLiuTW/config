@@ -27,7 +27,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/ohmyzsh/ohmyzsh]
 - [https://github.com/romkatv/powerlevel10k]
-- [https://github.com/zsh-users/zsh-autosuggestions ]
+- [https://github.com/zsh-users/zsh-autosuggestions]
 - [https://github.com/zsh-users/zsh-syntax-highlighting]
 
 ### fzf
