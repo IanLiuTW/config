@@ -67,29 +67,29 @@ local function alpha_dashboard_layout()
   lazycache.info = function()
     local plugins = #vim.tbl_keys(require('lazy').plugins())
     local v = vim.version()
-    local datetime = os.date ' %Y-%m-%d ⋄  %H:%M:%S'
+    local datetime = os.date ' %Y-%m-%d'
     local platform = vim.fn.has 'win32' == 1 and '' or ''
-    return string.format('󰂖 %d Plugins ⋄ v%d.%d.%d @ %s ⋄ %s', plugins, v.major, v.minor, v.patch, platform, datetime)
+    return string.format('󰂖 %d Plugins       v%d.%d.%d @ %s      %s', plugins, v.major, v.minor, v.patch, platform, datetime)
   end
 
   --stylua: ignore
   ---@return table
   lazycache.menu = function()
     return {
-      button('n',        '  New file', '<cmd>ene<CR>'),
-      button('\\',       '  File Browser'),
-      button('-',        '  File Browser'),
-      button('.',        '  Load Last Session', '<cmd>NeovimProjectLoadRecent<CR>'),
-      button('p',        '󰑓  Load Project from History', '<cmd>Telescope neovim-project history<CR>'),
+      button('n',        '  New file',                    '<cmd>ene<CR>'),
+      button('-',        '  File Browser (Oil)'),
+      button('\\',       '  File Browser (Neo-Tree)'),
+      button('.',        '  Load Last Session',           '<cmd>NeovimProjectLoadRecent<CR>'),
+      button('p',        '󰑓  Load Project from History',   '<cmd>Telescope neovim-project history<CR>'),
       button('P',        '󱦞  Load Project from Discovery', "<cmd>Telescope neovim-project discover<CR>"),
       button('SPC s f',  '  Search Files'),
       button('SPC s .',  '  Search Recent Files'),
       button('SPC s g',  '󰊄  Seach with Live Grep'),
-      button('SPC s ,',  '  Seach Neovim Config'),
+      button('SPC s,',   '  Seach Neovim Config'),
       button('SPC \\ L', '󰂖  Show Lazy Plugin'),
       button('SPC \\ M', '󰀬  Show Mason Plugin'),
-      button('u',        '  Quick Update Plugins', '<cmd>Lazy sync<CR>'),
-      button('q',        '󰅚  Quit', '<cmd>qa<CR>'),
+      button('u',        '  Quick Update Plugins',        '<cmd>Lazy sync<CR>'),
+      button('q',        '󰅚  Quit',                        '<cmd>qa<CR>'),
     }
   end
 
@@ -132,32 +132,32 @@ local function alpha_dashboard_layout()
     { type = 'padding', val = 2 },
     {
       type = 'text',
-      val = '   ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+      val = '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
       opts = { hl = 'NeovimDashboardLogo1', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '   ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+      val = '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
       opts = { hl = 'NeovimDashboardLogo2', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '   ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+      val = '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
       opts = { hl = 'NeovimDashboardLogo3', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '   ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+      val = '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
       opts = { hl = 'NeovimDashboardLogo4', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+      val = '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
       opts = { hl = 'NeovimDashboardLogo5', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+      val = '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
       opts = { hl = 'NeovimDashboardLogo6', shrink_margin = false, position = 'center' },
     },
     { type = 'padding', val = 2 },
