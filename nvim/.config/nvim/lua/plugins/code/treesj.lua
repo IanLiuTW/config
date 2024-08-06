@@ -5,16 +5,19 @@ return {
       '<space>c<',
       '<Cmd>TSJJoin<CR>',
       desc = 'TreeSJ - Join',
+      mode = {'n', 'v'}
     },
     {
       '<space>c>',
       '<Cmd>TSJSplit<CR>',
       desc = 'TreeSJ - Split',
+      mode = {'n', 'v'}
     },
     {
       '<space>cm',
       '<Cmd>TSJToggle<CR>',
       desc = 'TreeSJ - Toggle',
+      mode = {'n', 'v'}
     },
     {
       '<space>cM',

@@ -8,4 +8,13 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
+  keys = {
+    { '<leader>zv', '<cmd>Markview toggle<cr>' },
+  },
+  config = function()
+    require('markview').setup {
+      modes = nil,
+      hybrid_modes = { 'n', 'no' },
+    }
+  end,
 }

@@ -18,7 +18,6 @@ return {
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-      { 'nvim-telescope/telescope-project.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -77,19 +76,12 @@ return {
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          project = {
-            hidden_files = true, -- default: false
-            order_by = 'asc',
-            search_by = 'title',
-            sync_with_nvim_tree = true, -- default false
-          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'project')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -144,14 +136,6 @@ return {
       vim.keymap.set('n', '<leader>s,', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [,] Neovim Config' })
-
-      -- Project extension
-      vim.api.nvim_set_keymap(
-        'n',
-        '<leader>\\p',
-        "<cmd>lua require'telescope'.extensions.project.project{}<CR>",
-        { desc = '[P]roject (Telescope) - Seaarch', noremap = true, silent = true }
-      )
 
       -- LazyGit extension
       vim.api.nvim_set_keymap(

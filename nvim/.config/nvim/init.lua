@@ -73,6 +73,7 @@ require('lazy').setup({
   -- Events can be normal autocommands events (`:help autocmd-events`).
   -- Because we use the `config` key, the configuration only runs
   -- after the plugin has been loaded: config = function() ... end
+  { import = 'plugins' },
   { import = 'plugins.ai' },
   { import = 'plugins.code' },
   { import = 'plugins.debug' },
@@ -82,7 +83,6 @@ require('lazy').setup({
   { import = 'plugins.language' },
   { import = 'plugins.remote' },
   { import = 'plugins.shell' },
-  { import = 'plugins.dev_env' },
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },
   { import = 'plugins.testing' },

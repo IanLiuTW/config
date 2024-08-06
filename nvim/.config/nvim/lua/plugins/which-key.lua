@@ -43,7 +43,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>J',        'i<CR><Esc>',                                desc = 'Add a line break' },
         { '<leader>ck',       '<Cmd>m -2<CR>',                             desc = 'Move Line Up' },
         { '<leader>cj',       '<Cmd>m +1<CR>',                             desc = 'Move Line Down' },
-        { '<leader>cz',       '<Cmd>set wrap!<CR>',                        desc = 'Toggle line wrap' },
+        { '<leader>zz',       '<Cmd>set wrap!<CR>',                        desc = 'Toggle line wrap' },
         { '<leader><leader>', 'gcc',                                       desc = '[ ] Toggle Comment', remap = true },
         -- Pane keybindings
         { '<A-h>',            '<C-w><C-h>',                                desc = 'Move focus to the left window' },

@@ -12,6 +12,10 @@ return {
       { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
     },
     opts = {
+      source_selector = {
+        winbar = true,
+        statusline = false,
+      },
       close_if_last_window = true,
       filesystem = {
         window = {
