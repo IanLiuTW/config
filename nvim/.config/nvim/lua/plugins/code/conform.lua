@@ -32,7 +32,11 @@ return { -- Autoformat
       rust = { 'rustfmt', lsp_format = 'fallback' },
       markdown = { 'prettier' },
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
-      json = { 'prettier'}
+      json = { 'prettier' },
+      -- Use the "*" filetype to run formatters on all filetypes.
+      ['*'] = { 'codespell' },
+      -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
+      ['_'] = { 'trim_whitespace' },
     },
     default_format_opts = {
       lsp_format = 'fallback',

@@ -3,10 +3,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.expandtab = true
-vim.g.tabstop = 4
-vim.g.shiftwidth = 4
 vim.g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- [[ Setting options ]] See `:help vim.opt`
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -86,7 +86,7 @@ require('lazy').setup({
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },
   { import = 'plugins.testing' },
-  { import = 'plugins.themes' },
+  { import = 'plugins.colorthemes' },
   { import = 'plugins.ui' },
 }, {
   ui = {
