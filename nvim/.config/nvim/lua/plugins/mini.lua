@@ -15,13 +15,13 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup {
       highlight_duration = 1000,
       mappings = {
-        add = '<leader>ra', -- Add surrounding in Normal and Visual modes
-        delete = '<leader>rd', -- Delete surrounding
-        find = '<leader>rf', -- Find surrounding (to the right)
-        find_left = '<leader>rF', -- Find surrounding (to the left)
-        highlight = '<leader>rh', -- Highlight surrounding
-        replace = '<leader>rr', -- Replace surrounding
-        update_n_lines = '<leader>rn', -- Update `n_lines`
+        add = '<A-r>a', -- Add surrounding in Normal and Visual modes
+        delete = '<A-r>d', -- Delete surrounding
+        find = '<A-r>f', -- Find surrounding (to the right)
+        find_left = '<A-r>F', -- Find surrounding (to the left)
+        highlight = '<A-r>h', -- Highlight surrounding
+        replace = '<A-r>s', -- Replace surrounding
+        update_n_lines = '<A-r>n', -- Update `n_lines`
 
         suffix_last = 'p', -- Suffix to search with "prev" method
         suffix_next = 'n', -- Suffix to search with "next" method
@@ -46,7 +46,7 @@ return { -- Collection of various small independent plugins/modules
       },
     }
     vim.keymap.set('n', '<Leader>zm', MiniMap.toggle, { desc = '[M]inimap Toggle' })
-    vim.keymap.set('n', '<Leader>zM', MiniMap.toggle_focus, { desc = '[M]inimap Toggle Focus' })
+    vim.keymap.set('n', '<A-m>', MiniMap.toggle_focus, { desc = '[M]inimap Toggle Focus' })
 
     -- -- Simple and easy statusline.
     -- --  You could remove this setup call if you don't like it,

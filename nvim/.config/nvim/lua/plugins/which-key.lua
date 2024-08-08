@@ -24,16 +24,14 @@ return { -- Useful plugin to show you pending keybinds.
     }
     require('which-key').add {
       -- Which-key groupings
-      { '<leader>c',  group = '[C]ode',                mode = { 'n', 'x' } },
-      { '<leader>d',  group = '[D]ebug',               mode = { 'n', 'x' } },
-      { '<leader>t',  group = '[T]erminal',            mode = { 'n', 'x' } },
-      { '<leader>b',  group = '[B]uffer',              mode = { 'n', 'x' } },
-      { '<leader>l',  group = '[L] Tasks',             mode = { 'n', 'x' } },
-      { '<leader>\\', group = '[\\] Plugin / Session', mode = { 'n', 'x' } },
-      { '<leader>s',  group = '[S]earch',              mode = { 'n', 'x' } },
-      { '<leader>g',  group = '[G]it',                 mode = { 'n', 'x' } },
-      { '<leader>r',  group = 'Su[R]round',            mode = { 'n', 'x' } },
-      { '<leader>z',  group = 'Extra[Z]',              mode = { 'n', 'x' } },
+      { '<leader>c', group = '[C]ode',                      mode = { 'n', 'x' } },
+      { '<leader>d', group = '[D]ebug',                     mode = { 'n', 'x' } },
+      { '<leader>t', group = '[T]erminal',                  mode = { 'n', 'x' } },
+      { '<leader>b', group = '[B]uffer',                    mode = { 'n', 'x' } },
+      { '<leader>l', group = '[L] Tasks',                   mode = { 'n', 'x' } },
+      { '<leader>s', group = '[S]earch',                    mode = { 'n', 'x' } },
+      { '<leader>g', group = '[G]it',                       mode = { 'n', 'x' } },
+      { '<leader>z', group = 'Plugin[Z] & Setting[Z]',      mode = { 'n', 'x' } },
       -- Normal Mode
       {
         mode = 'n',
@@ -91,8 +89,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>bl',       '<Cmd>BufferOrderByLanguage<CR>',            noremap = true,              silent = true,  desc = 'Order Buffer by Language' },
         { '<leader>bw',       '<Cmd>BufferOrderByWindowNumber<CR>',        noremap = true,              silent = true,  desc = 'Order Buffer by WindowNumber' },
         -- Plugin keybindings
-        { '<leader>\\L',      '<Cmd>Lazy<CR>',                             desc = '[L]azy - Open Menu' },
-        { '<leader>\\M',      '<cmd>Mason<CR>',                            desc = '[M]ason - Open Menu' },
+        { '<leader>zL',      '<Cmd>Lazy<CR>',                             desc = '[L]azy - Open Menu' },
+        { '<leader>zM',      '<cmd>Mason<CR>',                            desc = '[M]ason - Open Menu' },
       },
       {
         mode = 'i',

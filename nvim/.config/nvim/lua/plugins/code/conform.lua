@@ -11,7 +11,7 @@ return { -- Autoformat
       mode = '',
       desc = '[F]ormat buffer',
     },
-    { '<leader>\\F', '<Cmd>ConformInfo<CR>', desc = 'Conform - Show [F]ormatter Info' },
+    { '<leader>zF', '<Cmd>ConformInfo<CR>', desc = 'Conform - Show [F]ormatter Info' },
   },
   opts = {
     notify_on_error = true,
