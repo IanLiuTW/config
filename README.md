@@ -30,9 +30,19 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 - [https://github.com/zsh-users/zsh-autosuggestions]
 - [https://github.com/zsh-users/zsh-syntax-highlighting]
 
-### fzf
+### CLI Tools
+
+#### lsd
+
+- [https://github.com/lsd-rs/lsd]
+
+#### fzf
 
 - [https://github.com/junegunn/fzf]
+
+#### ripgrep
+
+- [https://github.com/BurntSushi/ripgrep]
 
 ### Neovim
 
@@ -121,6 +131,10 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 ### Zed
 
 - [Zed](https://zed.dev/)
+
+### Starship
+
+- [Starship](https://starship.rs/)
 
 ### Zellij (use kitty if possible)
 

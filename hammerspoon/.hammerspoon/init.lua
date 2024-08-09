@@ -56,7 +56,6 @@ hs.hotkey.bind({'option'}, 'space', function ()  -- hotkey config
   end
 end)
 
--- Reverse the mouse scroll direction but not the trackpad
 reverse_mouse_scroll = hs.eventtap.new({hs.eventtap.event.types.scrollWheel}, function(event)
   -- detect if this is touchpad or mouse
   local isTrackpad = event:getProperty(hs.eventtap.event.properties.scrollWheelEventIsContinuous)

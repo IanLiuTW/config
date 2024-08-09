@@ -6,7 +6,7 @@ return {
 
       vim.keymap.set('n', '<Leader>cy', '<cmd>IconPickerNormal<cr>', { desc = '[I]con insert', noremap = true, silent = true })
       vim.keymap.set('n', '<Leader>cY', '<cmd>IconPickerYank<cr>', { desc = '[I]con yank', noremap = true, silent = true })
-      vim.keymap.set('i', '<C-y>', '<cmd>IconPickerInsert<cr>', { desc = '[I]con insert', noremap = true, silent = true })
+      vim.keymap.set('i', '<A-y>', '<cmd>IconPickerInsert<cr>', { desc = '[I]con insert', noremap = true, silent = true })
     end,
   },
 }

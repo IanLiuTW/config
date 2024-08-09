@@ -85,6 +85,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	copypath dirhistory history
 	zsh-autosuggestions zsh-syntax-highlighting
+	command-not-found
 	git asdf poetry  
 	web-search
 	macos
@@ -136,16 +137,16 @@ alias lg="lazygit"
 alias dp="devpod"
 alias ssh="TERM=xterm-256color ssh"
 
-alias ls='ls --color=auto'
+alias ls='lsd --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias l="ls -CF"
-alias ls="ls -G"
-alias la="ls -A"
-alias ll="ls -alF"
+alias l="lsd -F"
+alias ls="lsd -G"
+alias la="lsd -A"
+alias ll="lsd -alF"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
