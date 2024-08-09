@@ -44,9 +44,11 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/junegunn/fzf]
 
-#### ripgrep
+#### Others
 
-- [https://github.com/BurntSushi/ripgrep]
+- ripgrep: [https://github.com/BurntSushi/ripgrep]
+- jq: [https://stedolan.github.io/jq/]
+- fd: [https://github.com/sharkdp/fd]
 
 ### Neovim
 
@@ -54,7 +56,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ## Choose your Font
 
-- [https://github.com/ryanoasis/nerd-fonts]
+- [https://github.com/ryanoasis/nerd-fonts], [https://www.nerdfonts.com/]
 
 ## Choose your terminal emulator
 
