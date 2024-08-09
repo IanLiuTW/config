@@ -32,9 +32,13 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ### CLI Tools
 
-#### lsd
+#### zoxide
 
-- [https://github.com/lsd-rs/lsd]
+- [https://github.com/ajeetdsouza/zoxide]
+
+#### eza
+
+- [https://github.com/eza-community/eza/blob/main/INSTALL.md]
 
 #### fzf
 
@@ -76,9 +80,17 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/jesseduffield/lazygit]
 
+#### lazydocker (Optional)
+
+- [https://github.com/jesseduffield/lazydocker]
+
 #### diff-so-fancy (Optional)
 
 - [https://github.com/so-fancy/diff-so-fancy]
+
+#### Yazi
+
+- [https://yazi-rs.github.io/docs/installation/]
 
 ### Docker & Tools
 
@@ -139,3 +151,7 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 ### Zellij (use kitty if possible)
 
 - [https://github.com/zellij-org/zellij]
+
+### lsd
+
+- [https://github.com/lsd-rs/lsd]
