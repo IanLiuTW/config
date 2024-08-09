@@ -82,17 +82,21 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/jesseduffield/lazygit]
 
-#### lazydocker (Optional)
-
-- [https://github.com/jesseduffield/lazydocker]
-
 #### diff-so-fancy (Optional)
 
 - [https://github.com/so-fancy/diff-so-fancy]
 
+### File System
+
 #### Yazi
 
 - [https://yazi-rs.github.io/docs/installation/]
+
+### Docker Tools
+
+#### lazydocker (Optional)
+
+- [https://github.com/jesseduffield/lazydocker]
 
 ### Docker & Tools
 

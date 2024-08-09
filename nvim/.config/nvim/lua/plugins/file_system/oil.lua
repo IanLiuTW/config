@@ -3,8 +3,8 @@ return {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '-', ':Oil<CR>', desc = 'Open Oil' },
-      { '_', ':Oil --float<CR>', desc = 'Open Oil Float' },
+      { '-', ':Oil --float<CR>', desc = 'Open Oil Float' },
+      { '_', ':Oil<CR>', desc = 'Open Oil' },
     },
     opts = {
       columns = {

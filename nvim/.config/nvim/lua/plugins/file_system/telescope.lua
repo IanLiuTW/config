@@ -19,6 +19,8 @@ return {
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'jvgrootveld/telescope-zoxide' },
+      { 'nvim-lua/popup.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -76,12 +78,31 @@ return {
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
+          zoxide = {
+            prompt_title = '[ Search with Zoxide (Use <C-y> to peek) ]',
+            mappings = {
+              default = {
+                after_action = function(selection)
+                  print('Update to (' .. selection.z_score .. ') ' .. selection.path)
+                end,
+              },
+              ['<C-y>'] = {
+                before_action = function(selection)
+                end,
+                action = function(selection)
+                  vim.cmd.edit(selection.path)
+                end,
+              },
+              -- ['<C-q>'] = { action = require('telescope._extensions.zoxide.utils').create_basic_command 'split' },
+            },
+          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'zoxide')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -113,6 +134,7 @@ return {
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sn', '<cmd>Telescope notify<CR>', { desc = '[S]earch [N]otification' })
       vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = '[S]earch [T]odo' })
+      vim.keymap.set('n', '<leader>sz', '<cmd>Telescope zoxide list<CR>', { desc = '[S]earch [Z]oxide' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
