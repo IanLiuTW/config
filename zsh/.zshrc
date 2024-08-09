@@ -19,17 +19,20 @@ HIST_STAMPS="yyyy/mm/dd"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(
-	copypath dirhistory history
-	zsh-autosuggestions zsh-syntax-highlighting
-	command-not-found
-	git asdf poetry  
-	web-search
-	macos
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    copypath
+    dirhistory
+    # command-not-found
+    # git
+    asdf
+    poetry
+    web-search
 )
 ZSH_WEB_SEARCH_ENGINES=(
-	gg "https://www.google.com/search?q="
-	yt "https://www.youtube.com/results?search_query="
-	imdb "https://www.imdb.com/find/?q="
+    gg "https://www.google.com/search?q="
+    yt "https://www.youtube.com/results?search_query="
+    imdb "https://www.imdb.com/find/?q="
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -90,6 +93,7 @@ alias l.="eza -a | grep -E '^\.'"
 
 alias zshrc="nvim ~/.zshrc"
 alias zshrcs="source ~/.zshrc"
+alias g="git"
 alias v="nvim"
 alias lg="lazygit"
 alias ld="lazydocker"
@@ -97,8 +101,8 @@ alias dp="devpod"
 alias ssh="TERM=xterm-256color ssh"
 
 # Alias for directories
-alias cdtp="cd ~/workspace_tupl/"
-alias cdpg="cd ~/workspace_playground/"
+alias zt="z ~/workspace_tupl/"
+alias zp="z ~/workspace_playground/"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)

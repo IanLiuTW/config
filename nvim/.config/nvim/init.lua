@@ -66,6 +66,12 @@ for name, icon in pairs(symbols) do
   local hl = 'DiagnosticSign' .. name
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
+vim.diagnostic.config {
+  update_in_insert = true,
+  virtual_text = {
+    source = true,
+  },
+}
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup({

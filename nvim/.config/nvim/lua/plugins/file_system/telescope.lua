@@ -55,7 +55,7 @@ return {
               ['<c-d>'] = require('telescope.actions').delete_buffer,
             },
             n = {
-              ['x'] = require('telescope.actions').delete_buffer,
+              ['d'] = require('telescope.actions').delete_buffer,
             },
           },
         },

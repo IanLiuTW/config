@@ -26,7 +26,7 @@ return { -- Useful plugin to show you pending keybinds.
       -- Which-key groupings
       { '<leader>c', group = '[C]ode',                      mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ebug',                     mode = { 'n', 'x' } },
-      { '<leader>t', group = '[T]erminal',                  mode = { 'n', 'x' } },
+      { '<leader>t', group = '[T]erminal & [T]esting',      mode = { 'n', 'x' } },
       { '<leader>b', group = '[B]uffer',                    mode = { 'n', 'x' } },
       { '<leader>l', group = '[L] Tasks',                   mode = { 'n', 'x' } },
       { '<leader>s', group = '[S]earch',                    mode = { 'n', 'x' } },
@@ -118,8 +118,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>p',  '"_dP',                                     desc = '[P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = '[J] * 10' },
         { '<leader>k',  '10k',                                      desc = '[K] * 10' },
-        { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uick Diagnostics Window' },
-        { '<leader>q',  function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix Diagnostic List' },
+        { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix Diagnostics - Window' },
+        { '<leader>q',  function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix Diagnostics - Open List' },
       },
     }
   end,
