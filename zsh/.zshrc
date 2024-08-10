@@ -66,20 +66,17 @@ export LANGUAGE=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-alias ..="z .."
-alias ...="z ../.."
-alias ....="z ../../.."
-alias .....="zz ../../../.."
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
-alias rg='rg --hidden'
-
+alias q="exit"
+alias c="clear"
+alias f="fg"
+alias g="git"
+alias v="nvim"
+alias lg="lazygit"
+alias ld="lazydocker"
+alias dp="devpod"
+alias ssh="TERM=xterm-256color ssh"
+alias vrc="nvim ~/.zshrc"
+alias src="source ~/.zshrc"
 # eza
 alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --icons --octal-permissions --group-directories-first'
@@ -90,30 +87,29 @@ alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=al
 alias lS='eza -1 --color=always --group-directories-first --icons'
 alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
 alias l.="eza -a | grep -E '^\.'"
-
-alias zshrc="nvim ~/.zshrc"
-alias zshrcs="source ~/.zshrc"
-alias g="git"
-alias v="nvim"
-alias lg="lazygit"
-alias ld="lazydocker"
-alias dp="devpod"
-alias ssh="TERM=xterm-256color ssh"
-
 # Alias for directories
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias rg='rg --hidden'
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias .....="z ../../../.."
+alias Z="zi"
 alias zt="z ~/workspace_tupl/"
 alias zp="z ~/workspace_playground/"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-
 # Set up zoxide
 eval "$(zoxide init zsh)"
-
 # Set up devpod completion
 # source <(devpod completion zsh)
-
-# Set up diff-so-fancy for lazygit
-export PATH=$HOME/diff-so-fancy:$PATH
 
 nerdfetch && echo ""

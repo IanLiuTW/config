@@ -7,7 +7,6 @@
 	autocrlf = false
 	quotepath = false
 	editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RF
 [color]
 	diff = auto
 	status = auto
@@ -59,27 +58,11 @@
 	lss = log --show-signature
 	ll = log --pretty=format:'%h [%Cgreen%an%Creset] %ad - %ar : %s%d' --graph --date=short
 	lg = log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short
-	alias = config --get-regexp ^alias\\.
+	alias = "config --get-regexp ^alias\\."
 	ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
 	iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
 	iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
 [credential]
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[interactive]
-	diffFilter = diff-so-fancy --patch
