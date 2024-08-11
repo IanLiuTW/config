@@ -172,7 +172,7 @@ local function alpha_dashboard_layout()
       val = lazycache 'menu',
       opts = { spacing = 0 },
     },
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
     {
       type = 'text',
       val = '󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜 Recent Files 󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜󰇜',

@@ -122,17 +122,17 @@ return { -- Autocompletion
       window = {
         completion = {
           winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-          col_offset = -1,
-          side_padding = 0,
+          side_padding = 1,
         },
       },
       formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
+        fields = { 'abbr', 'kind', 'menu' },
         format = function(entry, vim_item)
           local kind = require('lspkind').cmp_format {
             mode = 'symbol_text',
             maxwidth = 50,
             show_labelDetails = true,
+            ellipsis_char = '...',
             menu = {
               buffer = '[Buffer]',
               nvim_lsp = '[LSP]',
