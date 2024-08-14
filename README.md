@@ -92,6 +92,12 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://yazi-rs.github.io/docs/installation/]
 
+### Monitoring
+
+#### btytop
+
+- [https://github.com/aristocratos/bpytop]
+
 ### Docker Tools
 
 #### lazydocker (Optional)
