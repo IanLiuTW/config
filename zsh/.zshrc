@@ -36,8 +36,6 @@ ZSH_WEB_SEARCH_ENGINES=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 # Set up asdf
 fpath=(${ASDF_DIR}/completions $fpath)
