@@ -49,6 +49,12 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+vim.api.nvim_create_user_command("CopyPath", function()
+    local path = vim.fn.expand("%")
+    vim.fn.setreg("+", path)
+    vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, {})
+
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then

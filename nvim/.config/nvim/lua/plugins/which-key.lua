@@ -91,6 +91,8 @@ return { -- Useful plugin to show you pending keybinds.
         -- Plugin keybindings
         { '<leader>zL',      '<Cmd>Lazy<CR>',                             desc = '[L]azy - Open Menu' },
         { '<leader>zM',      '<cmd>Mason<CR>',                            desc = '[M]ason - Open Menu' },
+        -- User commands bindings
+        { '<leader>z/',      '<Cmd>CopyPath<CR>',                         desc = '[C]opy [P]ath' },
       },
       {
         mode = 'i',
