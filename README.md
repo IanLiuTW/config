@@ -136,6 +136,10 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://openai.com/chatgpt/download/]
 
+### Dev Tools
+
+- [https://devtoys.app/]
+
 ## MacOS Area
 
 ### Automation
