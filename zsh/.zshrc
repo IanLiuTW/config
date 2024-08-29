@@ -1,6 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH="$HOME/.oh-my-zsh"
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 15
@@ -34,12 +33,9 @@ ZSH_WEB_SEARCH_ENGINES=(
     yt "https://www.youtube.com/results?search_query="
     imdb "https://www.imdb.com/find/?q="
 )
-
 source $ZSH/oh-my-zsh.sh
 
-# Set up asdf
-fpath=(${ASDF_DIR}/completions $fpath)
-
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -65,7 +61,6 @@ export ARCHFLAGS="-arch x86_64"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 alias q="exit"
-alias c="clear"
 alias f="fg"
 alias g="git"
 alias v="nvim"
@@ -73,6 +68,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias bt="bpytop"
 alias dp="devpod"
+alias cl="clear"
 alias ssh="TERM=xterm-256color ssh"
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
@@ -103,6 +99,9 @@ alias .....="z ../../../.."
 alias Z="zi"
 alias zt="z ~/workspace_tupl/"
 alias zp="z ~/workspace_playground/"
+
+# Set up asdf
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
