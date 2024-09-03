@@ -3,7 +3,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 15
-ZSH_THEME="powerlevel10k/powerlevel10k"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
@@ -35,10 +34,12 @@ ZSH_WEB_SEARCH_ENGINES=(
 )
 source $ZSH/oh-my-zsh.sh
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+eval "$(starship init zsh)"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

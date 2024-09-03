@@ -26,9 +26,18 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 #### Zsh Plugins (recomending using `Oh My Zsh` method, cloning the repo into `ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom`)
 
 - [https://github.com/ohmyzsh/ohmyzsh]
-- [https://github.com/romkatv/powerlevel10k]
 - [https://github.com/zsh-users/zsh-autosuggestions]
 - [https://github.com/zsh-users/zsh-syntax-highlighting]
+
+#### Prompts
+
+##### Starship
+
+- [Starship](https://starship.rs/)
+
+##### powerlevel10k
+
+- [https://github.com/romkatv/powerlevel10k] (Optional)
 
 ### CLI Tools
 
@@ -159,10 +168,6 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 ### Zed
 
 - [Zed](https://zed.dev/)
-
-### Starship
-
-- [Starship](https://starship.rs/)
 
 ### Zellij (use kitty if possible)
 
