@@ -60,6 +60,15 @@ return {
             show_colors = true,
             show_loading = true,
           },
+          {
+            function()
+              local status = vim.api.nvim_call_function('codeium#GetStatusString', {})
+              if not status then
+                return ''
+              end
+              return ' ' .. status
+            end,
+          },
           { 'fancy_lsp_servers' },
           {
             function()
