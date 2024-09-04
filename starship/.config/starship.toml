@@ -1,9 +1,60 @@
-#format = """
-#[╭─user───❯](bold blue) $username
-#[┣─system─❯](bold yellow) $hostname
-#[┣─project❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
-#[╰─cmd────❯](bold green) 
-#"""
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$cmd_duration $jobs $time\
+$line_break\
+$character"""
+
+[fill]
+symbol = " "
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bright-black"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+min_time = 4
+show_milliseconds = false
+disabled = false
+
+[time]
+disabled = false
+style = "bold white"
+format = '\[[$time]($style)\]'
+
+[custom.stunnel]
+when = "ps aux | grep stunnel | grep -v grep"
+command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+style = "red"
+format = "[TUNNEL OPEN for $output]($style)"
+
 [username]
 style_user = "green bold"
 style_root = "red bold"
@@ -17,23 +68,17 @@ format = 'on [$hostname](bold yellow) '
 trim_at = "."
 disabled = false
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[﬌](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[✗](bold red)"
-#  
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+# vicmd_symbol = "[❮](green)"
+
 # configure directory
 [directory]
 read_only = " "
 truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
+truncate_to_repo = true    # truncates directory to root folder if in github repo
 style = "bold italic blue"
-
-[cmd_duration]
-min_time = 4
-show_milliseconds = false
-disabled = false
-style = "bold italic red"
 
 [aws]
 symbol = "  "
@@ -52,9 +97,6 @@ symbol = " "
 
 [elm]
 symbol = " "
-
-[git_branch]
-symbol = " "
 
 [golang]
 symbol = " "

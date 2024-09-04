@@ -30,29 +30,12 @@ return {
           { 'fancy_diagnostics' },
           { 'fancy_searchcount' },
           { 'fancy_location' },
-        },
-        lualine_y = {
-          { 'encoding' },
-          { 'fileformat' },
-          { 'fancy_filetype', ts_icon = '' },
           {
             'copilot',
             symbols = {
               status = {
-                icons = {
-                  enabled = ' ',
-                  sleep = ' ', -- auto-trigger disabled
-                  disabled = ' ',
-                  warning = ' ',
-                  unknown = ' ',
-                },
-                hl = {
-                  enabled = '#50FA7B',
-                  sleep = '#AEB7D0',
-                  disabled = '#6272A4',
-                  warning = '#FFB86C',
-                  unknown = '#FF5555',
-                },
+                icons = { enabled = ' ', sleep = ' ', disabled = ' ', warning = ' ', unknown = ' ' },
+                hl = { enabled = '#50FA7B', sleep = '#AEB7D0', disabled = '#6272A4', warning = '#FFB86C', unknown = '#FF5555' },
               },
               spinners = require('copilot-lualine.spinners').dots,
               spinner_color = '#6272A4',
@@ -69,6 +52,13 @@ return {
               return ' ' .. status
             end,
           },
+        },
+        lualine_y = {
+          { 'encoding' },
+          { 'fileformat' },
+          { 'fancy_filetype', ts_icon = '' },
+        },
+        lualine_z = {
           { 'fancy_lsp_servers' },
           {
             function()
@@ -103,9 +93,7 @@ return {
               return ''
             end,
           },
-        },
-        lualine_z = {
-          { 'datetime', style = ' %H:%M:%S' },
+          -- { 'datetime', style = ' %H:%M:%S' },
         },
       },
       extensions = { 'oil', 'fugitive', 'fzf', 'lazy', 'man', 'mason', 'neo-tree', 'overseer', 'quickfix', 'symbols-outline', 'toggleterm', 'trouble' },
