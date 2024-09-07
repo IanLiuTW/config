@@ -163,7 +163,6 @@ return {
       { '<A-a>my', desc = 'Yank diff' },
     }
   end,
-  event = 'VeryLazy',
   keys = {
     -- Toggle Copilot Chat Vsplit
     { '<A-a><Space>', '<cmd>CopilotChatToggle<cr>', desc = 'A[I] - Toggle CopilotChat' },
