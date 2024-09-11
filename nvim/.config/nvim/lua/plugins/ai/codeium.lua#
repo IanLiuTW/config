@@ -26,6 +26,6 @@ return {
 --     require('codeium').setup {
 --       enable_chat = true,
 --     }
---     vim.api.nvim_set_keymap('n', '<A-c>', ':Codeium Chat<CR>', { noremap = true, silent = true })
+--     vim.api.nvim_set_keymap('n', '<A-a><space>', ':Codeium Chat<CR>', { noremap = true, silent = true })
 --   end,
 -- }
