@@ -23,6 +23,7 @@ return {
     show_help = true, -- Shows help message as virtual lines when waiting for user input
     auto_follow_cursor = false, -- Auto-follow cursor in chat
     auto_insert_mode = false, -- Automatically enter insert mode when opening window and if auto follow cursor is enabled on new prompt
+    insert_at_end = true,
     clear_chat_on_new_prompt = false, -- Clears chat on every new prompt
     highlight_selection = true, -- Highlight selection in the source buffer when in the chat window
 
@@ -154,7 +155,7 @@ return {
       },
       -- Text related custom prompts
       Summarize = {
-        prompt = '/COPILOT_REVIEW Please summarize the following text.',
+        prompt = '/COPILOT_GENERATE Please summarize the following text.',
       },
       Spelling = {
         prompt = '/COPILOT_GENERATE Please correct any grammar and spelling errors in the following text.',
@@ -177,7 +178,7 @@ return {
       chat.ask(args.args, { selection = select.visual })
     end, { nargs = '*', range = true })
 
-    vim.api.nvim_create_user_command('CopilotChatInline', function(args)
+    vim.api.nvim_create_user_command('CopilotChatInlineVisual', function(args)
       chat.ask(args.args, {
         selection = select.visual,
         window = {
@@ -189,6 +190,24 @@ return {
         },
       })
     end, { nargs = '*', range = true })
+
+    vim.api.nvim_create_user_command('CopilotChatInlineBuffer', function(args)
+      chat.ask(args.args, {
+        selection = select.buffer,
+        window = {
+          layout = 'float',
+          relative = 'cursor',
+          width = 1,
+          height = 0.5,
+          row = 1,
+        },
+      })
+    end, { nargs = '*', range = true })
+
+    vim.api.nvim_create_user_command('CopilotChatReviewClear', function()
+      local ns = vim.api.nvim_create_namespace 'copilot_review'
+      vim.diagnostic.reset(ns)
+    end, {})
 
     -- Custom buffer for CopilotChat
     vim.api.nvim_create_autocmd('BufEnter', {
@@ -213,30 +232,42 @@ return {
   keys = {
     { '<A-a><Space>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Toggle CopilotChat (Buffer)' },
     { '<A-a><Space>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Toggle CopilotChat (Visual)' },
-    { '<A-a>i', ':CopilotChatInline<cr>', mode = 'n', desc = 'CopilotChat - Inline chat' },
-
+    { '<A-a>i', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Inline chat (Visual)' },
+    { '<A-a>i', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Inline chat (Buffer)' },
     {
       '<A-a>q',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
-          vim.cmd('CopilotChat ' .. input)
+          vim.cmd('CopilotChatVisual ' .. input)
         end
       end,
-      desc = 'CopilotChat - Quick Chat',
+      mode = { 'x' },
+      desc = 'CopilotChat - Quick Chat (Visual)',
     },
-    -- Quick chat with Copilot
     {
-      '<A-a>Q',
+      '<A-a>q',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
           vim.cmd('CopilotChatBuffer ' .. input)
         end
       end,
+      mode = { 'n' },
       desc = 'CopilotChat - Quick Chat (Buffer)',
     },
-    -- Show help actions with telescope
+    {
+      '<A-a>Q',
+      function()
+        local input = vim.fn.input 'Quick Chat: '
+        if input ~= '' then
+          vim.cmd('CopilotChat ' .. input)
+        end
+      end,
+      mode = { 'n' },
+      desc = 'CopilotChat - Quick Chat (None)',
+    },
+
     {
       '<A-a>h',
       function()
@@ -245,7 +276,6 @@ return {
       end,
       desc = 'CopilotChat - Help actions',
     },
-    -- Show prompts actions with telescope
     {
       '<A-a>a',
       function()
@@ -264,16 +294,18 @@ return {
     },
     -- Code related commands
     { '<A-a>e', '<cmd>CopilotChatExplain<cr>', mode = 'x', desc = 'CopilotChat - Explain code' },
-    { '<A-a>r', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
+    { '<A-a>v', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
     { '<A-a>f', '<cmd>CopilotChatFix<cr>', mode = 'x', desc = 'CopilotChat - Fix code' },
     { '<A-a>o', '<cmd>CopilotChatOptimize<cr>', mode = 'x', desc = 'CopilotChat - Optimize code' },
     { '<A-a>d', '<cmd>CopilotChatDocs<cr>', mode = 'x', desc = 'CopilotChat - Generate documentation' },
     { '<A-a>t', '<cmd>CopilotChatTests<cr>', mode = 'x', desc = 'CopilotChat - Generate tests' },
-    { '<A-a>R', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
+    { '<A-a>r', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
+    { '<A-a>b', '<cmd>CopilotChatBetterNamings<cr>', mode = 'x', desc = 'CopilotChat - Generate Better Namings' },
 
     { '<A-a>f', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
     { '<A-a>g', '<cmd>CopilotChatCommitStaged<cr>', desc = 'CopilotChat - Generate commit message for staged changes' },
     { '<A-a>G', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
+    { '<A-a>V', '<cmd>CopilotChatReviewClear<cr>', desc = 'CopilotChat - Review code clear highlight' },
 
     { '<A-a><bs>', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
     { '<A-a>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
