@@ -26,19 +26,19 @@ return { -- Useful plugin to show you pending keybinds.
       -- Which-key groupings
       { '<leader>c', group = '[C]ode',                      mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ebug',                     mode = { 'n', 'x' } },
-      { '<leader>t', group = '[T]erminal & [T]esting',      mode = { 'n', 'x' } },
+      { '<leader>t', group = '[T]esting',                   mode = { 'n', 'x' } },
       { '<leader>b', group = '[B]uffer',                    mode = { 'n', 'x' } },
       { '<leader>l', group = '[L] Tasks',                   mode = { 'n', 'x' } },
       { '<leader>s', group = '[S]earch',                    mode = { 'n', 'x' } },
       { '<leader>g', group = '[G]it',                       mode = { 'n', 'x' } },
-      { '<leader>z', group = 'Plugin[Z] & Setting[Z]',      mode = { 'n', 'x' } },
+      { '<leader>z', group = '[Z] Plugin / Settings',        mode = { 'n', 'x' } },
       -- Normal Mode
       {
         mode = 'n',
         -- UI keybindings
         { '<Esc>',            '<cmd>nohlsearch<CR>',                       desc = 'nohlsearch' },
         -- Code keybindings
-        { '<leader>J',        'i<CR><Esc>',                                desc = 'Add a line break' },
+        { '<leader>J',        'i<CR><Esc>',                                desc = 'Cursor - Add a line break' },
         { '<leader>ck',       '<Cmd>m -2<CR>',                             desc = 'Move Line Up' },
         { '<leader>cj',       '<Cmd>m +1<CR>',                             desc = 'Move Line Down' },
         { '<leader>zz',       '<Cmd>set wrap!<CR>',                        desc = 'Toggle line wrap' },
@@ -114,14 +114,14 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
-        { '<leader>w',  '<cmd>write<CR>',                           desc = '[W]rite buffer' },
+        { '<leader>w',  '<cmd>write<CR>',                           desc = 'Buffer - [W]rite' },
         { '<leader>zq', '<Cmd>q<CR>',                               desc = '[Q]uit' },
         { '<leader>zQ', '<Cmd>qa<CR>',                              desc = '[Q]uit All' },
-        { '<leader>p',  '"_dP',                                     desc = '[P]aste copied text' },
-        { '<leader>j',  '10j',                                      desc = '[J] * 10' },
-        { '<leader>k',  '10k',                                      desc = '[K] * 10' },
-        { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix Diagnostics - Window' },
-        { '<leader>q',  function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix Diagnostics - Open List' },
+        { '<leader>p',  '"_dP',                                     desc = 'Cursor - [P]aste copied text' },
+        { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
+        { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
+        { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },
+        { '<leader>q',  function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
       },
     }
   end,

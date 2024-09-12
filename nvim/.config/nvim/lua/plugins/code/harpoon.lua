@@ -45,6 +45,6 @@ return {
     end
     vim.keymap.set('n', '<leader>)', function()
       toggle_telescope(harpoon:list())
-    end, { desc = '[S]earch Harpoon List' })
+    end, { desc = 'Harpoon - [S]earch Harpoon List' })
   end,
 }

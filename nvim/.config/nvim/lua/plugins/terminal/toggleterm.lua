@@ -21,10 +21,10 @@ return {
         shade_terminals = false,
       }
 
-      vim.keymap.set({ 'n' }, '<leader>T', '<cmd>ToggleTerm size=40 direction=float<CR>', { desc = 'Create a float terminal' })
-      vim.keymap.set({ 'n' }, '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>', { desc = 'Create a vertical terminal' })
-      vim.keymap.set({ 'n' }, '<leader>ts', '<cmd>ToggleTerm direction=horizontal<CR>', { desc = 'Create a horizontal terminal' })
-      vim.keymap.set({ 'n' }, '<leader>tt', '<cmd>ToggleTerm direction=tab<CR>', { desc = 'Create a tab terminal' })
+      vim.keymap.set({ 'n' }, '<leader>\\', '<cmd>ToggleTerm size=40 direction=float<CR>', { desc = 'ToggleTerm - Create Terminal (Float)' })
+      vim.keymap.set({ 'n' }, '<leader>-', '<cmd>ToggleTerm direction=vertical<CR>', { desc = 'ToggleTerm - Create Terminal (Vertical)' })
+      vim.keymap.set({ 'n' }, '<leader>=', '<cmd>ToggleTerm direction=horizontal<CR>', { desc = 'ToggleTerm - Create Terminal (Horizontal)' })
+      vim.keymap.set({ 'n' }, '<leader>|', '<cmd>ToggleTerm direction=tab<CR>', { desc = 'ToggleTerm - Create Terminal (Tab)' })
     end,
   },
 }

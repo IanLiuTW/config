@@ -9,7 +9,7 @@ return { -- Autoformat
         require('conform').format { async = true, lsp_fallback = true }
       end,
       mode = '',
-      desc = '[F]ormat buffer',
+      desc = 'Buffer - [F]ormat',
     },
     { '<leader>zF', '<Cmd>ConformInfo<CR>', desc = 'Conform - Show [F]ormatter Info' },
   },
