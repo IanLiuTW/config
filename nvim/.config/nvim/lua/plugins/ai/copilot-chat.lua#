@@ -8,9 +8,6 @@ return {
     'hrsh7th/nvim-cmp',
   },
   opts = {
-    -- auto_follow_cursor = false, -- Don't follow the cursor after getting response
-    -- show_help = true, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
-
     model = 'gpt-4o', -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
     temperature = 0.1, -- GPT temperature
 
