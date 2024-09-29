@@ -74,12 +74,7 @@ return {
         lualine_z = {
           {
             'copilot',
-            symbols = {
-              status = {
-                icons = { enabled = '', sleep = '󰒲', disabled = '', warning = '', unknown = '' },
-              },
-              spinners = require('copilot-lualine.spinners').dots,
-            },
+            show_colors = false,
             show_loading = true,
           },
           {
