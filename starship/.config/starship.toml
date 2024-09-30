@@ -6,8 +6,8 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
+$docker_context $c $python $lua $rust\
 $fill\
-$nodejs\
 $cmd_duration $jobs $time\
 $line_break\
 $character"""
@@ -24,7 +24,7 @@ format = "[$symbol]($style)"
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "bright-black"
+style = "purple"
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
