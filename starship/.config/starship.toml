@@ -6,7 +6,11 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
-$docker_context $c $python $lua $rust\
+$docker_context\
+$c\
+$python\
+$lua\
+$rust\
 $fill\
 $cmd_duration $jobs $time\
 $line_break\
@@ -200,6 +204,15 @@ symbol = "󰔷 "
 [ocaml]
 symbol = " "
 
+[pijul_channel]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[zig]
+symbol = " "
+
 [os.symbols]
 Alpaquita = " "
 Alpine = " "
@@ -244,12 +257,3 @@ Ubuntu = " "
 Unknown = " "
 Void = " "
 Windows = "󰍲 "
-
-[pijul_channel]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[zig]
-symbol = " "
