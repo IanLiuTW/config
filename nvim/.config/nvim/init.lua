@@ -2,9 +2,10 @@
 --  NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.expandtab = true
 vim.g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- [[ Setting options ]] See `:help vim.opt`
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.hlsearch = true
@@ -30,6 +31,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.cursorline = false -- Show which line your cursor is on
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
 
 -- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
 -- Highlight when yanking (copying) text
