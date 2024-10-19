@@ -1,87 +1,89 @@
 export XDG_CONFIG_HOME="$HOME/.config"
-export ZSH="$HOME/.oh-my-zsh"
-
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-zstyle ':omz:update' frequency 15
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy/mm/dd"
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-# Dynamically sets the terminal title to the current directory and command being executed.
-function set_terminal_title() {
-  if [[ -n "$1" ]]; then
-    print -Pn "\e]0;$PWD:t | $1\a"
-  else
-    print -Pn "\e]0;$PWD:t\a"
-  fi
-}
-function preexec() {
-  set_terminal_title "$1"
-}
-function precmd() {
-  set_terminal_title
-}
-set_terminal_title
-
-# Uncomment the following line if you want to disable marking untracked files under VCS as dirty. 
-# This makes repository status check for large repositories much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    copypath
-    dirhistory
-    # command-not-found
-    # git
-    asdf
-    poetry
-    web-search
-)
-ZSH_WEB_SEARCH_ENGINES=(
-    gg "https://www.google.com/search?q="
-    yt "https://www.youtube.com/results?search_query="
-    imdb "https://www.imdb.com/find/?q="
-)
-source $ZSH/oh-my-zsh.sh
-
-eval "$(starship init zsh)"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
-zstyle ':completion::complete:*' gain-privileges 1
-
-# typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export ARCHFLAGS="-arch x86_64"
-# export MANPATH="/usr/local/man:$MANPATH"
+# export ARCHFLAGS="-arch x86_64"
 
+# [Shell] If you're using macOS, you'll want this enabled
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# [Shell] Dynamically sets the terminal title to the current directory and command
+DISABLE_AUTO_TITLE="true"
+function set_terminal_title() { 
+  if [[ -n "$1" ]]; then
+    print -Pn "\e]0;$PWD:t | $1\a" 
+  else 
+    print -Pn "\e]0;$PWD:t\a" 
+  fi 
+}
+function preexec() { set_terminal_title "$1" }
+function precmd() { set_terminal_title }
+set_terminal_title
+
+# [Plugins] Manager - zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+# [Plugins] Adding in
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+# [Plugins] Snippets
+zinit snippet OMZP::sudo
+zinit snippet OMZP::copypath
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+# zinit snippet OMZP::aws
+zinit snippet OMZP::asdf
+zinit snippet OMZP::poetry
+# [Plugins] Loading up
+autoload -U compinit && compinit
+bindkey '^y' autosuggest-accept
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy/mm/dd"
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zinit cdreplay -q
+
+# [Shell Integrations] Basics
+eval "$(starship init zsh)" # startship
+eval "$(zoxide init zsh)" # zoixide
+source <(fzf --zsh) # fzf
+# [Shell Integrations] Dev
+# Set up dev plugins
+# fpath=(${ASDF_DIR}/completions $fpath) # asdf
+# source <(devpod completion zsh) # devpod
+
+# [Alias] Basics
 alias q="exit"
 alias f="fg"
 alias g="git"
 alias v="nvim"
-alias cl="clear"
+alias c="clear"
 alias mk="make"
 alias lg="lazygit"
 alias ld="lazydocker"
@@ -90,17 +92,7 @@ alias dp="devpod"
 alias ssh="TERM=xterm-256color ssh"
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
-# eza
-alias ls='eza --color=always --group-directories-first --icons'
-alias ll='eza -la --icons --octal-permissions --group-directories-first'
-alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
-alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
-alias la='eza --long --all --group --group-directories-first'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
-alias lS='eza -1 --color=always --group-directories-first --icons'
-alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
-alias l.="eza -a | grep -E '^\.'"
-# Alias for directories
+# [Alias] Navigation
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep="grep --color=auto"
@@ -115,15 +107,16 @@ alias ...="z ../.."
 alias ....="z ../../.."
 alias .....="z ../../../.."
 alias Z="zi"
+# [Alias] eza
+alias ls='eza --color=always --group-directories-first --icons'
+alias ll='eza -la --icons --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
+alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
+alias la='eza --long --all --group --group-directories-first'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
+alias lS='eza -1 --color=always --group-directories-first --icons'
+alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
+alias l.="eza -a | grep -E '^\.'"
 
-# Set up asdf
-fpath=(${ASDF_DIR}/completions $fpath)
-
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-# Set up zoxide
-eval "$(zoxide init zsh)"
-# Set up devpod completion
-# source <(devpod completion zsh)
-
+# [Commands] Initial commands
 nerdfetch && echo ""
