@@ -9,7 +9,23 @@ HIST_STAMPS="yyyy/mm/dd"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
+# Dynamically sets the terminal title to the current directory and command being executed.
+function set_terminal_title() {
+  if [[ -n "$1" ]]; then
+    print -Pn "\e]0;$PWD:t | $1\a"
+  else
+    print -Pn "\e]0;$PWD:t\a"
+  fi
+}
+function preexec() {
+  set_terminal_title "$1"
+}
+function precmd() {
+  set_terminal_title
+}
+set_terminal_title
+
 # Uncomment the following line if you want to disable marking untracked files under VCS as dirty. 
 # This makes repository status check for large repositories much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -52,7 +68,7 @@ fi
 autoload -Uz compinit && compinit
 zstyle ':completion::complete:*' gain-privileges 1
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+# typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -65,11 +81,12 @@ alias q="exit"
 alias f="fg"
 alias g="git"
 alias v="nvim"
+alias cl="clear"
+alias mk="make"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias bt="bpytop"
 alias dp="devpod"
-alias cl="clear"
 alias ssh="TERM=xterm-256color ssh"
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
@@ -98,8 +115,6 @@ alias ...="z ../.."
 alias ....="z ../../.."
 alias .....="z ../../../.."
 alias Z="zi"
-alias zt="z ~/workspace_tupl/"
-alias zp="z ~/workspace_playground/"
 
 # Set up asdf
 fpath=(${ASDF_DIR}/completions $fpath)
