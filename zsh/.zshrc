@@ -42,7 +42,6 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
 zinit snippet OMZP::asdf
-zinit snippet OMZP::poetry
 # [Plugins] Loading up
 autoload -U compinit && compinit
 bindkey '^y' autosuggest-accept
@@ -72,7 +71,7 @@ zinit cdreplay -q
 # [Shell Integrations] Basics
 eval "$(starship init zsh)" # startship
 eval "$(zoxide init zsh)" # zoixide
-source <(fzf --zsh) # fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [Shell Integrations] Dev
 # Set up dev plugins
 # fpath=(${ASDF_DIR}/completions $fpath) # asdf

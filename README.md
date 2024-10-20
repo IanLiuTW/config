@@ -23,12 +23,6 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - On Arch: [https://wiki.archlinux.org/title/Zsh]
 
-#### Zsh Plugins (recomending using `Oh My Zsh` method, cloning the repo into `ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom`)
-
-- [https://github.com/ohmyzsh/ohmyzsh]
-- [https://github.com/zsh-users/zsh-autosuggestions]
-- [https://github.com/zsh-users/zsh-syntax-highlighting]
-
 #### Prompts
 
 ##### Starship

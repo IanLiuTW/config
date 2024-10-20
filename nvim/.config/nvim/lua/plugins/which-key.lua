@@ -96,7 +96,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 'i',
-        { 'jk', '<Esc>', desc = 'Exit insert mode' },
+        { 'jk', '<Esc>l', desc = 'Exit insert mode' },
       },
       {
         mode = 'x',
