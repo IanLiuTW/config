@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
-# [Shell] If you're using macOS, you'll want this enabled
+# [Shell] Consider homebrew if on macOS
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
@@ -28,12 +28,12 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-# [Plugins] Adding in
+# [Plugins] Basics
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-# [Plugins] Snippets
+# [Plugins] OMZ's
 zinit snippet OMZP::sudo
 zinit snippet OMZP::copypath
 zinit snippet OMZP::command-not-found
@@ -72,17 +72,18 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zinit cdreplay -q
 
-# [Shell Integrations] Basics
-# eval "$(starship init zsh)" # startship
+# [Shell] Prompt
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zinit light starship/starship # starship
+
+# [Shell] Integrations
 eval "$(zoxide init zsh)" # zoixide
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fzf
-# [Shell Integrations] Dev
-# fpath=(${ASDF_DIR}/completions $fpath) # asdf
-# source <(devpod completion zsh) # devpod
+if command -v devpod &> /dev/null; then # devpod
+    source <(devpod completion zsh)
+fi
 
 # [Alias] Basics
 alias q="exit"
@@ -124,5 +125,5 @@ alias lS='eza -1 --color=always --group-directories-first --icons'
 alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
 alias l.="eza -a | grep -E '^\.'"
 
-# [Commands] Initial commands
+# [Commands] Start
 nerdfetch && echo ""
