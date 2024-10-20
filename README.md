@@ -35,6 +35,10 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 ### CLI Tools
 
+#### fzf
+
+- [https://github.com/junegunn/fzf]
+
 #### zoxide
 
 - [https://github.com/ajeetdsouza/zoxide]
@@ -43,15 +47,12 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 - [https://github.com/eza-community/eza/blob/main/INSTALL.md]
 
-#### fzf
-
-- [https://github.com/junegunn/fzf]
-
 #### Others
 
 - ripgrep: [https://github.com/BurntSushi/ripgrep]
 - jq: [https://stedolan.github.io/jq/]
 - fd: [https://github.com/sharkdp/fd]
+- bat: [https://github.com/sharkdp/bat]
 
 ### Neovim
 
