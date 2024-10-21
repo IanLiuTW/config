@@ -35,7 +35,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 # [Plugins] OMZ's
 zinit snippet OMZP::sudo
-zinit snippet OMZP::copypath
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::kubectl
