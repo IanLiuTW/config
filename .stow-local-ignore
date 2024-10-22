@@ -22,7 +22,5 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
-/Docs
-/Exports
-/Archives
+/_*
 .DS_Store
