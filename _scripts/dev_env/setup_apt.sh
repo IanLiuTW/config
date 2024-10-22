@@ -35,9 +35,3 @@ apt install -y ripgrep fd-find
 # [nerdfetch]
 sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/nerdfetch -o /usr/bin/nerdfetch
 sudo chmod +x /usr/bin/nerdfetch
-
-# [stow configs]
-# apt install -y stow
-# mv ./config ~/config/ && cd ~/config
-# rm -rf ~/.zshrc ~/.gitconfig
-# stow zsh nvim git starship

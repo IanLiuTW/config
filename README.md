@@ -1,6 +1,21 @@
 # config
 
-## Standard Setup
+## Quick Setup
+
+See `/_scripts/dev_env` for setup scripts.
+
+```bash
+# Install stow and make sure it's in the home directory
+rm -rf ~/.zshrc ~/.gitconfig
+stow git zsh starship nvim
+```
+
+```bash
+# For MacOS ann additional tools
+stow kitty hammerspoon lazygit
+```
+
+## Detailed Setup
 
 ### asdf
 
