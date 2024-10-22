@@ -37,6 +37,5 @@ sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/ma
 sudo chmod +x /usr/bin/nerdfetch
 
 # [stow configs]
-mv ../config ~/config && cd ~/config
 rm -rf ~/.zshrc ~/.gitconfig
-stow zsh nvim git starship
+stow -t ~/ zsh nvim git starship
