@@ -9,7 +9,7 @@
 # fi
 
 # [asdf and some languages]
-cd ~ && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 export ASDF_DIR="$HOME/.asdf" && . "$HOME/.asdf/asdf.sh" 
 asdf plugin add lua && asdf install lua 5.1 && asdf global lua 5.1
 asdf plugin add nodejs && asdf install nodejs latest && asdf global nodejs latest
@@ -28,9 +28,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # [nvim]
 apt install -y ninja-build gettext cmake unzip curl build-essential
-cd ~ && git clone https://github.com/neovim/neovim && cd neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
+git clone https://github.com/neovim/neovim ~/neovim
+sudo make -C ~/neovim CMAKE_BUILD_TYPE=RelWithDebInfo && make -C ~/neovim install
 apt install -y ripgrep fd-find
 
 # [nerdfetch]
@@ -39,6 +38,6 @@ sudo chmod +x /usr/bin/nerdfetch
 
 # [stow configs]
 apt install -y stow
-cd ~ && git clone https://github.com/IanLiuTW/config.git && cd config
+mv ./config ~/config/ && cd ~/config
 rm -rf ~/.zshrc ~/.gitconfig
 stow zsh nvim git starship
