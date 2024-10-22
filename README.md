@@ -2,16 +2,16 @@
 
 ## Quick Setup
 
-See `/_scripts/dev_env` for setup scripts.
+- This repo needs to be in the home directory.
+- See `/_scripts/dev_env` for setup scripts.
 
 ```bash
-# Install stow and make sure it's in the home directory
-rm -rf ~/.zshrc ~/.gitconfig
-stow git zsh starship nvim
+git clone https://github.com/IanLiuTW/config ~/config && chmod +x ~/config/_scripts/dev_env/setup_apt.sh && ~/config/_scripts/dev_env/setup_apt.sh
 ```
 
 ```bash
 # For MacOS ann additional tools
+cd ~/config
 stow kitty hammerspoon lazygit
 ```
 
