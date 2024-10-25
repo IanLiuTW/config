@@ -1,4 +1,6 @@
 format = """
+$nix_shell\
+$docker_context\
 $username\
 $hostname\
 $directory\
@@ -6,7 +8,6 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
-$docker_context\
 $c\
 $python\
 $lua\
@@ -89,12 +90,10 @@ symbol = "  "
 
 [docker_context]
 symbol = " "
-format = "via [$symbol$context]($style) "
-style = "blue bold"
+format = '[\[$symbol$context\]](blue bold) '
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
-disabled = false
 
 [elixir]
 symbol = " "
@@ -122,6 +121,10 @@ symbol = " "
 
 [nix_shell]
 symbol = " "
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[\[$symbol$state( \($name\))\]](bold blue) '
 
 [package]
 symbol = "󰏗 "

@@ -41,7 +41,7 @@ zinit snippet OMZP::archlinux
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
-zinit snippet OMZP::asdf
+# zinit snippet OMZP::asdf
 # [Plugins] Loading up
 autoload -U compinit && compinit
 bindkey '^y' autosuggest-accept
@@ -125,6 +125,11 @@ alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=al
 alias lS='eza -1 --color=always --group-directories-first --icons'
 alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
 alias l.="eza -a | grep -E '^\.'"
+# [Alias] bat
+if command -v bat >/dev/null 2>&1; then
+  alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
 
 # [Commands] Start
 nerdfetch && echo ""

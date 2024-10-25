@@ -1,12 +1,18 @@
 [user]
 	name = Ian Liu
 	email = ian.liu@tupl.com
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 [help]
 	autocorrect = 30
 [core]
 	autocrlf = false
 	quotepath = false
 	editor = vim
+[push]
+	autoSetupRemote = true
 [color]
 	diff = auto
 	status = auto
@@ -62,7 +68,3 @@
 	ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
 	iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
 	iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
