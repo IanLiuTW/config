@@ -37,11 +37,14 @@ zinit light Aloxaf/fzf-tab
 # [Plugins] OMZ's
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
+# zinit snippet OMZP::archlinux
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
-# zinit snippet OMZP::asdf
+# Only load zinit snippet for OMZP::asdf if NOT in nix-shell
+if [[ ! -n $IN_NIX_SHELL ]]; then
+  zinit snippet OMZP::asdf 
+fi
 # [Plugins] Loading up
 autoload -U compinit && compinit
 bindkey '^y' autosuggest-accept
@@ -93,6 +96,8 @@ alias v="nvim"
 alias c="clear"
 alias m="make"
 alias b="bat"
+alias d="docker"
+alias k="kubectl"
 alias bt="bpytop"
 alias lg="lazygit"
 alias ld="lazydocker"
@@ -110,6 +115,10 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 alias rg='rg --hidden'
+alias desktop="cd ~/Desktop"
+alias downloads="cd ~/Downloads"
+alias documents="cd ~/Documents"
+alias pictures="cd ~/Pictures"
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
@@ -119,7 +128,7 @@ alias Z="zi"
 alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --icons --octal-permissions --group-directories-first'
 alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
-alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
+alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons'
 alias la='eza --long --all --group --group-directories-first'
 alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
 alias lS='eza -1 --color=always --group-directories-first --icons'
@@ -130,6 +139,8 @@ if command -v bat >/dev/null 2>&1; then
   alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
   alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
+# [Alias] 
+alias todo='nvim ~/.todo'
 
 # [Commands] Start
 nerdfetch && echo ""
