@@ -19,9 +19,10 @@
 	branch = auto
 	ui = true
 [alias]
+    a = add
 	aa = add .
 	c = commit
-	cm = commit --amend -C HEAD
+	ca = commit --amend -C HEAD
 	co = checkout
 	cb = checkout -b
 	sw = switch
@@ -32,7 +33,7 @@
 	bu = branch -u
 	bm = branch -m
 	bv = branch -vv
-	mg = merge
+	m = merge
 	re = remote
 	rev = remote -v
 	rea = remote add
@@ -43,11 +44,11 @@
 	rsh = reset HEAD
 	rshs = reset HEAD --soft
 	rshh = reset HEAD --hard
-	sta = stash
-	stap = stash pop
-	staa = stash apply
+	st = stash
+	stp = stash pop
+	sta = stash apply
 	staash = stash --all
-	stad = stash drop
+	std = stash drop
 	rv = revert
 	f = fetch
 	pu = push
@@ -68,3 +69,4 @@
 	ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
 	iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
 	iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
+	mm = "!mm() { git fetch origin && git merge origin/master ;}; mm"
