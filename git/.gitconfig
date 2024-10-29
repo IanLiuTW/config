@@ -55,9 +55,9 @@
 	f = fetch
 	fa = fetch --all
 	fo = fetch origin
-	pu = push
-	puu = push -u
-	p = pull
+	ps = push
+	psu = push -u
+	pl = pull
 	di = diff
 	type = cat-file -t
 	dump = cat-file -p
