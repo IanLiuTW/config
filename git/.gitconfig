@@ -1,76 +1,76 @@
 [user]
-	name = Ian Liu
-	email = ian.liu@tupl.com
+    name = Ian Liu
+    email = ian.liu@tupl.com
 [credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
+    helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+    useHttpPath = true
 [help]
-	autocorrect = 30
+    autocorrect = 30
 [core]
-	autocrlf = false
-	quotepath = false
-	editor = vim
+    autocrlf = false
+    quotepath = false
+    editor = vim
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
 [alias]
     a = add
-	aa = add .
-	c = commit
-	ca = commit --amend -C HEAD
-	co = checkout
-	cb = checkout -b
-	sw = switch
-	cl = clone
-	s = status
-	ss = status -sb
-	b = branch
-	bu = branch -u
-	bm = branch -m
-	bv = branch -vv
-	m = merge
-	mm = merge master
-	mom = merge origin/master
-	re = remote
-	rev = remote -v
-	rea = remote add
-	res = remote set-url
-	rer = remote rename
-	reem = remote remove
-	rs = reset
-	rsh = reset HEAD
-	rshs = reset HEAD --soft
-	rshh = reset HEAD --hard
-	st = stash
-	stp = stash pop
-	sta = stash apply
-	staash = stash --all
-	std = stash drop
-	rv = revert
-	f = fetch
-	fa = fetch --all
-	fo = fetch origin
-	ps = push
-	psu = push -u
-	pl = pull
-	di = diff
-	type = cat-file -t
-	dump = cat-file -p
-	rl = reflog
-	l = log
-	ls = log --stat
-	lo = log --oneline
-	lc = log --pretty=oneline
-	lss = log --show-signature
-	ll = log --pretty=format:'%h [%Cgreen%an%Creset] %ad - %ar : %s%d' --graph --date=short
-	lg = log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short
-	alias = "config --get-regexp ^alias\\."
-	ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
-	iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
-	iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
-	fomom = "!mm() { git fetch origin && git merge origin/master ;}; mm"
+    aa = add .
+    c = commit
+    ca = commit --amend -C HEAD
+    co = checkout
+    cb = checkout -b
+    sw = switch
+    cl = clone
+    s = status
+    ss = status -sb
+    b = branch
+    bu = branch -u
+    bm = branch -m
+    bv = branch -vv
+    m = merge
+    mm = merge master
+    mom = merge origin/master
+    re = remote
+    rev = remote -v
+    rea = remote add
+    res = remote set-url
+    rer = remote rename
+    reem = remote remove
+    rs = reset
+    rsh = reset HEAD
+    rshs = reset HEAD --soft
+    rshh = reset HEAD --hard
+    st = stash
+    stp = stash pop
+    sta = stash apply
+    staash = stash --all
+    std = stash drop
+    rv = revert
+    f = fetch
+    fa = fetch --all
+    fo = fetch origin
+    ps = push
+    psu = push -u
+    pl = pull
+    di = diff
+    type = cat-file -t
+    dump = cat-file -p
+    rl = reflog
+    l = log
+    ls = log --stat
+    lo = log --oneline
+    lc = log --pretty=oneline
+    lss = log --show-signature
+    ll = log --pretty=format:'%h [%Cgreen%an%Creset] %ad - %ar : %s%d' --graph --date=short
+    lg = log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short
+    alias = "config --get-regexp ^alias\\."
+    ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
+    iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
+    iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
+    fomom = "!mm() { git fetch origin && git merge origin/master ;}; mm"
