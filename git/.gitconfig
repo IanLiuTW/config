@@ -11,8 +11,27 @@
     autocrlf = false
     quotepath = false
     editor = vim
+    excludeFiles = /Users/tupl/.gitignore
+[diff]
+    algorithm = histogram
+[blame]
+    ignoreRevsFile = .git-blame-ignore-revs
+[transfer]
+    fsckobjects = true
+[receive]
+    fsckObjects = true
+[fetch]
+    fsckobjects = true
 [push]
     autoSetupRemote = true
+[pull]
+    rebase = true
+[merge]
+    conflictstyle = zdiff3
+[rerere]
+    enabled = true
+[branch]
+    sort = -committerdate
 [color]
     diff = auto
     status = auto
