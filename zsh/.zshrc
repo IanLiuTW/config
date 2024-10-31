@@ -42,7 +42,7 @@ zinit snippet OMZP::command-not-found
 # zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
 # web_search snippet
-zinit snippet https://gist.githubusercontent.com/IanLiuTW/4a51cd5ce9b1e3c6439e6abc37230dfa/raw/7bb42347ba47af000fe1bdf0822a8589b0906095/gistfile1.txt
+zinit snippet https://gist.githubusercontent.com/IanLiuTW/4a51cd5ce9b1e3c6439e6abc37230dfa/raw/9349c8a1d7c285e02540020c604f2c35a4209963/gistfile1.txt
 # Only load zinit snippet for OMZP::asdf if NOT in nix-shell
 if [[ ! -n $IN_NIX_SHELL ]]; then
   zinit snippet OMZP::asdf 
@@ -96,6 +96,7 @@ alias f="fg"
 alias C="clear"
 alias G="git"
 alias v="nvim"
+alias g="grep"
 alias c="cat"
 alias b="bat"
 alias m="make"

@@ -92,4 +92,4 @@
     ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
     iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
     iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
-    fomom = "!mm() { git fetch origin && git merge origin/master ;}; mm"
+    fomom = "!fomom() { git fetch origin && git merge origin/master ;}; fomom"
