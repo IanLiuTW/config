@@ -41,6 +41,8 @@ zinit snippet OMZP::command-not-found
 # zinit snippet OMZP::kubectl
 # zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
+# web_search snippet
+zinit snippet https://gist.githubusercontent.com/IanLiuTW/4a51cd5ce9b1e3c6439e6abc37230dfa/raw/7bb42347ba47af000fe1bdf0822a8589b0906095/gistfile1.txt
 # Only load zinit snippet for OMZP::asdf if NOT in nix-shell
 if [[ ! -n $IN_NIX_SHELL ]]; then
   zinit snippet OMZP::asdf 
@@ -91,13 +93,14 @@ fi
 # [Alias] Basics
 alias q="exit"
 alias f="fg"
-alias g="git"
+alias C="clear"
+alias G="git"
 alias v="nvim"
-alias c="clear"
-alias m="make"
+alias c="cat"
 alias b="bat"
+alias m="make"
 alias d="docker"
-alias k="kubectl"
+alias kc="kubectl"
 alias bt="bpytop"
 alias lg="lazygit"
 alias ld="lazydocker"
