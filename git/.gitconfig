@@ -14,8 +14,6 @@
     excludeFiles = /Users/tupl/.gitignore
 [diff]
     algorithm = histogram
-[blame]
-    ignoreRevsFile = .git-blame-ignore-revs
 [transfer]
     fsckobjects = true
 [receive]
