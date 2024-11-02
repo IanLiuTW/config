@@ -20,7 +20,7 @@ stow kitty hammerspoon lazygit
 ### asdf
 
 - [https://asdf-vm.com/]
-Use asdf as the tool version manager. Use `rustup` for Rust.
+  Use asdf as the tool version manager. Use `rustup` for Rust.
 
 ### Stow
 
@@ -64,10 +64,17 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 
 #### Others
 
+- 7-Zip: [https://www.7-zip.org/]
 - ripgrep: [https://github.com/BurntSushi/ripgrep]
 - jq: [https://stedolan.github.io/jq/]
 - fd: [https://github.com/sharkdp/fd]
 - bat: [https://github.com/sharkdp/bat]
+
+#### Others (Optional for file preview)
+
+- ImageMagick (image thumbnails): [https://imagemagick.org/]
+- ffmpegthumbnailer (video thumbnails): [https://github.com/dirkvdb/ffmpegthumbnailer]
+- Poppler (pdf preview): [https://poppler.freedesktop.org/]
 
 ### Neovim
 
