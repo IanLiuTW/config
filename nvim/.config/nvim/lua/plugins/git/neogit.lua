@@ -6,7 +6,7 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neo[G]it - Open' },
+    { '<leader>g<space>', '<Cmd>Neogit<CR>', desc = 'Neo[G]it - Open' },
   },
   opts = {
     disable_hint = false,

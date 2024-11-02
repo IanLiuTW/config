@@ -62,7 +62,7 @@ return { -- Useful plugin to show you pending keybinds.
         -- {'<A-->',          '<C-w><C-_>',                                noremap = true,              silent = true,  desc = 'Pane max width' },
         -- {'<A-=>',          '<C-w><C-|>',                                noremap = true,              silent = true,  desc = 'Pane max height' },
         -- {'<A-0>',          '<C-w><C-=>',                                noremap = true,              silent = true,  desc = 'Pane reset size' },
-        -- Tab keybindings
+        -- Buffer keybindings
         { '<A-t>',            '<Cmd>ene<CR>',                              noremap = true,              silent = true,  desc = 'Buffer New' },
         { '<A-e>',            '<Cmd>BufferPick<CR>',                       noremap = true,              silent = true,  desc = 'Buffer Pick' },
         { '<A-,>',            '<Cmd>BufferPrevious<CR>',                   noremap = true,              silent = true,  desc = 'Buffer Previous' },

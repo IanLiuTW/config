@@ -1,8 +1,8 @@
 return {
   'sindrets/diffview.nvim',
   keys = {
-    { '<leader>gv', '<cmd>DiffviewOpen<cr>', desc = 'Diff[V]iew - Open' },
-    { '<leader>gV', '<cmd>DiffviewFileHistory<cr>', desc = 'Diff[V]iew - Open File History' },
+    { '<leader>gg', '<cmd>DiffviewOpen<cr>', desc = 'Diff[V]iew - Open' },
+    { '<leader>gG', '<cmd>DiffviewFileHistory<cr>', desc = 'Diff[V]iew - Open File History' },
   },
   config = function()
     local actions = require 'diffview.actions'
