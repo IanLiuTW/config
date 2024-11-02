@@ -66,6 +66,7 @@ return {
           live_grep = {
             additional_args = { '--hidden', '--iglob', '!.git' },
           },
+          colorscheme = { enable_preview = true },
         },
         extensions = {
           ['ui-select'] = {
@@ -87,8 +88,7 @@ return {
                 end,
               },
               ['<C-y>'] = {
-                before_action = function(selection)
-                end,
+                before_action = function(selection) end,
                 action = function(selection)
                   vim.cmd.edit(selection.path)
                 end,

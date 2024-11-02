@@ -106,7 +106,7 @@ require('lazy').setup({
   { import = 'plugins.task' },
   { import = 'plugins.terminal' },
   { import = 'plugins.testing' },
-  { import = 'plugins.colorthemes' },
+  { import = 'plugins.colorschemes' },
   { import = 'plugins.ui' },
 }, {
   ui = {
