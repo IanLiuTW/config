@@ -1,0 +1,5 @@
+vim.keymap.set('n', 'q', 'ggVGxZZ', { noremap = true, silent = true })
+vim.keymap.set('n', 'gb', function()
+  local branch = vim.fn.FugitiveHead()
+  vim.api.nvim_put({ branch }, 'c', true, true)
+end, { buffer = true, noremap = true, silent = true })
