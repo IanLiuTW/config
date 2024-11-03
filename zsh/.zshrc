@@ -36,8 +36,12 @@ fi
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-  zinit ice wait"1" lucid
+zinit ice wait"1" lucid
 zinit light Aloxaf/fzf-tab
+# [Plugins] vi mode
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+zinit ice depth=1 wait"1" lucid
+zinit light jeffreytse/zsh-vi-mode
 # [Plugins] OMZ's
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
