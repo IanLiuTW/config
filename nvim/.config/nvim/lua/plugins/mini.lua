@@ -15,13 +15,13 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup {
       highlight_duration = 1000,
       mappings = {
-        add = '<A-r>a', -- Add surrounding in Normal and Visual modes
-        delete = '<A-r>d', -- Delete surrounding
-        find = '<A-r>f', -- Find surrounding (to the right)
-        find_left = '<A-r>F', -- Find surrounding (to the left)
-        highlight = '<A-r>h', -- Highlight surrounding
-        replace = '<A-r>s', -- Replace surrounding
-        update_n_lines = '<A-r>n', -- Update `n_lines`
+        add = '<leader>sa', -- Add surrounding in Normal and Visual modes
+        delete = '<leader>sd', -- Delete surrounding
+        find = '<leader>sf', -- Find surrounding (to the right)
+        find_left = '<leader>sF', -- Find surrounding (to the left)
+        highlight = '<leader>sh', -- Highlight surrounding
+        replace = '<leader>ss', -- Replace surrounding
+        update_n_lines = '<leader>sn', -- Update `n_lines`
 
         suffix_last = 'p', -- Suffix to search with "prev" method
         suffix_next = 'n', -- Suffix to search with "next" method
@@ -45,8 +45,8 @@ return { -- Collection of various small independent plugins/modules
         map.gen_integration.diagnostic(),
       },
     }
-    vim.keymap.set('n', '<Leader>zm', MiniMap.toggle, { desc = '[M]inimap Toggle' })
-    vim.keymap.set('n', '<A-m>', MiniMap.toggle_focus, { desc = '[M]inimap Toggle Focus' })
+    vim.keymap.set('n', '<leader>zm', MiniMap.toggle, { desc = 'Minimap - Toggle' })
+    vim.keymap.set('n', '<leader>z<tab>', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
     -- -- Simple and easy statusline.
     -- --  You could remove this setup call if you don't like it,

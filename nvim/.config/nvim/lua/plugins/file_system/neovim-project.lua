@@ -11,16 +11,8 @@ return {
     projects = { -- define project roots
       '~/config',
       '~/codebase',
-      '~/workspace/*',
-
-      '~/workspace_tupl/LLM/*',
-      '~/workspace_tupl/NETADV/*',
-      '~/workspace_tupl/VEA/*',
-      '~/workspace_tupl/dev/*',
-      '~/workspace_tupl/side/*',
-
-      '~/workspace_playground/playground/*',
-      '~/workspace_playground/rust/*',
+      '~/workspace*/*/*',
+      '/workspace/*',
     },
     last_session_on_startup = false,
     dashboard_mode = false,

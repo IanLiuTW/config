@@ -10,7 +10,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader>zv', '<cmd>Markview toggle<cr>' },
+    { '<leader>zv', '<cmd>Markview toggle<cr>', desc = 'Toggle Markview' },
   },
   config = function()
     require('markview').setup {

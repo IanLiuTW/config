@@ -82,11 +82,11 @@ return { -- LSP Configuration & Plugins
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch Document [S]ymbols')
+        map('<leader>cs', require('telescope.builtin').lsp_document_symbols, '[C]ode Search Document [S]ymbols')
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[S]earch Workspace [S]ymbols')
+        map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[C]ode Search Workspace [S]ymbols')
 
         -- Find references for the word under your cursor.
         map('<leader>cr', require('telescope.builtin').lsp_references, 'Goto [R]eferences')
@@ -103,7 +103,7 @@ return { -- LSP Configuration & Plugins
         -- or a suggestion from your LSP for this to activate.
         map('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        map('<leader>cs', vim.lsp.buf.signature_help, '[C]ode [S]ignature Help')
+        map('<leader>cK', vim.lsp.buf.signature_help, '[C]ode Signature Help')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.

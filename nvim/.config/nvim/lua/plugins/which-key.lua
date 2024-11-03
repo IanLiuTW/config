@@ -24,14 +24,15 @@ return { -- Useful plugin to show you pending keybinds.
     }
     require('which-key').add {
       -- Which-key groupings
-      { '<leader>c', group = '[C]ode',                      mode = { 'n', 'x' } },
-      { '<leader>d', group = '[D]ebug',                     mode = { 'n', 'x' } },
-      { '<leader>t', group = '[T]esting',                   mode = { 'n', 'x' } },
-      { '<leader>b', group = '[B]uffer',                    mode = { 'n', 'x' } },
-      { '<leader>l', group = '[L] Tasks',                   mode = { 'n', 'x' } },
-      { '<leader>s', group = '[S]earch',                    mode = { 'n', 'x' } },
-      { '<leader>g', group = '[G]it',                       mode = { 'n', 'x' } },
-      { '<leader>z', group = '[Z] Plugin / Settings',        mode = { 'n', 'x' } },
+      { '<leader>c',        group = '[C]ode',                mode = { 'n', 'x' } },
+      { '<leader>d',        group = '[D]ebug',               mode = { 'n', 'x' } },
+      { '<leader>s',        group = '[S]urround',            mode = { 'n', 'x' } },
+      { '<leader>t',        group = '[T]esting',             mode = { 'n', 'x' } },
+      { '<leader>b',        group = '[B]uffer',              mode = { 'n', 'x' } },
+      { '<leader>l',        group = '[L] Tasks',             mode = { 'n', 'x' } },
+      { '<leader>g',        group = '[G]it',                 mode = { 'n', 'x' } },
+      { '<leader>z',        group = '[Z] Plugin / Settings', mode = { 'n', 'x' } },
+      { '<leader><leader>', group = '[ ] Telescope - Search',    mode = { 'n', 'x' } },
       -- Normal Mode
       {
         mode = 'n',
@@ -42,7 +43,6 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>ck',       '<Cmd>m -2<CR>',                             desc = 'Move Line Up' },
         { '<leader>cj',       '<Cmd>m +1<CR>',                             desc = 'Move Line Down' },
         { '<leader>zz',       '<Cmd>set wrap!<CR>',                        desc = 'Toggle line wrap' },
-        { '<leader><leader>', 'gcc',                                       desc = '[ ] Toggle Comment', remap = true },
         -- Pane keybindings
         { '<A-h>',            '<C-w><C-h>',                                desc = 'Move focus to the left window' },
         { '<A-l>',            '<C-w><C-l>',                                desc = 'Move focus to the right window' },
