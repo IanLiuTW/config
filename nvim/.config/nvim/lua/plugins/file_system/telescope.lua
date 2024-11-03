@@ -111,7 +111,7 @@ return {
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sf', function()
         builtin.git_files()
-      end, { desc = '[S]earch Git [F]iles' })
+      end, { desc = '[S]earch [F]iles in Git' })
       vim.keymap.set('n', '<leader>sg', function()
         builtin.live_grep()
       end, { desc = '[S]earch by [G]rep' })
@@ -159,13 +159,22 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [,] Neovim Config' })
 
-      -- LazyGit extension
-      vim.api.nvim_set_keymap(
-        'n',
-        '<leader>sG',
-        '<cmd>lua require("telescope").extensions.lazygit.lazygit()<CR>',
-        { desc = '[S]earch Lazy[G]it Repos', noremap = true, silent = true }
-      )
+      -- Git integration
+      vim.keymap.set('n', '<leader>g/s', function()
+        builtin.git_status()
+      end, { desc = 'Telescope - [G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>g/S', function()
+        builtin.git_stash()
+      end, { desc = 'Telescope - [G]it [S]tash' })
+      vim.keymap.set('n', '<leader>g/b', function()
+        builtin.git_branches()
+      end, { desc = 'Telescope - [G]it Search [B]ranches' })
+      vim.keymap.set('n', '<leader>g/c', function()
+        builtin.git_commits()
+      end, { desc = 'Telescope - [G]it Search [C]ommits' })
+      vim.keymap.set('n', '<leader>g/C', function()
+        builtin.git_bcommits()
+      end, { desc = 'Telescope - [G]it Search Buffer [C]ommits' })
     end,
   },
 }

@@ -50,6 +50,7 @@
     bu = branch -u
     bm = branch -m
     bv = branch -vv
+    bl = blame
     m = merge
     mm = merge master
     mom = merge origin/master
