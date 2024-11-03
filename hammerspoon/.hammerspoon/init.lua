@@ -1,7 +1,7 @@
 local spaces = require("hs.spaces") -- https://github.com/asmagill/hs._asm.spaces
 
 -- Switch kitty
-hs.hotkey.bind({'option'}, 'space', function ()  -- hotkey config
+hs.hotkey.bind({'control'}, 'space', function ()  -- hotkey config
   local BUNDLE_ID = 'net.kovidgoyal.kitty' -- more accurate to avoid mismatching on browser titles
 
   function getMainWindow(app)
