@@ -10,14 +10,45 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
       { 'jvgrootveld/telescope-zoxide' },
       { 'nvim-lua/popup.nvim' },
+      { 'folke/trouble.nvim' },
     },
     config = function()
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
+      local open_with_trouble = require('trouble.sources.telescope').open
+      local add_to_trouble = require('trouble.sources.telescope').add
       require('telescope').setup {
         defaults = {
           mappings = {
             i = {
-              ['<C-h>'] = 'which_key',
+              ['<C-/>'] = actions.which_key,
+              ['<C-q>'] = open_with_trouble,
+              ['<M-q>'] = add_to_trouble,
+              ['<C-b>'] = actions.preview_scrolling_up,
+              ['<C-f>'] = actions.preview_scrolling_down,
+              ['<C-d>'] = actions.results_scrolling_down,
+              ['<C-u>'] = actions.results_scrolling_up,
+              ['<PageUp>'] = false,
+              ['<PageDown>'] = false,
+              ['<C-s>'] = actions.select_horizontal,
+              ['<C-v>'] = actions.select_vertical,
+              ['<C-t>'] = actions.select_tab,
+              ['<C-g>'] = actions.complete_tag,
+            },
+            n = {
+              ['?'] = actions.which_key,
+              ['<C-q>'] = open_with_trouble,
+              ['<M-q>'] = add_to_trouble,
+              ['<C-b>'] = actions.preview_scrolling_up,
+              ['<C-f>'] = actions.preview_scrolling_down,
+              ['<C-d>'] = actions.results_scrolling_down,
+              ['<C-u>'] = actions.results_scrolling_up,
+              ['<PageUp>'] = false,
+              ['<PageDown>'] = false,
+              ['<C-s>'] = actions.select_horizontal,
+              ['<C-v>'] = actions.select_vertical,
+              ['<C-t>'] = actions.select_tab,
+              ['<C-g>'] = actions.complete_tag,
             },
           },
         },
@@ -28,10 +59,10 @@ return {
             previewer = true,
             mappings = {
               i = {
-                ['<c-d>'] = require('telescope.actions').delete_buffer,
+                ['<C-x>'] = require('telescope.actions').delete_buffer,
               },
               n = {
-                ['<c-d>'] = require('telescope.actions').delete_buffer,
+                ['<C-x>'] = require('telescope.actions').delete_buffer,
               },
             },
           },

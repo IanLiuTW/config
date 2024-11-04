@@ -24,15 +24,16 @@ return { -- Useful plugin to show you pending keybinds.
     }
     require('which-key').add {
       -- Which-key groupings
-      { '<leader>c',        group = '[C]ode',                mode = { 'n', 'x' } },
-      { '<leader>d',        group = '[D]ebug',               mode = { 'n', 'x' } },
-      { '<leader>s',        group = '[S]urround',            mode = { 'n', 'x' } },
-      { '<leader>t',        group = '[T]esting',             mode = { 'n', 'x' } },
-      { '<leader>b',        group = '[B]uffer',              mode = { 'n', 'x' } },
-      { '<leader>l',        group = '[L] Tasks',             mode = { 'n', 'x' } },
-      { '<leader>g',        group = '[G]it',                 mode = { 'n', 'x' } },
-      { '<leader>z',        group = '[Z] Plugin / Settings', mode = { 'n', 'x' } },
-      { '<leader><leader>', group = '[ ] Telescope - Search',    mode = { 'n', 'x' } },
+      { '<leader>c',        group = '[C]ode',                 mode = { 'n', 'x' } },
+      { '<leader>d',        group = '[D]ebug',                mode = { 'n', 'x' } },
+      { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
+      { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
+      { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
+      { '<leader>l',        group = '[L] Tasks',              mode = { 'n', 'x' } },
+      { '<leader>q',        group = '[Q]uickfix / Trouble',   mode = { 'n', 'x' } },
+      { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
+      { '<leader>z',        group = '[Z] Plugin / Settings',  mode = { 'n', 'x' } },
+      { '<leader><leader>', group = '[ ] Telescope - Search', mode = { 'n', 'x' } },
       -- Normal Mode
       {
         mode = 'n',
@@ -100,7 +101,6 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 'x',
-        { '<leader><leader>', 'gc', desc = '[ ] Toggle Comment', remap = true },
         { '<',                '<gv' },
         { '>',                '>gv' },
       },
@@ -121,7 +121,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
         { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },
-        { '<leader>q',  function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
+        { '<leader>qd', function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
       },
     }
   end,
