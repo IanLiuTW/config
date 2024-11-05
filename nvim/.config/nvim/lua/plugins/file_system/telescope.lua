@@ -86,20 +86,20 @@ return {
             -- the default case_mode is "smart_case"
           },
           zoxide = {
-            prompt_title = '[ Search with Zoxide (Use <C-y> to peek) ]',
+            prompt_title = '[ Search with Zoxide (Use <C-e>/<C-y> to peek) ]',
             mappings = {
               default = {
                 after_action = function(selection)
                   print('Update to (' .. selection.z_score .. ') ' .. selection.path)
                 end,
               },
+              ['<C-e>'] = { action = require('telescope._extensions.zoxide.utils').create_basic_command 'split' },
               ['<C-y>'] = {
                 before_action = function(selection) end,
                 action = function(selection)
                   vim.cmd.edit(selection.path)
                 end,
               },
-              -- ['<C-q>'] = { action = require('telescope._extensions.zoxide.utils').create_basic_command 'split' },
             },
           },
         },

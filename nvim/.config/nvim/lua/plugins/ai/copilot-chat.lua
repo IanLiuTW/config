@@ -31,7 +31,7 @@ return {
     mappings = {
       close = {
         normal = 'q',
-        insert = '<C-e>',
+        insert = '<C-q>',
       },
       -- Reset the chat buffer
       reset = {

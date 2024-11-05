@@ -56,7 +56,7 @@ if [[ ! -n $IN_NIX_SHELL ]]; then
 fi
 # [Plugins] Loading up
 autoload -U compinit && compinit
-bindkey '^y' autosuggest-accept
+bindkey '^e' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 ENABLE_CORRECTION="true"
