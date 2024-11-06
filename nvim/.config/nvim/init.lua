@@ -87,6 +87,13 @@ vim.diagnostic.config {
   },
 }
 
+-- [[ Custom commands - G is a wrapper around git ]]
+vim.api.nvim_create_user_command('G', function(opts)
+  local command = 'git ' .. opts.args
+  print('[G wrapper for git] Executed: ' .. command)
+  vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
+end, { nargs = 1 })
+
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
   -- Plugins can also be configured to run Lua code when they are loaded.

@@ -62,6 +62,7 @@ return {
       map('n', '<leader>gb', function()
         gitsigns.blame_line { full = true }
       end, { desc = 'Gitsigns - [b]lame line' })
+      map('n', '<leader>gB', "<cmd>Git blame<cr>", { desc = 'Gitsigns - [b]lame buffer' })
       map('n', '<leader>gd', gitsigns.diffthis, { desc = 'Gitsigns - [d]iff against index' })
       map('n', '<leader>gD', function()
         gitsigns.diffthis '@'
