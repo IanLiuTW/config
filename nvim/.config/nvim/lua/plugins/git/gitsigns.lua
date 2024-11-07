@@ -73,7 +73,7 @@ return {
       map('n', '<leader>Gx', gitsigns.toggle_deleted, { desc = 'GitSigns - Toggle show deleted' })
       map('n', '<leader>Gw', gitsigns.toggle_word_diff, { desc = 'GitSigns - Toggle show [W]ord diff' })
       -- Text objects
-      map({ 'o', 'x' }, 'ig', ':<C-U>Gitsigns select_hunk<CR>')
+      map({ 'o', 'x' }, 'ic', ':<C-U>Gitsigns select_hunk<CR>')
     end,
   },
 }

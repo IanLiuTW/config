@@ -8,6 +8,6 @@ local function get_git_branch()
   return nil
 end
 
-vim.keymap.set('n', '<C-cr>', function()
-  vim.api.nvim_put({ get_git_branch () .. ': ' }, 'c', true, true)
+vim.keymap.set({ 'n', 'i' }, '<C-cr>', function()
+  vim.api.nvim_put({ get_git_branch() .. ': ' }, 'c', true, true)
 end, { buffer = true, noremap = true, silent = true })
