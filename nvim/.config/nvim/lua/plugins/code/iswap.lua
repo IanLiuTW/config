@@ -2,9 +2,9 @@ return {
   'mizlan/iswap.nvim',
   event = 'VeryLazy',
   keys = {
-    { '<leader>cnb', mode = 'n', ':ISwap<cr>', desc = 'Flash' },
-    { '<leader>cns', mode = 'n', ':ISwapWith<cr>', desc = 'Flash' },
-    { '<leader>cnl', mode = 'n', ':ISwapWithRight<cr>', desc = 'Flash' },
-    { '<leader>cnh', mode = 'n', ':ISwapWithLeft<cr>', desc = 'Flash' },
+    { '<leader>Sb', mode = 'n', ':ISwap<cr>', desc = 'ISwap - ISwap' },
+    { '<leader>Ss', mode = 'n', ':ISwapWith<cr>', desc = 'ISwap - ISwapWith' },
+    { '<leader>Sl', mode = 'n', ':ISwapWithRight<cr>', desc = 'ISwap - ISwapWithRight' },
+    { '<leader>Sh', mode = 'n', ':ISwapWithLeft<cr>', desc = 'ISwap - ISwapWithLeft' },
   },
 }

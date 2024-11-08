@@ -8,7 +8,7 @@ return { -- Useful plugin to show you pending keybinds.
   config = function() -- This is the function that runs, AFTER loading
     require('which-key').setup {
       win = {
-        width = { min = 30, max = 0.9 },
+        width = { min = 40, max = 200 },
         height = { min = 4, max = 0.99 },
         padding = { 0, 1 },
         col = -1,
@@ -26,15 +26,17 @@ return { -- Useful plugin to show you pending keybinds.
       -- Which-key groupings
       { '<leader>c',        group = '[C]ode',                 mode = { 'n', 'x' } },
       { '<leader>d',        group = '[D]ebug',                mode = { 'n', 'x' } },
-      { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
       { '<leader>l',        group = '[L] Tasks',              mode = { 'n', 'x' } },
-      { '<leader>q',        group = '[Q]uickfix / Trouble',   mode = { 'n', 'x' } },
+      { '<leader>v',        group = '[V] Quickfix / Trouble', mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
+      { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
+      { '<leader>S',        group = 'I[S]wap',                mode = { 'n', 'x' } },
       { '<leader>G',        group = '[G]it (Gitsigns)',       mode = { 'n', 'x' } },
       { '<leader>z',        group = '[Z] Plugin / Settings',  mode = { 'n', 'x' } },
       { '<leader><leader>', group = '[󱁐] Telescope - Search', mode = { 'n', 'x' } },
+
       -- Normal Mode
       {
         mode = 'n',
@@ -121,8 +123,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>p',  '"0p',                                      desc = 'Cursor - [P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
-        { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },
-        { '<leader>qd', function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
+        { '<leader>q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },
+        { '<leader>vd', function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
       },
     }
   end,

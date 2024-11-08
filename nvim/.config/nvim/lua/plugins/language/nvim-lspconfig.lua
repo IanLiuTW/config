@@ -103,7 +103,7 @@ return { -- LSP Configuration & Plugins
         -- or a suggestion from your LSP for this to activate.
         map('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        map('<leader>cK', vim.lsp.buf.signature_help, '[C]ode Signature Help')
+        map('S', vim.lsp.buf.signature_help, '[C]ode Signature Help')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.

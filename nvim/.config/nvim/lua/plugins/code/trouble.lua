@@ -4,37 +4,37 @@ return {
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   keys = {
     {
-      '<leader>qx',
+      '<leader>vx',
       '<cmd>Trouble diagnostics toggle<cr>',
       desc = 'Diagnostics (Trouble)',
     },
     {
-      '<leader>qX',
+      '<leader>vX',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
       desc = 'Buffer Diagnostics (Trouble)',
     },
     {
-      '<leader>qs',
+      '<leader>vs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
       desc = 'Symbols (Trouble)',
     },
     {
-      '<leader>qc',
+      '<leader>vc',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
       desc = 'Code LSP Definitions / references / ... (Trouble)',
     },
     {
-      '<leader>ql',
+      '<leader>vl',
       '<cmd>Trouble loclist toggle<cr>',
       desc = 'Location List (Trouble)',
     },
     {
-      '<leader>qq',
+      '<leader>vq',
       '<cmd>Trouble qflist toggle<cr>',
       desc = 'Quickfix List (Trouble)',
     },
     {
-      '<leader>qt',
+      '<leader>vt',
       '<cmd>Trouble todo toggle<cr>',
       desc = 'Todo List (Trouble)',
     },
