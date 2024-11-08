@@ -8,6 +8,8 @@ return {
   keys = {
     { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Neo[G]it - Open' },
     { '<leader>gc', '<Cmd>Neogit commit<CR>', desc = 'Neo[G]it - Open Commit Panel' },
+    { '<leader>gZ', '<Cmd>Neogit stash<CR>', desc = 'Neo[G]it - Open Stash Panel' },
+    { '<leader>gf', '<Cmd>Neogit fetch<CR>', desc = 'Neo[G]it - Open Fetch Panel' },
     { '<leader>gp', '<Cmd>Neogit pull<CR>', desc = 'Neo[G]it - Pull' },
     { '<leader>gP', '<Cmd>Neogit push<CR>', desc = 'Neo[G]it - Push' },
   },
@@ -96,13 +98,14 @@ return {
     },
     commit_editor = {
       kind = 'tab',
-      show_staged_diff = true,
       -- Accepted values:
       -- "split" to show the staged diff below the commit editor
       -- "vsplit" to show it to the right
       -- "split_above" Like :top split
       -- "vsplit_left" like :vsplit, but open to the left
       -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
+      -- ""
+      show_staged_diff = true,
       staged_diff_split_kind = 'auto',
     },
     commit_select_view = {
