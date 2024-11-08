@@ -32,8 +32,9 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>l',        group = '[L] Tasks',              mode = { 'n', 'x' } },
       { '<leader>q',        group = '[Q]uickfix / Trouble',   mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
+      { '<leader>G',        group = '[G]it (Gitsigns)',       mode = { 'n', 'x' } },
       { '<leader>z',        group = '[Z] Plugin / Settings',  mode = { 'n', 'x' } },
-      { '<leader><leader>', group = '[ ] Telescope - Search', mode = { 'n', 'x' } },
+      { '<leader><leader>', group = '[󱁐] Telescope - Search', mode = { 'n', 'x' } },
       -- Normal Mode
       {
         mode = 'n',
@@ -117,7 +118,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>w',  '<cmd>write<CR>',                           desc = 'Buffer - [W]rite' },
         { '<leader>zq', '<Cmd>q<CR>',                               desc = '[Q]uit' },
         { '<leader>zQ', '<Cmd>qa<CR>',                              desc = '[Q]uit All' },
-        { '<leader>p',  '"_dP',                                     desc = 'Cursor - [P]aste copied text' },
+        { '<leader>p',  '"0p',                                      desc = 'Cursor - [P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
         { '<leader>Q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },

@@ -34,12 +34,31 @@ return {
       },
     },
   },
-  -- stylua: ignore
   keys = {
-    { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-    { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-    { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-    { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash - Jump' },
+    { 'S', mode = { 'o' }, function() require('flash').remote() end, desc = 'Flash - Remote Action' },
+    { 'S', mode = { 'n', 'x' }, function() require('flash').jump {
+      matcher = function(win)
+        return vim.tbl_map(function(diag)
+          return {
+            pos = { diag.lnum + 1, diag.col },
+            end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
+          }
+        end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
+      end,
+      search = { mode = "search", max_length = 0 },
+      label = { after = { 0, 0 } },
+      action = function(match, state)
+        vim.api.nvim_win_call(match.win, function()
+          vim.api.nvim_win_set_cursor(match.win, match.pos)
+          vim.diagnostic.open_float()
+        end)
+        state:restore()
+      end,
+    } end, desc = 'Flash - Remote Diagnostic' },
+    { '<leader>x', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash - Treesitter' },
+    { '<leader>X', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Jump' },
+    { '<leader>K', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
+    { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Flash - Toggle Flash Search' },
   },
 }

@@ -25,7 +25,7 @@ local function alpha_dashboard_layout()
       align_shortcut = 'right',
       hl = 'NeovimDashboardButtonVal',
       hl_shortcut = 'NeovimDashboardButtonKey',
-      width = 45,
+      width = 40,
       position = 'center',
     }
     opts = opts and vim.tbl_extend('force', def_opts, opts) or def_opts
@@ -76,20 +76,20 @@ local function alpha_dashboard_layout()
   ---@return table
   lazycache.menu = function()
     return {
-      button('n',         '  New file',                    '<cmd>ene<CR>'),
-      button('-',         '  File Browser (Oil)'),
-      button('\\',        '  File Browser (Neo-Tree)'),
-      button('.',         '  Load Last Session',           '<cmd>NeovimProjectLoadRecent<CR>'),
-      button('p',         '󰑓  Load Project from History',   '<cmd>Telescope neovim-project history<CR>'),
-      button('P',         '󱦞  Load Project from Discovery', "<cmd>Telescope neovim-project discover<CR>"),
-      button('SPC SPC f', '  Search Files'),
-      button('SPC SPC .', '  Search Recent Files'),
-      button('SPC SPC g', '󰊄  Seach with Live Grep'),
-      button('SPC SPC ,', '  Seach Neovim Config'),
-      button('SPC   z L', '󰂖  Show Lazy Plugin'),
-      button('SPC   z M', '󰀬  Show Mason Plugin'),
-      button('u',         '  Quick Update Plugins',        '<cmd>Lazy sync<CR>'),
-      button('q',         '󰅚  Quit',                        '<cmd>qa<CR>'),
+      button('t',       '  New file',                    '<cmd>ene<CR>'),
+      button('-',       '  File Browser (Oil)'),
+      button('\\',      '  File Browser (Neo-Tree)'),
+      button('.',       '  Load Last Session',           '<cmd>NeovimProjectLoadRecent<CR>'),
+      button('p',       '󰑓  Load Project (History)',      '<cmd>Telescope neovim-project history<CR>'),
+      button('P',       '󱦞  Load Project (Discovery)',    '<cmd>Telescope neovim-project discover<CR>'),
+      button('󱁐  󱁐  f', '  Search Files'),
+      button('󱁐  󱁐  .', '  Search Recent Files'),
+      button('󱁐  󱁐  g', '󰊄  Search with Live Grep'),
+      button('󱁐  󱁐  ,', '  Search Neovim Config'),
+      button('󱁐  z  L', '󰂖  Show Lazy Plugin'),
+      button('󱁐  z  M', '󰀬  Show Mason Plugin'),
+      button('u',       '  Quick Update Plugins',        '<cmd>Lazy sync<CR>'),
+      button('q',       '󰅚  Quit',                        '<cmd>qa<CR>'),
     }
   end
 
