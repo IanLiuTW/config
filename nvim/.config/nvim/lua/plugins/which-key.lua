@@ -8,7 +8,7 @@ return { -- Useful plugin to show you pending keybinds.
   config = function() -- This is the function that runs, AFTER loading
     require('which-key').setup {
       win = {
-        width = { min = 30, max = 120 },
+        width = { min = 30, max = 0.9 },
         height = { min = 4, max = 0.99 },
         padding = { 0, 1 },
         col = -1,
