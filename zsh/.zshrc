@@ -3,6 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export EDITOR=nvim
 # export ARCHFLAGS="-arch x86_64"
 
 # [Shell] Consider homebrew if on macOS
@@ -56,7 +57,7 @@ if [[ ! -n $IN_NIX_SHELL ]]; then
 fi
 # [Plugins] Loading up
 autoload -U compinit && compinit
-bindkey '^e' autosuggest-accept
+bindkey '^[^M' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 ENABLE_CORRECTION="true"

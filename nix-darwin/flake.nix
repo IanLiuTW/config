@@ -40,6 +40,7 @@
                     wget
                     ripgrep
                     _7zz-rar
+                    sqlite
                     asdf-vm
                     lua5_1
                     lua51Packages.luarocks
@@ -60,6 +61,7 @@
                     raycast
                     obsidian
                     spotify
+                    discord
                 ];
 
                 homebrew = {
@@ -72,16 +74,29 @@
                         "hammerspoon"
                         "brave-browser"
                         "google-chrome"
+                        "chatgpt"
                         "docker"
                         "devpod"
                         "postman"
-                        "devtoys"
-                        "chatgpt"
+                        "mongodb-compass"
+                        "dbvisualizer"
                         "gitbutler"
+                        "devtoys"
+                        "zed"
+                        "tunnelblick"
+                        "element"
+                        "microsoft-teams"
+                        "zoom"
+                        "citrix-workspace"
                         "middleclick"
                     ];
                     masApps = {
                         "Slack" = 803453959;
+                        "Outlook" = 985367838;
+                        "Word" = 462054704;
+                        "Excel" = 462058435;
+                        "PowerPoint" = 462062816;
+                        "Line" = 539883307;
                     };
                     onActivation.cleanup = "zap"; # remove unused packages, can be removed if erring.
                     onActivation.autoUpdate = true;
@@ -100,20 +115,18 @@
                     };
                 in
                     pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
+                      echo "setting up /Applications..." >&2
+                      rm -rf /Applications/Nix\ Apps
+                      mkdir -p /Applications/Nix\ Apps
+                      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+                      while read -r src; do
+                        app_name=$(basename "$src")
+                        echo "copying $src" >&2
                         ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
+                      done
                     '';
 
                 system.defaults = {
-
                 };
 
                 # Auto upgrade nix package and the daemon service.
@@ -159,6 +172,10 @@
                     }
                 ];
             };
+
+            # Expose the package set, including overlays, for convenience.
+            darwinPackages = self.darwinConfigurations."work".pkgs;
+
             homeConfigurations = {
                 ianliu = home-manager.lib.homeManagerConfiguration {
                     pkgs = nixpkgs.legacyPackages.aarch64-darwin;
@@ -167,8 +184,5 @@
                     ];
                 };
             };
-
-            # Expose the package set, including overlays, for convenience.
-            darwinPackages = self.darwinConfigurations."work".pkgs;
         };
 }

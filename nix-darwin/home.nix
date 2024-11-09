@@ -6,16 +6,6 @@
   home.username = "ianliu";
   home.homeDirectory = "/Users/ianliu";
 
-  home.file = {
-    ".zshrc" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/zsh/.zshrc"; };
-    ".gitconfig" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/git/.gitconfig"; };
-    ".config/kitty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/kitty/.config/kitty"; };
-    ".config/starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/starship/.config/starship.toml"; };
-    ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
-    ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
-    ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
-  };
-
   programs.zsh.enable = true;
   programs.fzf = {
     enable = true;
@@ -36,7 +26,7 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.hello
+    # pkgs.hello
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -59,6 +49,13 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ".zshrc" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/zsh/.zshrc"; };
+    ".gitconfig" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/git/.gitconfig"; };
+    ".config/kitty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/kitty/.config/kitty"; };
+    ".config/starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/starship/.config/starship.toml"; };
+    ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
+    ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
+    ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
