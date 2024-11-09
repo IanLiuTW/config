@@ -12,12 +12,12 @@ fi
 
 # [Shell] Dynamically sets the terminal title to the current directory and command
 DISABLE_AUTO_TITLE="true"
-function set_terminal_title() { 
+function set_terminal_title() {
   if [[ -n "$1" ]]; then
-    print -Pn "\e]0;$PWD:t | $1\a" 
-  else 
-    print -Pn "\e]0;$PWD:t\a" 
-  fi 
+    print -Pn "\e]0;$PWD:t | $1\a"
+  else
+    print -Pn "\e]0;$PWD:t\a"
+  fi
 }
 function preexec() { set_terminal_title "$1" }
 function precmd() { set_terminal_title }
@@ -52,7 +52,7 @@ zinit snippet OMZP::command-not-found
 # Only load zinit snippet for OMZP::asdf if NOT in nix-shell
 if [[ ! -n $IN_NIX_SHELL ]]; then
   zinit ice wait"1" lucid
-  zinit snippet OMZP::asdf 
+  zinit snippet OMZP::asdf
 fi
 # [Plugins] Loading up
 autoload -U compinit && compinit
@@ -91,10 +91,18 @@ zinit ice as"command" from"gh-r" \
 zinit light starship/starship # starship
 
 # [Shell] Integrations
-eval "$(zoxide init zsh)" # zoixide
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fzf
-if command -v devpod &> /dev/null; then # devpod
+# zoixide
+eval "$(zoxide init zsh)"
+#fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# devpod
+if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
+fi
+# Nix home-manager
+USER_PROFILE_FILE="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+if [ -f "$USER_PROFILE_FILE" ]; then
+    source "$USER_PROFILE_FILE"
 fi
 
 # [Alias] Basics
@@ -151,7 +159,9 @@ if command -v bat >/dev/null 2>&1; then
   alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
   alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
-# [Alias] 
+# [Alias] nix
+alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
+# [Alias]
 alias todo='nvim ~/.todo'
 
 # [Commands] Start

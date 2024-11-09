@@ -8,7 +8,7 @@ return { -- Autoformat
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
-      mode = '',
+      mode = 'n',
       desc = 'Buffer - [F]ormat',
     },
     { '<leader>zF', '<Cmd>ConformInfo<CR>', desc = 'Conform - Show [F]ormatter Info' },

@@ -76,7 +76,7 @@
   "overseer.nvim": { "branch": "master", "commit": "c416be50c2715a7f631d67e21154b8e6cd873ca3" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
-  "rainbow-delimiters.nvim": { "branch": "master", "commit": "a25248a9e5cbfa117043f6740b10248dd596b576" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "f22496dfdd46da4d571f5254c72eff65ff5a1c27" },
   "rainbow_csv.nvim": { "branch": "main", "commit": "7f3fddfe813641035fac2cdf94c2ff69bb0bf0b9" },
   "rose-pine": { "branch": "main", "commit": "07a887a7bef4aacea8c7caebaf8cbf808cdc7a8e" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
