@@ -94,7 +94,7 @@ zinit light starship/starship # starship
 # zoixide
 eval "$(zoxide init zsh)"
 #fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 # devpod
 if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
@@ -161,6 +161,7 @@ if command -v bat >/dev/null 2>&1; then
 fi
 # [Alias] nix
 alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 # [Alias]
 alias todo='nvim ~/.todo'
 

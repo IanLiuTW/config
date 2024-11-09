@@ -30,6 +30,7 @@
                 # List packages installed in system profile. To search by name, run:
                 # $ nix-env -qaP | grep wget
                 environment.systemPackages = with pkgs; [
+                    gettext
                     mkalias
                     cmake
                     git
@@ -67,7 +68,7 @@
                         "bpytop"
                     ];
                     casks = [
-			"kitty@nightly"
+                        "kitty@nightly"
                         "hammerspoon"
                         "brave-browser"
                         "google-chrome"
@@ -76,7 +77,8 @@
                         "postman"
                         "devtoys"
                         "chatgpt"
-			"gitbutler"
+                        "gitbutler"
+                        "middleclick"
                     ];
                     masApps = {
                         "Slack" = 803453959;
@@ -141,16 +143,6 @@
             darwinConfigurations."work" = nix-darwin.lib.darwinSystem {
                 modules = [
                     configuration
-                    home-manager.darwinModules.home-manager
-                    {
-                        users.users.ianliu.home = "/Users/ianliu";
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.ianliu = import ./home.nix;
-
-                        # Optionally, use home-manager.extraSpecialArgs to pass
-                        # arguments to home.nix
-                    }
                     nix-homebrew.darwinModules.nix-homebrew
                     {
                         nix-homebrew = {
@@ -166,6 +158,14 @@
                         };
                     }
                 ];
+            };
+            homeConfigurations = {
+                ianliu = home-manager.lib.homeManagerConfiguration {
+                    pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+                    modules = [
+                        ./home.nix
+                    ];
+                };
             };
 
             # Expose the package set, including overlays, for convenience.
