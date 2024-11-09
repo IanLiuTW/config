@@ -41,10 +41,12 @@
                     ripgrep
                     _7zz-rar
                     sqlite
+
                     asdf-vm
                     lua5_1
                     lua51Packages.luarocks
                     nodejs_23
+                    python311
 
                     neovim
                     starship
@@ -52,16 +54,12 @@
                     eza
                     zoxide
                     fzf
+
                     nerdfetch
                     yazi
                     imagemagick
                     ffmpegthumbnailer
                     poppler
-
-                    raycast
-                    obsidian
-                    spotify
-                    discord
                 ];
 
                 homebrew = {

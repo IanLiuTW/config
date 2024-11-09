@@ -164,6 +164,7 @@ fi
 alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 # [Alias]
+alias config='cd ~/config && nvim .'
 alias todo='nvim ~/.todo'
 
 # [Commands] Start
