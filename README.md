@@ -3,7 +3,17 @@
 ## Quick Setup
 
 - This repo needs to be in the home directory.
-- See `/_scripts/dev_env` for setup scripts.
+- Setup methods:
+
+  1. Nix
+
+    Use `nix` and `home-manager` for the setup. The files are in the `nix`, `nix-darwin` directories.
+
+  2. Manual
+
+    See `/_scripts/dev_env` for setup scripts, and/or pick and choose additional tools.
+
+> Note to self: The Nix way is the main way and should be up-to-date. If go with the manual way, need to update the scripts.
 
 ```bash
 git clone https://github.com/IanLiuTW/config ~/config && chmod +x ~/config/_scripts/dev_env/setup_apt.sh && ~/config/_scripts/dev_env/setup_apt.sh
@@ -169,6 +179,10 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 ## MacOS Area
 
 ### Automation
+
+#### Raycast
+
+- [https://raycast.com/]
 
 #### HammerSpoon
 

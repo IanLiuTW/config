@@ -20,9 +20,13 @@
             url = "github:homebrew/homebrew-bundle";
             flake = false;
         };
+        rust-overlay = {
+          url = "github:oxalica/rust-overlay";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, rust-overlay }:
         let
             configuration = { pkgs, config, ... }: {
                 nixpkgs.config.allowUnfree = true;
@@ -60,12 +64,18 @@
                     imagemagick
                     ffmpegthumbnailer
                     poppler
+
+                    raycast
+                    obsidian
+                    spotify
+                    discord
                 ];
 
                 homebrew = {
                     enable = true;
                     brews = [
                         "bpytop"
+                        "go-jira"
                     ];
                     casks = [
                         "kitty@nightly"
@@ -168,6 +178,10 @@
                             mutableTaps = false;
                         };
                     }
+                      ({ pkgs, ... }: {
+                        nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                        environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+                      })
                 ];
             };
 

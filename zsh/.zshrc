@@ -58,6 +58,7 @@ fi
 # [Plugins] Loading up
 autoload -U compinit && compinit
 bindkey '^[^M' autosuggest-accept
+bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 ENABLE_CORRECTION="true"
@@ -86,10 +87,11 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zinit cdreplay -q
 
 # [Shell] Prompt
+# starship
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
-zinit light starship/starship # starship
+zinit light starship/starship
 
 # [Shell] Integrations
 # zoixide
@@ -101,10 +103,10 @@ if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
 fi
 # Nix home-manager
-USER_PROFILE_FILE="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
-if [ -f "$USER_PROFILE_FILE" ]; then
-    source "$USER_PROFILE_FILE"
-fi
+# USER_PROFILE_FILE="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+# if [ -f "$USER_PROFILE_FILE" ]; then
+#     source "$USER_PROFILE_FILE"
+# fi
 
 # [Alias] Basics
 alias q="exit"
