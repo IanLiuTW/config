@@ -1,13 +1,26 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export EDITOR=nvim
-# export ARCHFLAGS="-arch x86_64"
+export EDITOR=${EDITOR:-nvim}
+
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy/mm/dd"
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+setopt noclobber
+setopt no_beep
 
 # [Shell] Consider homebrew if on macOS
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -20,8 +33,8 @@ function set_terminal_title() {
     print -Pn "\e]0;$PWD:t\a"
   fi
 }
-function preexec() { set_terminal_title "$1" }
-function precmd() { set_terminal_title }
+function preexec() { set_terminal_title "$1"; }
+function precmd() { set_terminal_title; }
 set_terminal_title
 
 # [Plugins] Manager - zinit
@@ -33,9 +46,15 @@ source "${ZINIT_HOME}/zinit.zsh"
 if alias zi &>/dev/null; then
   zinit ice atload'unalias zi'
 fi
+autoload -Uz compinit
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
+
 # [Plugins] Basics
+zinit ice wait"0" lucid
 zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait"0" lucid
 zinit light zsh-users/zsh-completions
+zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
 zinit ice wait"1" lucid
 zinit light Aloxaf/fzf-tab
@@ -44,58 +63,43 @@ zinit light Aloxaf/fzf-tab
 # zinit ice depth=1 wait"1" lucid
 # zinit light jeffreytse/zsh-vi-mode
 # [Plugins] OMZ's
+zinit ice wait"0" lucid
 zinit snippet OMZP::sudo
+zinit ice wait"0" lucid
 zinit snippet OMZP::command-not-found
 # zinit snippet OMZP::archlinux
 # zinit snippet OMZP::kubectl
 # zinit snippet OMZP::kubectx
 # zinit snippet OMZP::aws
-# Only load zinit snippet for OMZP::asdf if NOT in nix-shell
-if [[ ! -n $IN_NIX_SHELL ]]; then
-  zinit ice wait"1" lucid
-  zinit snippet OMZP::asdf
-fi
 # [Plugins] Loading up
-autoload -U compinit && compinit
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy/mm/dd"
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':fzf-tab:*' prefix ''
+zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
+zstyle ':fzf-tab:*' accept-line enter
+zstyle ':fzf-tab:*' worker 0  # disable async loading for better performance
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zinit cdreplay -q
 
-# [Shell] Prompt
-# starship
+# [Prompt]
 zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atclone"./starship init zsh > init.zsh" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
 # [Shell] Integrations
-# zoixide
+# zoxide
 eval "$(zoxide init zsh)"
-#fzf
+# fzf
 source <(fzf --zsh)
 # devpod
 if command -v devpod &> /dev/null; then
@@ -141,11 +145,10 @@ alias desktop="cd ~/Desktop"
 alias downloads="cd ~/Downloads"
 alias documents="cd ~/Documents"
 alias pictures="cd ~/Pictures"
-alias ..="z .."
-alias ...="z ../.."
-alias ....="z ../../.."
-alias .....="z ../../../.."
-alias Z="zi"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 # [Alias] eza
 alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --icons --octal-permissions --group-directories-first'
@@ -169,4 +172,4 @@ alias config='cd ~/config && nvim .'
 alias todo='nvim ~/.todo'
 
 # [Commands] Start
-nerdfetch && echo ""
+nerdfetch
