@@ -79,6 +79,8 @@
                         "go-jira"
                     ];
                     casks = [
+                        "hiddenbar"
+                        "middleclick"
                         "kitty@nightly"
                         "hammerspoon"
                         "brave-browser"
@@ -98,7 +100,6 @@
                         "zoom"
                         "tunnelblick"
                         "citrix-workspace"
-                        "middleclick"
                     ];
                     masApps = {
                         "Slack" = 803453959;

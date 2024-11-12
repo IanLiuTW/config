@@ -29,14 +29,14 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
       { '<leader>l',        group = '[L] Tasks',              mode = { 'n', 'x' } },
-      { '<leader>w',        group = '[W] Quickfix / Trouble', mode = { 'n', 'x' } },
+      { '<leader>e',        group = '[E]rrors (Trouble)',     mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
       { '<leader>h',        group = '[H]unk (Gitsigns)',      mode = { 'n', 'x' } },
       { '<leader>v',        group = '[V] Web',                mode = { 'n', 'x' } },
       { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>S',        group = 'I[S]wap',                mode = { 'n', 'x' } },
       { '<leader>z',        group = '[Z] Plugin / Settings',  mode = { 'n', 'x' } },
-      { '<leader><leader>', group = '[󱁐] Telescope - Search', mode = { 'n', 'x' } },
+      { '<leader><leader>', group = '[󱁐] Telescope', mode = { 'n', 'x' } },
 
       -- Normal Mode
       {
@@ -115,7 +115,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-l>', [[<Cmd>wincmd l<CR>]], desc = 'Move focus to the right window' },
       },
       {
-        mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
+        mode = { 'n', 'v' },
         { '<leader>w',  '<cmd>write<CR>',                           desc = 'Buffer - [W]rite' },
         { '<leader>zq', '<Cmd>q<CR>',                               desc = '[Q]uit' },
         { '<leader>zQ', '<Cmd>qa<CR>',                              desc = '[Q]uit All' },
@@ -123,7 +123,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
         { '<leader>q',  function() vim.diagnostic.open_float() end, desc = 'Quickfix - Diagnostics Window' },
-        { '<leader>wd', function() vim.diagnostic.setloclist() end, desc = 'Quickfix - Diagnostics List' },
+        { '<leader>ed', function() vim.diagnostic.setloclist() end, desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
     }
   end,

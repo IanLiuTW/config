@@ -149,6 +149,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias Z="__zoxide_zi"
 # [Alias] eza
 alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --icons --octal-permissions --group-directories-first'
@@ -167,6 +168,7 @@ fi
 # [Alias] nix
 alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
+alias dev='nix develop'
 # [Alias]
 alias config='cd ~/config && nvim .'
 alias todo='nvim ~/.todo'

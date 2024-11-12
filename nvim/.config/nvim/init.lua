@@ -88,7 +88,11 @@ end
 vim.diagnostic.config {
   update_in_insert = true,
   virtual_text = {
+    severity = { min = vim.diagnostic.severity.INFO },
     source = true,
+  },
+  signs = {
+    severity = { min = vim.diagnostic.severity.INFO },
   },
 }
 

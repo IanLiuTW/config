@@ -4,39 +4,39 @@ return {
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   keys = {
     {
-      '<leader>wx',
-      '<cmd>Trouble diagnostics toggle<cr>',
-      desc = 'Diagnostics (Trouble)',
-    },
-    {
-      '<leader>wX',
+      '<leader>E',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-      desc = 'Buffer Diagnostics (Trouble)',
+      desc = 'Trouble - Buffer Diagnostics',
     },
     {
-      '<leader>ws',
+      '<leader>ee',
+      '<cmd>Trouble diagnostics toggle<cr>',
+      desc = 'Trouble - All Diagnostics',
+    },
+    {
+      '<leader>es',
       '<cmd>Trouble symbols toggle focus=false<cr>',
-      desc = 'Symbols (Trouble)',
+      desc = 'Trouble - Symbols',
     },
     {
-      '<leader>wc',
+      '<leader>ec',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      desc = 'Code LSP Definitions / references / ... (Trouble)',
+      desc = 'Trouble - Code LSP Definitions / references / ...',
     },
     {
-      '<leader>wl',
+      '<leader>el',
       '<cmd>Trouble loclist toggle<cr>',
-      desc = 'Location List (Trouble)',
+      desc = 'Trouble - Location List',
     },
     {
-      '<leader>wq',
+      '<leader>eq',
       '<cmd>Trouble qflist toggle<cr>',
-      desc = 'Quickfix List (Trouble)',
+      desc = 'Trouble - Quickfix List',
     },
     {
-      '<leader>wt',
+      '<leader>et',
       '<cmd>Trouble todo toggle<cr>',
-      desc = 'Todo List (Trouble)',
+      desc = 'Trouble - Todo List',
     },
   },
   config = function()

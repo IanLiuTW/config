@@ -26,10 +26,12 @@ return {
     local lint = require 'lint'
 
     lint.linters_by_ft = {
-      markdown = { 'markdownlint' },
+      -- markdown = { 'markdownlint' },
+      json = { 'cfn_lint' },
+      yaml = { 'cfn_lint' },
     }
 
-    lint.linters.cspell = require('lint.util').wrap(lint.linters.cspell, function(diagnostic)
+    lint.linters.codespell = require('lint.util').wrap(lint.linters.codespell, function(diagnostic)
       diagnostic.severity = vim.diagnostic.severity.HINT
       return diagnostic
     end)
