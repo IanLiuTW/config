@@ -60,6 +60,12 @@
     ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
     ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
 
+    ".config/pycodestyle".text = ''
+      [pycodestyle]
+      max-line-length = 160
+      ignore = E203, W503
+    '';
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose

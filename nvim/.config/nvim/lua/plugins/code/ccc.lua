@@ -8,14 +8,14 @@ return {
   },
   keys = {
     {
-      '<leader>cc',
+      '<leader>c/',
       '<Cmd>CccPick<CR>',
-      desc = '[#] Pick Color Code',
+      desc = 'Color Code - Pick Color Code',
     },
     {
-      '<leader>cC',
+      '<leader>c?',
       '<Cmd>CccHighlighterToggle<CR>',
-      desc = '[#] Pick Color Code',
+      desc = 'Color Code - Toggle Highlighter',
     },
   },
   config = function()

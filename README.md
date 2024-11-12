@@ -7,11 +7,14 @@
 
   1. Nix
 
-    Use `nix` and `home-manager` for the setup. The files are in the `nix`, `nix-darwin` directories.
+  Use `nix` and `home-manager` for the setup. The files are in the `nix`, `nix-darwin` directories.
+
+  - [Nix](https://nixos.org/download/)
+  - [nix-community/home-manager](https://nix-community.github.io/home-manager/)
 
   2. Manual
 
-    See `/_scripts/dev_env` for setup scripts, and/or pick and choose additional tools.
+  See `/_scripts/dev_env` for setup scripts, and/or pick and choose additional tools.
 
 > Note to self: The Nix way is the main way and should be up-to-date. If go with the manual way, need to update the scripts.
 

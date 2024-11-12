@@ -75,6 +75,7 @@
                     enable = true;
                     brews = [
                         "bpytop"
+                        "sops"
                         "go-jira"
                     ];
                     casks = [
@@ -82,7 +83,6 @@
                         "hammerspoon"
                         "brave-browser"
                         "google-chrome"
-                        "chatgpt"
                         "docker"
                         "devpod"
                         "postman"
@@ -91,10 +91,12 @@
                         "gitbutler"
                         "devtoys"
                         "zed"
-                        "tunnelblick"
+                        "chatgpt"
+                        "claude"
                         "element"
                         "microsoft-teams"
                         "zoom"
+                        "tunnelblick"
                         "citrix-workspace"
                         "middleclick"
                     ];
@@ -112,7 +114,7 @@
                 };
 
                 fonts.packages = with pkgs; [
-                    nerdfonts
+                    (nerdfonts.override { fonts = [ "CascadiaMono" "CascadiaCode" "Hack" "CommitMono" "CodeNewRoman" "Meslo" "SourceCodePro" "Terminus" "BigBlueTerminal" ]; })
                 ];
 
                 system.activationScripts.applications.text = let

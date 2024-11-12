@@ -1,5 +1,5 @@
-vim.keymap.set('n', '<C-e>', ':wq<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-y>', ':q!<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-y>', ':wq<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-e>', ':q!<cr>', { noremap = true, silent = true })
 
 local function get_git_branch()
   local handle = io.popen 'git branch --show-current 2>/dev/null'

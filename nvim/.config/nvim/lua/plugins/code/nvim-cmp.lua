@@ -75,8 +75,8 @@ return { -- Autocompletion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<Tab>'] = cmp.mapping.confirm { select = true },
-        ['<C-e>'] = cmp.mapping.confirm { select = true },
-        ['<C-y>'] = cmp.mapping.complete {},
+        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<C-e>'] = cmp.mapping.complete {},
         ['<C-l>'] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()

@@ -29,11 +29,12 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
       { '<leader>l',        group = '[L] Tasks',              mode = { 'n', 'x' } },
-      { '<leader>v',        group = '[V] Quickfix / Trouble', mode = { 'n', 'x' } },
+      { '<leader>w',        group = '[W] Quickfix / Trouble', mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
+      { '<leader>h',        group = '[H]unk (Gitsigns)',      mode = { 'n', 'x' } },
+      { '<leader>v',        group = '[V] Web',                mode = { 'n', 'x' } },
       { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>S',        group = 'I[S]wap',                mode = { 'n', 'x' } },
-      { '<leader>G',        group = '[G]it (Gitsigns)',       mode = { 'n', 'x' } },
       { '<leader>z',        group = '[Z] Plugin / Settings',  mode = { 'n', 'x' } },
       { '<leader><leader>', group = '[󱁐] Telescope - Search', mode = { 'n', 'x' } },
 
@@ -44,8 +45,6 @@ return { -- Useful plugin to show you pending keybinds.
         { '<Esc>',            '<cmd>nohlsearch<CR>',                       desc = 'nohlsearch' },
         -- Code keybindings
         { '<leader>J',        'i<CR><Esc>',                                desc = 'Cursor - Add a line break' },
-        { '<leader>ck',       '<Cmd>m -2<CR>',                             desc = 'Move Line Up' },
-        { '<leader>cj',       '<Cmd>m +1<CR>',                             desc = 'Move Line Down' },
         { '<leader>zz',       '<Cmd>set wrap!<CR>',                        desc = 'Toggle line wrap' },
         -- Pane keybindings
         { '<A-h>',            '<C-w><C-h>',                                desc = 'Move focus to the left window' },
@@ -123,8 +122,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>p',  '"0p',                                      desc = 'Cursor - [P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
-        { '<leader>q',  function() vim.diagnostic.open_float() end, desc = '[Q]uickfix - Diagnostics Window' },
-        { '<leader>vd', function() vim.diagnostic.setloclist() end, desc = '[Q]uickfix - Diagnostics List' },
+        { '<leader>q',  function() vim.diagnostic.open_float() end, desc = 'Quickfix - Diagnostics Window' },
+        { '<leader>wd', function() vim.diagnostic.setloclist() end, desc = 'Quickfix - Diagnostics List' },
       },
     }
   end,
