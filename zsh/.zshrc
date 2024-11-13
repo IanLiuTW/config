@@ -153,14 +153,14 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias Z="__zoxide_zi"
 # [Alias] eza
-alias ls='eza --color=always --group-directories-first --icons'
-alias ll='eza -la --icons --octal-permissions --group-directories-first'
-alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
-alias lm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons'
-alias la='eza --long --all --group --group-directories-first'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
-alias lS='eza -1 --color=always --group-directories-first --icons'
-alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
+alias ls='eza --color=always --group-directories-first --icons=always'
+alias ll='eza -la --icons=always --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=always --group-directories-first --icons=always'
+alias lm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons=always'
+alias la='eza --long --all --group --group-directories-first --color=always'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons=always'
+alias lS='eza -1 --color=always --group-directories-first --icons=always'
+alias lt='eza --tree --level=2 --color=always --group-directories-first --icons=always'
 alias l.="eza -a | grep -E '^\.'"
 # [Alias] bat
 if command -v bat >/dev/null 2>&1; then

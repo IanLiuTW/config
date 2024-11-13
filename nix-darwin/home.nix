@@ -28,8 +28,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    python311
-    poetry
+    python312
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -91,6 +90,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    POETRY_VIRTUALENVS_IN_PROJECT = "true";
   };
 
   # Let Home Manager install and manage itself.
