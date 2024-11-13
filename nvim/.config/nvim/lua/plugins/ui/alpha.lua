@@ -86,8 +86,8 @@ local function alpha_dashboard_layout()
       button('󱁐  󱁐  .', '  Search Recent Files'),
       button('󱁐  󱁐  g', '󰊄  Search with Live Grep'),
       button('󱁐  󱁐  ,', '  Search Neovim Config'),
-      button('󱁐  z  L', '󰂖  Show Lazy Plugin'),
-      button('󱁐  z  M', '󰀬  Show Mason Plugin'),
+      button('󱁐  z  `', '󰂖  Show Lazy Plugin'),
+      button('󱁐  z  l', '󰀬  Show Mason Plugin'),
       button('u',       '  Quick Update Plugins',        '<cmd>Lazy sync<CR>'),
       button('q',       '󰅚  Quit',                        '<cmd>qa<CR>'),
     }

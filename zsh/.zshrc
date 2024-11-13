@@ -19,9 +19,16 @@ setopt hist_find_no_dups
 setopt noclobber
 setopt no_beep
 
-# [Shell] Consider homebrew if on macOS
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+# [Shell] If not in Nix shell, source Homebrew (MacOS)
+if [[ -z "$IN_NIX_SHELL" ]]; then
+  if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+fi
+# Nix home-manager
+USER_PROFILE_FILE="~/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if [ -f "$USER_PROFILE_FILE" ]; then
+    source "$USER_PROFILE_FILE"
 fi
 
 # [Shell] Dynamically sets the terminal title to the current directory and command
@@ -105,11 +112,6 @@ source <(fzf --zsh)
 if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
 fi
-# Nix home-manager
-# USER_PROFILE_FILE="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
-# if [ -f "$USER_PROFILE_FILE" ]; then
-#     source "$USER_PROFILE_FILE"
-# fi
 
 # [Alias] Basics
 alias q="exit"

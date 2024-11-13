@@ -92,8 +92,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>bl',       '<Cmd>BufferOrderByLanguage<CR>',            noremap = true,              silent = true,  desc = 'Order Buffer by Language' },
         { '<leader>bw',       '<Cmd>BufferOrderByWindowNumber<CR>',        noremap = true,              silent = true,  desc = 'Order Buffer by WindowNumber' },
         -- Plugin keybindings
-        { '<leader>zL',      '<Cmd>Lazy<CR>',                             desc = '[L]azy - Open Menu' },
-        { '<leader>zM',      '<cmd>Mason<CR>',                            desc = '[M]ason - Open Menu' },
+        { '<leader>z`',      '<Cmd>Lazy<CR>',                             desc = '[`] Lazy - Open Menu' },
+        { '<leader>zl',      '<cmd>Mason<CR>',                            desc = '[L] Mason - Open Menu' },
         -- User commands bindings
         { '<leader>z/',      '<Cmd>CopyPath<CR>',                         desc = '[C]opy [P]ath' },
       },
@@ -122,7 +122,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>p',  '"0p',                                      desc = 'Cursor - [P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
-        { '<leader>q',  function() vim.diagnostic.open_float() end, desc = 'Quickfix - Diagnostics Window' },
+        { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end, desc = 'Quickfix - Diagnostics Window' },
         { '<leader>ed', function() vim.diagnostic.setloclist() end, desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
     }

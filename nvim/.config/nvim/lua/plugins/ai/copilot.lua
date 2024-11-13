@@ -34,7 +34,14 @@ return {
         },
       },
       filetypes = {
-        yaml = false,
+        python = true,
+        yaml = true,
+        toml = true,
+        json = true,
+        jsonc = true,
+        javascript = true,
+        typescript = true,
+        dockerfile = true,
         markdown = true,
         help = false,
         gitcommit = true,
@@ -42,6 +49,7 @@ return {
         hgcommit = false,
         svn = false,
         cvs = false,
+        nix = true,
         ['.'] = false,
       },
     }
