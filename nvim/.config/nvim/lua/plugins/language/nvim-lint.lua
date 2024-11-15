@@ -13,8 +13,8 @@ return {
       python = { 'ruff' },
       javascript = { 'eslint' },
       typescript = { 'eslint' },
-      json = { 'cfn_lint' },
-      markdown = { 'markdownlint' },
+      json = { 'jsonlint' },
+      -- markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
     }
     lint.linters.ruff = {

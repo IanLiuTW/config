@@ -28,9 +28,9 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = {
-        'ruff_fix', -- Fix auto-fixable lint errors
         'ruff_format', -- Run Ruff formatter
-        'ruff_organize_imports', -- Organize imports
+        'ruff_fix',
+        -- 'ruff_organize_imports',
       },
       rust = {
         'rustfmt',

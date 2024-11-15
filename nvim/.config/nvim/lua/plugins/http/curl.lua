@@ -15,13 +15,13 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader>vh', function()
+    vim.keymap.set('n', '<leader>vv', function()
       curl.open_curl_tab()
     end, { desc = 'Open a curl tab scoped to the current working directory' })
 
-    vim.keymap.set('n', '<leader>vH', function()
+    vim.keymap.set('n', '<leader>vV', function()
       curl.open_global_tab()
-    end, { desc = 'Open a curl tab with gloabl scope' })
+    end, { desc = 'Open a curl tab with global scope' })
 
     -- These commands will prompt you for a name for your collection
     vim.keymap.set('n', '<leader>vc', function()

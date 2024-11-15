@@ -84,6 +84,10 @@ return {
     local servers = {
       pyright = {
         settings = {
+          pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+          },
           python = {
             analysis = {
               autoImportCompletions = true,
@@ -97,13 +101,17 @@ return {
           },
         },
       },
-      -- ruff = {
-      --   init_options = {
-      --     settings = {
-      --       organizeImports = true,
-      --     },
-      --   },
-      -- },
+      ruff = {
+        init_options = {
+          settings = {
+            organizeImports = true,
+            showSyntaxErrors = false,
+            lint = {
+              enable = true,
+            },
+          },
+        },
+      },
       rust_analyzer = {
         settings = {
           ['rust-analyzer'] = {

@@ -1,0 +1,21 @@
+{
+  "post": {
+    "prefix": "post",
+    "body": [
+      "curl -X POST ${1:localhost}:${2:8000}/${3:data}",
+      "-H 'Content-Type: application/json'",
+      "-d",
+      "{",
+      "    \"${4:key}\": \"${5:value}\"",
+      "}"
+    ],
+    "description": "Create a post request with curl"
+  },
+  "get": {
+    "prefix": "get",
+    "body": [
+      "curl ${1:localhost}:${2:8000}/${3:health}"
+    ],
+    "description": "Create a post request with curl"
+  }
+}

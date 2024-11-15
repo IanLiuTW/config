@@ -117,7 +117,7 @@
         };
 
         fonts.packages = with pkgs; [
-          (nerdfonts.override { fonts = [ "CascadiaMono" "CascadiaCode" "Hack" "CommitMono" "CodeNewRoman" "Meslo" "SourceCodePro" "Terminus" "BigBlueTerminal" ]; })
+          (nerdfonts.override { fonts = [ "CascadiaMono" "CascadiaCode" "Hack" "CommitMono" "CodeNewRoman" "Meslo" "SourceCodePro" "Terminus" "BigBlueTerminal" "3270" ]; })
         ];
 
         system.activationScripts.applications.text =
