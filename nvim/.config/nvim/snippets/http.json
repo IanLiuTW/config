@@ -1,0 +1,32 @@
+{
+  "post": {
+    "prefix": "post",
+    "body": [
+      "",
+      "###",
+      "# @name ${1:test}",
+      "POST ${2:localhost}:${3:8000}/${4:data} HTTP/1.1",
+      "accept: application/json",
+      "content-type: application/json",
+      "",
+      "{",
+      "    \"${4:key}\": \"${5:value}\"",
+      "}",
+      ""
+    ],
+    "description": "Create a post request"
+  },
+  "get": {
+    "prefix": "get",
+    "body": [
+      "",
+      "###",
+      "# @name ${1:test}",
+      "GET ${2:localhost}:${3:8000}/${4:data} HTTP/1.1",
+      "accept: application/json",
+      "content-type: application/json",
+      ""
+    ],
+    "description": "Create a post request"
+  }
+}

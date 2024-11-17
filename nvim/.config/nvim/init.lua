@@ -26,7 +26,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.cursorline = false -- Show which line your cursor is on
-vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
 vim.opt.guicursor = {
   'n:block-blinkwait100-blinkoff500-blinkon500',

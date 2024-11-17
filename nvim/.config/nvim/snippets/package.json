@@ -18,6 +18,10 @@
                 "path": "./python.json"
             },
             {
+                "language": "http",
+                "path": "./http.json"
+            },
+            {
                 "language": "curl",
                 "path": "./curl.json"
             }

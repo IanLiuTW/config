@@ -46,14 +46,14 @@ return {
         function()
           require('dap.ui.widgets').hover()
         end,
-        desc = 'Debug: Hover',
+        desc = '[D]ebug: Hover',
       },
       {
         '<Leader>dp',
         function()
           require('dap.ui.widgets').preview()
         end,
-        desc = 'Debug: Preview',
+        desc = '[D]ebug: Preview',
       },
       {
         '<Leader>df',
@@ -61,7 +61,7 @@ return {
           local widgets = require 'dap.ui.widgets'
           widgets.centered_float(widgets.frames)
         end,
-        desc = 'Debug: Frames',
+        desc = '[D]ebug: Frames',
       },
       {
         '<Leader>ds',
@@ -69,14 +69,14 @@ return {
           local widgets = require 'dap.ui.widgets'
           widgets.centered_float(widgets.scopes)
         end,
-        desc = 'Debug: Scopes',
+        desc = '[D]ebug: Scopes',
       },
       {
         '<Leader>d?',
         function()
           dapui.eval(nil, { enter = true })
         end,
-        desc = 'Debug: Eval',
+        desc = '[D]ebug: Eval',
       },
       unpack(keys),
     }

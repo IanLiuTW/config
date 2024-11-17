@@ -11,8 +11,6 @@ return {
     -- Configure linters by filetype
     lint.linters_by_ft = {
       python = { 'ruff' },
-      javascript = { 'eslint' },
-      typescript = { 'eslint' },
       json = { 'jsonlint' },
       -- markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
