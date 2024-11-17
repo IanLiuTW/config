@@ -84,7 +84,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-`>',            '<Cmd>BufferLast<CR>',                       noremap = true,              silent = true,  desc = 'Buffer Last' },
         { '<A-w>',            '<Cmd>BufferClose<CR>',                      noremap = true,              silent = true,  desc = 'Buffer Close' },
         { '<A-o>',            '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', noremap = true,              silent = true,  desc = 'Buffer Close All But Current or Pinned' },
-        { '<A-y>',            '<Cmd>BufferCloseBuffersRight<CR>',          noremap = true,              silent = true,  desc = 'Buffer Close the Buffers on the Right' },
+        { '<A-i>',            '<Cmd>BufferCloseBuffersRight<CR>',          noremap = true,              silent = true,  desc = 'Buffer Close the Buffers on the Right' },
         { '<leader>bp',       '<Cmd>BufferPin<CR>',                        noremap = true,              silent = true,  desc = 'Pin Buffer' },
         { '<leader>bb',       '<Cmd>BufferOrderByBufferNumber<CR>',        noremap = true,              silent = true,  desc = 'Order Buffer by Number' },
         { '<leader>bn',       '<Cmd>BufferOrderByName<CR>',                noremap = true,              silent = true,  desc = 'Order Buffer by Name' },
