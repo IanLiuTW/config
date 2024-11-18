@@ -95,11 +95,13 @@
             "gitbutler"
             "devtoys"
             "zed"
+            "cursor"
             "chatgpt"
             "claude"
             "element"
             "microsoft-teams"
             "zoom"
+            "tidal"
             "tunnelblick"
             "citrix-workspace"
           ];
