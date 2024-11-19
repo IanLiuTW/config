@@ -116,7 +116,6 @@ fi
 # [Alias] Basics
 alias q="exit"
 alias f="fg"
-alias C="clear"
 alias G="git"
 alias v="nvim"
 alias y="yazi"

@@ -47,12 +47,10 @@
           sqlite
 
           asdf-vm
-          direnv
           lua5_1
           lua51Packages.luarocks
           nodejs_23
           python311
-          uv
 
           neovim
           starship
@@ -95,13 +93,11 @@
             "gitbutler"
             "devtoys"
             "zed"
-            "cursor"
             "chatgpt"
             "claude"
             "element"
             "microsoft-teams"
             "zoom"
-            "tidal"
             "tunnelblick"
             "citrix-workspace"
           ];
@@ -119,9 +115,20 @@
         };
 
         fonts.packages = with pkgs; [
-          (nerdfonts.override { fonts = [ "CascadiaMono" "CascadiaCode" "Hack" "CommitMono" "CodeNewRoman" "Meslo" "SourceCodePro" "Terminus" "BigBlueTerminal" "3270" ]; })
+          (nerdfonts.override {
+            fonts = [
+              "CascadiaMono"
+              "CascadiaCode"
+              "Hack"
+              "CommitMono"
+              "CodeNewRoman"
+              "Meslo"
+              "SourceCodePro"
+              "Terminus"
+              "BigBlueTerminal"
+            ];
+          })
         ];
-
         system.activationScripts.applications.text =
           let
             env = pkgs.buildEnv {

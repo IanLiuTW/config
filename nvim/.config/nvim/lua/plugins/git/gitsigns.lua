@@ -5,18 +5,30 @@ return {
     signcolumn = true,
     numhl = true,
     signs = {
-      add = { text = '' },
-      change = { text = '󰜥' },
-      delete = { text = '▃' },
-      topdelete = { text = '▔' },
-      chandelete = { text = '󱣳' },
+      add = { text = '┃' },
+      change = { text = '┃' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked = { text = '┆' },
+    --   add = { text = '' },
+    --   change = { text = '󰜥' },
+    --   delete = { text = '▃' },
+    --   topdelete = { text = '▔' },
+    --   chandelete = { text = '󱣳' },
     },
     signs_staged = {
-      add = { text = '' },
-      change = { text = '󰜥' },
-      delete = { text = '▃' },
-      topdelete = { text = '▔' },
-      chandelete = { text = '󱣳' },
+      add = { text = '┃' },
+      change = { text = '┃' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked = { text = '┆' },
+    --   add = { text = '' },
+    --   change = { text = '󰜥' },
+    --   delete = { text = '▃' },
+    --   topdelete = { text = '▔' },
+    --   chandelete = { text = '󱣳' },
     },
     on_attach = function(bufnr)
       local gitsigns = require 'gitsigns'
@@ -62,7 +74,7 @@ return {
       map('n', '<leader>hb', function()
         gitsigns.blame_line { full = true }
       end, { desc = 'Gitsigns - [b]lame line' })
-      map('n', '<leader>hB', "<cmd>Git blame<cr>", { desc = 'Gitsigns - [b]lame buffer' })
+      map('n', '<leader>hB', '<cmd>Git blame<cr>', { desc = 'Gitsigns - [b]lame buffer' })
       map('n', '<leader>hd', gitsigns.diffthis, { desc = 'Gitsigns - [d]iff against index' })
       map('n', '<leader>hD', function()
         gitsigns.diffthis '@'

@@ -39,11 +39,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevel = 99
-vim.o.foldenable = false
-
 -- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
