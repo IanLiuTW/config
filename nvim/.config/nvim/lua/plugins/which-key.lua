@@ -108,7 +108,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 't',
-        { '<C-q>', '<C-\\><C-n>',         desc = 'Exit terminal mode' },
+        { '<esc>', '<C-\\><C-n>',         desc = 'Exit terminal mode' },
         { '<A-h>', [[<Cmd>wincmd h<CR>]], desc = 'Move focus to the left window' },
         { '<A-j>', [[<Cmd>wincmd j<CR>]], desc = 'Move focus to the lower window' },
         { '<A-k>', [[<Cmd>wincmd k<CR>]], desc = 'Move focus to the upper window' },

@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'AndreM222/copilot-lualine', 'meuter/lualine-so-fancy.nvim' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'AndreM222/copilot-lualine', 'meuter/lualine-so-fancy.nvim', 'folke/noice.nvim' },
   config = function()
     local theme = require 'lualine.themes.horizon'
     require('lualine').setup {
@@ -15,11 +15,12 @@ return {
       },
       sections = {
         lualine_a = {
-          { 'fancy_mode', width = 8 },
+          { 'fancy_mode', width = 3 },
         },
         lualine_b = {
           { 'fancy_branch' },
           { 'fancy_diff' },
+          { 'fancy_diagnostics' },
         },
         lualine_c = {
           { 'fancy_cwd', substitute_home = true },
@@ -27,7 +28,6 @@ return {
         },
         lualine_x = {
           { 'fancy_macro' },
-          { 'fancy_diagnostics' },
           { 'fancy_searchcount' },
           { 'fancy_location' },
         },
@@ -69,22 +69,38 @@ return {
               return ''
             end,
           },
-          -- { 'datetime', style = ' %H:%M:%S' },
-        },
-        lualine_z = {
           {
             'copilot',
-            show_colors = false,
+            show_colors = true,
             show_loading = true,
+            symbols = {
+              status = {
+                icons = {
+                  enabled = '',
+                  sleep = '',
+                  disabled = '',
+                  warning = '',
+                  unknown = '',
+                },
+              },
+            },
           },
+          -- {
+          --   function()
+          --     local status = vim.api.nvim_call_function('codeium#GetStatusString', {})
+          --     if not status then
+          --       return ''
+          --     end
+          --     return ' ' .. status
+          --   end,
+          -- },
+        },
+        lualine_z = {
+          -- { 'datetime', style = ' %H:%M:%S' },
           {
-            function()
-              local status = vim.api.nvim_call_function('codeium#GetStatusString', {})
-              if not status then
-                return ''
-              end
-              return ' ' .. status
-            end,
+            require('noice').api.status.command.get,
+            cond = require('noice').api.status.command.has,
+            color = { fg = 'black' },
           },
         },
       },

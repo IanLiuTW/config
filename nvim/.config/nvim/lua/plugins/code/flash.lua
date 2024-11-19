@@ -77,7 +77,7 @@ return {
     } end, desc = 'Flash - Remote Diagnostic' },
     { '<leader>x', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash - Treesitter' },
     { '<leader>X', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Jump' },
-    { '<leader>K', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
+    { '<leader>:', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
     { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Flash - Toggle Flash Search' },
   },
 }
