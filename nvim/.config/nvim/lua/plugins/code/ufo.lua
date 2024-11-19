@@ -42,18 +42,15 @@ return {
       end,
     }
 
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
-    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+    vim.keymap.set('n', 'zR', require('ufo').openAllFolds, {desc = 'ufo - Open All Folds'})
+    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, {desc = 'ufo - Close All Folds'})
+    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, {desc = 'ufo - Open Folds Except Kinds'})
+    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, {desc = 'ufo - Close Folds With'})
     vim.keymap.set('n', '<leader>Z', function()
       local winid = require('ufo').peekFoldedLinesUnderCursor()
       if not winid then
-        -- choose one of coc.nvim and nvim lsp
-        vim.fn.CocActionAsync 'definitionHover' -- coc.nvim
         vim.lsp.buf.hover()
       end
-
-    end)
+    end, {desc = 'ufo - Peek Folded'})
   end,
 }

@@ -51,7 +51,7 @@ return {
       action = function(match, state)
         vim.api.nvim_win_call(match.win, function()
           vim.api.nvim_win_set_cursor(match.win, match.pos)
-          vim.diagnostic.open_float()
+          vim.diagnostic.open_float({source = true, border="rounded"})
         end)
         state:restore()
       end,

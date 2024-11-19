@@ -122,6 +122,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>p',  '"0p',                                      desc = 'Cursor - [P]aste copied text' },
         { '<leader>j',  '10j',                                      desc = 'Cursor - [j] * 10' },
         { '<leader>k',  '10k',                                      desc = 'Cursot - [k] * 10' },
+        { '<leader>F',  'gg=G',                                     desc = 'Buffer - Format (Indentation)' },
         { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end, desc = 'Quickfix - Diagnostics Window' },
         { '<leader>ed', function() vim.diagnostic.setloclist() end, desc = 'Quickfix - Diagnostics List (Legacy)' },
       },

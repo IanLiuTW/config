@@ -14,7 +14,7 @@ return {
         }
       end,
       mode = 'n',
-      desc = 'Buffer - [F]ormat',
+      desc = 'Buffer - Format (Conform)',
     },
     {
       '<leader>zF',
