@@ -136,7 +136,7 @@ return {
       vim.keymap.set('n', '<leader><leader>h', builtin.help_tags, { desc = 'Search [H]elp' })
       vim.keymap.set('n', '<leader><leader>k', builtin.keymaps, { desc = 'Search [K]eymaps' })
       vim.keymap.set('n', '<leader><leader>n', '<cmd>Telescope notify<CR>', { desc = 'Search [N]otification' })
-      vim.keymap.set('n', '<leader><leader>t', '<cmd>TodoTelescope<CR>', { desc = 'Search [T]odo' })
+      vim.keymap.set('n', '<leader><leader>;', '<cmd>TodoTelescope<CR>', { desc = 'Search [T]odo' })
       vim.keymap.set('n', '<leader><leader>z', '<cmd>Telescope zoxide list<CR>', { desc = 'Search [Z]oxide' })
       vim.keymap.set('n', '<leader><leader><space>', builtin.builtin, { desc = 'Search Builtin of Telescope' })
 

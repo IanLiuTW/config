@@ -19,16 +19,16 @@ return {
         { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
         { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
         {
-          sign = { namespace = { 'diagnostic/signs', 'gitsigns' }, maxwidth = 1, auto = false },
+          sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = true, wrap = true },
+          click = 'v:lua.ScSa',
+        },
+        {
+          sign = { namespace = { 'diagnostic/signs', 'todo*', 'gitsigns' }, maxwidth = 1, auto = false },
           click = 'v:lua.ScSa',
         },
         -- Uncomment the next 2 lines to make diagnostic and gitsigns separate
         -- { sign = { namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false }, click = 'v:lua.ScSa', },
         -- { sign = { namespace = { 'gitsigns' }, maxwidth = 1, colwidth = 1, wrap = true, }, },
-        {
-          sign = { name = { '.*' }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-          click = 'v:lua.ScSa',
-        },
       },
     }
   end,

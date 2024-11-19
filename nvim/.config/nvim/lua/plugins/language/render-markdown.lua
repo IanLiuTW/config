@@ -8,7 +8,7 @@ return {
     { '<leader>zV', '<cmd>RenderMarkdown debug<cr>', desc = 'Render Markdown - Toggle Markview' },
   },
   opts = {
-    enabled = false,
+    enabled = true,
     file_types = { 'markdown', 'Avante' },
   },
   ft = { 'markdown', 'Avante' },

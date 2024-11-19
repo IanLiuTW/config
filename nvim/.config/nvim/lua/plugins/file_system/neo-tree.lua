@@ -18,6 +18,7 @@ return {
         statusline = false,
       },
       close_if_last_window = true,
+      use_libuv_file_watcher = true,
       filesystem = {
         window = {
           mappings = {

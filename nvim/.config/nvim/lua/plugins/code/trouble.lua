@@ -34,7 +34,7 @@ return {
       desc = 'Trouble - Quickfix List',
     },
     {
-      '<leader>et',
+      '<leader>e;',
       '<cmd>Trouble todo toggle<cr>',
       desc = 'Trouble - Todo List',
     },
