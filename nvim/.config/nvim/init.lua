@@ -19,7 +19,7 @@ vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C or one or more
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
 vim.opt.updatetime = 250 -- Decrease update time
-vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time. Displays which-key popup sooner
+vim.opt.timeoutlen = 200 -- Decrease mapped sequence wait time. Displays which-key popup sooner
 vim.opt.splitright = true -- Configure how new splits should be opened
 vim.opt.splitbelow = true
 vim.opt.list = true
@@ -28,7 +28,7 @@ vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.cursorline = false -- Show which line your cursor is on
 vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
-vim.opt.spellfile = vim.fn.expand("~/.nvim-spellfile.add")
+vim.opt.spellfile = vim.fn.expand '~/.nvim-spellfile.add'
 vim.opt.guicursor = {
   'n:block-blinkwait100-blinkoff500-blinkon500',
   'i:ver25-blinkwait100-blinkoff500-blinkon500',

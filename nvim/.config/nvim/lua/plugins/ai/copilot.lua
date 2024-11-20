@@ -15,7 +15,7 @@ return {
           accept_line = '<A-j>',
           prev = '<A-[>',
           next = '<A-]>',
-          dismiss = '<Esc>',
+          dismiss = '<A-bs>',
         },
       },
       panel = {
@@ -26,7 +26,7 @@ return {
           jump_next = '<A-]>',
           accept = '<A-CR>',
           refresh = 'R',
-          open = '<A-\\>',
+          open = '<A-a>\\',
         },
         layout = {
           position = 'right',
@@ -55,7 +55,7 @@ return {
       },
     }
   end,
-  vim.keymap.set('i', '<C-c>', '<C-c><Cmd>lua require("copilot.suggestion").dismiss()<CR>'),
-  vim.keymap.set('n', '<A-a>\\', '<Cmd>Copilot enable<CR>'),
-  vim.keymap.set('n', '<A-a>|', '<Cmd>Copilot disable<CR>'),
+  -- vim.keymap.set('i', '<C-c>', '<C-c><Cmd>lua require("copilot.suggestion").dismiss()<CR>'),
+  vim.keymap.set('n', '<A-a><Up>', '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', '<A-a><Down>', '<Cmd>Copilot disable<CR>'),
 }

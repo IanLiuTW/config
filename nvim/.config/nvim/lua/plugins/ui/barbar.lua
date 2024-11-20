@@ -8,11 +8,12 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   opts = {
+    animation = false,
     focus_on_close = 'previous',
     icons = {
       buffer_index = true,
       buffer_number = false,
-      button = '✖',
+      button = '󱂑',
       diagnostics = {
         [vim.diagnostic.severity.ERROR] = { enabled = true },
         [vim.diagnostic.severity.WARN] = { enabled = false },
@@ -24,7 +25,9 @@ return {
         changed = { enabled = true, icon = '~' },
         deleted = { enabled = true, icon = '-' },
       },
-      separator = { left = '▌', right = '' },
+      separator = { left = '█', right = '' },
+      current = { buffer_index = false },
+            inactive = {button = '✖'},
     },
   },
 }

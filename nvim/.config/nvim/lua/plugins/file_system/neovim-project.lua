@@ -11,8 +11,8 @@ return {
     projects = { -- define project roots
       '~/config',
       '~/codebase',
-      '~/work/*/*',
-      '/self/*/*',
+      -- '~/work/*/*',
+      -- '~/self/*/*',
     },
     last_session_on_startup = false,
     dashboard_mode = false,
