@@ -66,13 +66,19 @@ end, {})
 
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.uv.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
   if vim.v.shell_error ~= 0 then
-    error('Error cloning lazy.nvim:\n' .. out)
+    vim.api.nvim_echo({
+      { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+      { out, 'WarningMsg' },
+      { '\nPress any key to exit...' },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
   end
-end ---@diagnostic disable-next-line: undefined-field
+end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure diagnostic symbols ]]
@@ -101,25 +107,33 @@ end, { nargs = 1 })
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
-  -- Plugins can also be configured to run Lua code when they are loaded.
-  -- Events can be normal autocommands events (`:help autocmd-events`).
-  -- Because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded: config = function() ... end
-  { import = 'plugins' },
-  { import = 'plugins.ai' },
-  { import = 'plugins.code' },
-  { import = 'plugins.debug' },
-  { import = 'plugins.file_system' },
-  { import = 'plugins.git' },
-  { import = 'plugins.http' },
-  { import = 'plugins.language' },
-  { import = 'plugins.remote' },
-  { import = 'plugins.shell' },
-  { import = 'plugins.task' },
-  { import = 'plugins.terminal' },
-  { import = 'plugins.testing' },
-  { import = 'plugins.themes' },
-  { import = 'plugins.ui' },
+  spec = {
+    { import = 'plugins' },
+    { import = 'plugins.ai' },
+    { import = 'plugins.code' },
+    { import = 'plugins.debug' },
+    { import = 'plugins.file_system' },
+    { import = 'plugins.git' },
+    { import = 'plugins.http' },
+    { import = 'plugins.language' },
+    { import = 'plugins.remote' },
+    { import = 'plugins.shell' },
+    { import = 'plugins.task' },
+    { import = 'plugins.terminal' },
+    { import = 'plugins.testing' },
+    { import = 'plugins.themes' },
+    { import = 'plugins.ui' },
+  },
+  install = { colorscheme = { 'habamax' } },
+  checker = {
+    enabled = true,
+    notify = true,
+    frequency = 43200,
+  },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

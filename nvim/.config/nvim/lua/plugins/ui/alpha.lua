@@ -7,12 +7,12 @@ local function alpha_dashboard_layout()
   ---@param opts table?
   ---@return table
 
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#311B92' }) -- Indigo
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#512DA8' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#673AB7' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#9575CD' }) -- Medium Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#B39DDB' }) -- Light Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#D1C4E9' }) -- Very Light Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#484a72' }) -- Indigo
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#494d87' }) -- Deep Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#48519c' }) -- Deep Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#4654b2' }) -- Medium Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#4258c8' }) -- Light Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#3b5bde' }) -- Very Light Purple
   vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#fa8ea7' })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonVal', { fg = '#4b6eeb', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonKey', { fg = '#d1a428', bold = true })
@@ -129,35 +129,35 @@ local function alpha_dashboard_layout()
 
   return {
     { type = 'button', val = '█' },
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
     {
       type = 'text',
-      val = '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+      val = '████████╗██╗  ██╗██╗███████╗    ██╗███████╗    ██╗ █████╗ ███╗   ██╗',
       opts = { hl = 'NeovimDashboardLogo1', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+      val = '╚══██╔══╝██║  ██║██║██╔════╝    ██║██╔════╝    ██║██╔══██╗████╗  ██║',
       opts = { hl = 'NeovimDashboardLogo2', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+      val = '   ██║   ███████║██║███████╗    ██║███████╗    ██║███████║██╔██╗ ██║',
       opts = { hl = 'NeovimDashboardLogo3', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+      val = '   ██║   ██╔══██║██║╚════██║    ██║╚════██║    ██║██╔══██║██║╚██╗██║',
       opts = { hl = 'NeovimDashboardLogo4', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+      val = '   ██║   ██║  ██║██║███████║    ██║███████║    ██║██║  ██║██║ ╚████║',
       opts = { hl = 'NeovimDashboardLogo5', shrink_margin = false, position = 'center' },
     },
     {
       type = 'text',
-      val = '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+      val = '   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝    ╚═╝╚══════╝    ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝',
       opts = { hl = 'NeovimDashboardLogo6', shrink_margin = false, position = 'center' },
     },
     { type = 'padding', val = 2 },
@@ -166,7 +166,7 @@ local function alpha_dashboard_layout()
       val = lazycache 'info',
       opts = { hl = 'NeovimDashboardInfo', position = 'center' },
     },
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
     {
       type = 'group',
       val = lazycache 'menu',
@@ -194,7 +194,7 @@ local function alpha_dashboard_layout()
       val = lazycache 'fortune',
       opts = { hl = 'NeovimDashboardQuote', position = 'center' },
     },
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
   }
 end
 
@@ -218,7 +218,6 @@ return {
         local result = {
           type = 'text',
           val = '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms',
-
           opts = { hl = 'LoadingTimeResult', position = 'center' },
         }
         table.insert(layout, result)
