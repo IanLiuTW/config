@@ -178,7 +178,7 @@ return {
       end, { desc = 'Telescope - [G]it Search [C]ommits' })
       vim.keymap.set('n', '<leader>gB', function()
         builtin.git_bcommits()
-      end, { desc = 'Telescope - [G]it Search Buffer [C]ommits' })
+      end, { desc = 'Telescope - [G]it Search [B]uffer Commits' })
     end,
   },
 }

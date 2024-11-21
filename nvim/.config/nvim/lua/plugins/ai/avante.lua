@@ -32,11 +32,11 @@ return {
     mappings = {
       ---@class AvanteConflictMappings
       diff = {
-        ours = '<leader>co',
-        theirs = '<leader>ct',
-        all_theirs = '<leader>cT',
-        both = '<leader>cb',
-        cursor = '<leader>cc',
+        ours = 'go',
+        theirs = 'gt',
+        all_theirs = 'gT',
+        both = 'ga',
+        cursor = 'gy',
         prev = '[x',
         next = ']x',
       },
@@ -66,8 +66,8 @@ return {
         repomap = '<A-a>R',
       },
       sidebar = {
-        apply_all = 'A',
-        apply_cursor = 'a',
+        apply_all = '<CR>',
+        apply_cursor = '<S-CR>',
         switch_windows = '<Tab>',
         reverse_switch_windows = '<S-Tab>',
       },
