@@ -150,7 +150,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias Z="__zoxide_zi"
+alias zz="__zoxide_zi"
 # [Alias] eza
 alias ls='eza --color=always --group-directories-first --icons=always'
 alias ll='eza -la --icons=always --octal-permissions --group-directories-first'
