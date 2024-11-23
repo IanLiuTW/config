@@ -126,7 +126,7 @@ require('lazy').setup({
   },
   install = { colorscheme = { 'habamax' } },
   checker = {
-    enabled = true,
+    enabled = false,
     notify = true,
     frequency = 86400,
   },
