@@ -42,9 +42,9 @@ return {
       },
       suggestion = {
         accept = '<C-CR>',
-        prev = '<C-S-p>',
-        next = '<C-S-n>',
-        dismiss = '<C-S-e>',
+        prev = '<C-,>',
+        next = '<C-.>',
+        dismiss = '<C-e>',
       },
       jump = {
         prev = '<C-B>',

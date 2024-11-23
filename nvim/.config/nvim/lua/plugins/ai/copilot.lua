@@ -11,11 +11,11 @@ return {
         debounce = 75,
         keymap = {
           accept = '<C-CR>',
-          accept_word = '<C-S-l>',
-          accept_line = '<C-S-j>',
-          prev = '<C-S-p>',
-          next = '<C-S-n>',
-          dismiss = '<C-S-e>',
+          accept_word = '<C-;>',
+          accept_line = '<C-\'>',
+          prev = '<C-,>',
+          next = '<C-.>',
+          dismiss = '<C-e>',
         },
       },
       panel = {
@@ -26,7 +26,7 @@ return {
           jump_next = '<C-f>',
           accept = '<C-CR>',
           refresh = 'R',
-          open = '<C-S-space>',
+          open = '<C-/>',
         },
         layout = {
           position = 'right',
