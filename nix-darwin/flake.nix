@@ -64,6 +64,7 @@
           imagemagick
           ffmpegthumbnailer
           poppler
+          pngpaste
 
           raycast
           obsidian

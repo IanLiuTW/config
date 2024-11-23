@@ -23,7 +23,7 @@ return {
           click = 'v:lua.ScSa',
         },
         {
-          sign = { namespace = { 'diagnostic/signs', 'todo*', 'gitsigns' }, maxwidth = 1, auto = false },
+          sign = { namespace = { 'diagnostic/signs', 'gitsigns' }, maxwidth = 1, auto = false },
           click = 'v:lua.ScSa',
         },
         -- Uncomment the next 2 lines to make diagnostic and gitsigns separate

@@ -133,7 +133,7 @@ return {
       vim.keymap.set('n', '<leader><leader>d', builtin.diagnostics, { desc = 'Telescope - Search [D]iagnostics' })
       vim.keymap.set('n', '<leader><leader>r', builtin.resume, { desc = 'Telescope - Search [R]esume' })
       vim.keymap.set('n', '<leader><leader>c', builtin.colorscheme, { desc = 'Telescope - Search [C]olorscheme' })
-      vim.keymap.set('n', '<leader><leader>h', builtin.help_tags, { desc = 'Telescope - Search [H]elp' })
+      vim.keymap.set('n', '<leader><leader>H', builtin.help_tags, { desc = 'Telescope - Search [H]elp' })
       vim.keymap.set('n', '<leader><leader>k', builtin.keymaps, { desc = 'Telescope - Search [K]eymaps' })
       vim.keymap.set('n', '<leader><leader>n', '<cmd>Telescope notify<CR>', { desc = 'Telescope - Search [N]otification' })
       vim.keymap.set('n', '<leader><leader>;', '<cmd>TodoTelescope<CR>', { desc = 'Telescope - Search [T]odo' })

@@ -5,7 +5,7 @@ return {
       background_colour = '#000000',
     },
     keys = {
-      { '<leader><bs>', ':lua require("notify").dismiss()<CR>', desc = 'Notify - Dismiss Notification' },
+      { '<bs>', ':lua require("notify").dismiss()<CR>', desc = 'Notify - Dismiss Notification' },
     },
   },
 }

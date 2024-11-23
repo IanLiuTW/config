@@ -76,7 +76,7 @@ local function alpha_dashboard_layout()
   ---@return table
   lazycache.menu = function()
     return {
-      button('t',       '  New file',                    '<cmd>ene<CR>'),
+      button('n',       '  New file',                    '<cmd>ene<CR>'),
       button('-',       '  File Browser (Oil)'),
       button('\\',      '  File Browser (Neo-Tree)'),
       button('.',       '  Load Last Session',           '<cmd>NeovimProjectLoadRecent<CR>'),
@@ -86,9 +86,9 @@ local function alpha_dashboard_layout()
       button('󱁐  󱁐  .', '  Search Recent Files'),
       button('󱁐  󱁐  g', '󰊄  Search with Live Grep'),
       button('󱁐  󱁐  ,', '  Search Neovim Config'),
-      button('󱁐  z  `', '󰂖  Show Lazy Plugin'),
-      button('󱁐  z  l', '󰀬  Show Mason Plugin'),
-      button('u',       '  Quick Update Plugins',        '<cmd>Lazy sync<CR>'),
+      button('󱁐  ,  ,', '󰂖  Show Lazy Plugin'),
+      button('󱁐  ,  l', '󰀬  Show Mason Plugin'),
+      button('u',       '  Quick Update Plugins',        '<cmd>Lazy update<CR>'),
       button('q',       '󰅚  Quit',                        '<cmd>qa<CR>'),
     }
   end

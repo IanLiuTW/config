@@ -17,16 +17,16 @@ return {
       'OverseerClearCache',
     },
     keys = {
-      { '<leader>lo', '<cmd>OverseerToggle<cr>', desc = 'Task list' },
-      { '<leader>lr', '<cmd>OverseerRun<cr>', desc = 'Run task' },
-      { '<leader>lq', '<cmd>OverseerQuickAction<cr>', desc = 'Action recent task' },
-      { '<leader>li', '<cmd>OverseerInfo<cr>', desc = 'Overseer Info' },
-      { '<leader>lb', '<cmd>OverseerBuild<cr>', desc = 'Task builder' },
-      { '<leader>lt', '<cmd>OverseerTaskAction<cr>', desc = 'Task action' },
-      { '<leader>lc', '<cmd>OverseerClearCache<cr>', desc = 'Clear cache' },
-      { '<leader>ls', '<cmd>OverseerSaveBundle<cr>', desc = 'Save Bundle' },
-      { '<leader>ll', '<cmd>OverseerLoadBundle<cr>', desc = 'Load Bundle' },
-      { '<leader>ld', '<cmd>OverseerDeleteBundle<cr>', desc = 'Delete Bundle' },
+      { '<leader>ro', '<cmd>OverseerToggle<cr>', desc = 'Task list' },
+      { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Run task' },
+      { '<leader>rq', '<cmd>OverseerQuickAction<cr>', desc = 'Action recent task' },
+      { '<leader>ri', '<cmd>OverseerInfo<cr>', desc = 'Overseer Info' },
+      { '<leader>rb', '<cmd>OverseerBuild<cr>', desc = 'Task builder' },
+      { '<leader>rt', '<cmd>OverseerTaskAction<cr>', desc = 'Task action' },
+      { '<leader>rc', '<cmd>OverseerClearCache<cr>', desc = 'Clear cache' },
+      { '<leader>rs', '<cmd>OverseerSaveBundle<cr>', desc = 'Save Bundle' },
+      { '<leader>rl', '<cmd>OverseerLoadBundle<cr>', desc = 'Load Bundle' },
+      { '<leader>rd', '<cmd>OverseerDeleteBundle<cr>', desc = 'Delete Bundle' },
     },
     config = function()
       require('overseer').setup {
@@ -44,8 +44,8 @@ return {
           overseer.run_action(tasks[1], 'restart')
         end
       end, {})
-      vim.keymap.set('n', '<leader>L', '<cmd>OverseerRestartLast<cr>', { noremap = true, silent = true, desc = 'Tasks - Restart last task' })
-      vim.keymap.set('n', '<leader>lz', function() --Run shell scripts in the current directory
+      vim.keymap.set('n', '<leader>R', '<cmd>OverseerRestartLast<cr>', { noremap = true, silent = true, desc = 'Tasks - Restart last task' })
+      vim.keymap.set('n', '<leader>rz', function() --Run shell scripts in the current directory
         local files = require 'overseer.files'
         return {
           generator = function(opts, cb)

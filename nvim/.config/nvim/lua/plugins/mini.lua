@@ -31,8 +31,8 @@ return { -- Collection of various small independent plugins/modules
     -- Better alignment functionality - https://github.com/echasnovski/mini.align
     require('mini.align').setup {
       mappings = {
-        start = '<leader>ca',
-        start_with_preview = '<leader>cA',
+        start = '<leader>da',
+        start_with_preview = '<leader>dA',
       },
     }
 
@@ -45,8 +45,8 @@ return { -- Collection of various small independent plugins/modules
         map.gen_integration.diagnostic(),
       },
     }
-    vim.keymap.set('n', '<leader>zm', MiniMap.toggle, { desc = 'Minimap - Toggle' })
-    vim.keymap.set('n', '<leader>zM', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
+    vim.keymap.set('n', '<leader>,m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
+    vim.keymap.set('n', '<leader>,M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
     -- -- Simple and easy statusline.
     -- --  You could remove this setup call if you don't like it,

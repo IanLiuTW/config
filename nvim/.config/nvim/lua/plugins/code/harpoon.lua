@@ -7,20 +7,20 @@ return {
     harpoon:setup()
 
     -- stylua: ignore
-    vim.keymap.set('n', '<leader><leader>\\',    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon - [\\] Toggle Menu' })
-    vim.keymap.set('n', '<leader><leader><cr>',  function() harpoon:list():add() end,                         { desc = 'Harpoon - [󰌑] Add Buffer' })
-    vim.keymap.set('n', '<leader><leader>1',     function() harpoon:list():select(1) end,                     { desc = 'Harpoon - [1] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>2',     function() harpoon:list():select(2) end,                     { desc = 'Harpoon - [2] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>3',     function() harpoon:list():select(3) end,                     { desc = 'Harpoon - [3] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>4',     function() harpoon:list():select(4) end,                     { desc = 'Harpoon - [4] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>5',     function() harpoon:list():select(5) end,                     { desc = 'Harpoon - [5] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>6',     function() harpoon:list():select(6) end,                     { desc = 'Harpoon - [6] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>7',     function() harpoon:list():select(7) end,                     { desc = 'Harpoon - [7] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>8',     function() harpoon:list():select(8) end,                     { desc = 'Harpoon - [8] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>9',     function() harpoon:list():select(9) end,                     { desc = 'Harpoon - [9] Select Buffer' })
-    vim.keymap.set('n', '<leader><leader>0',     function() harpoon:list():select(0) end,                     { desc = 'Harpoon - [0] Select Buffer' })
-    vim.keymap.set('n', '[\\',                   function() harpoon:list():prev() end,                        { desc = 'Harpoon - Previous' })
-    vim.keymap.set('n', ']\\',                   function() harpoon:list():next() end,                        { desc = 'Harpoon - Next' })
+    vim.keymap.set('n', '<leader>H',    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon - Toggle Menu' })
+    vim.keymap.set('n', '<leader>hh',  function() harpoon:list():add() end,                         { desc = 'Harpoon - Add Buffer' })
+    vim.keymap.set('n', '<leader>h1',     function() harpoon:list():select(1) end,                     { desc = 'Harpoon - [1] Select Buffer' })
+    vim.keymap.set('n', '<leader>h2',     function() harpoon:list():select(2) end,                     { desc = 'Harpoon - [2] Select Buffer' })
+    vim.keymap.set('n', '<leader>h3',     function() harpoon:list():select(3) end,                     { desc = 'Harpoon - [3] Select Buffer' })
+    vim.keymap.set('n', '<leader>h4',     function() harpoon:list():select(4) end,                     { desc = 'Harpoon - [4] Select Buffer' })
+    vim.keymap.set('n', '<leader>h5',     function() harpoon:list():select(5) end,                     { desc = 'Harpoon - [5] Select Buffer' })
+    vim.keymap.set('n', '<leader>h6',     function() harpoon:list():select(6) end,                     { desc = 'Harpoon - [6] Select Buffer' })
+    vim.keymap.set('n', '<leader>h7',     function() harpoon:list():select(7) end,                     { desc = 'Harpoon - [7] Select Buffer' })
+    vim.keymap.set('n', '<leader>h8',     function() harpoon:list():select(8) end,                     { desc = 'Harpoon - [8] Select Buffer' })
+    vim.keymap.set('n', '<leader>h9',     function() harpoon:list():select(9) end,                     { desc = 'Harpoon - [9] Select Buffer' })
+    vim.keymap.set('n', '<leader>h0',     function() harpoon:list():select(0) end,                     { desc = 'Harpoon - [0] Select Buffer' })
+    vim.keymap.set('n', '[h',                   function() harpoon:list():prev() end,                        { desc = 'Harpoon - Previous' })
+    vim.keymap.set('n', ']h',                   function() harpoon:list():next() end,                        { desc = 'Harpoon - Next' })
 
     -- basic telescope configuration
     local conf = require('telescope.config').values
@@ -41,8 +41,8 @@ return {
         })
         :find()
     end
-    vim.keymap.set('n', '<leader><leader><tab>', function()
+    vim.keymap.set('n', '<leader>hH', function()
       toggle_telescope(harpoon:list())
-    end, { desc = 'Harpoon - [󰌒] Search Harpoon List' })
+    end, { desc = 'Harpoon - Search Harpoon List' })
   end,
 }

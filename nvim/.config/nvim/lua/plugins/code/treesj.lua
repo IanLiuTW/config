@@ -2,25 +2,25 @@ return {
   'Wansmer/treesj',
   keys = {
     {
-      '<space>c<',
+      '<leader>d<',
       '<Cmd>TSJJoin<CR>',
       desc = 'TreeSJ - Join',
       mode = {'n', 'v'}
     },
     {
-      '<space>c>',
+      '<leader>d>',
       '<Cmd>TSJSplit<CR>',
       desc = 'TreeSJ - Split',
       mode = {'n', 'v'}
     },
     {
-      '<space>cm',
+      '<leader>d,',
       '<Cmd>TSJToggle<CR>',
       desc = 'TreeSJ - Toggle',
       mode = {'n', 'v'}
     },
     {
-      '<space>cM',
+      '<leader>d.',
       function()
         require('treesj').toggle { split = { recursive = true } }
       end,

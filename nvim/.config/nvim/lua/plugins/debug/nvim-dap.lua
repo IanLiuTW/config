@@ -1,7 +1,5 @@
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     'rcarriga/nvim-dap-ui', -- Creates a beautiful debugger UI
     'nvim-neotest/nvim-nio', -- Required dependency for nvim-dap-ui
@@ -14,70 +12,25 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
     return {
-      -- Basic debugging keymaps, feel free to change to your liking!
-      { '<leader>dd', dapui.toggle, desc = '[D]ebug: Toggle [D]AP UI' },
-      { '<F5>', dap.step_into, desc = 'Debug: Step Into' },
-      { '<F6>', dap.step_over, desc = 'Debug: Step Over' },
-      { '<F7>', dap.step_out, desc = 'Debug: Step Out' },
-      { '<F8>', dap.step_back, desc = 'Debug: Step Back' },
-      { '<F9>', dap.continue, desc = 'Debug: Start/Continue' },
-      { '<F10>', dap.restart, desc = 'Debug: Restart' },
-      { '<F11>', dap.run_last, desc = '[D]ebug: Run Last' },
-      { '<F12>', dap.close, desc = 'Debug: Stop' },
-      { '<leader>dc', dap.run_to_cursor, desc = '[D]ebug: Run to [C]ursor' },
-      { '<leader>d<space>', dap.toggle_breakpoint, desc = '[D]ebug: Toggle [B]reakpoint' },
-      { '<leader>d<bs>', dap.clear_breakpoints, desc = '[D]ebug: Clear Breakpoint' },
-      {
-        '<leader>db',
-        function()
-          dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-        end,
-        desc = '[D]ebug: Set [B]reakpoint',
-      },
-      {
-        '<leader>dl',
-        function()
-          dap.set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
-        end,
-        desc = '[D]ebug: [L]og Point',
-      },
-      {
-        '<Leader>dh',
-        function()
-          require('dap.ui.widgets').hover()
-        end,
-        desc = '[D]ebug: Hover',
-      },
-      {
-        '<Leader>dp',
-        function()
-          require('dap.ui.widgets').preview()
-        end,
-        desc = '[D]ebug: Preview',
-      },
-      {
-        '<Leader>df',
-        function()
-          local widgets = require 'dap.ui.widgets'
-          widgets.centered_float(widgets.frames)
-        end,
-        desc = '[D]ebug: Frames',
-      },
-      {
-        '<Leader>ds',
-        function()
-          local widgets = require 'dap.ui.widgets'
-          widgets.centered_float(widgets.scopes)
-        end,
-        desc = '[D]ebug: Scopes',
-      },
-      {
-        '<Leader>d?',
-        function()
-          dapui.eval(nil, { enter = true })
-        end,
-        desc = '[D]ebug: Eval',
-      },
+      { '<leader>yy',    dapui.toggle,                                                                                   desc = 'Debug: Toggle [D]AP UI' },
+      { '<leader>yc',    dap.run_to_cursor,                                                                              desc = 'Debug: Run to [C]ursor' },
+      { '<leader>y<bs>', dap.clear_breakpoints,                                                                          desc = 'Debug: Clear Breakpoint' },
+      { '<leader>Y',     dap.toggle_breakpoint,                                                                          desc = 'Debug: Toggle [B]reakpoint' },
+      { '<leader>yb',    function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,                       desc = 'Debug: Set [B]reakpoint' },
+      { '<leader>yl',    function() dap.set_breakpoint(nil,nil,vim.fn.input 'Log point message: ') end,                  desc = 'Debug: [L]og Point' },
+      { '<leader>yh',    function() require('dap.ui.widgets').hover() end,                                               desc = 'Debug: Hover' },
+      { '<leader>yp',    function() require('dap.ui.widgets').preview() end,                                             desc = 'Debug: Preview' },
+      { '<leader>yf',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.frames) end, desc = 'Debug: Frames' },
+      { '<leader>ys',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.scopes) end, desc = 'Debug: Scopes' },
+      { '<leader>y?',    function() dapui.eval(nil,{ enter = true }) end,                                                desc = 'Debug: Eval' },
+      { '<F5>',          dap.step_into,                                                                                  desc = 'Debug: Step Into' },
+      { '<F6>',          dap.step_over,                                                                                  desc = 'Debug: Step Over' },
+      { '<F7>',          dap.step_out,                                                                                   desc = 'Debug: Step Out' },
+      { '<F8>',          dap.step_back,                                                                                  desc = 'Debug: Step Back' },
+      { '<F9>',          dap.continue,                                                                                   desc = 'Debug: Start/Continue' },
+      { '<F10>',         dap.restart,                                                                                    desc = 'Debug: Restart' },
+      { '<F11>',         dap.run_last,                                                                                   desc = 'Debug: Run Last' },
+      { '<F12>',         dap.close,                                                                                      desc = 'Debug: Stop' },
       unpack(keys),
     }
   end,

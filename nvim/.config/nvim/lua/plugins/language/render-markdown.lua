@@ -4,8 +4,8 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   keys = {
-    { '<leader>zv', '<cmd>RenderMarkdown toggle<cr>', desc = 'Render Markdown - Toggle Markview' },
-    { '<leader>zV', '<cmd>RenderMarkdown debug<cr>', desc = 'Render Markdown - Toggle Markview' },
+    { '<leader>v', '<cmd>RenderMarkdown toggle<cr>', desc = 'Render Markdown - Toggle Markview' },
+    { '<leader>V', '<cmd>RenderMarkdown debug<cr>', desc = 'Render Markdown - Toggle Markview' },
   },
   opts = {
     enabled = true,

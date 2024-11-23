@@ -46,8 +46,8 @@ return {
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 
-      vim.keymap.set('n', '<leader>zt', '<Cmd>TSInstallInfo<CR>', { desc = '[T]reesitter - Open Install Info' })
-      vim.keymap.set('n', '<leader>zT', '<Cmd>TSModuleInfo<CR>', { desc = '[T]reesitter - Open Module Info' })
+      vim.keymap.set('n', '<leader>,t', '<Cmd>TSInstallInfo<CR>', { desc = '[T]reesitter - Open Install Info' })
+      vim.keymap.set('n', '<leader>,T', '<Cmd>TSModuleInfo<CR>', { desc = '[T]reesitter - Open Module Info' })
     end,
   },
   {
@@ -55,7 +55,7 @@ return {
     event = 'BufRead',
     opts = { multiline_threshold = 1 },
     keys = {
-      { '<leader>zx', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter Conte[X]t' },
+      { '<leader>,x', '<Cmd>TSContextToggle<CR>', desc = 'Toggle Treesitter Conte[X]t' },
     },
   },
 }

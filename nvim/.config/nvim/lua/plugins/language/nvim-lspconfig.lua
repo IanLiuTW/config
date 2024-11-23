@@ -16,49 +16,52 @@ return {
     },
     { 'Bilal2453/luvit-meta', lazy = true },
   },
+  opts = {
+    inlay_hints = { enabled = true },
+  },
   config = function()
     -- LSP Attach configuration
     local function setup_lsp_keymaps(event)
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+
       local map = function(keys, func, desc)
         vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
       end
-
-      -- Keybinding groups by functionality
       -- Navigation
       map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-      map('<leader>cd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
-      map('<leader>cD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-      map('<leader>ci', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
-
+      map('<leader>dd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
+      map('<leader>dD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
+      map('<leader>di', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
       -- Search and References
-      map('<leader>cs', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
-      map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
-      map('<leader>cr', require('telescope.builtin').lsp_references, 'Find References')
-
+      map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
+      map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
+      map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
       -- Code Actions and Help
       map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
       map('S', vim.lsp.buf.signature_help, 'Signature Help')
-
-      map('<Leader>zL', '<cmd>LspInfo<cr>', 'LSP Info')
+      -- Information
+      map('<Leader>,L', '<cmd>LspInfo<cr>', 'LSP Info')
+      -- Inlay hints toggle
+      if client and client.supports_method 'textDocument/inlayHint' then
+        map('<leader>,h', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+        end, 'Toggle Inlay Hints')
+      end
 
       -- Setup document highlighting
-      local client = vim.lsp.get_client_by_id(event.data.client_id)
       if client and client.supports_method 'textDocument/documentHighlight' then
         local highlight_group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
-
         -- Document highlight events
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
           buffer = event.buf,
           group = highlight_group,
           callback = vim.lsp.buf.document_highlight,
         })
-
         vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
           buffer = event.buf,
           group = highlight_group,
           callback = vim.lsp.buf.clear_references,
         })
-
         -- Cleanup on LSP detach
         vim.api.nvim_create_autocmd('LspDetach', {
           buffer = event.buf,
@@ -67,13 +70,6 @@ return {
             vim.api.nvim_clear_autocmds { group = highlight_group, buffer = event.buf }
           end,
         })
-      end
-
-      -- Inlay hints toggle
-      if client and client.supports_method 'textDocument/inlayHint' then
-        map('<leader>ch', function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-        end, 'Toggle Inlay Hints')
       end
     end
 

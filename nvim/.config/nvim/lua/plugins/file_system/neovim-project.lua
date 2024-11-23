@@ -29,9 +29,9 @@ return {
     },
   },
   keys = {
-    { '<leader>z.', '<cmd>NeovimProjectLoadRecent<cr>', desc = 'Project - Load Last Project' },
-    { '<leader>zp', '<cmd>Telescope neovim-project history<cr>', desc = 'Project - Load Project from History' },
-    { '<leader>zP', '<cmd>Telescope neovim-project discover<cr>', desc = 'Project - Load Project from Discovery' },
+    { '<leader>,.', '<cmd>NeovimProjectLoadRecent<cr>', desc = 'Project - Load Last Project' },
+    { '<leader>,p', '<cmd>Telescope neovim-project history<cr>', desc = 'Project - Load Project from History' },
+    { '<leader>,P', '<cmd>Telescope neovim-project discover<cr>', desc = 'Project - Load Project from Discovery' },
   },
   init = function()
     -- enable saving the state of plugins in the session

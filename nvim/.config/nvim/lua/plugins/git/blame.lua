@@ -17,7 +17,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>G', '<cmd>BlameToggle<cr>' },
+      { '<leader>G', '<cmd>BlameToggle<cr>', desc = 'Blame - Toggle' },
     },
   },
 }

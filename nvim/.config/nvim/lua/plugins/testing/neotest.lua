@@ -39,7 +39,7 @@ return {
     vim.keymap.set('n', '<leader>ta', function()
       require('neotest').run.attach()
     end, { desc = 'NeoTest: [A]ttach to the test' })
-    vim.keymap.set('n', '<leader>tS', function()
+    vim.keymap.set('n', '<leader>ts', function()
       require('neotest').summary.toggle()
     end, { desc = 'NeoTest: Display [S]ummary of tests' })
     vim.keymap.set('n', '<leader>to', function()
