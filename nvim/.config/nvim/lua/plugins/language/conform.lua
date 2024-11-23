@@ -17,7 +17,7 @@ return {
       desc = 'Buffer - Format (Conform)',
     },
     {
-      '<leader>zF',
+      '<leader>zf',
       '<Cmd>ConformInfo<CR>',
       desc = 'Conform - Show [F]ormatter Info',
     },

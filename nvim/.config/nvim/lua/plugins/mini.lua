@@ -46,7 +46,7 @@ return { -- Collection of various small independent plugins/modules
       },
     }
     vim.keymap.set('n', '<leader>zm', MiniMap.toggle, { desc = 'Minimap - Toggle' })
-    vim.keymap.set('n', '<leader>z<tab>', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
+    vim.keymap.set('n', '<leader>zM', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
     -- -- Simple and easy statusline.
     -- --  You could remove this setup call if you don't like it,

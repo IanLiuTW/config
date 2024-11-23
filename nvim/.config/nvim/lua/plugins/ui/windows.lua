@@ -5,10 +5,10 @@ return {
     'anuvyklack/animation.nvim',
   },
   keys = {
-    { '<A-\\>', '<Cmd>WindowsMaximize<CR>' , desc = 'Toggle Maximize Window'},
-    { '<A-->', '<Cmd>WindowsMaximizeVertically<CR>', desc = 'Toggle Maximize Window Vertically' },
-    { '<A-=>', '<Cmd>WindowsMaximizeHorizontally<CR>', desc = 'Toggle Maximize Window Horiziontally' },
-    { '<A-0>', '<Cmd>WindowsEqualize<CR>', desc = 'Equalize Windows Size' },
+    { '<C-W><Space>', '<Cmd>WindowsMaximize<CR>',             desc = 'Toggle Maximize Window'},
+    { '<C-W>_',       '<Cmd>WindowsMaximizeVertically<CR>',   desc = 'Toggle Maximize Window Vertically' },
+    { '<C-W>|',       '<Cmd>WindowsMaximizeHorizontally<CR>', desc = 'Toggle Maximize Window Horiziontally' },
+    { '<C-W>=',       '<Cmd>WindowsEqualize<CR>',             desc = 'Equalize Windows Size' },
   },
   config = function()
     vim.o.winwidth = 10
