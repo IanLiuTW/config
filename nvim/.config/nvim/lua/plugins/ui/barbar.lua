@@ -24,7 +24,7 @@ return {
     { '<leader>9', '<Cmd>BufferGoto 9<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 9' },
     { '<leader>0', '<Cmd>BufferLast<CR>',   noremap = true, silent = true, desc = 'Buffer - Last' },
 
-    { '<leader>bp', '<Cmd>BufferPin<CR>', noremap = true, silent = true, desc = 'Buffer - Pin' },
+    { '<leader>B', '<Cmd>BufferPin<CR>', noremap = true, silent = true, desc = 'Buffer - Pin' },
     { '<leader>bb', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
     { '<leader>bo', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', noremap = true, silent = true, desc = 'Buffer - Close All But Current or Pinned' },
     { '<leader>br', '<Cmd>BufferCloseBuffersRight<CR>', noremap = true, silent = true, desc = 'Buffer - Close the Buffers on the Right' },

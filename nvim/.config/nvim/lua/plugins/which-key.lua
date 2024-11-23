@@ -52,9 +52,12 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = '[`] Lazy - Open Menu' },
         { '<leader>,l',      '<cmd>Mason<CR>',                            desc = '[L] Mason - Open Menu' },
         -- Buffer keybindings
-        { '<leader>B',  '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
-        { '<leader>bd', '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
-        { '<C-BS>',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
+        { '<leader>bn',     '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
+        { '<leader>bd',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
+        { '<leader>bD',     '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
+        { '<leader><CR>',   '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
+        { '<leader><BS>',   '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
+        { '<leader><S-BS>', '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
         -- Window keybindings
         -- { '',     '<Cmd>sp<CR>', noremap = true, silent = true, desc = 'Pane Horizontal Split' },
         -- { '',     '<Cmd>vs<CR>', noremap = true, silent = true, desc = 'Pane Vertical Split' },
