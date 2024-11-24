@@ -16,9 +16,6 @@ return {
     },
     { 'Bilal2453/luvit-meta', lazy = true },
   },
-  opts = {
-    inlay_hints = { enabled = true },
-  },
   config = function()
     -- LSP Attach configuration
     local function setup_lsp_keymaps(event)
@@ -43,6 +40,7 @@ return {
       map('<Leader>,L', '<cmd>LspInfo<cr>', 'LSP Info')
       -- Inlay hints toggle
       if client and client.supports_method 'textDocument/inlayHint' then
+        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
         map('<leader>,h', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
         end, 'Toggle Inlay Hints')
@@ -113,6 +111,12 @@ return {
           ['rust-analyzer'] = {
             checkOnSave = { command = 'clippy' },
             diagnostics = { experimental = { enable = true } },
+            inlayHints = {
+              enable = true,
+              showParameterNames = true,
+              parameterHintsPrefix = '<- ',
+              otherHintsPrefix = '=> ',
+            },
           },
         },
       },
@@ -123,6 +127,14 @@ return {
             diagnostics = { disable = { 'missing-fields' } },
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
+            doc = {
+              privateName = { '^_' },
+            },
+            hint = {
+              enable = true,
+              setType = false,
+              paramType = true,
+            },
           },
         },
       },

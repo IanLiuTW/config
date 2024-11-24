@@ -9,10 +9,10 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   keys = {
-    { '[b', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },
-    { ']b', '<Cmd>BufferNext<CR>', noremap = true, silent = true, desc = 'Buffer - Next' },
-    { '[B', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move Privious' },
-    { ']B', '<Cmd>BufferMoveNext<CR>', noremap = true, silent = true, desc = 'Buffer - Move Next' },
+    { '<leader>[', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },
+    { '<leader>]', '<Cmd>BufferNext<CR>', noremap = true, silent = true, desc = 'Buffer - Next' },
+    { '<leader>{', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move Privious' },
+    { '<leader>}', '<Cmd>BufferMoveNext<CR>', noremap = true, silent = true, desc = 'Buffer - Move Next' },
     { '<leader>1', '<Cmd>BufferGoto 1<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 1' },
     { '<leader>2', '<Cmd>BufferGoto 2<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 2' },
     { '<leader>3', '<Cmd>BufferGoto 3<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 3' },
@@ -53,6 +53,8 @@ return {
         deleted = { enabled = true, icon = '-' },
       },
       separator = { left = '█', right = '' },
+      modified = { button = '󱗽' },
+      pinned = { button = '', filename = true },
       current = { buffer_index = false },
       inactive = { button = '󰅚' },
     },

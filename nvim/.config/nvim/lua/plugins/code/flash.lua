@@ -37,6 +37,9 @@ return {
   keys = {
     { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash - Jump' },
     { 'S', mode = { 'o' }, function() require('flash').remote() end, desc = 'Flash - Remote Action' },
+    { '<leader>x', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash - Treesitter' },
+    { '<leader>X', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Jump' },
+
     { '<leader>Q', mode = { 'n', 'x' }, function() require('flash').jump {
       matcher = function(win)
         return vim.tbl_map(function(diag)
@@ -75,8 +78,6 @@ return {
         state:restore()
       end,
     } end, desc = 'Flash - Remote Code Action' },
-    { '<leader>x', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash - Treesitter' },
-    { '<leader>X', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Jump' },
     { '<leader>:', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
     { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Flash - Toggle Flash Search' },
   },

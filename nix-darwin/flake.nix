@@ -127,6 +127,7 @@
               "SourceCodePro"
               "Terminus"
               "BigBlueTerminal"
+              "FiraCode"
             ];
           })
         ];
