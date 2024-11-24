@@ -122,12 +122,11 @@
               "CascadiaCode"
               "Hack"
               "CommitMono"
+              "Monofur"
               "CodeNewRoman"
-              "Meslo"
               "SourceCodePro"
               "Terminus"
               "BigBlueTerminal"
-              "FiraCode"
             ];
           })
         ];
