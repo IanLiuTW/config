@@ -15,19 +15,6 @@ return {
       -- markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
     }
-    lint.linters.ruff = {
-      cmd = 'ruff',
-      args = {
-        'check',
-        '--no-fix', -- Don't auto-fix as that's handled by conform.nvim
-        '--output-format=json',
-        '-', -- Read from stdin
-        '--stdin-filename',
-        function(params)
-          return params.filename
-        end,
-      },
-    }
 
     -- Configure codespell to show as hints rather than warnings
     lint.linters.codespell = require('lint.util').wrap(lint.linters.codespell, function(diagnostic)

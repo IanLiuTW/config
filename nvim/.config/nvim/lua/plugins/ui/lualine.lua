@@ -35,8 +35,32 @@ return {
           { 'encoding' },
           { 'fileformat' },
           { 'fancy_filetype', ts_icon = '' },
-          { 'fancy_lsp_servers' },
-          {
+          { -- LSP Servers
+            function()
+              local buf_clients = vim.lsp.get_clients { bufnr = 0 }
+              if buf_clients == nil then
+                return ''
+              end
+
+              local null_ls_installed, null_ls = pcall(require, 'null-ls')
+              local buf_client_names = {}
+              for _, client in pairs(buf_clients) do
+                if client.name == 'null-ls' then
+                  if null_ls_installed then
+                    for _, source in ipairs(null_ls.get_source { filetype = vim.bo.filetype }) do
+                      table.insert(buf_client_names, source.name)
+                    end
+                  end
+                elseif client.name == 'copilot' then
+                  -- Skip copilot
+                else
+                  table.insert(buf_client_names, client.name)
+                end
+              end
+              return '󰌘 ' .. table.concat(buf_client_names, ' ')
+            end,
+          },
+          { -- LSP Formatter
             function()
               -- Check if 'conform' is available
               local status, conform = pcall(require, 'conform')
@@ -52,7 +76,11 @@ return {
                 local formatterNames = {}
 
                 for _, formatter in ipairs(formatters) do
-                  table.insert(formatterNames, formatter)
+                  if formatter == 'codespell' then
+                    -- Skip codespell
+                  else
+                    table.insert(formatterNames, formatter)
+                  end
                 end
 
                 return '󰷈 ' .. table.concat(formatterNames, ' ')

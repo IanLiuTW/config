@@ -76,7 +76,7 @@ return { -- Autocompletion
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<CR>'] = cmp.mapping.confirm { select = true },
         ['<C-y>'] = cmp.mapping.confirm { select = true },
-        ['<TAB>'] = cmp.mapping.complete(),
+        -- ['<C-S>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),

@@ -66,8 +66,8 @@ return {
         repomap = '<C-CR>R',
       },
       sidebar = {
-        apply_all = '<C-CR>',
-        apply_cursor = '<CR>',
+        apply_all = 'A',
+        apply_cursor = 'a',
         switch_windows = '<TAB>',
         reverse_switch_windows = '<S-TAB>',
       },
