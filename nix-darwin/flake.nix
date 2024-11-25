@@ -50,7 +50,7 @@
           lua5_1
           lua51Packages.luarocks
           nodejs_23
-          python311
+          python312
 
           neovim
           starship
@@ -68,7 +68,6 @@
 
           raycast
           obsidian
-          spotify
           discord
         ];
 
@@ -99,6 +98,8 @@
             "element"
             "microsoft-teams"
             "zoom"
+            "tidal"
+            "spotify"
             "tunnelblick"
             "citrix-workspace"
           ];

@@ -132,7 +132,19 @@ return {
           },
         },
       },
-      extensions = { 'oil', 'fugitive', 'fzf', 'lazy', 'man', 'mason', 'neo-tree', 'overseer', 'quickfix', 'symbols-outline', 'toggleterm', 'trouble' },
+      extensions = {
+        'lazy',
+        'mason',
+        'fzf',
+        'man',
+        'neo-tree',
+        'oil',
+        'overseer',
+        'quickfix',
+        'symbols-outline',
+        'toggleterm',
+        'trouble',
+      },
     }
   end,
 }
