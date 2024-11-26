@@ -28,9 +28,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = {
-        'ruff_format', -- Run Ruff formatter
-        'ruff_fix',
-        -- 'ruff_organize_imports',
+        'black',
+        'isort',
       },
       rust = {
         'rustfmt',

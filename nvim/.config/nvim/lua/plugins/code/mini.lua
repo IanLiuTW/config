@@ -28,6 +28,14 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    -- Introduce new operators - https://github.com/echasnovski/mini.operators
+    -- - g= - evaluate
+    -- - gx - exchange
+    -- - gm - multiply
+    -- - gr - replace
+    -- - gs - sort
+    require('mini.operators').setup{}
+
     -- Better alignment functionality - https://github.com/echasnovski/mini.align
     require('mini.align').setup {
       mappings = {

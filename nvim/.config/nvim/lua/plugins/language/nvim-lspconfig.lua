@@ -76,36 +76,20 @@ return {
 
     -- Server configurations
     local servers = {
-      pyright = {
-        settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              typeCheckingMode = 'basic',
-              diagnosticMode = 'workspace',
-              -- Exclude files that will be handled by ruff
-              ignore = { '**/node_modules', '**/__pycache__' },
-            },
-          },
-        },
-      },
-      ruff = {
-        init_options = {
-          settings = {
-            organizeImports = true,
-            showSyntaxErrors = false,
-            lint = {
-              enable = true,
-            },
-          },
-        },
-      },
+      -- pyright = {
+      --   settings = {
+      --     pyright = {
+      --       -- Using Ruff's import organizer
+      --       disableOrganizeImports = true,
+      --     },
+      --     python = {
+      --       analysis = {
+      --         -- Ignore all files for analysis to exclusively use Ruff for linting
+      --         ignore = { '*' },
+      --       },
+      --     },
+      --   },
+      -- },
       rust_analyzer = {
         settings = {
           ['rust-analyzer'] = {
@@ -174,7 +158,6 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua',
       'prettier',
-      'pyright',
     })
 
     require('mason-tool-installer').setup {

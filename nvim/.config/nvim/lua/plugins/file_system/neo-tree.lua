@@ -17,7 +17,7 @@ return {
         winbar = true,
         statusline = false,
       },
-      close_if_last_window = true,
+      close_if_last_window = false,
       use_libuv_file_watcher = true,
       filesystem = {
         window = {
@@ -27,8 +27,6 @@ return {
             ['<C-v>'] = 'open_vsplit',
             ['<C-t>'] = 'open_tabnew',
             ['<cr>'] = 'open',
-            ['<C-l>'] = 'open',
-            ['<C-h>'] = 'close_node',
             ['l'] = 'open',
             ['h'] = 'close_node',
             ['<space>'] = 'toggle_node',

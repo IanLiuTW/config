@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
 return {
   { -- highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':tsupdate',
+    build = ':TSUpdate',
     config = function()
       -- [[ configure treesitter ]] see `:help nvim-treesitter`
       require('nvim-treesitter.install').prefer_git = true

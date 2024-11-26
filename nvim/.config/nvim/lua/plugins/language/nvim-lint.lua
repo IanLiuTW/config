@@ -10,7 +10,7 @@ return {
 
     -- Configure linters by filetype
     lint.linters_by_ft = {
-      python = { 'ruff' },
+      python = { 'flake8' },
       json = { 'jsonlint' },
       -- markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
