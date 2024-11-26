@@ -6,7 +6,7 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+    require('mini.ai').setup { n_lines = 80 }
 
     -- Add/delete/replace surroundings - https://github.com/echasnovski/mini.surround
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -34,7 +34,7 @@ return { -- Collection of various small independent plugins/modules
     -- - gm - multiply
     -- - gr - replace
     -- - gs - sort
-    require('mini.operators').setup{}
+    require('mini.operators').setup {}
 
     -- Better alignment functionality - https://github.com/echasnovski/mini.align
     require('mini.align').setup {

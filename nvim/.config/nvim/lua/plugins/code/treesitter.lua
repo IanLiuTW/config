@@ -1,10 +1,3 @@
-local hocon_group = vim.api.nvim_create_augroup('treesitter-hocon', { clear = true })
-vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
-  group = hocon_group,
-  pattern = '*.conf',
-  command = 'set ft=hocon',
-})
-
 return {
   { -- highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',

@@ -2,8 +2,8 @@
 --  NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -57,7 +57,8 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
   end,
 })
--- [[ Custom commands ]]
+
+-- [[ Tools Autocommands ]]
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
@@ -70,6 +71,19 @@ vim.api.nvim_create_user_command('CopyPath', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+
+-- [[ FileType Autocommands]]
+local filetype_group = vim.api.nvim_create_augroup('filetype', { clear = true })
+vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
+  group = filetype_group,
+  pattern = '*.conf',
+  command = 'set ft=hocon',
+})
+vim.api.nvim_create_autocmd('FileType', {
+  group = filetype_group,
+  pattern = 'python',
+  command = 'setlocal shiftwidth=4 tabstop=4',
+})
 
 -- [[ Configure diagnostic symbols ]]
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
