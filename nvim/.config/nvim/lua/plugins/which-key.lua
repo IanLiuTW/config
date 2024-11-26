@@ -49,8 +49,9 @@ return { -- Useful plugin to show you pending keybinds.
         -- Autocommands keybindings
         { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = '[/] Copy Path' },
         -- Plugin keybindings
-        { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = '[`] Lazy - Open Menu' },
-        { '<leader>,l',      '<cmd>Mason<CR>',                            desc = '[L] Mason - Open Menu' },
+        { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = 'Lazy - Open Menu' },
+        { '<leader>,u',      '<Cmd>Lazy update<CR>',                      desc = 'Lazy - Update Plugins' },
+        { '<leader>,l',      '<cmd>Mason<CR>',                            desc = 'Mason - Open Menu' },
         -- Buffer keybindings
         { '<leader>bn',     '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
         { '<leader>bd',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },

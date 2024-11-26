@@ -40,7 +40,20 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
--- [[ Basic Autocommands ]] See `:help lua-guide-autocommands`
+-- [[ FileType Autocommands]]
+local filetype_group = vim.api.nvim_create_augroup('filetype', { clear = true })
+vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
+  group = filetype_group,
+  pattern = '*.conf',
+  command = 'set ft=hocon',
+})
+-- vim.api.nvim_create_autocmd('FileType', { -- Using guess-indent instead
+--   group = filetype_group,
+--   pattern = 'python',
+--   command = 'setlocal shiftwidth=4 tabstop=4',
+-- })
+
+-- [[ Tool Autocommands ]] See `:help lua-guide-autocommands`
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -58,7 +71,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- [[ Tools Autocommands ]]
+-- [[ Tool Commands ]]
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
@@ -71,19 +84,6 @@ vim.api.nvim_create_user_command('CopyPath', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
-
--- [[ FileType Autocommands]]
-local filetype_group = vim.api.nvim_create_augroup('filetype', { clear = true })
-vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
-  group = filetype_group,
-  pattern = '*.conf',
-  command = 'set ft=hocon',
-})
-vim.api.nvim_create_autocmd('FileType', {
-  group = filetype_group,
-  pattern = 'python',
-  command = 'setlocal shiftwidth=4 tabstop=4',
-})
 
 -- [[ Configure diagnostic symbols ]]
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
