@@ -7,13 +7,13 @@ local function alpha_dashboard_layout()
   ---@param opts table?
   ---@return table
 
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#484a72' }) -- Indigo
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#494d87' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#48519c' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#4654b2' }) -- Medium Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#4258c8' }) -- Light Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#3b5bde' }) -- Very Light Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#fa8ea7' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' }) -- Indigo
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' }) -- Deep Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' }) -- Deep Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' }) -- Medium Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' }) -- Light Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' }) -- Very Light Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#fa54a7' })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonVal', { fg = '#4b6eeb', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonKey', { fg = '#d1a428', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardMRUTitle', { fg = '#0dd1b0', bold = true })
@@ -214,7 +214,7 @@ return {
       callback = function()
         local stats = require('lazy').stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        vim.api.nvim_set_hl(0, 'LoadingTimeResult', { fg = '#edd691' })
+        vim.api.nvim_set_hl(0, 'LoadingTimeResult', { fg = '#cc821a' })
         local result = {
           type = 'text',
           val = '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms',

@@ -8,12 +8,12 @@ return {
   },
   keys = {
     {
-      '<leader>d/',
+      '<leader>d\\',
       '<Cmd>CccPick<CR>',
       desc = 'Color Code - Pick Color Code',
     },
     {
-      '<leader>d?',
+      '<leader>d|',
       '<Cmd>CccHighlighterToggle<CR>',
       desc = 'Color Code - Toggle Highlighter',
     },
