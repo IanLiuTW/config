@@ -40,7 +40,7 @@ return {
     vim.keymap.set('x', '<leader>dg', ':Refactor extract_to_file ', { desc = 'Refactoring - Extract to File'})
 
     require('telescope').load_extension 'refactoring'
-    vim.keymap.set({ 'n', 'x' }, '<leader>dc', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>d<space>', function()
       require('telescope').extensions.refactoring.refactors()
     end, { desc = 'Refactoring - Search Refactors'})
 
@@ -52,7 +52,7 @@ return {
     vim.keymap.set({ 'x', 'n' }, '<leader>dP', function()
       require('refactoring').debug.print_var {}
     end, { desc = 'Refactoring - Print Variable'})
-    vim.keymap.set('n', '<leader>dC', function()
+    vim.keymap.set('n', '<leader>d<bs>', function()
       require('refactoring').debug.cleanup {}
     end, { desc = 'Refactoring - Cleanup'})
   end,

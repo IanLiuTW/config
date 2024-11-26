@@ -4,6 +4,8 @@ return {
   opts = {
     signcolumn = true,
     numhl = true,
+    linehl = false,
+    word_diff = false,
     signs = {
       add = { text = '┃' },
       change = { text = '┃' },

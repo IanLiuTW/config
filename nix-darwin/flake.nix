@@ -130,6 +130,7 @@
               "BigBlueTerminal"
             ];
           })
+          victor-mono
         ];
         system.activationScripts.applications.text =
           let
