@@ -28,7 +28,7 @@ vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.cursorline = false -- Show which line your cursor is on
 vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
-vim.opt.spellfile = vim.fn.expand '~/.nvim-spellfile.add'
+vim.opt.spellfile = vim.fn.expand '~/.config/nvim/spell/en.utf-8.add'
 vim.opt.guicursor = {
   'n:block-blinkwait100-blinkoff500-blinkon500',
   'i:ver25-blinkwait100-blinkoff500-blinkon500',
