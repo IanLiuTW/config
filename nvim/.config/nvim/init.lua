@@ -97,9 +97,10 @@ vim.diagnostic.config {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,
   },
-  signs = {
-    severity = { min = vim.diagnostic.severity.INFO },
-  },
+  signs = false,
+  -- signs = {
+  --   severity = { min = vim.diagnostic.severity.INFO },
+  -- },
 }
 
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

@@ -90,6 +90,15 @@ return {
       --     },
       --   },
       -- },
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = 'standard',
+            },
+          },
+        },
+      },
       rust_analyzer = {
         settings = {
           ['rust-analyzer'] = {

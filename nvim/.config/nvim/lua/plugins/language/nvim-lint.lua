@@ -7,14 +7,16 @@ return {
   },
   config = function()
     local lint = require 'lint'
-
-    -- Configure linters by filetype
     lint.linters_by_ft = {
       python = { 'flake8' },
       json = { 'jsonlint' },
-      -- markdown = { 'markdownlint' },
+      markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
     }
+
+    table.insert(lint.linters.markdownlint.args, '--disable')
+    table.insert(lint.linters.markdownlint.args, 'MD013')
+    table.insert(lint.linters.flake8.args, '--ignore=E501,W503')
 
     -- Configure codespell to show as hints rather than warnings
     lint.linters.codespell = require('lint.util').wrap(lint.linters.codespell, function(diagnostic)
