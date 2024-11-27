@@ -71,9 +71,6 @@ return {
       end
     end
 
-    -- Set up LSP servers
-    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
-
     -- Server configurations
     local servers = {
       -- pyright = {
@@ -168,14 +165,13 @@ return {
       'stylua',
       'prettier',
     })
-
     require('mason-tool-installer').setup {
       ensure_installed = ensure_installed,
       auto_update = true,
       run_on_start = true,
     }
-
     -- Configure LSP servers
+    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
