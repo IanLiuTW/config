@@ -50,7 +50,7 @@ return {
 
     windows = {
       autocomplete = {
-        border = 'none',
+        border = 'shadow',
         draw = {
           columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 1 } },
         },
@@ -58,8 +58,10 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
-        border = 'rounded',
+        border = 'shadow',
         min_width = 20,
+        max_width = 45, -- smaller, due to https://github.com/Saghen/blink.cmp/issues/194
+        max_height = 20,
       },
     },
 
@@ -76,7 +78,7 @@ return {
       providers = {
         snippets = {
           opts = {
-            search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+            search_paths = { vim.fn.stdpath 'config' .. '/snippets' },
           },
         },
         path = {
