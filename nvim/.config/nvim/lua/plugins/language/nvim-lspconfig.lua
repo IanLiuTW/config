@@ -10,69 +10,15 @@ return {
       ft = 'lua',
       opts = {
         library = {
-          { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
         },
       },
     },
     { 'Bilal2453/luvit-meta', lazy = true },
+    { 'saghen/blink.cmp' },
   },
-  config = function()
-    -- LSP Attach configuration
-    local function setup_lsp_keymaps(event)
-      local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-      local map = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-      end
-      -- Navigation
-      map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-      map('<leader>dd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
-      map('<leader>dD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-      map('<leader>di', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
-      -- Search and References
-      map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
-      map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
-      map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
-      -- Code Actions and Help
-      map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
-      map('S', vim.lsp.buf.signature_help, 'Signature Help')
-      -- Information
-      map('<Leader>,L', '<cmd>LspInfo<cr>', 'LSP Info')
-      -- Inlay hints toggle
-      if client and client.supports_method 'textDocument/inlayHint' then
-        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-        map('<leader>,h', function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-        end, 'Toggle Inlay Hints')
-      end
-
-      -- Setup document highlighting
-      if client and client.supports_method 'textDocument/documentHighlight' then
-        local highlight_group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
-        -- Document highlight events
-        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-          buffer = event.buf,
-          group = highlight_group,
-          callback = vim.lsp.buf.document_highlight,
-        })
-        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-          buffer = event.buf,
-          group = highlight_group,
-          callback = vim.lsp.buf.clear_references,
-        })
-        -- Cleanup on LSP detach
-        vim.api.nvim_create_autocmd('LspDetach', {
-          buffer = event.buf,
-          callback = function()
-            vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds { group = highlight_group, buffer = event.buf }
-          end,
-        })
-      end
-    end
-
-    -- Server configurations
-    local servers = {
+  opts = {
+    servers = {
       -- pyright = {
       --   settings = {
       --     pyright = {
@@ -128,6 +74,7 @@ return {
           },
         },
       },
+      marksman = {},
       nil_ls = {
         settings = {
           ['nil'] = {
@@ -146,7 +93,71 @@ return {
           },
         },
       },
-    }
+    },
+  },
+  config = function(_, opts)
+    -- LSP Attach configuration
+    local function setup_lsp_keymaps(event)
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+      local map = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+      end
+      -- Navigation
+      map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
+      map('<leader>dd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
+      map('<leader>dD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
+      map('<leader>di', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
+      -- Search and References
+      map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
+      map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
+      map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
+      -- Code Actions and Help
+      map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
+      map('S', vim.lsp.buf.signature_help, 'Signature Help')
+      -- Information
+      map('<Leader>,L', '<cmd>LspInfo<cr>', 'LSP Info')
+      -- Inlay hints toggle
+      if client and client.supports_method 'textDocument/inlayHint' then
+        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+        map('<leader>,h', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+        end, 'Toggle Inlay Hints')
+      end
+
+      -- Setup document highlighting
+      if client and client.supports_method 'textDocument/documentHighlight' then
+        local highlight_group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
+        -- Document highlight events
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          buffer = event.buf,
+          group = highlight_group,
+          callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+          buffer = event.buf,
+          group = highlight_group,
+          callback = vim.lsp.buf.clear_references,
+        })
+        -- Cleanup on LSP detach
+        vim.api.nvim_create_autocmd('LspDetach', {
+          buffer = event.buf,
+          callback = function()
+            vim.lsp.buf.clear_references()
+            vim.api.nvim_clear_autocmds { group = highlight_group, buffer = event.buf }
+          end,
+        })
+      end
+    end
+
+    -- -- Set up LSP servers
+    -- local lspconfig = require 'lspconfig'
+    -- for server, config in pairs(opts.servers) do
+    --   -- passing config.capabilities to blink.cmp merges with the capabilities in your
+    --   -- `opts[server].capabilities, if you've defined it
+    --   config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+    --   lspconfig[server].setup(config)
+    -- end
 
     -- Mason setup
     require('mason').setup {
@@ -158,9 +169,8 @@ return {
         },
       },
     }
-
     -- Ensure tools are installed
-    local ensure_installed = vim.tbl_keys(servers)
+    local ensure_installed = vim.tbl_keys(opts.servers)
     vim.list_extend(ensure_installed, {
       'stylua',
       'prettier',
@@ -170,17 +180,15 @@ return {
       auto_update = true,
       run_on_start = true,
     }
+
     -- Configure LSP servers
-    local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
-    require('mason-lspconfig').setup {
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    local lspconfig = require 'lspconfig'
+    for server, config in pairs(opts.servers) do
+      -- passing config.capabilities to blink.cmp merges with the capabilities in your
+      -- `opts[server].capabilities, if you've defined it
+      config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+      lspconfig[server].setup(config)
+    end
 
     -- Set up LSP attach event
     vim.api.nvim_create_autocmd('LspAttach', {
