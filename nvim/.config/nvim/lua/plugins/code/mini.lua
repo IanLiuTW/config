@@ -56,6 +56,10 @@ return { -- Collection of various small independent plugins/modules
     vim.keymap.set('n', '<leader>,m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
     vim.keymap.set('n', '<leader>,M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
+    require('mini.pairs').setup {}
+
+    -- require('mini.indentscope').setup {}
+
     -- -- Simple and easy statusline.
     -- --  You could remove this setup call if you don't like it,
     -- --  and try some other statusline plugin

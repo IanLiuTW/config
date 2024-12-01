@@ -29,6 +29,8 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     python312
+    cargo-nextest
+    aoc-cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

@@ -46,7 +46,7 @@ return {
         settings = {
           ['rust-analyzer'] = {
             checkOnSave = { command = 'clippy' },
-            diagnostics = { experimental = { enable = true } },
+            diagnostics = { experimental = { enable = false } },
             inlayHints = {
               enable = true,
               showParameterNames = true,

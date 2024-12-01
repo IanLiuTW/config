@@ -1,6 +1,6 @@
 return { -- Add indentation guides even on blank lines
   'lukas-reineke/indent-blankline.nvim',
-  -- Enable `lukas-reineke/indent-blankline.nvim`
+  main = 'ibl',
   -- See `:help ibl`
   dependencies = {
     'HiPhish/rainbow-delimiters.nvim',
@@ -30,7 +30,12 @@ return { -- Add indentation guides even on blank lines
     end)
 
     vim.g.rainbow_delimiters = { highlight = highlight }
-    require('ibl').setup { scope = { highlight = highlight } }
+    require('ibl').setup {
+      scope = { highlight = highlight },
+      indent = {
+        char = '┃',
+      },
+    }
 
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
   end,

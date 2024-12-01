@@ -23,7 +23,7 @@ vim.opt.timeoutlen = 200 -- Decrease mapped sequence wait time. Displays which-k
 vim.opt.splitright = true -- Configure how new splits should be opened
 vim.opt.splitbelow = true
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '»─', multispace = ' ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.cursorline = false -- Show which line your cursor is on
 vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
