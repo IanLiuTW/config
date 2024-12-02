@@ -51,7 +51,7 @@ return {
       nix = { 'nixpkgs_fmt' },
 
       -- Global formatters
-      ['*'] = { 'codespell' },
+      -- ['*'] = { 'codespell' },
       ['_'] = { 'trim_whitespace' },
     },
     -- Default formatting options

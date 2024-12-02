@@ -126,6 +126,16 @@ return {
       desc = 'Img-Clip: Paste Image',
     },
   },
+  config = function(_, opts)
+    require('avante').setup(opts)
+
+    vim.keymap.set('n', '<C-CR>g', function()
+      local prompt =
+        'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Be concise and only generate the commit messages. Do not include prompt details nor the results of git diff.'
+      local diffs = table.concat( vim.fn.systemlist 'git diff --cached', ' ')
+      vim.cmd(':AvanteAsk ' .. prompt .. ' The results of git diff: ' .. diffs)
+    end, { desc = 'avante: Generate git commit message (staged files)' })
+  end,
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make',
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
