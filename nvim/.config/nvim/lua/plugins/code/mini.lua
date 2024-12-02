@@ -53,8 +53,8 @@ return { -- Collection of various small independent plugins/modules
         map.gen_integration.diagnostic(),
       },
     }
-    vim.keymap.set('n', '<leader>,m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
-    vim.keymap.set('n', '<leader>,M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
+    vim.keymap.set('n', '<leader>m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
+    vim.keymap.set('n', '<leader>M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
     require('mini.pairs').setup {}
 

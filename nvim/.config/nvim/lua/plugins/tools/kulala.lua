@@ -1,6 +1,6 @@
 return {
   'mistweaverco/kulala.nvim',
-  opts = { default_view = 'headers_body' },
+  lazy = true,
   keys = {
     {
       '<leader>rk',
@@ -8,4 +8,5 @@ return {
       desc = 'Kulala - Open Scratchpad',
     },
   },
+  opts = { default_view = 'headers_body' },
 }
