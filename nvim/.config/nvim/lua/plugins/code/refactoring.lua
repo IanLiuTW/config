@@ -5,7 +5,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-telescope/telescope.nvim',
   },
-  lazy = false,
+  event = 'BufRead',
   config = function()
     require('refactoring').setup {
       prompt_func_return_type = {

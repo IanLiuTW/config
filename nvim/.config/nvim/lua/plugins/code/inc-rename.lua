@@ -1,6 +1,6 @@
 return {
   'smjonas/inc-rename.nvim',
-  envent = 'BufRead',
+  event = 'BufRead',
   keys = {
     {
       '<leader>dR',

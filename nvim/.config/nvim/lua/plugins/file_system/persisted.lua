@@ -12,8 +12,8 @@ return {
       allowed_dirs = {
         '~/config',
         '~/codebase',
-        '~/work',
-        '~/self',
+        '~/work/',
+        '~/self/',
       }, -- Table of dirs that the plugin will start and autoload from
       -- ignored_dirs = {
       --   { '~', exact = true },

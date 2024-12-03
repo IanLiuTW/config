@@ -1,5 +1,6 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
+  event = 'BufEnter',
   config = function()
     -- Better Around/Inside textobjects - https://github.com/echasnovski/mini.ai
     -- Examples:
@@ -56,7 +57,7 @@ return { -- Collection of various small independent plugins/modules
     vim.keymap.set('n', '<leader>m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
     vim.keymap.set('n', '<leader>M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
 
-    require('mini.pairs').setup {}
+    -- require('mini.pairs').setup {}
 
     -- require('mini.indentscope').setup {}
 

@@ -1,5 +1,6 @@
 return {
   'chrishrb/gx.nvim',
+  lazy=true,
   keys = { { 'g<CR>', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
   cmd = { 'Browse' },
   init = function()

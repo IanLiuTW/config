@@ -1,6 +1,6 @@
 return {
   'mizlan/iswap.nvim',
-  event = 'VeryLazy',
+  event = 'BufRead',
   keys = {
     { '<leader>dk', mode = 'n', ':ISwap<cr>', desc = 'ISwap - ISwap' },
     { '<leader>dj', mode = 'n', ':ISwapWith<cr>', desc = 'ISwap - ISwapWith' },

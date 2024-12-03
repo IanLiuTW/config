@@ -1,3 +1,7 @@
-return { 'kana/vim-textobj-entire', dependencies = {
-  'kana/vim-textobj-user',
-} }
+return {
+  'kana/vim-textobj-entire',
+  event = 'BufRead',
+  dependencies = {
+    'kana/vim-textobj-user',
+  },
+}
