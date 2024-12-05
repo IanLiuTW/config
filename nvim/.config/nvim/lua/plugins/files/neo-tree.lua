@@ -10,7 +10,7 @@ return {
     },
     cmd = 'Neotree',
     keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
+      { '\\', '<CMD>Neotree reveal<CR>', desc = 'NeoTree reveal' },
     },
     opts = {
       source_selector = {

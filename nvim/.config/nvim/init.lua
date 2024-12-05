@@ -126,7 +126,7 @@ require('lazy').setup({
     { import = 'plugins.ai' },
     { import = 'plugins.tools' },
     { import = 'plugins.code' },
-    { import = 'plugins.file_system' },
+    { import = 'plugins.files' },
     { import = 'plugins.git' },
     { import = 'plugins.language' },
     { import = 'plugins.terminal' },
@@ -134,11 +134,11 @@ require('lazy').setup({
     { import = 'plugins.ui' },
   },
   install = { colorscheme = { 'habamax' } },
-  checker = {
-    enabled = false,
-    notify = true,
-    frequency = 86400,
-  },
+  -- checker = {
+  --   enabled = true,
+  --   notify = true,
+  --   frequency = 86400,
+  -- },
   change_detection = {
     enabled = false,
     notify = false,

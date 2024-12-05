@@ -13,6 +13,7 @@ return {
       vim = 'indent',
       python = { 'indent' },
       git = '',
+      alpha = '',
     }
     require('ufo').setup {
       open_fold_hl_timeout = 150,

@@ -88,7 +88,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':fzf-tab:*' prefix ''
-zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
+zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
+zstyle ':fzf-tab:*' accept-line 'ctrl-y'
 zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' worker 0  # disable async loading for better performance
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
