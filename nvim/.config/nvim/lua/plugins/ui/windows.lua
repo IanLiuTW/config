@@ -4,6 +4,7 @@ return {
     'anuvyklack/middleclass',
     'anuvyklack/animation.nvim',
   },
+  lazy = true,
   keys = {
     { '<C-W><Space>', '<Cmd>WindowsMaximize<CR>',             desc = 'Toggle Maximize Window'},
     { '<C-W>_',       '<Cmd>WindowsMaximizeVertically<CR>',   desc = 'Toggle Maximize Window Vertically' },

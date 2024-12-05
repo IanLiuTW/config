@@ -1,6 +1,7 @@
 return {
   -- See `:help gitsigns` to understand what the configuration keys do
   'lewis6991/gitsigns.nvim',
+  event = 'BufRead',
   opts = {
     signcolumn = true,
     numhl = true,

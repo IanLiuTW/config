@@ -1,5 +1,6 @@
 return {
   'cameron-wags/rainbow_csv.nvim',
+  lazy = true,
   ft = {
     'csv',
     'tsv',
@@ -15,7 +16,11 @@ return {
     'RainbowDelimQuoted',
     'RainbowMultiDelim',
   },
-  config = function ()
+  keys = {
+    { '<leader>dc', '<cmd>RainbowAlign<CR>', desc = 'Rainbow CSV - Align' },
+    { '<leader>dC', '<cmd>RainbowDelim<CR>', desc = 'Rainbow CSV - Set Delimeter' },
+  },
+  config = function()
     vim.g.disable_rainbow_statusline = 1
     require('rainbow_csv').setup()
   end,

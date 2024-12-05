@@ -31,7 +31,7 @@ return {
         auto_install = true,
         highlight = {
           enable = true,
-          disable = { 'c', 'rust' },
+          disable = { 'c', 'rust', 'csv' },
           additional_vim_regex_highlighting = false,
         },
         indent = {
@@ -40,7 +40,7 @@ return {
         },
         incremental_selection = {
           enable = true,
-          disable = { 'http' },
+          disable = { 'http', 'markdown' },
           keymaps = {
             init_selection = '<CR>',
             node_incremental = '<CR>',

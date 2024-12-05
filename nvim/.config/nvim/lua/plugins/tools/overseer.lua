@@ -18,6 +18,7 @@ return {
       'OverseerClearCache',
     },
     keys = {
+      { '<leader>R', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart last task' },
       { '<leader>ro', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Task list' },
       { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run task' },
       { '<leader>rq', '<cmd>OverseerQuickAction<cr>', desc = 'Overseer - Action recent task' },
@@ -28,6 +29,39 @@ return {
       { '<leader>rs', '<cmd>OverseerSaveBundle<cr>', desc = 'Overseer - Save Bundle' },
       { '<leader>rl', '<cmd>OverseerLoadBundle<cr>', desc = 'Overseer - Load Bundle' },
       { '<leader>rd', '<cmd>OverseerDeleteBundle<cr>', desc = 'Overseer - Delete Bundle' },
+      {
+        '<leader>rz',
+        function() --Run shell scripts in the current directory
+          local files = require 'overseer.files'
+          return {
+            generator = function(opts, cb)
+              local scripts = vim.tbl_filter(function(filename)
+                return filename:match '%.sh$'
+              end, files.list_files(opts.dir))
+              local ret = {}
+              for _, filename in ipairs(scripts) do
+                table.insert(ret, {
+                  name = filename,
+                  params = {
+                    args = { optional = true, type = 'list', delimiter = ' ' },
+                  },
+                  builder = function(params)
+                    return {
+                      cmd = { files.join(opts.dir, filename) },
+                      args = params.args,
+                    }
+                  end,
+                })
+              end
+
+              cb(ret)
+            end,
+          }
+        end,
+        noremap = true,
+        silent = true,
+        desc = 'Overseer - Add shell scripts in cwd',
+      },
     },
     config = function()
       require('overseer').setup {
@@ -45,34 +79,6 @@ return {
           overseer.run_action(tasks[1], 'restart')
         end
       end, {})
-      vim.keymap.set('n', '<leader>R', '<cmd>OverseerRestartLast<cr>', { noremap = true, silent = true, desc = 'Overseer - Restart last task' })
-      vim.keymap.set('n', '<leader>rz', function() --Run shell scripts in the current directory
-        local files = require 'overseer.files'
-        return {
-          generator = function(opts, cb)
-            local scripts = vim.tbl_filter(function(filename)
-              return filename:match '%.sh$'
-            end, files.list_files(opts.dir))
-            local ret = {}
-            for _, filename in ipairs(scripts) do
-              table.insert(ret, {
-                name = filename,
-                params = {
-                  args = { optional = true, type = 'list', delimiter = ' ' },
-                },
-                builder = function(params)
-                  return {
-                    cmd = { files.join(opts.dir, filename) },
-                    args = params.args,
-                  }
-                end,
-              })
-            end
-
-            cb(ret)
-          end,
-        }
-      end, { noremap = true, silent = true, desc = 'Overseer - Add shell scripts in cwd' })
     end,
   },
 }

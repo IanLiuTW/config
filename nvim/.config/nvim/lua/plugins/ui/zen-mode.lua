@@ -1,5 +1,6 @@
 return {
   'folke/zen-mode.nvim',
+  lazy = true,
   keys = {
     { '<leader>,z', '<cmd>ZenMode<CR>', desc = '[ ] Zen Mode' },
   },

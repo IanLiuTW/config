@@ -1,6 +1,6 @@
 return {
   'NeogitOrg/neogit',
-  event = 'BufEnter',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'sindrets/diffview.nvim',

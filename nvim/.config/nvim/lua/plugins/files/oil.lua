@@ -1,6 +1,7 @@
 return {
   {
     'stevearc/oil.nvim',
+    event = 'VeryLazy',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '-', '<CMD>Oil --float<CR>', desc = 'Open Oil Float' },

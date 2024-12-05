@@ -10,8 +10,8 @@ return {
     lint.linters_by_ft = {
       python = { 'flake8' },
       json = { 'jsonlint' },
-      markdown = { 'markdownlint' },
       yaml = { 'yamllint' },
+      -- markdown = { 'markdownlint' },
     }
 
     table.insert(lint.linters.markdownlint.args, '--disable')

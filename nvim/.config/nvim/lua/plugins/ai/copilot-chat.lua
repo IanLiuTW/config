@@ -1,11 +1,12 @@
 return {
   'CopilotC-Nvim/CopilotChat.nvim',
-  branch = 'canary',
+  event = 'BufEnter',
+  branch = 'main',
+  build = 'make tiktoken',
   dependencies = {
     'zbirenbaum/copilot.lua', -- zbirenbaum/copilot.lua or github/copilot.vim
-    'nvim-lua/plenary.nvim', -- for curl, log wrapper
+    { 'nvim-lua/plenary.nvim', branch = 'master' },
     'nvim-telescope/telescope.nvim',
-    'hrsh7th/nvim-cmp',
   },
   opts = {
     model = 'gpt-4o', -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
@@ -29,41 +30,50 @@ return {
     callback = nil, -- Callback to use when ask response is received
 
     mappings = {
+      complete = {
+        insert = '<Tab>',
+      },
       close = {
         normal = 'q',
-        insert = '<C-q>',
+        insert = '<C-c>',
       },
-      -- Reset the chat buffer
       reset = {
         normal = 'R',
         insert = '<C-r>',
       },
-      -- Submit the prompt to Copilot
       submit_prompt = {
         normal = '<CR>',
         insert = '<C-CR>',
       },
-      -- Accept the diff
       accept_diff = {
-        normal = '<A-Cr>',
-        insert = '<A-Cr>',
+        normal = '<C-y>',
+        insert = '<C-y>',
       },
-      -- Yank the diff in the response to register
+      toggle_sticky = {
+        detail = 'Makes line under cursor sticky or deletes sticky line.',
+        normal = 'gr',
+      },
+      jump_to_diff = {
+        normal = 'gj',
+      },
+      quickfix_diffs = {
+        normal = 'gq',
+      },
       yank_diff = {
         normal = 'gy',
-        register = '*',
+        register = '"',
       },
-      -- Show the diff
       show_diff = {
         normal = 'gd',
       },
-      -- Show the prompt
-      show_system_prompt = {
-        normal = 'gp',
+      show_info = {
+        normal = 'gi',
       },
-      -- Show the user selection
-      show_user_selection = {
-        normal = 'gs',
+      show_context = {
+        normal = 'gc',
+      },
+      show_help = {
+        normal = 'gh',
       },
     },
   },
@@ -223,16 +233,16 @@ return {
     -- Add which-key mappings
     local wk = require 'which-key'
     wk.add {
-      { '<A-a>', group = 'A[I]', mode = { 'n', 'x' } },
+      { '<C-CR>', group = 'A[I]', mode = { 'n', 'x' } },
     }
   end,
   keys = {
-    { '<A-a><Space>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Toggle CopilotChat (Buffer)' },
-    { '<A-a><Space>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Toggle CopilotChat (Visual)' },
-    { '<A-a>i', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Inline chat (Visual)' },
-    { '<A-a>i', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Inline chat (Buffer)' },
+    { '<C-CR><Space>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Toggle CopilotChat (Buffer)' },
+    { '<C-CR><Space>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Toggle CopilotChat (Visual)' },
+    { '<C-CR>i', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Inline chat (Buffer)' },
+    { '<C-CR>i', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Inline chat (Visual)' },
     {
-      '<A-a>q',
+      '<C-CR>q',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
@@ -243,7 +253,7 @@ return {
       desc = 'CopilotChat - Quick Chat (Visual)',
     },
     {
-      '<A-a>q',
+      '<C-CR>q',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
@@ -254,7 +264,7 @@ return {
       desc = 'CopilotChat - Quick Chat (Buffer)',
     },
     {
-      '<A-a>Q',
+      '<C-CR>Q',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
@@ -266,7 +276,7 @@ return {
     },
 
     {
-      '<A-a>h',
+      '<C-CR>h',
       function()
         local actions = require 'CopilotChat.actions'
         require('CopilotChat.integrations.telescope').pick(actions.help_actions())
@@ -274,7 +284,7 @@ return {
       desc = 'CopilotChat - Help actions',
     },
     {
-      '<A-a>a',
+      '<C-CR>a',
       function()
         local actions = require 'CopilotChat.actions'
         require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
@@ -282,7 +292,7 @@ return {
       desc = 'CopilotChat - Prompt actions',
     },
     {
-      '<A-a>a',
+      '<C-CR>a',
       function()
         require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions { selection = require('CopilotChat.select').visual })
       end,
@@ -290,22 +300,22 @@ return {
       desc = 'CopilotChat - Prompt actions',
     },
     -- Code related commands
-    { '<A-a>e', '<cmd>CopilotChatExplain<cr>', mode = 'x', desc = 'CopilotChat - Explain code' },
-    { '<A-a>v', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
-    { '<A-a>f', '<cmd>CopilotChatFix<cr>', mode = 'x', desc = 'CopilotChat - Fix code' },
-    { '<A-a>o', '<cmd>CopilotChatOptimize<cr>', mode = 'x', desc = 'CopilotChat - Optimize code' },
-    { '<A-a>d', '<cmd>CopilotChatDocs<cr>', mode = 'x', desc = 'CopilotChat - Generate documentation' },
-    { '<A-a>t', '<cmd>CopilotChatTests<cr>', mode = 'x', desc = 'CopilotChat - Generate tests' },
-    { '<A-a>r', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
-    { '<A-a>b', '<cmd>CopilotChatBetterNamings<cr>', mode = 'x', desc = 'CopilotChat - Generate Better Namings' },
+    { '<C-CR>e', '<cmd>CopilotChatExplain<cr>', mode = 'x', desc = 'CopilotChat - Explain code' },
+    { '<C-CR>v', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
+    { '<C-CR>f', '<cmd>CopilotChatFix<cr>', mode = 'x', desc = 'CopilotChat - Fix code' },
+    { '<C-CR>o', '<cmd>CopilotChatOptimize<cr>', mode = 'x', desc = 'CopilotChat - Optimize code' },
+    { '<C-CR>d', '<cmd>CopilotChatDocs<cr>', mode = 'x', desc = 'CopilotChat - Generate documentation' },
+    { '<C-CR>t', '<cmd>CopilotChatTests<cr>', mode = 'x', desc = 'CopilotChat - Generate tests' },
+    { '<C-CR>r', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
+    { '<C-CR>b', '<cmd>CopilotChatBetterNamings<cr>', mode = 'x', desc = 'CopilotChat - Generate Better Namings' },
 
-    { '<A-a>f', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
-    { '<A-a>g', '<cmd>CopilotChatCommitStaged<cr>', desc = 'CopilotChat - Generate commit message for staged changes' },
-    { '<A-a>G', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
-    { '<A-a>V', '<cmd>CopilotChatReviewClear<cr>', desc = 'CopilotChat - Review code clear highlight' },
+    { '<C-CR>f', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
+    { '<C-CR>g', '<cmd>CopilotChatCommitStaged<cr>', desc = 'CopilotChat - Generate commit message for staged changes' },
+    { '<C-CR>G', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
+    { '<C-CR>V', '<cmd>CopilotChatReviewClear<cr>', desc = 'CopilotChat - Review code clear highlight' },
 
-    { '<A-a><bs>', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
-    { '<A-a>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
-    { '<A-a>?', '<cmd>CopilotChatDebugInfo<cr>', desc = 'CopilotChat - Debug Info' },
+    { '<C-CR><bs>', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
+    { '<C-CR>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
+    { '<C-CR>?', '<cmd>CopilotChatDebugInfo<cr>', desc = 'CopilotChat - Debug Info' },
   },
 }
