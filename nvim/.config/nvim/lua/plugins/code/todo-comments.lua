@@ -13,7 +13,7 @@ return {
         alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' }, -- a set of other keywords that all map to this FIX keywords
         -- signs = false, -- configure signs for some keywords individually
       },
-      TODO = { icon = ' ', color = 'info' },
+      TODO = { icon = ' ', color = 'info', alt = { 'todo', 'unimplemented' } },
       HACK = { icon = ' ', color = 'warning' },
       WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
       PERF = { icon = ' ', alt = { 'OPTIM' } },
@@ -34,10 +34,13 @@ return {
       multiline_pattern = '^.', -- lua pattern to match the next multiline from the start of the matched keyword
       multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
       before = '', -- "fg" or "bg" or empty
-      keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+      keyword = 'bg', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
       after = 'fg', -- "fg" or "bg" or empty
-      pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-      comments_only = true, -- uses treesitter to match keywords in comments only
+      pattern = {
+        [[.*<(KEYWORDS)\s*:]],
+        [[.*<(KEYWORDS)\s*!\(]],
+      }, -- pattern or table of patterns, used for highlighting (vim regex)
+      comments_only = false, -- uses treesitter to match keywords in comments only
       max_line_len = 400, -- ignore lines longer than this
       exclude = {}, -- list of file types to exclude highlighting
     },
@@ -63,7 +66,7 @@ return {
       },
       -- regex that will be used to match keywords.
       -- don't replace the (KEYWORDS) placeholder
-      pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+      pattern = [[\b(KEYWORDS)(:|!\()]], -- ripgrep regex
       -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
     },
   },

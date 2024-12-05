@@ -1,6 +1,6 @@
 local spaces = require("hs.spaces") -- https://github.com/asmagill/hs._asm.spaces
 
--- Switch kitty
+-- [[Switch kitty]]
 hs.hotkey.bind({'control'}, 'space', function ()  -- hotkey config
   local BUNDLE_ID = 'net.kovidgoyal.kitty' -- more accurate to avoid mismatching on browser titles
 
@@ -56,13 +56,14 @@ hs.hotkey.bind({'control'}, 'space', function ()  -- hotkey config
   end
 end)
 
+-- [[Reverse Mouse Scroll]]
 reverse_mouse_scroll = hs.eventtap.new({hs.eventtap.event.types.scrollWheel}, function(event)
   -- detect if this is touchpad or mouse
   local isTrackpad = event:getProperty(hs.eventtap.event.properties.scrollWheelEventIsContinuous)
   if isTrackpad == 1 then
       return false -- trackpad: pass the event along
   end
-  
+
   event:setProperty(hs.eventtap.event.properties.scrollWheelEventDeltaAxis1,
       -event:getProperty(hs.eventtap.event.properties.scrollWheelEventDeltaAxis1))
   return false -- pass the event along
