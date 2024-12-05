@@ -31,28 +31,10 @@ return {
       use_nvim_cmp_as_default = true,
     },
 
-    -- completions = {
-    --   accept = {
-    --     auto_brackets = {
-    --       enabled = true,
-    --     },
-    --   },
-    --   documentation = {
-    --     auto_show = true,
-    --     auto_show_delay_ms = 200,
-    --   },
-    --   menu = {
-    --     draw = {
-    --       columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
-    --     },
-    --   },
-    -- },
-
-    windows = {
-      autocomplete = {
-        border = 'shadow',
-        draw = {
-          columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 1 } },
+    completion = {
+      accept = {
+        auto_brackets = {
+          enabled = true,
         },
       },
       documentation = {
@@ -63,11 +45,17 @@ return {
         max_width = 45, -- smaller, due to https://github.com/Saghen/blink.cmp/issues/194
         max_height = 20,
       },
+      menu = {
+        border = 'shadow',
+        draw = {
+          columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 1 } },
+        },
+      },
     },
 
-    -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-    -- adjusts spacing to ensure icons are aligned
-    nerd_font_variant = 'normal',
+    signature = {
+      enabled = false,
+    },
 
     -- default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, via `opts_extend`
@@ -82,7 +70,7 @@ return {
           },
         },
         path = {
-          opts = { get_cwd = vim.uv.cwd },
+          -- opts = { get_cwd = vim.uv.cwd },
         },
         buffer = {
           fallback_for = {}, -- disable being fallback for LSP
@@ -92,39 +80,38 @@ return {
         },
       },
     },
-    kind_icons = {
-      Text = '󰉿',
-      Method = '󰊕',
-      Function = '󰊕',
-      Constructor = '󰒓',
-      Field = '󰜢',
-      Variable = '󰆦',
-      Property = '󰖷',
-      Class = '󱡠',
-      Interface = '󱡠',
-      Struct = '󱡠',
-      Module = '󰅩',
-      Unit = '󰪚',
-      Value = '󰦨',
-      Enum = '󰦨',
-      EnumMember = '󰦨',
-      Keyword = '󰻾',
-      Constant = '󰏿',
-      Snippet = '󱄽',
-      Color = '󰏘',
-      File = '󰈔',
-      Reference = '󰬲',
-      Folder = '󰉋',
-      Event = '󱐋',
-      Operator = '󰪚',
-      TypeParameter = '󰬛',
+
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'normal',
+      kind_icons = {
+        Text = '󰉿',
+        Method = '󰊕',
+        Function = '󰊕',
+        Constructor = '󰒓',
+        Field = '󰜢',
+        Variable = '󰆦',
+        Property = '󰖷',
+        Class = '󱡠',
+        Interface = '󱡠',
+        Struct = '󱡠',
+        Module = '󰅩',
+        Unit = '󰪚',
+        Value = '󰦨',
+        Enum = '󰦨',
+        EnumMember = '󰦨',
+        Keyword = '󰻾',
+        Constant = '󰏿',
+        Snippet = '󱄽',
+        Color = '󰏘',
+        File = '󰈔',
+        Reference = '󰬲',
+        Folder = '󰉋',
+        Event = '󱐋',
+        Operator = '󰪚',
+        TypeParameter = '󰬛',
+      },
     },
-
-    -- experimental auto-brackets support
-    accept = { auto_brackets = { enabled = true } },
-
-    -- experimental signature help support
-    trigger = { signature_help = { enabled = true } },
   },
   -- allows extending the enabled_providers array elsewhere in your config
   -- without having to redefine it
