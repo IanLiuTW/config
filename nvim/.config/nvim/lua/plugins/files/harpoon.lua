@@ -9,7 +9,7 @@ return {
 
     -- stylua: ignore
     vim.keymap.set('n', '<leader>H',    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon - Toggle Menu' })
-    vim.keymap.set('n', '<leader>hh',  function() harpoon:list():add() end,                         { desc = 'Harpoon - Add Buffer' })
+    vim.keymap.set('n', '<leader>h',  function() harpoon:list():add() end,                         { desc = 'Harpoon - Add Buffer' })
     vim.keymap.set('n', '<leader>;',     function() harpoon:list():select(1) end,                     { desc = 'Harpoon - [1] Select Buffer' })
     vim.keymap.set('n', '<leader>\'',     function() harpoon:list():select(2) end,                     { desc = 'Harpoon - [2] Select Buffer' })
     vim.keymap.set('n', '<leader>[',     function() harpoon:list():select(3) end,                     { desc = 'Harpoon - [3] Select Buffer' })
@@ -42,7 +42,7 @@ return {
         })
         :find()
     end
-    vim.keymap.set('n', '<leader>h<space>', function()
+    vim.keymap.set('n', '<leader><leader>h', function()
       toggle_telescope(harpoon:list())
     end, { desc = 'Harpoon - Search Harpoon List' })
   end,

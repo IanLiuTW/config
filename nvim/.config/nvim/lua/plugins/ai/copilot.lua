@@ -26,7 +26,7 @@ return {
           jump_next = '<C-f>',
           accept = '<C-CR>',
           refresh = 'R',
-          open = '<C-/>',
+          open = '<C-q>',
         },
         layout = {
           position = 'right',
@@ -56,6 +56,6 @@ return {
     }
   end,
   -- vim.keymap.set('i', '<C-c>', '<C-c><Cmd>lua require("copilot.suggestion").dismiss()<CR>'),
-  vim.keymap.set('n', '<C-CR><Up>', '<Cmd>Copilot enable<CR>'),
-  vim.keymap.set('n', '<C-CR><Down>', '<Cmd>Copilot disable<CR>'),
+  vim.keymap.set('n', '<C-q><Up>', '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', '<C-q><Down>', '<Cmd>Copilot disable<CR>'),
 }

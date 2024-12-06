@@ -45,7 +45,9 @@ return { -- Useful plugin to show you pending keybinds.
       -- Normal Mode
       {
         mode = 'n',
-        { '<Esc>',            '<cmd>nohlsearch<CR>',                       desc = 'nohlsearch' },
+        { '<Esc>',            '<cmd>nohlsearch<CR>',                      desc = 'nohlsearch' },
+        {'<leader>dx',        ':.lua<CR>',                                desc = 'Execute - Current Line with Lua'},
+        {'<leader>dX',        '<CMD>source %<CR>',                        desc = 'Execute - Source Current File'},
         -- Autocommands keybindings
         { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = '[/] Copy Path' },
         -- Plugin keybindings
@@ -77,6 +79,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 'x',
+        {'<leader>dx', ':lua<CR>', desc = 'Execute - Selected with Lua'},
         { '<', '<gv' },
         { '>', '>gv' },
       },

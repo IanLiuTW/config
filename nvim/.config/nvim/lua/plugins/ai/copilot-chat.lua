@@ -137,7 +137,11 @@ return {
         prompt = '/COPILOT_GENERATE Please generate tests for my code.',
       },
       FixDiagnostic = {
-        prompt = 'Please assist with the following diagnostic issue in file:',
+        prompt = 'Please assist with the following diagnostic issues in file:',
+        selection = select.diagnostics,
+      },
+      ExplainDiagnostic = {
+        prompt = '/COPILOT_EXPLAIN explain the diagnostic issues in file:',
         selection = select.diagnostics,
       },
       Commit = {
@@ -233,18 +237,18 @@ return {
     -- Add which-key mappings
     local wk = require 'which-key'
     wk.add {
-      { '<C-CR>', group = 'A[I]', mode = { 'n', 'x' } },
+      { '<C-q>', group = 'A[I]', mode = { 'n', 'x' } },
     }
   end,
   keys = {
-    { '<C-CR><Space>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Toggle CopilotChat (Buffer)' },
-    { '<C-CR><Space>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Toggle CopilotChat (Visual)' },
-    { '<C-CR>i', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Inline chat (Buffer)' },
-    { '<C-CR>i', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Inline chat (Visual)' },
+    { '<C-q><C-q>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
+    { '<C-q><C-q>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Open Chat (Visual)' },
+    { '<C-q><Space>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
+    { '<C-q><Space>', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Open Inline Chat (Visual)' },
     {
-      '<C-CR>q',
+      '<C-q><TAB>',
       function()
-        local input = vim.fn.input 'Quick Chat: '
+        local input = vim.fn.input 'Quick Chat (Visual): '
         if input ~= '' then
           vim.cmd('CopilotChatVisual ' .. input)
         end
@@ -253,9 +257,9 @@ return {
       desc = 'CopilotChat - Quick Chat (Visual)',
     },
     {
-      '<C-CR>q',
+      '<C-q><TAB>',
       function()
-        local input = vim.fn.input 'Quick Chat: '
+        local input = vim.fn.input 'Quick Chat (Buffer): '
         if input ~= '' then
           vim.cmd('CopilotChatBuffer ' .. input)
         end
@@ -264,7 +268,7 @@ return {
       desc = 'CopilotChat - Quick Chat (Buffer)',
     },
     {
-      '<C-CR>Q',
+      '<C-q><S-TAB>',
       function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
@@ -274,17 +278,8 @@ return {
       mode = { 'n' },
       desc = 'CopilotChat - Quick Chat (None)',
     },
-
     {
-      '<C-CR>h',
-      function()
-        local actions = require 'CopilotChat.actions'
-        require('CopilotChat.integrations.telescope').pick(actions.help_actions())
-      end,
-      desc = 'CopilotChat - Help actions',
-    },
-    {
-      '<C-CR>a',
+      '<C-q>a',
       function()
         local actions = require 'CopilotChat.actions'
         require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
@@ -292,7 +287,7 @@ return {
       desc = 'CopilotChat - Prompt actions',
     },
     {
-      '<C-CR>a',
+      '<C-q>a',
       function()
         require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions { selection = require('CopilotChat.select').visual })
       end,
@@ -300,22 +295,24 @@ return {
       desc = 'CopilotChat - Prompt actions',
     },
     -- Code related commands
-    { '<C-CR>e', '<cmd>CopilotChatExplain<cr>', mode = 'x', desc = 'CopilotChat - Explain code' },
-    { '<C-CR>v', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
-    { '<C-CR>f', '<cmd>CopilotChatFix<cr>', mode = 'x', desc = 'CopilotChat - Fix code' },
-    { '<C-CR>o', '<cmd>CopilotChatOptimize<cr>', mode = 'x', desc = 'CopilotChat - Optimize code' },
-    { '<C-CR>d', '<cmd>CopilotChatDocs<cr>', mode = 'x', desc = 'CopilotChat - Generate documentation' },
-    { '<C-CR>t', '<cmd>CopilotChatTests<cr>', mode = 'x', desc = 'CopilotChat - Generate tests' },
-    { '<C-CR>r', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
-    { '<C-CR>b', '<cmd>CopilotChatBetterNamings<cr>', mode = 'x', desc = 'CopilotChat - Generate Better Namings' },
+    { '<C-q>e', '<cmd>CopilotChatExplain<cr>', mode = 'x', desc = 'CopilotChat - Explain code' },
+    { '<C-q>v', '<cmd>CopilotChatReview<cr>', mode = 'x', desc = 'CopilotChat - Review code' },
+    { '<C-q>f', '<cmd>CopilotChatFix<cr>', mode = 'x', desc = 'CopilotChat - Fix code' },
+    { '<C-q>o', '<cmd>CopilotChatOptimize<cr>', mode = 'x', desc = 'CopilotChat - Optimize code' },
+    { '<C-q>\'', '<cmd>CopilotChatDocs<cr>', mode = 'x', desc = 'CopilotChat - Generate documentation' },
+    { '<C-q>t', '<cmd>CopilotChatTests<cr>', mode = 'x', desc = 'CopilotChat - Generate tests' },
+    { '<C-q>r', '<cmd>CopilotChatRefactor<cr>', mode = 'x', desc = 'CopilotChat - Refactor code' },
+    { '<C-q>b', '<cmd>CopilotChatBetterNamings<cr>', mode = 'x', desc = 'CopilotChat - Generate Better Namings' },
 
-    { '<C-CR>f', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
-    { '<C-CR>g', '<cmd>CopilotChatCommitStaged<cr>', desc = 'CopilotChat - Generate commit message for staged changes' },
-    { '<C-CR>G', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
-    { '<C-CR>V', '<cmd>CopilotChatReviewClear<cr>', desc = 'CopilotChat - Review code clear highlight' },
+    { '<C-q>d', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
+    { '<C-q>D', '<cmd>CopilotChatExplainDiagnostic<cr>', desc = 'CopilotChat - Explain Diagnostic' },
+    { '<C-q>g', '<cmd>CopilotChatCommitStaged<cr>', desc = 'CopilotChat - Generate commit message for staged changes' },
+    { '<C-q>G', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
 
-    { '<C-CR><bs>', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
-    { '<C-CR>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
-    { '<C-CR>?', '<cmd>CopilotChatDebugInfo<cr>', desc = 'CopilotChat - Debug Info' },
+    { '<C-q>q', '<cmd>CopilotChatClose<cr>', desc = 'CopilotChat - Close' },
+    { '<C-q>V', '<cmd>CopilotChatReviewClear<cr>', desc = 'CopilotChat - Review code clear highlight' },
+    { '<C-q><bs>', '<cmd>CopilotChatReset<cr>', desc = 'CopilotChat - Clear buffer and chat history' },
+    { '<C-q>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Models' },
+    { '<C-q>?', '<cmd>CopilotChatDebugInfo<cr>', desc = 'CopilotChat - Debug Info' },
   },
 }
