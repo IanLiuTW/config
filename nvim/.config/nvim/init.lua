@@ -47,11 +47,6 @@ vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
   pattern = '*.conf',
   command = 'set ft=hocon',
 })
--- vim.api.nvim_create_autocmd('FileType', { -- Using guess-indent instead
---   group = filetype_group,
---   pattern = 'python',
---   command = 'setlocal shiftwidth=4 tabstop=4',
--- })
 
 -- [[ Tool Autocommands ]] See `:help lua-guide-autocommands`
 -- Highlight when yanking (copying) text

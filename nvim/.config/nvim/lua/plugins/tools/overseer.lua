@@ -3,34 +3,39 @@ return {
     'stevearc/overseer.nvim',
     event = 'BufRead',
     cmd = {
+      'OverseerRestartLast',
+      'OverseerRun',
+      'OverseerRunCmd',
+      'OverseerBuild',
       'OverseerOpen',
       'OverseerClose',
       'OverseerToggle',
+      'OverseerTaskAction',
+      'OverseerQuickAction',
       'OverseerSaveBundle',
       'OverseerLoadBundle',
       'OverseerDeleteBundle',
-      'OverseerRunCmd',
-      'OverseerRun',
       'OverseerInfo',
-      'OverseerBuild',
-      'OverseerQuickAction',
-      'OverseerTaskAction',
       'OverseerClearCache',
     },
     keys = {
-      { '<leader>R', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart last task' },
-      { '<leader>ro', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Task list' },
-      { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run task' },
-      { '<leader>rq', '<cmd>OverseerQuickAction<cr>', desc = 'Overseer - Action recent task' },
-      { '<leader>ri', '<cmd>OverseerInfo<cr>', desc = 'Overseer - Overseer Info' },
-      { '<leader>rb', '<cmd>OverseerBuild<cr>', desc = 'Overseer - Task builder' },
-      { '<leader>rt', '<cmd>OverseerTaskAction<cr>', desc = 'Overseer - Task action' },
-      { '<leader>rc', '<cmd>OverseerClearCache<cr>', desc = 'Overseer - Clear cache' },
-      { '<leader>rs', '<cmd>OverseerSaveBundle<cr>', desc = 'Overseer - Save Bundle' },
-      { '<leader>rl', '<cmd>OverseerLoadBundle<cr>', desc = 'Overseer - Load Bundle' },
-      { '<leader>rd', '<cmd>OverseerDeleteBundle<cr>', desc = 'Overseer - Delete Bundle' },
+      { '<leader>R', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart Last Task' },
+      { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run Task' },
+      { '<leader>rR', '<cmd>OverseerRunCmd<cr>', desc = 'Overseer - Run Cmd' },
+      { '<leader>rb', '<cmd>OverseerBuild<cr>', desc = 'Overseer - Build Task' },
+
+      { '<leader>r<space>', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Toggle Task List' },
+      { '<leader>ra', '<cmd>OverseerTaskAction<cr>', desc = 'Overseer - Task Action' },
+      { '<leader>rq', '<cmd>OverseerQuickAction<cr>', desc = 'Overseer - Quick Action (Recent Task)' },
+
+      { '<leader>rs', '<cmd>OverseerSaveBundle<cr>', desc = 'Overseer - Bundle Save' },
+      { '<leader>rl', '<cmd>OverseerLoadBundle<cr>', desc = 'Overseer - Bundle Load' },
+      { '<leader>rx', '<cmd>OverseerDeleteBundle<cr>', desc = 'Overseer - Bundle Delete' },
+
+      { '<leader>r?', '<cmd>OverseerInfo<cr>', desc = 'Overseer - Overseer Info' },
+      { '<leader>r<BS>', '<cmd>OverseerClearCache<cr>', desc = 'Overseer - Clear Cache' },
       {
-        '<leader>rz',
+        '<leader>r.',
         function() --Run shell scripts in the current directory
           local files = require 'overseer.files'
           return {
@@ -60,7 +65,7 @@ return {
         end,
         noremap = true,
         silent = true,
-        desc = 'Overseer - Add shell scripts in cwd',
+        desc = 'Overseer - Add Shell Scripts in CWD',
       },
     },
     config = function()
@@ -68,8 +73,7 @@ return {
         strategy = 'toggleterm',
         templates = { 'builtin' },
       }
-    end,
-    init = function()
+
       vim.api.nvim_create_user_command('OverseerRestartLast', function()
         local overseer = require 'overseer'
         local tasks = overseer.list_tasks { recent_first = true }
@@ -79,6 +83,26 @@ return {
           overseer.run_action(tasks[1], 'restart')
         end
       end, {})
+
+      vim.api.nvim_create_user_command('Make', function(params)
+        local cmd, num_subs = vim.o.makeprg:gsub('%$%*', params.args)
+        if num_subs == 0 then
+          cmd = cmd .. ' ' .. params.args
+        end
+        local task = require('overseer').new_task {
+          cmd = vim.fn.expandcmd(cmd),
+          components = {
+            { 'on_output_summarize', max_lines = 10 },
+            { 'on_complete_notify' },
+            'default',
+          },
+        }
+        task:start()
+      end, {
+        desc = 'Run your makeprg as an Overseer task',
+        nargs = '*',
+        bang = true,
+      })
     end,
   },
 }
