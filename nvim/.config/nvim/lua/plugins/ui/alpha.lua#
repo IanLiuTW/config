@@ -7,12 +7,12 @@ local function alpha_dashboard_layout()
   ---@param opts table?
   ---@return table
 
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' }) -- Indigo
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' }) -- Deep Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' }) -- Medium Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' }) -- Light Purple
-  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' }) -- Very Light Purple
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' })
+  vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' })
   vim.api.nvim_set_hl(0, 'NeovimDashboardInfo', { fg = '#fa54a7' })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonVal', { fg = '#4b6eeb', bold = true })
   vim.api.nvim_set_hl(0, 'NeovimDashboardButtonKey', { fg = '#d1a428', bold = true })

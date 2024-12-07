@@ -49,18 +49,17 @@ return { -- Useful plugin to show you pending keybinds.
         {'<leader>dx',        ':.lua<CR>',                                desc = 'Execute - Current Line with Lua'},
         {'<leader>dX',        '<CMD>source %<CR>',                        desc = 'Execute - Source Current File'},
         -- Autocommands keybindings
-        { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = '[/] Copy Path' },
+        { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = 'User Command - Copy Path' },
+        { '<leader>dm',      '<Cmd>CopyPath<CR>',                         desc = 'User Command - Delete Mark' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                      desc = 'Lazy - Update Plugins' },
         { '<leader>,m',      '<cmd>Mason<CR>',                            desc = 'Mason - Open Menu' },
         -- Buffer keybindings
+        { '<leader><CR>',   '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
         { '<leader>bn',     '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
         { '<leader>bd',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
         { '<leader>bD',     '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
-        { '<leader><CR>',   '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
-        { '<leader><BS>',   '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
-        { '<leader><S-BS>', '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
         -- Window keybindings
         -- { '',     '<Cmd>sp<CR>', noremap = true, silent = true, desc = 'Pane Horizontal Split' },
         -- { '',     '<Cmd>vs<CR>', noremap = true, silent = true, desc = 'Pane Vertical Split' },
@@ -89,7 +88,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = { 'n', 'v' },
-        { '<leader>z', '<Cmd>set wrap!<CR>',                                                       desc = 'Toggle line wrap' },
+        -- { '<leader>z', '<Cmd>set wrap!<CR>',                                                       desc = 'Toggle line wrap' },
         { '<leader>J',  'i<CR><Esc>',                                                               desc = 'Cursor - Add a line break' },
         { '<leader>w',  '<cmd>write<CR>',                                                           desc = 'Buffer - [W]rite' },
         { '<leader>F',  'gg=G',                                                                     desc = 'Buffer - Format (Indentation)' },

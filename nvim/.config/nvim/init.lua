@@ -35,6 +35,11 @@ vim.opt.guicursor = {
   'v:hor25-blinkwait100-blinkoff500-blinkon500',
   'c:block-blinkwait100-blinkoff500-blinkon500',
 }
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:►]]
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -79,6 +84,15 @@ vim.api.nvim_create_user_command('CopyPath', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+-- Delete a mark by key
+vim.api.nvim_create_user_command('Delmark', function()
+  vim.ui.input({ prompt = 'Enter mark to delete: ' }, function(input)
+    if input and input ~= '' then
+      vim.cmd('delm ' .. input)
+      print('Deleted mark: ' .. input)
+    end
+  end)
+end, { desc = 'Delete mark by key with popup input' })
 
 -- [[ Configure diagnostic symbols ]]
 local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }

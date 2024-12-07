@@ -3,7 +3,7 @@ return {
   event = 'BufRead',
   keys = {
     {
-      '<leader>dR',
+      '<leader>dr',
       function()
         return ':IncRename ' .. vim.fn.expand '<cword>'
       end,

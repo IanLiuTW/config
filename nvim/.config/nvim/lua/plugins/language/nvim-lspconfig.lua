@@ -112,7 +112,7 @@ return {
       -- Search and References
       map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
       map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
-      map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
+      map('<leader>dR', require('telescope.builtin').lsp_references, 'Find References')
       -- Code Actions and Help
       map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
       map('S', vim.lsp.buf.signature_help, 'Signature Help')
@@ -121,7 +121,7 @@ return {
       -- Inlay hints toggle
       if client and client.supports_method 'textDocument/inlayHint' then
         vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-        map('<leader>,h', function()
+        map('<leader>,I', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
         end, 'Toggle Inlay Hints')
       end

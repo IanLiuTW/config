@@ -9,10 +9,10 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   keys = {
-    -- { '<leader>[', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },
-    -- { '<leader>]', '<Cmd>BufferNext<CR>', noremap = true, silent = true, desc = 'Buffer - Next' },
     -- { '<leader>{', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move Privious' },
     -- { '<leader>}', '<Cmd>BufferMoveNext<CR>', noremap = true, silent = true, desc = 'Buffer - Move Next' },
+    { '[b', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },
+    { ']b', '<Cmd>BufferNext<CR>', noremap = true, silent = true, desc = 'Buffer - Next' },
     { '[B', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move Privious' },
     { ']B', '<Cmd>BufferMoveNext<CR>', noremap = true, silent = true, desc = 'Buffer - Move Next' },
     { '<leader>1', '<Cmd>BufferGoto 1<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 1' },
@@ -27,7 +27,7 @@ return {
     { '<leader>0', '<Cmd>BufferLast<CR>',   noremap = true, silent = true, desc = 'Buffer - Last' },
 
     { '<leader>B', '<Cmd>BufferPin<CR>', noremap = true, silent = true, desc = 'Buffer - Pin' },
-    { '<leader>bb', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
+    { '<leader>b<TAB>', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
     { '<leader>bo', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', noremap = true, silent = true, desc = 'Buffer - Close All But Current or Pinned' },
     { '<leader>br', '<Cmd>BufferCloseBuffersRight<CR>', noremap = true, silent = true, desc = 'Buffer - Close the Buffers on the Right' },
     { '<leader>bB', '<Cmd>BufferOrderByBufferNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Number' },

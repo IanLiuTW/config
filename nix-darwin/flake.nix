@@ -60,6 +60,7 @@
           fzf
 
           nerdfetch
+          dwt1-shell-color-scripts
           yazi
           imagemagick
           ffmpegthumbnailer
