@@ -33,7 +33,7 @@ return {
         lsp_doc_border = true, -- add a border to hover docs and signature help
       },
       routes = {
-        -- { view = 'notify', filter = { event = 'msg_showmode' } },
+        { view = 'notify', filter = { event = 'msg_showmode' } },
         -- { view = 'cmdline', filter = { event = 'msg_show', kind = '', find = 'written' } },
         { filter = { event = 'msg_show', kind = '', find = 'written' }, opts = { skip = true } },
         {

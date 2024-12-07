@@ -8,6 +8,7 @@ vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.wrap = false
+vim.opt.spell = false
 vim.opt.relativenumber = true
 vim.opt.conceallevel = 0
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!

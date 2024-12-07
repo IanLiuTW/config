@@ -7,13 +7,12 @@ return {
       vim = 'indent',
       python = { 'indent' },
       git = '',
-      alpha = '',
       snacks_dashboard = '',
     }
     require('ufo').setup {
-      open_fold_hl_timeout = 150,
+      open_fold_hl_timeout = 200,
       close_fold_kinds_for_ft = {
-        default = { 'imports', 'comment' },
+        default = { 'comment' },
         json = { 'array' },
         c = { 'comment', 'region' },
       },
@@ -24,17 +23,16 @@ return {
           winblend = 0,
         },
         mappings = {
-          scrollU = '<C-b>',
-          scrollD = '<C-f>',
-          jumpTop = '[',
-          jumpBot = ']',
+          scrollU = '<C-u>',
+          scrollD = '<C-d>',
+          jumpTop = 'gg',
+          jumpBot = 'G',
         },
       },
       provider_selector = function(bufnr, filetype, buftype)
         -- if you prefer treesitter provider rather than lsp,
         -- return ftMap[filetype] or {'treesitter', 'indent'}
         return ftMap[filetype]
-
         -- refer to ./doc/example.lua for detail
       end,
     }

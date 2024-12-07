@@ -166,19 +166,19 @@ return {
       -- Git integration
       vim.keymap.set('n', '<leader>gs', function()
         builtin.git_status()
-      end, { desc = 'Telescope - [G]it Status' })
+      end, { desc = 'Telescope - Git Status' })
       vim.keymap.set('n', '<leader>gS', function()
         builtin.git_stash()
-      end, { desc = 'Telescope - [G]it Stash' })
+      end, { desc = 'Telescope - Git Stash' })
       vim.keymap.set('n', '<leader>gb', function()
         builtin.git_branches()
-      end, { desc = 'Telescope - [G]it Search [B]ranches' })
+      end, { desc = 'Telescope - Git Search Branches' })
       vim.keymap.set('n', '<leader>gC', function()
         builtin.git_commits()
-      end, { desc = 'Telescope - [G]it Search [C]ommits' })
+      end, { desc = 'Telescope - Git Search Commits' })
       vim.keymap.set('n', '<leader>gB', function()
         builtin.git_bcommits()
-      end, { desc = 'Telescope - [G]it Search [B]uffer Commits' })
+      end, { desc = 'Telescope - Git Search Buffer Commits' })
     end,
   },
 }

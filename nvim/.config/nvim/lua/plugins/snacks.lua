@@ -122,21 +122,21 @@ return {
       function()
         Snacks.scratch()
       end,
-      desc = 'Toggle Scratch Buffer',
+      desc = 'Snacks Scratch - Toggle Scratch Buffer',
     },
     {
       '<leader>b<leader>',
       function()
         Snacks.scratch.select()
       end,
-      desc = 'Select Scratch Buffer',
+      desc = 'Snacks Scratch - Select Scratch Buffer',
     },
     {
       '<leader><BS>',
       function()
         Snacks.bufdelete()
       end,
-      desc = 'Snacks Buffer - Buffer',
+      desc = 'Buffer - Delete Buffer',
     },
     {
       '<leader>df',
@@ -184,7 +184,7 @@ return {
       function()
         Snacks.words.jump(vim.v.count1)
       end,
-      desc = 'Next Reference',
+      desc = 'Snacks Words - Next Reference',
       mode = { 'n', 't' },
     },
     {
@@ -192,12 +192,12 @@ return {
       function()
         Snacks.words.jump(-vim.v.count1)
       end,
-      desc = 'Prev Reference',
+      desc = 'Snacks Words - Prev Reference',
       mode = { 'n', 't' },
     },
     {
       '<leader>,<leader>',
-      desc = 'Neovim News',
+      desc = 'Snacks Win - Neovim News',
       function()
         Snacks.win {
           file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
@@ -270,16 +270,16 @@ return {
         vim.print = _G.dd -- Override print to use snacks for `:=` command
 
         -- Create some toggle mappings
-        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>,S'
         Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>z'
-        Snacks.toggle.diagnostics():map '<leader>,D'
+        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>,S'
         Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>,C'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>,B'
+        Snacks.toggle.diagnostics():map '<leader>,D'
         Snacks.toggle.treesitter():map '<leader>,T'
 
         -- Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>,R'
         -- Snacks.toggle.line_number():map '<leader>,N'
-        -- Snacks.toggle.inlay_hints():map '<leader>uh'
+        -- Snacks.toggle.inlay_hints():map '<leader>,I'
       end,
     })
   end,

@@ -1,7 +1,7 @@
 return {
   'chrishrb/gx.nvim',
   lazy=true,
-  keys = { { 'g<CR>', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
+  keys = { { 'g<CR>', '<cmd>Browse<cr>', mode = { 'n', 'x' }, desc = 'gx - Open link under cursor' } },
   cmd = { 'Browse' },
   init = function()
     vim.g.netrw_nogx = 1 -- disable netrw gx
