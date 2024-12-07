@@ -54,6 +54,14 @@ return {
         },
       },
       sections = {
+        function()
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' })
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' })
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' })
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' })
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' })
+            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' })
+         end,
         { section = 'header' },
         {
           pane = 2,
@@ -207,13 +215,6 @@ return {
     },
   },
   init = function()
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' })
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' })
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' })
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' })
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' })
-    vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' })
-
     ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
     local progress = vim.defaulttable()
     vim.api.nvim_create_autocmd('LspProgress', {
