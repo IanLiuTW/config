@@ -9,12 +9,12 @@ return {
       autostart = true,
       autoload = false,
       on_autoload_no_session = function() end,
-      allowed_dirs = {
-        '~/config',
-        '~/codebase',
-        '~/work/',
-        '~/self/',
-      }, -- Table of dirs that the plugin will start and autoload from
+      -- allowed_dirs = {
+      --   '~/config',
+      --   '~/codebase',
+      --   '~/work/',
+      --   '~/self/',
+      -- }, -- Table of dirs that the plugin will start and autoload from
       ignored_dirs = {
         { '~', exact = true },
         '~/.config',
