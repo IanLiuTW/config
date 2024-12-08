@@ -1,14 +1,24 @@
 return {
   'olimorris/persisted.nvim',
-  lazy = false,
+  event = 'VimEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim',
+  },
+  keys = {
+    { '<leader>,r', '<cmd>SessionLoad<cr>', desc = 'Persisted - Restore CWD Session' },
+    { '<leader>,.', '<cmd>SessionLoadLast<cr>', desc = 'Persisted - Restore Last Session' },
+    { '<leader>,/', '<cmd>Telescope persisted<cr>', desc = 'Persisted - Search Sessions' },
+    { '<leader>,l', ':SessionLoadFromFile ', desc = 'Persisted - Load Session From File' },
+    { '<leader>,s', '<cmd>SessionSave<cr>', desc = 'Persisted - Save Session' },
+    { '<leader>,\\', '<cmd>SessionToggle<cr>', desc = 'Persisted - Toggle Session' },
   },
   config = function()
     require('persisted').setup {
       autostart = true,
       autoload = false,
-      on_autoload_no_session = function() end,
+      on_autoload_no_session = function()
+        vim.notify 'No session found for this directory'
+      end,
       -- allowed_dirs = {
       --   '~/config',
       --   '~/codebase',
@@ -24,13 +34,11 @@ return {
       follow_cwd = true, -- Change the session file to match any change in the cwd?
       use_git_branch = true, -- Include the git branch in the session file name?
       should_save = function()
-        -- Do not save if the alpha dashboard is the current filetype
-        if vim.bo.filetype == 'alpha' then
+        if vim.bo.filetype == 'snacks_dashboard' then
           return false
         end
         return true
       end,
-
       telescope = {
         mappings = { -- Mappings for managing sessions in Telescope
           copy_session = '<C-y>',
@@ -45,13 +53,5 @@ return {
       },
     }
     require('telescope').load_extension 'persisted'
-
-    -- load the session for the current directory
-    vim.keymap.set('n', '<leader>,r', '<cmd>SessionLoad<cr>', { desc = 'Persisted - Restore CWD Session' })
-    vim.keymap.set('n', '<leader>,.', '<cmd>SessionLoadLast<cr>', { desc = 'Persisted - Restore Last Session' })
-    vim.keymap.set('n', '<leader>,/', '<cmd>Telescope persisted<cr>', { desc = 'Persisted - Search Sessions' })
-    vim.keymap.set('n', '<leader>,l', ':SessionLoadFromFile ', { desc = 'Persisted - Load Session From File' })
-    vim.keymap.set('n', '<leader>,s', '<cmd>SessionSave<cr>', { desc = 'Persisted - Save Session' })
-    vim.keymap.set('n', '<leader>,\\', '<cmd>SessionToggle<cr>', { desc = 'Persisted - Toggle Session' })
   end,
 }
