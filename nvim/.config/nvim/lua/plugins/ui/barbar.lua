@@ -1,3 +1,13 @@
+vim.api.nvim_create_autocmd('Colorscheme', {
+  group = vim.api.nvim_create_augroup('config_custom_highlights', {}),
+  callback = function()
+    -- Override colorscheme settings before the colorscheme 'load()' call
+    vim.api.nvim_set_hl(0, 'BufferCurrentADDED', { bg = '#020508', fg = '#7EA662' })
+    vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', { bg = '#020508', fg = '#4FA6ED' })
+    vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', { bg = '#020508', fg = '#E55561' })
+  end,
+})
+
 return {
   'romgrk/barbar.nvim',
   lazy = false,

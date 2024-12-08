@@ -59,13 +59,16 @@
           zoxide
           fzf
 
-          nerdfetch
-          dwt1-shell-color-scripts
           yazi
           imagemagick
           ffmpegthumbnailer
           poppler
           pngpaste
+
+          ice-bar
+          nerdfetch
+          dwt1-shell-color-scripts
+          ascii-image-converter
 
           raycast
           obsidian
@@ -80,7 +83,6 @@
             "go-jira"
           ];
           casks = [
-            "hiddenbar"
             "middleclick"
             "kitty@nightly"
             "hammerspoon"

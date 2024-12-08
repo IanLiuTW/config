@@ -60,5 +60,12 @@ return {
       async = true,
       quiet = false,
     },
+    formatters = {
+      stylua = {
+        append_args = {
+          '--indent-type', 'Spaces',
+        },
+      },
+    },
   },
 }
