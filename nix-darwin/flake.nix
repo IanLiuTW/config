@@ -66,6 +66,7 @@
           pngpaste
 
           ice-bar
+          # sketchybar
           nerdfetch
           dwt1-shell-color-scripts
           ascii-image-converter

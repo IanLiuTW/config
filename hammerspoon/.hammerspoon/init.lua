@@ -60,11 +60,11 @@ local function bind_key_focus_window(mod, key, bundle_id)
     end)
 end
 
--- [[Bind keys for common apps]]
-bind_key_toggle_window({ "control", "shift" }, "g", "net.kovidgoyal.kitty", { x = 0, y = 0, w = 1, h = 0.5 })
-bind_key_focus_window({ "control", "shift" }, "b", "com.brave.Browser")
-bind_key_focus_window({ "control", "shift" }, "c", "com.google.Chrome")
-bind_key_focus_window({ "control", "shift" }, "s", "com.tinyspeck.slackmacgap")
+-- [[Bind keys for common apps]] -- using raycast
+-- bind_key_toggle_window({ "alt" }, "g", "net.kovidgoyal.kitty", { x = 0, y = 0, w = 1, h = 0.5 })
+-- bind_key_focus_window({ "alt" }, "v", "com.brave.Browser")
+-- bind_key_focus_window({ "alt" }, "c", "com.google.Chrome")
+-- bind_key_focus_window({ "alt" }, "s", "com.tinyspeck.slackmacgap")
 
 -- local appBundleID = hs.application.get("Slack"):bundleID()
 -- print(appBundleID)

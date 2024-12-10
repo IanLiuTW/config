@@ -1,3 +1,15 @@
+-- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
+--   undercurl = true, -- or underline = true if you prefer
+--   sp = 'Yellow', -- underline color
+--   bg = 'LightYellow', -- background color
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
+--   undercurl = true,
+--   sp = 'Red', -- underline color
+--   bg = 'LightRad', -- light red/pink background
+-- })
+
 return {
   {
     'folke/tokyonight.nvim',
@@ -7,20 +19,31 @@ return {
       style = 'storm',
       transparent = true,
       terminal_colors = true,
+      lualine_bold = true,
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
-        functions = {},
+        functions = { bold = true },
         variables = {},
         sidebars = 'dark',
         floats = 'dark',
       },
       -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+      -- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua
       on_colors = function(colors)
-        colors.hint = colors.orange
+        -- colors.hint = colors.orange
         colors.error = '#ff0000'
       end,
       on_highlights = function(hl, c)
+        hl.DiagnosticUnderlineError = {
+          bg = '#2d202a',
+          undercurl = true,
+        }
+        hl.DiagnosticUnderlineWarn = {
+          bg = '#2e2a2d',
+          undercurl = true,
+        }
+
         local prompt = '#2d3149'
         hl.TelescopeNormal = {
           bg = c.bg_dark,

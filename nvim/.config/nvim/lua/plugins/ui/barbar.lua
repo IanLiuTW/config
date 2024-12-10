@@ -2,9 +2,23 @@ vim.api.nvim_create_autocmd('Colorscheme', {
   group = vim.api.nvim_create_augroup('config_custom_highlights', {}),
   callback = function()
     -- Override colorscheme settings before the colorscheme 'load()' call
-    vim.api.nvim_set_hl(0, 'BufferCurrentADDED', { bg = '#020508', fg = '#7EA662' })
-    vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', { bg = '#020508', fg = '#4FA6ED' })
-    vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', { bg = '#020508', fg = '#E55561' })
+    local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
+
+    vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+    })
+    vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#4FA6ED',
+    })
+    vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#E55561',
+    })
+    vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+    })
+    vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+    })
   end,
 })
 
@@ -34,7 +48,7 @@ return {
     { '<leader>7', '<Cmd>BufferGoto 7<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 7' },
     { '<leader>8', '<Cmd>BufferGoto 8<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 8' },
     { '<leader>9', '<Cmd>BufferGoto 9<CR>', noremap = true, silent = true, desc = 'Buffer - Goto 9' },
-    { '<leader>0', '<Cmd>BufferLast<CR>',   noremap = true, silent = true, desc = 'Buffer - Last' },
+    { '<leader>0', '<Cmd>BufferLast<CR>', noremap = true, silent = true, desc = 'Buffer - Last' },
 
     { '<leader>B', '<Cmd>BufferPin<CR>', noremap = true, silent = true, desc = 'Buffer - Pin' },
     { '<leader>b<TAB>', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
