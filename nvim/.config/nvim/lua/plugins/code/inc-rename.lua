@@ -3,11 +3,11 @@ return {
   event = 'BufRead',
   keys = {
     {
-      '<leader>dr',
+      '<leader>dR',
       function()
         return ':IncRename ' .. vim.fn.expand '<cword>'
       end,
-      desc = 'LSP: [R]ename',
+      desc = 'LSP - Rename Variable',
       expr = true,
     },
   },

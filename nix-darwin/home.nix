@@ -60,6 +60,7 @@
     ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
     ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
     ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
+    ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
 
     ".config/pycodestyle".text = ''
       [pycodestyle]

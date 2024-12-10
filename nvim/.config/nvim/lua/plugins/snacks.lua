@@ -139,7 +139,7 @@ return {
       desc = 'Buffer - Delete Buffer',
     },
     {
-      '<leader>df',
+      '<leader>dF',
       function()
         Snacks.rename.rename_file()
       end,
@@ -180,7 +180,7 @@ return {
       desc = 'Snacks Profiler - Scratch Buffer',
     },
     {
-      ']]',
+      ']r',
       function()
         Snacks.words.jump(vim.v.count1)
       end,
@@ -188,7 +188,7 @@ return {
       mode = { 'n', 't' },
     },
     {
-      '[[',
+      '[r',
       function()
         Snacks.words.jump(-vim.v.count1)
       end,

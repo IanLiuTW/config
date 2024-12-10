@@ -4,7 +4,7 @@ return {
     lazy = true,
     config = function()
       require('blame').setup {
-        date_format = '%Y.%d.%m',
+        date_format = '%Y.%m.%d',
         blame_options = { '-w' },
         mappings = {
           commit_info = '<space>',

@@ -66,6 +66,7 @@
           pngpaste
 
           ice-bar
+          aerospace
           # sketchybar
           nerdfetch
           dwt1-shell-color-scripts

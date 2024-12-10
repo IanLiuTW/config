@@ -31,10 +31,10 @@ return {
       show_success_message = true,
     }
 
-    vim.keymap.set('x', '<leader>df', ':Refactor extract ', { desc = 'Refactoring - Extract Function'})
-    vim.keymap.set('x', '<leader>dv', ':Refactor extract_var ', { desc = 'Refactoring - Extract Variable'})
-    vim.keymap.set('n', '<leader>dF', ':Refactor inline_func', { desc = 'Refactoring - Inline Function'})
-    vim.keymap.set({ 'n', 'x' }, '<leader>dV', ':Refactor inline_var', { desc = 'Refactoring - Inline Variable'})
+    vim.keymap.set('x', '<leader>dF', ':Refactor extract ', { desc = 'Refactoring - Extract Function'})
+    vim.keymap.set('x', '<leader>dV', ':Refactor extract_var ', { desc = 'Refactoring - Extract Variable'})
+    vim.keymap.set('n', '<leader>df', ':Refactor inline_func', { desc = 'Refactoring - Inline Function'})
+    vim.keymap.set({ 'n', 'x' }, '<leader>dv', ':Refactor inline_var', { desc = 'Refactoring - Inline Variable'})
     vim.keymap.set('n', '<leader>db', ':Refactor extract_block', { desc = 'Refactoring - Extract Block'})
     vim.keymap.set('n', '<leader>dB', ':Refactor extract_block_to_file', { desc = 'Refactoring - Extract Block to File'})
     vim.keymap.set('x', '<leader>dg', ':Refactor extract_to_file ', { desc = 'Refactoring - Extract to File'})

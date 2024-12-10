@@ -35,16 +35,6 @@ stow kitty hammerspoon lazygit
 - [https://asdf-vm.com/]
   Use asdf as the tool version manager. Use `rustup` for Rust.
 
-### Stow
-
-- [GNU Stow](https://www.gnu.org/software/stow/)
-
-Use Stow to install the configs. (Need to place this config repo in the home directory)
-
-- Arch: Run `sudo pacman -S stow`
-- Homebrew: Run `brew install stow`
-- Others: do search
-
 ### Zsh
 
 - [https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH]
@@ -194,6 +184,16 @@ Use Stow to install the configs. (Need to place this config repo in the home dir
 - Use `Hammerspoon` for kitty to have a iTerm2 hotkey window experience on MacOS
 
 ## Not currently in use
+
+### Stow
+
+- [GNU Stow](https://www.gnu.org/software/stow/)
+
+Use Stow to install the configs. (Need to place this config repo in the home directory)
+
+- Arch: Run `sudo pacman -S stow`
+- Homebrew: Run `brew install stow`
+- Others: do search
 
 ### VS Code
 
