@@ -62,7 +62,7 @@ return {
   },
   opts = {
     animation = false,
-    focus_on_close = 'previous',
+    focus_on_close = 'left',
     icons = {
       buffer_index = true,
       buffer_number = false,

@@ -16,7 +16,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 300
+accordion-padding = 100
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -53,7 +53,7 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'citrix'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace 5']
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
