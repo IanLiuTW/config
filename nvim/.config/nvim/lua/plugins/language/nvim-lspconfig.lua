@@ -99,11 +99,12 @@ return {
   config = function(_, opts)
     -- LSP Attach configuration
     local function setup_lsp_keymaps(event)
-      local client = vim.lsp.get_client_by_id(event.data.client_id)
-
       local map = function(keys, func, desc)
         vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
       end
+
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+
       -- Navigation
       map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
       map('<leader>dd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
@@ -116,6 +117,7 @@ return {
       -- Code Actions and Help
       map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
       map('S', vim.lsp.buf.signature_help, 'Signature Help')
+
       -- Information
       map('<Leader>,L', '<cmd>LspInfo<cr>', 'LSP Info')
       -- Inlay hints toggle

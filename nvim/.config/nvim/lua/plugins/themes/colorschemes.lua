@@ -145,7 +145,11 @@ return {
       require('vague').setup {
         transparent = true,
         style = {
+          comments = 'italic',
           keywords = 'italic',
+          functions = 'bold',
+          sidebars = 'dark',
+          floats = 'dark',
         },
       }
     end,

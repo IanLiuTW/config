@@ -16,8 +16,8 @@ return {
   ---@type blink.cmp.Config
   opts = {
     keymap = {
-      ['<CR>'] = { 'select_and_accept', 'fallback' },
-      ['<C-y>'] = { 'select_and_accept', 'fallback' },
+      -- ['<CR>'] = { 'select_and_accept', 'fallback' },
+      ['<C-Y>'] = { 'select_and_accept', 'fallback' },
       ['<C-E>'] = { 'hide', 'fallback' },
       ['<C-N>'] = { 'select_next', 'fallback' },
       ['<C-P>'] = { 'select_prev', 'fallback' },
@@ -39,7 +39,7 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 500,
+        auto_show_delay_ms = 200,
         border = 'shadow',
         min_width = 20,
         max_width = 45, -- smaller, due to https://github.com/Saghen/blink.cmp/issues/194
