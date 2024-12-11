@@ -67,6 +67,7 @@
 
           ice-bar
           aerospace
+          jankyborders
           # sketchybar
           nerdfetch
           dwt1-shell-color-scripts
