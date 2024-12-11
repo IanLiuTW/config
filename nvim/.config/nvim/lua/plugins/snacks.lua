@@ -1,9 +1,13 @@
+-- stylua: ignore
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
   opts = {
+    animation = {
+      fps = 100, -- frames per second. Global setting for all animations
+    },
     bigfile = { enabled = true },
     dashboard = {
       preset = {
@@ -15,27 +19,15 @@ return {
           { icon = ' ', key = '.', desc = 'Restore Last Session', action = ':SessionLoadLast' },
           { icon = '󱦞 ', key = '/', desc = 'Select Session', action = ':Telescope persisted' },
           {
-            text = {
-              { '  ', hl = 'SnacksDashboardIcon' },
-              { 'Search File', hl = 'SnacksDashboardDesc', width = 50 },
-              { '󱁐  󱁐  f', hl = 'SnacksDashboardKey' },
-            },
+            text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search File', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  f', hl = 'SnacksDashboardKey' }, },
             action = ":lua Snacks.dashboard.pick('files')",
           },
           {
-            text = {
-              { '  ', hl = 'SnacksDashboardIcon' },
-              { 'Search Recent Files', hl = 'SnacksDashboardDesc', width = 50 },
-              { '󱁐  󱁐  .', hl = 'SnacksDashboardKey' },
-            },
+            text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search Recent Files', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  .', hl = 'SnacksDashboardKey' }, },
             action = ":lua Snacks.dashboard.pick('oldfiles')",
           },
           {
-            text = {
-              { '  ', hl = 'SnacksDashboardIcon' },
-              { 'Search with Live Grep', hl = 'SnacksDashboardDesc', width = 50 },
-              { '󱁐  󱁐  g', hl = 'SnacksDashboardKey' },
-            },
+            text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search with Live Grep', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  g', hl = 'SnacksDashboardKey' }, },
             action = ":lua Snacks.dashboard.pick('live_grep')",
           },
           { icon = ' ', key = 'g', desc = 'Open Neogit', action = ':Neogit' },
@@ -55,13 +47,13 @@ return {
       },
       sections = {
         function()
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' })
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' })
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' })
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' })
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' })
-            vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' })
-         end,
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo1', { fg = '#c5b102' })
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo2', { fg = '#cec139' })
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo3', { fg = '#d7d15a' })
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo4', { fg = '#e1e078' })
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo5', { fg = '#ebf096' })
+          vim.api.nvim_set_hl(0, 'NeovimDashboardLogo6', { fg = '#f7ffb3' })
+        end,
         { section = 'header' },
         {
           pane = 2,
@@ -96,6 +88,76 @@ return {
       timeout = 3000,
     },
     quickfile = { enabled = true },
+    -- input = { enabled = true },
+    indent = {
+      indent = {
+        char = '│',
+        blank = ' ',
+        -- blank = "∙",
+        only_scope = false, -- only show indent guides of the scope
+        only_current = false, -- only show indent guides in the current window
+        hl = 'SnacksIndent', ---@type string|string[] hl groups for indent guides
+        -- can be a list of hl groups to cycle through
+        -- hl = {
+        --     "SnacksIndent1",
+        --     "SnacksIndent2",
+        --     "SnacksIndent3",
+        --     "SnacksIndent4",
+        --     "SnacksIndent5",
+        --     "SnacksIndent6",
+        --     "SnacksIndent7",
+        --     "SnacksIndent8",
+        -- },
+      },
+      scope = {
+        enabled = true,
+        animate = {
+          enabled = true,
+          easing = 'linear',
+          duration = {
+            step = 50, -- ms per step
+            total = 300, -- maximum duration
+          },
+        },
+        char = '│',
+        underline = true, -- underline the start of the scope
+        only_current = false, -- only show scope in the current window
+        hl = 'SnacksIndentScope', ---@type string|string[] hl group for scopes
+      },
+      chunk = {
+        -- when enabled, scopes will be rendered as chunks, except for the
+        -- top-level scope which will be rendered as a scope.
+        enabled = false,
+        -- only show chunk scopes in the current window
+        only_current = false,
+        hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
+        char = {
+          corner_top = '┌',
+          corner_bottom = '└',
+          -- corner_top = "╭",
+          -- corner_bottom = "╰",
+          horizontal = '─',
+          vertical = '│',
+          arrow = '>',
+        },
+      },
+      blank = {
+        char = ' ',
+        -- char = "·",
+        hl = 'SnacksIndentBlank', ---@type string|string[] hl group for blank spaces
+      },
+      -- filter for buffers to enable indent guides
+      filter = function(buf)
+        return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ''
+      end,
+      priority = 200,
+    },
+    scroll = {
+      animate = {
+        duration = { step = 5, total = 50 },
+        easing = 'linear',
+      },
+    },
     statuscolumn = {
       left = { 'mark', 'fold' }, -- priority of signs on the left (high to low)
       right = { 'sign', 'git' }, -- priority of signs on the right (high to low)
@@ -110,6 +172,37 @@ return {
       refresh = 50, -- refresh at most every 50ms },
     },
     words = { enabled = true },
+    zen = {
+      toggles = {
+        dim = true,
+        git_signs = true,
+        mini_diff_signs = false,
+        diagnostics = true,
+        inlay_hints = true,
+      },
+      show = {
+        statusline = false, -- can only be shown when using the global statusline
+        tabline = false,
+      },
+      win = { style = 'zen' },
+      zoom = {
+        toggles = {
+          dim = true,
+          git_signs = true,
+          mini_diff_signs = false,
+          diagnostics = true,
+          inlay_hints = true,
+        },
+        show = {
+          statusline = true,
+          tabline = true,
+        },
+        win = {
+          backdrop = false,
+          width = 0, -- full width
+        },
+      },
+    },
     styles = {
       notification = {
         wo = { wrap = true }, -- Wrap notifications
@@ -117,101 +210,34 @@ return {
     },
   },
   keys = {
-    {
-      '<leader>bb',
-      function()
-        Snacks.scratch()
-      end,
-      desc = 'Snacks Scratch - Toggle Scratch Buffer',
-    },
-    {
-      '<leader>b<leader>',
-      function()
-        Snacks.scratch.select()
-      end,
-      desc = 'Snacks Scratch - Select Scratch Buffer',
-    },
-    {
-      '<leader><BS>',
-      function()
-        Snacks.bufdelete()
-      end,
-      desc = 'Buffer - Delete Buffer',
-    },
-    {
-      '<leader>dF',
-      function()
-        Snacks.rename.rename_file()
-      end,
-      desc = 'LSP - Rename File',
-    },
-    {
-      '<leader>g<CR>',
-      function()
-        Snacks.gitbrowse()
-      end,
-      desc = 'Snacks Git - Browse',
-    },
+    { '<leader>bb', function() Snacks.scratch() end, desc = 'Snacks Scratch - Toggle Scratch Buffer' },
+    { '<leader>b<leader>', function() Snacks.scratch.select() end, desc = 'Snacks Scratch - Select Scratch Buffer' },
+    { '<leader><BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
+    { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
+    { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Snacks Git - Browse' },
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     -- { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
     -- { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     -- { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-    {
-      '<BS>',
-      function()
-        Snacks.notifier.hide()
-      end,
-      desc = 'Snacks Notifier - Dismiss All',
-    },
-    {
-      '<leader>,n',
-      function()
-        Snacks.notifier.show_history()
-      end,
-      desc = 'Snacks Notifier - Show History',
-    },
-    {
-      '<leader>ps',
-      function()
-        Snacks.profiler.scratch()
-      end,
-      desc = 'Snacks Profiler - Scratch Buffer',
-    },
-    {
-      ']r',
-      function()
-        Snacks.words.jump(vim.v.count1)
-      end,
-      desc = 'Snacks Words - Next Reference',
-      mode = { 'n', 't' },
-    },
-    {
-      '[r',
-      function()
-        Snacks.words.jump(-vim.v.count1)
-      end,
-      desc = 'Snacks Words - Prev Reference',
-      mode = { 'n', 't' },
-    },
+    { '<BS>', function() Snacks.notifier.hide() end, desc = 'Snacks Notifier - Dismiss All' },
+    { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Snacks Notifier - Show History' },
+    { '<leader>ps', function() Snacks.profiler.scratch() end, desc = 'Snacks Profiler - Scratch Buffer' },
+    { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Snacks Words - Next Reference', mode = { 'n', 't' } },
+    { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Snacks Words - Prev Reference', mode = { 'n', 't' } },
+    { '<leader>,x', function() Snacks.dim() end, desc = 'Snacks Dim - Toggle Zen', mode = { 'n' } },
+    { '<leader>,z', function() Snacks.zen.zen() end, desc = 'Snacks Zen - Toggle Zen', mode = { 'n' } },
+    { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Snacks Zen - Toggle Zoom', mode = { 'n' } },
     {
       '<leader>,<leader>',
-      desc = 'Snacks Win - Neovim News',
-      function()
-        Snacks.win {
+        function() Snacks.win {
           file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
           width = 0.6,
           height = 0.6,
-          wo = {
-            spell = false,
-            wrap = false,
-            signcolumn = 'yes',
-            statuscolumn = ' ',
-            conceallevel = 3,
-          },
-        }
-      end,
+          wo = { spell = false, wrap = false, signcolumn = 'yes', statuscolumn = ' ', conceallevel = 3 },
+        } end,
+      desc = 'Snacks Win - Neovim News',
     },
   },
   init = function()
