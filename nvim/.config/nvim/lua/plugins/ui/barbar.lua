@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd('Colorscheme', {
-  group = vim.api.nvim_create_augroup('config_custom_highlights', {}),
+  group = vim.api.nvim_create_augroup('config_custom_highlights_barbar', {}),
   callback = function()
     -- Override colorscheme settings before the colorscheme 'load()' call
     local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })

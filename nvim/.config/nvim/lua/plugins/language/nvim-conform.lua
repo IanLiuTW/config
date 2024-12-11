@@ -4,14 +4,9 @@ return {
   cmd = { 'ConformInfo' },
   keys = {
     {
-      -- Group formatting-related keymaps together
       '<leader>f',
       function()
-        require('conform').format {
-          async = true,
-          lsp_fallback = true,
-          timeout_ms = 500, -- Add timeout for better responsiveness
-        }
+        require('conform').format()
       end,
       mode = 'n',
       desc = 'Buffer - Format (Conform)',
@@ -35,7 +30,6 @@ return {
         'rustfmt',
         lsp_format = 'fallback',
       },
-      -- Web development formatters
       javascript = {
         'prettierd',
         'prettier',
@@ -54,18 +48,20 @@ return {
       -- ['*'] = { 'codespell' },
       ['_'] = { 'trim_whitespace' },
     },
-    -- Default formatting options
-    default_format_opts = {
-      lsp_fallback = 'fallback',
-      async = true,
-      quiet = false,
-    },
     formatters = {
       stylua = {
         append_args = {
-          '--indent-type', 'Spaces',
+          '--indent-type',
+          'Spaces',
         },
       },
+    },
+    -- Default formatting options
+    default_format_opts = {
+      lsp_fallback = true,
+      async = true,
+      quiet = false,
+      timeout_ms = 500, -- Add timeout for better responsiveness
     },
   },
 }

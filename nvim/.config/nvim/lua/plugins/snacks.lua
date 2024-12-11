@@ -152,6 +152,25 @@ return {
       end,
       priority = 200,
     },
+    scope = {
+      enabled = true,
+      keys ={
+        jump = {
+          ["[["] = {
+            bottom = false,
+            edge = true,
+            treesitter = { enabled = false },
+            desc = "jump to top edge of scope",
+          },
+          ["]]"] = {
+            bottom = true,
+            edge = true,
+            treesitter = { enabled = false },
+            desc = "jump to bottom edge of scope",
+          },
+        },
+      }
+    },
     scroll = {
       animate = {
         duration = { step = 5, total = 50 },

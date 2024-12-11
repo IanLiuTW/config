@@ -1,14 +1,21 @@
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
---   undercurl = true, -- or underline = true if you prefer
---   sp = 'Yellow', -- underline color
---   bg = 'LightYellow', -- background color
--- })
---
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
---   undercurl = true,
---   sp = 'Red', -- underline color
---   bg = 'LightRad', -- light red/pink background
--- })
+vim.api.nvim_create_autocmd('Colorscheme', {
+  group = vim.api.nvim_create_augroup('udpate_config_custom_highlights', {}),
+  callback = function()
+    vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = 'Black' })
+
+    -- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
+    --   undercurl = true, -- or underline = true if you prefer
+    --   sp = 'Yellow', -- underline color
+    --   bg = 'LightYellow', -- background color
+    -- })
+    --
+    -- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
+    --   undercurl = true,
+    --   sp = 'Red', -- underline color
+    --   bg = 'LightRad', -- light red/pink background
+    -- })
+  end,
+})
 
 return {
   {
@@ -74,19 +81,6 @@ return {
         }
       end,
     },
-    init = function()
-      -- A fix to make toggleterm's background to be dark
-      -- local colors = require('tokyonight.colors').setup()
-      local toggleterm = require 'toggleterm'
-      toggleterm.setup {
-        shade_terminals = false,
-        highlights = {
-          Normal = {
-            guibg = '#1c1c1c',
-          },
-        },
-      }
-    end,
   },
   {
     'catppuccin/nvim',

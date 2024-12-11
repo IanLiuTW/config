@@ -15,6 +15,7 @@ return {
     config = function()
       -- See `:help telescope` and `:help telescope.setup()`
       local actions = require 'telescope.actions'
+      local themes = require 'telescope.themes'
       local open_with_trouble = require('trouble.sources.telescope').open
       local add_to_trouble = require('trouble.sources.telescope').add
       require('telescope').setup {
@@ -76,7 +77,7 @@ return {
         },
         extensions = {
           ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+            themes.get_dropdown(),
           },
           fzf = {
             fuzzy = true, -- false will only do exact matching
@@ -132,7 +133,9 @@ return {
       vim.keymap.set('n', '<leader><leader>.', builtin.oldfiles, { desc = 'Telescope - Search [R]ecent Files' })
       vim.keymap.set('n', '<leader><leader>d', builtin.diagnostics, { desc = 'Telescope - Search [D]iagnostics' })
       vim.keymap.set('n', '<leader><leader>r', builtin.resume, { desc = 'Telescope - Search [R]esume' })
-      vim.keymap.set('n', '<leader><leader>c', builtin.colorscheme, { desc = 'Telescope - Search [C]olorscheme' })
+      vim.keymap.set('n', '<leader><leader>c', function()
+        builtin.colorscheme(themes.get_cursor { previewer = false })
+      end, { desc = 'Telescope - Search [C]olorscheme' })
       vim.keymap.set('n', '<leader><leader>?', builtin.help_tags, { desc = 'Telescope - Search [H]elp' })
       vim.keymap.set('n', '<leader><leader>k', builtin.keymaps, { desc = 'Telescope - Search [K]eymaps' })
       -- vim.keymap.set('n', '<leader><leader>n', '<cmd>Telescope notify<CR>', { desc = 'Telescope - Search [N]otification' })
@@ -143,9 +146,9 @@ return {
       vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = '[󰌒] Telescope - Find Existing Buffers' })
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        builtin.current_buffer_fuzzy_find(themes.get_dropdown {
           winblend = 10,
-          previewer = false,
+          previewer = true,
         })
       end, { desc = '[/] Search in Current Buffer' })
 
@@ -165,19 +168,19 @@ return {
 
       -- Git integration
       vim.keymap.set('n', '<leader>gs', function()
-        builtin.git_status()
+        builtin.git_status(themes.get_ivy())
       end, { desc = 'Telescope - Git Status' })
-      vim.keymap.set('n', '<leader>gS', function()
-        builtin.git_stash()
+      vim.keymap.set('n', '<leader>gz', function()
+        builtin.git_stash(themes.get_ivy())
       end, { desc = 'Telescope - Git Stash' })
       vim.keymap.set('n', '<leader>gb', function()
-        builtin.git_branches()
+        builtin.git_branches(themes.get_ivy())
       end, { desc = 'Telescope - Git Search Branches' })
       vim.keymap.set('n', '<leader>gC', function()
-        builtin.git_commits()
+        builtin.git_commits(themes.get_ivy())
       end, { desc = 'Telescope - Git Search Commits' })
       vim.keymap.set('n', '<leader>gB', function()
-        builtin.git_bcommits()
+        builtin.git_bcommits(themes.get_ivy())
       end, { desc = 'Telescope - Git Search Buffer Commits' })
     end,
   },
