@@ -135,8 +135,8 @@ alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-shift-minus = 'layout accordion horizontal vertical'
-alt-shift-equal = 'layout tiles horizontal vertical'
+alt-shift-comma = 'layout accordion horizontal vertical'
+alt-shift-period = 'layout tiles horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'

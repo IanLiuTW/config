@@ -16,8 +16,13 @@ return {
       -- See `:help telescope` and `:help telescope.setup()`
       local actions = require 'telescope.actions'
       local themes = require 'telescope.themes'
+      local pickers = require 'telescope.pickers'
+      local finders = require 'telescope.finders'
+      local make_entry = require 'telescope.make_entry'
+
       local open_with_trouble = require('trouble.sources.telescope').open
       local add_to_trouble = require('trouble.sources.telescope').add
+
       require('telescope').setup {
         defaults = {
           mappings = {
@@ -105,6 +110,50 @@ return {
           },
         },
       }
+
+      local multigrep = function(opts)
+        opts = opts or {}
+        opts.cwd = opts.cwd or vim.uv.cwd()
+
+        local finder = finders.new_async_job {
+          command_generator = function(prompt)
+            if not prompt or prompt == '' then
+              return nil
+            end
+
+            local pieces = vim.split(prompt, '  ')
+            local args = { 'rg' }
+            if pieces[1] then
+              table.insert(args, '-e')
+              table.insert(args, pieces[1])
+            end
+            if pieces[2] then
+              table.insert(args, '-g')
+              table.insert(args, pieces[2])
+            end
+
+            ---@diagnostic disable-next-line: deprecated
+            return vim.tbl_flatten {
+              args,
+              { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' },
+            }
+          end,
+
+          entry_maker = make_entry.gen_from_vimgrep(),
+          cwd = opts.cwd,
+        }
+
+        pickers
+          .new(opts, {
+            prompt_title = 'Multi-Grep',
+            debounce = 100,
+            finder = finder,
+            previewer = require('telescope.config').values.grep_previewer(opts),
+            sorter = require('telescope.sorters').empty(),
+          })
+          :find()
+      end
+
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
@@ -121,6 +170,9 @@ return {
       vim.keymap.set('n', '<leader><leader>g', function()
         builtin.live_grep()
       end, { desc = 'Telescope - Search by [G]rep' })
+      vim.keymap.set('n', '<leader><leader>G', function()
+        multigrep {}
+      end, { desc = 'Telescope - Search by Multi-[G]rep' })
       vim.keymap.set('n', '<leader><leader>w', function()
         builtin.grep_string()
       end, { desc = 'Telescope - Search Current [W]ord' })
@@ -163,8 +215,15 @@ return {
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader><leader>,', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Telescope - Search [,] Neovim Config' })
+        builtin.find_files {
+          cwd = vim.fn.stdpath 'config',
+        }
+      end, { desc = 'Telescope - Search Neovim Config' })
+      vim.keymap.set('n', '<leader><leader>p', function()
+        builtin.find_files {
+          cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy'),
+        }
+      end, { desc = 'Telescope - Search Neovim Package Data' })
 
       -- Git integration
       vim.keymap.set('n', '<leader>gs', function()

@@ -31,7 +31,7 @@ return {
         auto_install = true,
         highlight = {
           enable = true,
-          disable = { 'c', 'rust', 'csv' },
+          disable = { 'c', 'csv' },
           additional_vim_regex_highlighting = false,
         },
         indent = {

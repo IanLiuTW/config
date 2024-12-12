@@ -98,7 +98,7 @@ return {
   },
   config = function(_, opts)
     -- LSP Attach configuration
-    local function setup_lsp_keymaps(event)
+    local function setup_lsp(event)
       local map = function(keys, func, desc)
         vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
       end
@@ -107,8 +107,8 @@ return {
 
       -- Navigation
       map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-      map('<leader>dd', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
-      map('<leader>dD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
+      map('<leader>dD', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
+      map('<leader>dd', vim.lsp.buf.declaration, 'Goto [D]eclaration')
       map('<leader>di', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
       -- Search and References
       map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
@@ -151,16 +151,18 @@ return {
           end,
         })
       end
+
+      -- Diagnostic navigation because it messes up the highlighting
+      if client then
+        client.server_capabilities.semanticTokensProvider = nil
+      end
     end
 
-    -- -- Set up LSP servers
-    -- local lspconfig = require 'lspconfig'
-    -- for server, config in pairs(opts.servers) do
-    --   -- passing config.capabilities to blink.cmp merges with the capabilities in your
-    --   -- `opts[server].capabilities, if you've defined it
-    --   config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-    --   lspconfig[server].setup(config)
-    -- end
+    -- Set up LSP attach event
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
+      callback = setup_lsp,
+    })
 
     -- Mason setup
     require('mason').setup {
@@ -192,11 +194,5 @@ return {
       config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
       lspconfig[server].setup(config)
     end
-
-    -- Set up LSP attach event
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
-      callback = setup_lsp_keymaps,
-    })
   end,
 }
