@@ -45,7 +45,7 @@ return {
       nix = { 'nixpkgs_fmt' },
 
       -- Global formatters
-      -- ['*'] = { 'codespell' },
+      -- ['*'] = { 'codespell' }, -- this auto fixes spelling mistakes
       ['_'] = { 'trim_whitespace' },
     },
     formatters = {

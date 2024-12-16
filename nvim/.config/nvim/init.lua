@@ -90,7 +90,7 @@ vim.api.nvim_create_user_command('Delmark', function()
   vim.ui.input({ prompt = 'Enter mark to delete: ' }, function(input)
     if input and input ~= '' then
       vim.cmd('delm ' .. input)
-      print('Deleted mark: ' .. input)
+      vim.notify('Deleted mark: ' .. input)
     end
   end)
 end, { desc = 'Delete mark by key with popup input' })
@@ -107,10 +107,9 @@ vim.diagnostic.config {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,
   },
-  signs = false,
-  -- signs = {
-  --   severity = { min = vim.diagnostic.severity.INFO },
-  -- },
+  signs = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  }
 }
 
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

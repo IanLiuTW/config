@@ -230,7 +230,7 @@ return {
   },
   keys = {
     { '<leader>bb', function() Snacks.scratch() end, desc = 'Snacks Scratch - Toggle Scratch Buffer' },
-    { '<leader>b<leader>', function() Snacks.scratch.select() end, desc = 'Snacks Scratch - Select Scratch Buffer' },
+    { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Snacks Scratch - Select Scratch Buffer' },
     { '<leader><BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
     { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Snacks Git - Browse' },
@@ -242,7 +242,7 @@ return {
     -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Snacks Notifier - Dismiss All' },
     { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Snacks Notifier - Show History' },
-    { '<leader>ps', function() Snacks.profiler.scratch() end, desc = 'Snacks Profiler - Scratch Buffer' },
+    { '<leader>,p', function() Snacks.profiler.scratch() end, desc = 'Snacks Profiler - Scratch Buffer' },
     { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Snacks Words - Next Reference', mode = { 'n', 't' } },
     { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Snacks Words - Prev Reference', mode = { 'n', 't' } },
     { '<leader>,x', function() Snacks.dim() end, desc = 'Snacks Dim - Toggle Zen', mode = { 'n' } },

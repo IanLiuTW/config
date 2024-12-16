@@ -2,9 +2,9 @@
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-  dependencies = { 
+  dependencies = {
     'tpope/vim-unimpaired',
-    "afreakk/unimpaired-which-key.nvim" 
+    "afreakk/unimpaired-which-key.nvim"
   },
   keys = {
     { '<leader>?', function() require('which-key').show { global = false } end, desc = '[?] Buffer Local Keymaps' },
@@ -50,7 +50,7 @@ return { -- Useful plugin to show you pending keybinds.
         {'<leader>dX',        '<CMD>source %<CR>',                        desc = 'Execute - Source Current File'},
         -- Autocommands keybindings
         { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = 'User Command - Copy Path' },
-        { '<leader>dm',      '<Cmd>CopyPath<CR>',                         desc = 'User Command - Delete Mark' },
+        { 'dm',      '<Cmd>Delmark<CR>',                         desc = 'User Command - Delete Mark' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                      desc = 'Lazy - Update Plugins' },
@@ -61,6 +61,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>bd',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
         { '<leader>bD',     '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
         -- Window keybindings
+        { '<S-BS>',     '<Cmd>fc<CR>', noremap = true, silent = true, desc = 'Window - Close Floating Window' },
         -- { '',     '<Cmd>sp<CR>', noremap = true, silent = true, desc = 'Pane Horizontal Split' },
         -- { '',     '<Cmd>vs<CR>', noremap = true, silent = true, desc = 'Pane Vertical Split' },
         -- { '',     '<C-w><C-o>',  noremap = true, silent = true, desc = 'Pane close other panes' },

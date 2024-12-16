@@ -64,6 +64,7 @@
           ffmpegthumbnailer
           poppler
           pngpaste
+          lynx
 
           ice-bar
           aerospace

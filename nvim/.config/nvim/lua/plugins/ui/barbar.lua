@@ -5,19 +5,24 @@ vim.api.nvim_create_autocmd('Colorscheme', {
     local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
 
     vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+      fg = '#7EA662',
     })
     vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#4FA6ED',
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+      fg = '#4FA6ED',
     })
     vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#E55561',
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+      fg = '#E55561',
     })
     vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+      fg = '#7EA662',
     })
     vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg), fg = '#7EA662',
+      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+      fg = '#7EA662',
     })
   end,
 })
@@ -51,11 +56,11 @@ return {
     { '<leader>0', '<Cmd>BufferLast<CR>', noremap = true, silent = true, desc = 'Buffer - Last' },
 
     { '<leader>B', '<Cmd>BufferPin<CR>', noremap = true, silent = true, desc = 'Buffer - Pin' },
-    { '<leader>b<TAB>', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
+    { '<leader>b<space>', '<Cmd>BufferPick<CR>', noremap = true, silent = true, desc = 'Buffer - Pick' },
     { '<leader>bo', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', noremap = true, silent = true, desc = 'Buffer - Close All But Current or Pinned' },
     { '<leader>br', '<Cmd>BufferCloseBuffersRight<CR>', noremap = true, silent = true, desc = 'Buffer - Close the Buffers on the Right' },
-    { '<leader>bB', '<Cmd>BufferOrderByBufferNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Number' },
-    { '<leader>bN', '<Cmd>BufferOrderByName<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Name' },
+    { '<leader>bN', '<Cmd>BufferOrderByBufferNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Number' },
+    { '<leader>bT', '<Cmd>BufferOrderByName<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Name' },
     { '<leader>bD', '<Cmd>BufferOrderByDirectory<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Directory' },
     { '<leader>bL', '<Cmd>BufferOrderByLanguage<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Language' },
     { '<leader>bW', '<Cmd>BufferOrderByWindowNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by WindowNumber' },
