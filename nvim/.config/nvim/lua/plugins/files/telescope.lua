@@ -169,10 +169,10 @@ return {
       vim.keymap.set('n', '<leader><leader>f', function()
         builtin.git_files()
       end, { desc = 'Telescope - Search [F]iles in Git' })
+      -- vim.keymap.set('n', '<leader><leader>g', function()
+      --   builtin.live_grep()
+      -- end, { desc = 'Telescope - Search by [G]rep' })
       vim.keymap.set('n', '<leader><leader>g', function()
-        builtin.live_grep()
-      end, { desc = 'Telescope - Search by [G]rep' })
-      vim.keymap.set('n', '<leader><leader>G', function()
         multigrep {}
       end, { desc = 'Telescope - Search by Multi-[G]rep' })
       vim.keymap.set('n', '<leader><leader>w', function()
