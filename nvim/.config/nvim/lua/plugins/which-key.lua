@@ -32,15 +32,18 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>c',        group = '[C]hanges (Gitsigns)',   mode = { 'n', 'x' } },
       { '<leader>d',        group = '[D]o',                   mode = { 'n', 'x' } },
       { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
-      { '<leader>e',        group = '[E]rrors (Trouble)',     mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
       { '<leader>h',        group = '[H]arpoon',              mode = { 'n', 'x' } },
       { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>r',        group = '[R]un Tasks',            mode = { 'n', 'x' } },
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>y',        group = '[Y] Debug',              mode = { 'n', 'x' } },
-      { '<leader>,',        group = '[,] Settings / Projects',mode = { 'n', 'x' } },
+      { '<leader>`',        group = '[`] Trouble',            mode = { 'n', 'x' } },
+      { '<leader>,',        group = '[,] Settings / Sessions',mode = { 'n', 'x' } },
       { '<leader><leader>', group = '[󱁐] Telescope',          mode = { 'n', 'x' } },
+      { '<leader>e',        group = '(Empty)',                mode = { 'n', 'x' } },
+      { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
+      { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
 
       -- Normal Mode
       {
@@ -94,7 +97,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>w',  '<cmd>write<CR>',                                                           desc = 'Buffer - [W]rite' },
         { '<leader>F',  'gg=G',                                                                     desc = 'Buffer - Format (Indentation)' },
         { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end,desc = 'Quickfix - Diagnostics Window' },
-        { '<leader>ed', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
+        { '<leader>`Q', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
       {
         mode = { 'n' , 'v' , 't' },
