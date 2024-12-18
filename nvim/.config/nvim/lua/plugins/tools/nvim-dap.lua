@@ -13,17 +13,17 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
     return {
-      { '<leader>yy',    dapui.toggle,                                                                                   desc = 'Debug: Toggle [D]AP UI' },
-      { '<leader>yc',    dap.run_to_cursor,                                                                              desc = 'Debug: Run to [C]ursor' },
-      { '<leader>y<bs>', dap.clear_breakpoints,                                                                          desc = 'Debug: Clear Breakpoint' },
-      { '<leader>Y',     dap.toggle_breakpoint,                                                                          desc = 'Debug: Toggle [B]reakpoint' },
-      { '<leader>yb',    function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,                       desc = 'Debug: Set [B]reakpoint' },
-      { '<leader>yl',    function() dap.set_breakpoint(nil,nil,vim.fn.input 'Log point message: ') end,                  desc = 'Debug: [L]og Point' },
-      { '<leader>yh',    function() require('dap.ui.widgets').hover() end,                                               desc = 'Debug: Hover' },
-      { '<leader>yp',    function() require('dap.ui.widgets').preview() end,                                             desc = 'Debug: Preview' },
-      { '<leader>yf',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.frames) end, desc = 'Debug: Frames' },
-      { '<leader>ys',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.scopes) end, desc = 'Debug: Scopes' },
-      { '<leader>y?',    function() dapui.eval(nil,{ enter = true }) end,                                                desc = 'Debug: Eval' },
+      { '<leader>E',     dapui.toggle,                                                                                   desc = 'Debug: Toggle [D]AP UI' },
+      { '<leader>ee',    dap.toggle_breakpoint,                                                                          desc = 'Debug: Toggle [B]reakpoint' },
+      { '<leader>e<bs>', dap.clear_breakpoints,                                                                          desc = 'Debug: Clear Breakpoint' },
+      { '<leader>ec',    dap.run_to_cursor,                                                                              desc = 'Debug: Run to [C]ursor' },
+      { '<leader>eb',    function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,                       desc = 'Debug: Set [B]reakpoint' },
+      { '<leader>el',    function() dap.set_breakpoint(nil,nil,vim.fn.input 'Log point message: ') end,                  desc = 'Debug: [L]og Point' },
+      { '<leader>eh',    function() require('dap.ui.widgets').hover() end,                                               desc = 'Debug: Hover' },
+      { '<leader>ep',    function() require('dap.ui.widgets').preview() end,                                             desc = 'Debug: Preview' },
+      { '<leader>ef',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.frames) end, desc = 'Debug: Frames' },
+      { '<leader>es',    function() local widgets = require 'dap.ui.widgets' widgets.centered_float(widgets.scopes) end, desc = 'Debug: Scopes' },
+      { '<leader>e?',    function() dapui.eval(nil,{ enter = true }) end,                                                desc = 'Debug: Eval' },
       { '<F5>',          dap.step_into,                                                                                  desc = 'Debug: Step Into' },
       { '<F6>',          dap.step_over,                                                                                  desc = 'Debug: Step Over' },
       { '<F7>',          dap.step_out,                                                                                   desc = 'Debug: Step Out' },
@@ -78,11 +78,11 @@ return {
       },
       mappings = {
         edit = 'e',
-        expand = { '<2-LeftMouse>', '<C-l>' },
+        expand = { '<2-LeftMouse>', '<CR>' },
         open = 'o',
         remove = 'd',
         repl = 'r',
-        toggle = '<CR>',
+        toggle = '<space>',
       },
     }
 

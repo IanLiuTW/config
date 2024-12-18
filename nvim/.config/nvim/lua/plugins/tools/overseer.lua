@@ -19,23 +19,23 @@ return {
       'OverseerClearCache',
     },
     keys = {
-      { '<leader>R', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart Last Task' },
-      { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run Task' },
-      { '<leader>rR', '<cmd>OverseerRunCmd<cr>', desc = 'Overseer - Run Cmd' },
-      { '<leader>rb', '<cmd>OverseerBuild<cr>', desc = 'Overseer - Build Task' },
+      { '<leader>Y', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart Last Task' },
+      { '<leader>yr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run Task' },
+      { '<leader>yR', '<cmd>OverseerRunCmd<cr>', desc = 'Overseer - Run Cmd' },
+      { '<leader>yb', '<cmd>OverseerBuild<cr>', desc = 'Overseer - Build Task' },
 
-      { '<leader>r<space>', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Toggle Task List' },
-      { '<leader>ra', '<cmd>OverseerTaskAction<cr>', desc = 'Overseer - Task Action' },
-      { '<leader>rq', '<cmd>OverseerQuickAction<cr>', desc = 'Overseer - Quick Action (Recent Task)' },
+      { '<leader>y<space>', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Toggle Task List' },
+      { '<leader>ya', '<cmd>OverseerTaskAction<cr>', desc = 'Overseer - Task Action' },
+      { '<leader>yq', '<cmd>OverseerQuickAction<cr>', desc = 'Overseer - Quick Action (Recent Task)' },
 
-      { '<leader>rs', '<cmd>OverseerSaveBundle<cr>', desc = 'Overseer - Bundle Save' },
-      { '<leader>rl', '<cmd>OverseerLoadBundle<cr>', desc = 'Overseer - Bundle Load' },
-      { '<leader>rx', '<cmd>OverseerDeleteBundle<cr>', desc = 'Overseer - Bundle Delete' },
+      { '<leader>ys', '<cmd>OverseerSaveBundle<cr>', desc = 'Overseer - Bundle Save' },
+      { '<leader>yl', '<cmd>OverseerLoadBundle<cr>', desc = 'Overseer - Bundle Load' },
+      { '<leader>yx', '<cmd>OverseerDeleteBundle<cr>', desc = 'Overseer - Bundle Delete' },
 
-      { '<leader>r?', '<cmd>OverseerInfo<cr>', desc = 'Overseer - Overseer Info' },
-      { '<leader>r<BS>', '<cmd>OverseerClearCache<cr>', desc = 'Overseer - Clear Cache' },
+      { '<leader>y?', '<cmd>OverseerInfo<cr>', desc = 'Overseer - Overseer Info' },
+      { '<leader>y<BS>', '<cmd>OverseerClearCache<cr>', desc = 'Overseer - Clear Cache' },
       {
-        '<leader>r.',
+        '<leader>y.',
         function() --Run shell scripts in the current directory
           local files = require 'overseer.files'
           return {

@@ -24,7 +24,7 @@ return {
       desc = 'NeoTest: [D]ebug the nearest test',
     },
     {
-      '<leader>t.',
+      '<leader>tx',
       function()
         require('neotest').run.stop()
       end,
@@ -38,7 +38,7 @@ return {
       desc = 'NeoTest: [A]ttach to the test',
     },
     {
-      '<leader>t<space>',
+      '<leader>ts',
       function()
         require('neotest').summary.toggle()
       end,
@@ -74,7 +74,7 @@ return {
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-vim-test',
-    'rouge8/neotest-rust',
+    -- 'rouge8/neotest-rust', -- Disabled: Switching to rustaceanvim
   },
   config = function()
     require('neotest').setup {
@@ -86,7 +86,8 @@ return {
         require 'neotest-vim-test' {
           ignore_file_types = { 'python', 'vim', 'lua' },
         },
-        require 'neotest-rust',
+        require 'rustaceanvim.neotest',
+        -- require 'neotest-rust', -- Disabled: Switching to rustaceanvim
       },
     }
   end,

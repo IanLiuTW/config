@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
-  print('[G wrapper for git] Executed: ' .. command)
+  vim.notify('[G wrapper for git] Executed: ' .. command)
   vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
 end, { nargs = 1 })
 -- Copy the current file path to the clipboard
@@ -106,6 +106,7 @@ vim.diagnostic.config {
   virtual_text = {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,
+    spacing = 1,
   },
   signs = {
     severity = { min = vim.diagnostic.severity.ERROR },

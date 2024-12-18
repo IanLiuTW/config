@@ -20,20 +20,21 @@ return {
   },
   opts = {
     servers = {
-      -- pyright = {
-      --   settings = {
-      --     pyright = {
-      --       -- Using Ruff's import organizer
-      --       disableOrganizeImports = true,
-      --     },
-      --     python = {
-      --       analysis = {
-      --         -- Ignore all files for analysis to exclusively use Ruff for linting
-      --         ignore = { '*' },
-      --       },
-      --     },
-      --   },
-      -- },
+      -- Disabled: Switching to basedpyright
+      --[[ pyright = {
+        settings = {
+          pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              -- Ignore all files for analysis to exclusively use Ruff for linting
+              ignore = { '*' },
+            },
+          },
+        },
+      }, ]]
       basedpyright = {
         settings = {
           basedpyright = {
@@ -43,7 +44,8 @@ return {
           },
         },
       },
-      rust_analyzer = {
+      -- Disabled: Using rustaceanvim
+      --[[ rust_analyzer = {
         settings = {
           ['rust-analyzer'] = {
             checkOnSave = { command = 'clippy' },
@@ -56,7 +58,7 @@ return {
             },
           },
         },
-      },
+      }, ]]
       lua_ls = {
         settings = {
           Lua = {
@@ -100,7 +102,9 @@ return {
     -- LSP Attach configuration
     local function setup_lsp(event)
       local map = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+        if vim.fn.mapcheck(keys, 'n') == '' then
+          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
+        end
       end
 
       local client = vim.lsp.get_client_by_id(event.data.client_id)

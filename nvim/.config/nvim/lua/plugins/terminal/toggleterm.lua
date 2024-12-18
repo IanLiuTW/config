@@ -34,6 +34,9 @@ return {
           end
         end,
         open_mapping = [[<C-/>]],
+        start_in_insert = true,
+        insert_mappings = true,
+        terminal_mappings = true,
         direction = 'horizontal',
         float_opts = {
           border = 'curved',

@@ -28,8 +28,8 @@ return {
           mappings = {
             i = {
               ['<C-/>'] = actions.which_key,
-              ['<C-e>'] = open_with_trouble,
-              ['<C-y>'] = add_to_trouble,
+              ['<C-w>'] = open_with_trouble,
+              ['<C-e>'] = add_to_trouble,
               ['<C-b>'] = actions.preview_scrolling_up,
               ['<C-f>'] = actions.preview_scrolling_down,
               ['<C-u>'] = actions.results_scrolling_up,
@@ -44,8 +44,8 @@ return {
             },
             n = {
               ['<C-/>'] = actions.which_key,
-              ['<C-e>'] = open_with_trouble,
-              ['<C-y>'] = add_to_trouble,
+              ['<C-w>'] = open_with_trouble,
+              ['<C-e>'] = add_to_trouble,
               ['<C-b>'] = actions.preview_scrolling_up,
               ['<C-f>'] = actions.preview_scrolling_down,
               ['<C-u>'] = actions.results_scrolling_up,
