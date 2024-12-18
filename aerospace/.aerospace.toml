@@ -55,7 +55,7 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'citrix'
-run = ['layout floating', 'move-node-to-workspace 9']
+run = ['layout floating', 'move-node-to-workspace 6']
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -171,3 +171,14 @@ alt-shift-enter = 'mode service'
 enter = ['reload-config', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 # alt-w = ['exec-and-forget open -a /Applications/Ghostty.app', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'main'
+7 = ['secondary', 'main']
+8 = ['secondary', 'main']
+9 = ['secondary', 'main']

@@ -1,19 +1,10 @@
 return {
   'saghen/blink.cmp',
-  lazy = false, -- lazy loading handled internally
-  -- optional: provides snippets for the snippet source
+  lazy = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
-  -- use a release tag to download pre-built binaries
   version = 'v0.*',
-  -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
-
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
     keymap = {
       -- ['<CR>'] = { 'select_and_accept', 'fallback' },
@@ -57,8 +48,6 @@ return {
       enabled = false,
     },
 
-    -- default list of enabled providers defined so that you can extend it
-    -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
       completion = {
         enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
@@ -113,7 +102,6 @@ return {
       },
     },
   },
-  -- allows extending the enabled_providers array elsewhere in your config
-  -- without having to redefine it
+
   opts_extend = { 'sources.completion.enabled_providers' },
 }

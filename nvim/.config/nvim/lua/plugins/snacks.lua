@@ -153,6 +153,19 @@ return {
       end,
       priority = 200,
     },
+    lazygit = {
+      configure = false,
+      theme = {
+          selectedLineBgColor = { bg = "black" }
+      },
+      win = {
+        position = "float",
+        backdrop = 60,
+        height = 0.96,
+        width = 0.98,
+        zindex = 50,
+      }
+    },
     scope = {
       enabled = true,
       keys ={
@@ -236,11 +249,11 @@ return {
     { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Snacks Git - Browse' },
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-    -- { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-    -- { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    -- { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+    { "<leader>gG", function() Snacks.lazygit() end, desc = "Snacks - Lazygit" },
+    { "<leader>gl", function() Snacks.lazygit.log_file() end, desc = "Snack - Lazygit Log (Current File)" },
+    { "<leader>gL", function() Snacks.lazygit.log() end, desc = "Snacks - Lazygit Log (CWD)" },
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Snacks Notifier - Dismiss All' },
     { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Snacks Notifier - Show History' },
     { '<leader>,p', function() Snacks.profiler.scratch() end, desc = 'Snacks Profiler - Scratch Buffer' },

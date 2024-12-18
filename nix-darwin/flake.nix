@@ -59,6 +59,9 @@
           zoxide
           fzf
 
+          lazygit
+          lazydocker
+          delta
           yazi
           imagemagick
           ffmpegthumbnailer
