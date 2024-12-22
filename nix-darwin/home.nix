@@ -94,7 +94,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    POETRY_VIRTUALENVS_IN_PROJECT = "true";
+    # POETRY_VIRTUALENVS_IN_PROJECT = "true";
   };
 
   # Let Home Manager install and manage itself.

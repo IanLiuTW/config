@@ -101,8 +101,8 @@ return {
   config = function(_, opts)
     -- LSP Attach configuration
     local function setup_lsp(event)
-      local map = function(keys, func, desc)
-        if vim.fn.mapcheck(keys, 'n') == '' then
+      local map = function(keys, func, desc, mapcheck)
+        if not mapcheck or vim.fn.mapcheck(keys, 'n') == '' then
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
         end
       end

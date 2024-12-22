@@ -50,7 +50,7 @@ automatically-unhide-macos-hidden-apps = true
 # run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
 
 [[on-window-detected]]
-if.app-name-regex-substring = '(finder|docker|devpod|chatgpt|claude|excel|spotify|tidal|line)'
+if.app-name-regex-substring = '(finder|docker|podman|devpod|chatgpt|claude|excel|spotify|tidal|line|element)'
 run = 'layout floating'
 
 [[on-window-detected]]

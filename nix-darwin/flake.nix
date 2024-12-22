@@ -88,6 +88,8 @@
             "bpytop"
             "sops"
             "go-jira"
+            "podman"
+            "podman-compose"
           ];
           casks = [
             "middleclick"
@@ -95,7 +97,7 @@
             "hammerspoon"
             "brave-browser"
             "google-chrome"
-            "docker"
+            "podman-desktop"
             "devpod"
             "postman"
             "mongodb-compass"

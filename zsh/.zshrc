@@ -131,8 +131,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias dp="devpod"
 alias ssh="TERM=xterm-256color ssh"
-alias vrc="nvim ~/.zshrc"
-alias src="source ~/.zshrc"
+alias docker="podman"
 # [Alias] Navigation
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -172,6 +171,8 @@ alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 alias dev='nix develop'
 # [Alias]
+alias vrc="nvim ~/.zshrc"
+alias src="source ~/.zshrc"
 alias config='cd ~/config && nvim .'
 alias todo='nvim ~/.todo'
 
