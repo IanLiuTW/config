@@ -62,6 +62,7 @@
     ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
     ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
     ".config/lazygit/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazygit/.config/lazygit/config.yml"; };
+    ".config/ghostty/config" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/ghostty/.config/ghostty/config"; };
 
     ".config/pycodestyle".text = ''
       [pycodestyle]

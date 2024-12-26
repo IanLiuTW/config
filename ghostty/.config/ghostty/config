@@ -1,0 +1,77 @@
+font-family = Victor Mono
+# font-style = SemiBold
+# font-style-bold = Bold
+# font-style-italic = SemiBold Italic
+# font-style-bold-italic = Bold Italic
+# font-family = SauceCodePro Nerd Font
+# font-family = Monofur Nerd Font
+# font-family = CommitMono Nerd Font
+# font-family = Hack Nerd Font Mono
+# font-family = CaskaydiaCove Nerd Font
+# font-family = CodeNewRoman Nerd Font
+
+font-size = 16
+font-thicken = true
+bold-is-bright = true
+adjust-cell-width = 0
+adjust-cell-height = -2
+adjust-underline-position = 4
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+background-opacity = 0.85
+background-blur-radius = 30
+window-theme = ghostty
+# theme = tokyonight
+
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0.1
+
+macos-non-native-fullscreen = true
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+# macos-icon = custom-style
+# macos-icon-frame = chrome
+quit-after-last-window-closed = true
+gtk-single-instance = true
+
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+shell-integration-features = no-cursor,sudo,no-title
+
+keybind = clear
+keybind = super+shift+enter=reload_config
+keybind = super+t=new_tab
+keybind = super+w=close_surface
+keybind = super+[=previous_tab
+keybind = super+]=next_tab
+keybind = super+1=goto_tab:1
+keybind = super+2=goto_tab:2
+keybind = super+3=goto_tab:3
+keybind = super+4=goto_tab:4
+keybind = super+5=goto_tab:5
+keybind = super+6=goto_tab:6
+keybind = super+7=goto_tab:7
+keybind = super+8=goto_tab:8
+keybind = super+9=last_tab
+keybind = super+shift+[=move_tab:-1
+keybind = super+shift+]=move_tab:1
+keybind = super+equal=increase_font_size:1
+keybind = super+-=decrease_font_size:1
+keybind = super+0=reset_font_size
+keybind = super+enter=toggle_quick_terminal
+keybind = super+n=new_split:auto
+keybind = super+h=goto_split:left
+keybind = super+l=goto_split:right
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+f=toggle_fullscreen
+keybind = super+q=quit
+# keybind = super+shift+i=inspector:toggle
+# keybind = super+shift+m=toggle_split_zoom
+# keybind = super+shift+s=write_screen_file:open

@@ -57,6 +57,10 @@ run = 'layout floating'
 if.app-name-regex-substring = 'citrix'
 run = ['layout floating', 'move-node-to-workspace 6']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'ghostty'
+run = ['layout floating']
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
