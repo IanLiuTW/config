@@ -110,6 +110,7 @@ return {
     opts = {
       transparent = true,
       functionStyle = { italic = true, bold = true },
+      typeStyle = { italic = true },
     },
   },
   {
@@ -127,7 +128,7 @@ return {
       vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
       vim.g.gruvbox_material_current_word = 'grey background'
       vim.g.gruvbox_material_inlay_hints_background = 'dimmed'
-      vim.cmd.colorscheme 'gruvbox-material'
+      -- vim.cmd.colorscheme 'gruvbox-material'
     end,
   },
   {

@@ -84,7 +84,7 @@ return {
         },
         extensions = {
           ['ui-select'] = {
-            themes.get_dropdown(),
+            themes.get_cursor(),
           },
           fzf = {
             fuzzy = true, -- false will only do exact matching
@@ -188,7 +188,7 @@ return {
       vim.keymap.set('n', '<leader><leader>d', builtin.diagnostics, { desc = 'Telescope - Search [D]iagnostics' })
       vim.keymap.set('n', '<leader><leader>r', builtin.resume, { desc = 'Telescope - Search [R]esume' })
       vim.keymap.set('n', '<leader><leader>c', function()
-        builtin.colorscheme(themes.get_cursor { previewer = false })
+        builtin.colorscheme(themes.get_ivy { previewer = false, layout_config = { height = 0.2 } })
       end, { desc = 'Telescope - Search [C]olorscheme' })
       vim.keymap.set('n', '<leader><leader>?', builtin.help_tags, { desc = 'Telescope - Search [H]elp' })
       vim.keymap.set('n', '<leader><leader>k', builtin.keymaps, { desc = 'Telescope - Search [K]eymaps' })
