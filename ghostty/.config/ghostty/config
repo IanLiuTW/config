@@ -21,10 +21,10 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
-background-opacity = 0.85
+background-opacity = 0.9
 background-blur-radius = 30
 window-theme = ghostty
-# theme = tokyonight
+theme = tokyonight-storm
 
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.1
