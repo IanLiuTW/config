@@ -81,6 +81,18 @@ return {
             additional_args = { '--hidden', '--iglob', '!.git' },
           },
           colorscheme = { enable_preview = true },
+          git_branches = {
+            mappings = {
+              i = {
+                ['<C-d>'] = require('telescope.actions').results_scrolling_down,
+                ['<C-x>'] = require('telescope.actions').git_delete_branch,
+              },
+              n = {
+                ['<C-d>'] = require('telescope.actions').results_scrolling_down,
+                ['<C-x>'] = require('telescope.actions').git_delete_branch,
+              },
+            },
+          },
         },
         extensions = {
           ['ui-select'] = {
