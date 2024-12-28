@@ -93,7 +93,7 @@
           ];
           casks = [
             "middleclick"
-            "kitty@nightly"
+            "ghostty"
             "hammerspoon"
             "brave-browser"
             "google-chrome"
@@ -129,19 +129,17 @@
         };
 
         fonts.packages = with pkgs; [
-          (nerdfonts.override {
-            fonts = [
-              "CascadiaMono"
-              "CascadiaCode"
-              "Hack"
-              "CommitMono"
-              "Monofur"
-              "CodeNewRoman"
-              "SourceCodePro"
-              "Terminus"
-              "BigBlueTerminal"
-            ];
-          })
+          nerd-fonts.caskaydia-mono
+          nerd-fonts.caskaydia-cove
+          nerd-fonts.hack
+          nerd-fonts.commit-mono
+          nerd-fonts._0xproto
+          nerd-fonts.monofur
+          nerd-fonts.code-new-roman
+          nerd-fonts.sauce-code-pro
+          nerd-fonts.dejavu-sans-mono
+          nerd-fonts.terminess-ttf
+          nerd-fonts.bigblue-terminal
           victor-mono
         ];
         system.activationScripts.applications.text =

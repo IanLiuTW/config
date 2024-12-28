@@ -243,9 +243,9 @@ return {
     },
   },
   keys = {
+    { '<C-BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
     { '<leader>bb', function() Snacks.scratch() end, desc = 'Snacks Scratch - Toggle Scratch Buffer' },
     { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Snacks Scratch - Select Scratch Buffer' },
-    { '<leader><BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
     { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Snacks Git - Browse' },
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
