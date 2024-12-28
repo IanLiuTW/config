@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd('Colorscheme', {
   group = vim.api.nvim_create_augroup('udpate_config_custom_highlights', {}),
   callback = function()
-    vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = '#212121', fg = '#b5a642' })
+    vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = '#212121', fg = 'white' })
 
     -- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
     --   undercurl = true, -- or underline = true if you prefer

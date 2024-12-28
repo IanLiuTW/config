@@ -31,10 +31,10 @@ vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below 
 vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
 vim.opt.spellfile = vim.fn.expand '~/.config/nvim/spell/en.utf-8.add'
 vim.opt.guicursor = {
-  'n:block-blinkwait0-blinkoff300-blinkon300',
-  'i:ver25-blinkwait0-blinkoff300-blinkon300',
-  'v:hor25-blinkwait0-blinkoff300-blinkon300',
-  'c:block-blinkwait0-blinkoff300-blinkon300',
+  'n:block-blinkwait50-blinkoff50-blinkon50',
+  'i:ver25-blinkwait50-blinkoff50-blinkon50',
+  'v:hor25-blinkwait50-blinkoff50-blinkon50',
+  'c:block-blinkwait50-blinkoff50-blinkon50',
 }
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
