@@ -67,8 +67,8 @@ keybind = super+6=goto_tab:6
 keybind = super+7=goto_tab:7
 keybind = super+8=goto_tab:8
 keybind = super+9=last_tab
-keybind = super+shift+left_bracket=move_tab:-1
-keybind = super+shift+right_bracket=move_tab:+1
+keybind = super+ctrl+left_bracket=move_tab:-1
+keybind = super+ctrl+right_bracket=move_tab:+1
 
 keybind = super+s=new_split:auto
 keybind = super+h=goto_split:left
