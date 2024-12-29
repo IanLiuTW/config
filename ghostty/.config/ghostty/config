@@ -18,6 +18,7 @@ mouse-hide-while-typing = true
 
 background-opacity = 0.90
 background-blur-radius = 40
+window-colorspace = display-p3
 window-theme = ghostty
 theme = Kanagawa Wave
 
@@ -35,6 +36,7 @@ macos-option-as-alt = true
 working-directory = home
 window-inherit-working-directory = true
 window-inherit-font-size = true
+window-save-state = always
 quit-after-last-window-closed = true
 gtk-single-instance = true
 

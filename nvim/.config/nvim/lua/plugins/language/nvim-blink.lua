@@ -76,7 +76,7 @@ return {
         auto_show = true,
         auto_show_delay_ms = 200,
         window = {
-          border = 'shadow',
+          border = 'rounded',
           min_width = 30,
           max_height = 30,
         },
@@ -119,6 +119,7 @@ return {
 
     signature = {
       enabled = false,
+      window = { border = 'single' },
     },
 
     appearance = {

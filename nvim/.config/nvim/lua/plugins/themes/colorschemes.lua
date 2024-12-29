@@ -109,7 +109,10 @@ return {
     lazy = false,
     opts = {
       transparent = true,
-      functionStyle = { italic = true, bold = true },
+      commentStyle = { italic = true },
+      functionStyle = { bold = true },
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
       typeStyle = { italic = true, bold = true },
       colors = {
         theme = {
