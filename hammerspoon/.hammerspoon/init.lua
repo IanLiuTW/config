@@ -1,3 +1,22 @@
+-- [[Reverse Mouse Scroll]]
+reverse_mouse_scroll = hs.eventtap
+    .new({ hs.eventtap.event.types.scrollWheel }, function(event)
+        -- detect if this is touchpad or mouse
+        local isTrackpad = event:getProperty(hs.eventtap.event.properties.scrollWheelEventIsContinuous)
+        if isTrackpad == 1 then
+            return false -- trackpad: pass the event along
+        end
+
+        event:setProperty(
+            hs.eventtap.event.properties.scrollWheelEventDeltaAxis1,
+            -event:getProperty(hs.eventtap.event.properties.scrollWheelEventDeltaAxis1)
+        )
+        return false -- pass the event along
+    end)
+    :start()
+
+-- [[ The following section is not currently used ]]
+
 local spaces = require("hs.spaces") -- https://github.com/asmagill/hs._asm.spaces
 
 -- [[Util functions - Window]]
@@ -9,6 +28,7 @@ local function getMainWindow(app)
     end
     return win
 end
+
 local function moveWindow(app, space, mainScreen)
     -- move to main space
     local win = getMainWindow(app)
@@ -27,6 +47,7 @@ local function moveWindow(app, space, mainScreen)
     end
     win:focus()
 end
+
 local function bind_key_toggle_window(mod, key, bundle_id, window_pos)
     hs.hotkey.bind(mod, key, function() -- hotkey config
         local app = hs.application.get(bundle_id)
@@ -53,6 +74,7 @@ local function bind_key_toggle_window(mod, key, bundle_id, window_pos)
         end
     end)
 end
+
 local function bind_key_focus_window(mod, key, bundle_id)
     hs.hotkey.bind(mod, key, function() -- hotkey config
         local app = hs.application.get(bundle_id)
@@ -68,20 +90,3 @@ end
 
 -- local appBundleID = hs.application.get("Slack"):bundleID()
 -- print(appBundleID)
-
--- [[Reverse Mouse Scroll]]
-reverse_mouse_scroll = hs.eventtap
-    .new({ hs.eventtap.event.types.scrollWheel }, function(event)
-        -- detect if this is touchpad or mouse
-        local isTrackpad = event:getProperty(hs.eventtap.event.properties.scrollWheelEventIsContinuous)
-        if isTrackpad == 1 then
-            return false -- trackpad: pass the event along
-        end
-
-        event:setProperty(
-            hs.eventtap.event.properties.scrollWheelEventDeltaAxis1,
-            -event:getProperty(hs.eventtap.event.properties.scrollWheelEventDeltaAxis1)
-        )
-        return false -- pass the event along
-    end)
-    :start()

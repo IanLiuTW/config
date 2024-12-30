@@ -114,12 +114,21 @@ if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
 fi
 
+# [Program] Yazi - Sets `y` to run yazi; Use `q` to move CWD and `Q` to not to
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # [Alias] Basics
 alias q="exit"
 alias f="fg"
 alias G="git"
 alias v="nvim"
-alias y="yazi"
 alias g="grep"
 alias c="cat"
 alias b="bat"
