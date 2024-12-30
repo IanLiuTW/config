@@ -101,9 +101,11 @@ return {
   config = function(_, opts)
     -- LSP Attach configuration
     local function setup_lsp(event)
-      local map = function(keys, func, desc, mapcheck)
-        if not mapcheck or vim.fn.mapcheck(keys, 'n') == '' then
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
+      local map = function(keys, func, desc, mode, mapcheck)
+        mode = mode or 'n'
+
+        if not mapcheck or vim.fn.mapcheck(keys, mode) == '' then
+          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
         end
       end
 
@@ -119,7 +121,7 @@ return {
       map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
       map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
       -- Code Actions and Help
-      map('<leader>a', vim.lsp.buf.code_action, 'Code Action')
+      map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
       map('S', vim.lsp.buf.signature_help, 'Signature Help')
 
       -- Information
