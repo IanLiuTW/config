@@ -20,7 +20,7 @@ background-opacity = 0.90
 background-blur-radius = 40
 window-colorspace = display-p3
 window-theme = ghostty
-theme = Kanagawa Wave
+theme = Dark Modern
 
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.1
@@ -86,8 +86,8 @@ keybind = super+shift+j=resize_split:down,30
 # keybond = super+shift+0=equalize_splits
 keybind = super+shift+f=toggle_split_zoom
 
-keybind = super+p=scroll_page_up
-keybind = super+n=scroll_page_down
+keybind = super+u=scroll_page_up
+keybind = super+d=scroll_page_down
 keybind = super+g=scroll_to_top
 keybind = super+shift+g=scroll_to_bottom
 
