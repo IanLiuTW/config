@@ -130,6 +130,7 @@ alias f="fg"
 alias G="git"
 alias v="nvim"
 alias g="grep"
+alias e="export"
 alias c="cat"
 alias b="bat"
 alias m="make"
@@ -182,7 +183,7 @@ alias dev='nix develop'
 # [Alias]
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
-alias config='cd ~/config && nvim .'
+alias config='cd ~/config && nvim'
 alias todo='nvim ~/.todo'
 
 # [Commands] Start

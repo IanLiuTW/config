@@ -35,6 +35,7 @@ vim.opt.guicursor = {
   'i:ver25-blinkwait0-blinkoff50-blinkon50',
   'v:hor25-blinkwait0-blinkoff50-blinkon50',
   'c:block-blinkwait0-blinkoff50-blinkon50',
+  'o:block50',
 }
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
@@ -110,7 +111,7 @@ vim.diagnostic.config {
   },
   signs = {
     severity = { min = vim.diagnostic.severity.ERROR },
-  }
+  },
 }
 
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

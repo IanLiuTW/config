@@ -85,15 +85,43 @@ truncation_length = 10
 truncate_to_repo = true    # truncates directory to root folder if in github repo
 style = "bold italic blue"
 
-[aws]
-symbol = "  "
-
 [docker_context]
 symbol = " "
 format = '[\[$symbol$context\]](blue bold) '
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
+
+[python]
+symbol = " "
+#pyenv_version_name = true
+format = 'via [${symbol}Python (${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[rust]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[\[$symbol$state( \($name\))\]](bold blue) '
+
+[package]
+symbol = "󰏗 "
+
+[aws]
+symbol = "  "
+
+[nodejs]
+format = "via [ Node.js $version](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
 
 [elixir]
 symbol = " "
@@ -119,37 +147,14 @@ symbol = "󰍛 "
 [nim]
 symbol = " "
 
-[nix_shell]
-symbol = " "
-impure_msg = '[impure shell](bold red)'
-pure_msg = '[pure shell](bold green)'
-unknown_msg = '[unknown shell](bold yellow)'
-format = '[\[$symbol$state( \($name\))\]](bold blue) '
-
-[package]
-symbol = "󰏗 "
-
 [perl]
 symbol = " "
 
 [php]
 symbol = " "
 
-[python]
-symbol = " "
-#pyenv_version_name = true
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
-
 [ruby]
 symbol = " "
-
-[rust]
-symbol = " "
 
 [scala]
 symbol = " "
@@ -159,11 +164,6 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
-
-[nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
 
 [buf]
 symbol = " "
@@ -217,46 +217,15 @@ symbol = "󰟔 "
 symbol = " "
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
 Amazon = " "
 Android = " "
 Arch = " "
-Artix = " "
-CentOS = " "
 Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
 Fedora = " "
 FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
 Kali = " "
 Linux = " "
-Mabox = " "
 Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
 Ubuntu = " "
 Unknown = " "
-Void = " "
 Windows = "󰍲 "

@@ -7,12 +7,12 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
-    { '<leader>gc', '<Cmd>Neogit commit<CR>', desc = 'NeoGit - Commit Panel' },
-    { '<leader>gZ', '<Cmd>Neogit stash<CR>', desc = 'NeoGit - Stash Panel' },
-    { '<leader>gf', '<Cmd>Neogit fetch<CR>', desc = 'NeoGit - Fetch Panel' },
-    { '<leader>gp', '<Cmd>Neogit pull<CR>', desc = 'NeoGit - Pull Panel' },
-    { '<leader>gP', '<Cmd>Neogit push<CR>', desc = 'NeoGit - Push Panel' },
+    { '<leader>gGg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
+    { '<leader>gGc', '<Cmd>Neogit commit<CR>', desc = 'NeoGit - Commit Panel' },
+    { '<leader>gGZ', '<Cmd>Neogit stash<CR>', desc = 'NeoGit - Stash Panel' },
+    { '<leader>gGf', '<Cmd>Neogit fetch<CR>', desc = 'NeoGit - Fetch Panel' },
+    { '<leader>gGp', '<Cmd>Neogit pull<CR>', desc = 'NeoGit - Pull Panel' },
+    { '<leader>gGP', '<Cmd>Neogit push<CR>', desc = 'NeoGit - Push Panel' },
   },
   opts = {
     disable_hint = false,

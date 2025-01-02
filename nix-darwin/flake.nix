@@ -90,6 +90,7 @@
             "go-jira"
             "podman"
             "podman-compose"
+            "aichat"
           ];
           casks = [
             "middleclick"

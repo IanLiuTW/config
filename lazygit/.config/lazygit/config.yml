@@ -61,7 +61,9 @@ git:
   allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
   overrideGpg: false
   disableForcePushing: false
-  commitPrefixes: {}
+  commitPrefix: # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-commit-message-prefix
+    pattern: "^(\\w+-\\w+).*"
+    replace: '$1: '
   parseEmoji: false
   log:
     order: topo-order
