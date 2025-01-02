@@ -89,9 +89,9 @@ return {
           components = {
             item_idx = {
               text = function(ctx)
-                return ctx.idx <= 10 and ctx.idx % 10 .. ' ' or nil
+                return ctx.idx == 10 and '0' or ctx.idx >= 10 and ' ' or tostring(ctx.idx)
               end,
-              highlight = 'Orange',
+              highlight = 'SnacksDashboardKey',
             },
             source_name = {
               width = { max = 10 },
@@ -103,10 +103,24 @@ return {
           },
         },
       },
+      list = {
+        selection = function(ctx)
+          return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
+        end,
+      },
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = function(ctx)
+        local success, node = pcall(vim.treesitter.get_node)
+        if vim.bo.filetype == 'lua' then
+          return { 'lsp', 'path' }
+        elseif success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
+          return { 'buffer' }
+        else
+          return { 'lsp', 'path', 'snippets', 'buffer' }
+        end
+      end,
       providers = {
         snippets = {
           opts = {
