@@ -21,6 +21,7 @@ background-blur-radius = 25
 window-colorspace = display-p3
 window-theme = ghostty
 theme = Dark Modern
+# custom-shader = better_crt.glsl
 
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.1
@@ -49,6 +50,7 @@ keybind = super+shift+enter=reload_config
 keybind = super+shift+backspace=inspector:toggle
 
 keybind = super+t=new_tab
+keybind = super+enter=new_window
 keybind = super+/=toggle_quick_terminal
 keybind = super+f=toggle_fullscreen
 keybind = super+q=quit
@@ -75,6 +77,8 @@ keybind = super+shift+comma=move_tab:-1
 keybind = super+shift+period=move_tab:+1
 
 keybind = super+s=new_split:auto
+# keybind = super+w>s=new_split:down
+# keybind = super+w>v=new_split:right
 keybind = super+h=goto_split:left
 keybind = super+l=goto_split:right
 keybind = super+k=goto_split:top

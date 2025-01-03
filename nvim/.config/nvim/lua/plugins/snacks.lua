@@ -251,7 +251,7 @@ return {
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-    { "<leader>gg", function() Snacks.lazygit() end, desc = "Snacks - Lazygit" },
+    { "<leader>gG", function() Snacks.lazygit() end, desc = "Snacks - Lazygit" },
     { "<leader>gl", function() Snacks.lazygit.log_file() end, desc = "Snack - Lazygit Log (Current File)" },
     { "<leader>gL", function() Snacks.lazygit.log() end, desc = "Snacks - Lazygit Log (CWD)" },
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Snacks Notifier - Dismiss All' },
