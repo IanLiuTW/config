@@ -182,7 +182,7 @@ return {
         hidden = false,
       },
       unpulled_upstream = {
-        folded = true,
+        folded = false,
         hidden = false,
       },
       unmerged_upstream = {
@@ -190,7 +190,7 @@ return {
         hidden = false,
       },
       unpulled_pushRemote = {
-        folded = true,
+        folded = false,
         hidden = false,
       },
       unmerged_pushRemote = {
@@ -202,7 +202,7 @@ return {
         hidden = false,
       },
       rebase = {
-        folded = true,
+        folded = false,
         hidden = false,
       },
     },

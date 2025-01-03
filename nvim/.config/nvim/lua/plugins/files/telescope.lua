@@ -168,7 +168,7 @@ return {
             ---@diagnostic disable-next-line: deprecated
             return vim.tbl_flatten {
               args,
-              { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' },
+              { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden', '-g', '!.git' },
             }
           end,
 

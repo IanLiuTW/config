@@ -2,6 +2,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export LC_ALL=en_US.UTF-8
 export EDITOR=$(command -v nvim >/dev/null 2>&1 && echo "nvim" || echo "vim")
 
+set -o vi
+
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
