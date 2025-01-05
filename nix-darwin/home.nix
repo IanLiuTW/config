@@ -60,9 +60,10 @@
     ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
     ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
     ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
-    ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
     ".config/lazygit/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazygit/.config/lazygit/config.yml"; };
     ".config/ghostty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/ghostty/.config/ghostty"; };
+    ".config/sketchybar" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/sketchybar/.config/sketchybar"; };
+    ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
 
     ".config/pycodestyle".text = ''
       [pycodestyle]

@@ -20,13 +20,17 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    homebrew-formulae = {
+      url = "github:FelixKratz/homebrew-formulae";
+      flake = false;
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, rust-overlay }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-formulae, rust-overlay }:
     let
       configuration = { pkgs, config, ... }: {
         nixpkgs.config.allowUnfree = true;
@@ -72,7 +76,6 @@
           ice-bar
           aerospace
           jankyborders
-          # sketchybar
           nerdfetch
           dwt1-shell-color-scripts
           ascii-image-converter
@@ -90,6 +93,7 @@
             "go-jira"
             "podman"
             "podman-compose"
+            "sketchybar"
             "aichat"
           ];
           casks = [
@@ -202,6 +206,7 @@
                 "homebrew/homebrew-core" = homebrew-core;
                 "homebrew/homebrew-cask" = homebrew-cask;
                 "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+                "FelixKratz/homebrew-formulae" = inputs.homebrew-formulae;
               };
               mutableTaps = false;
             };
