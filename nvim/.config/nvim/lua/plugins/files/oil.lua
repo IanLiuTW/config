@@ -1,3 +1,10 @@
+local permission_hlgroups = {
+  ['-'] = 'NonText',
+  ['r'] = 'DiagnosticSignWarn',
+  ['w'] = 'DiagnosticSignError',
+  ['x'] = 'DiagnosticSignOk',
+}
+
 return {
   {
     'stevearc/oil.nvim',
@@ -9,14 +16,32 @@ return {
     },
     opts = {
       columns = {
-        'icon',
-        'permissions',
-        'size',
-        'mtime',
+        {
+          'permissions',
+          highlight = function(permission_str)
+            local hls = {}
+            for i = 1, #permission_str do
+              local char = permission_str:sub(i, i)
+              table.insert(hls, { permission_hlgroups[char], i - 1, i })
+            end
+            return hls
+          end,
+        },
+        { 'size', highlight = 'Special' },
+        { 'mtime', highlight = 'Number' },
+        {
+          'icon',
+          add_padding = false,
+        },
       },
       view_options = {
         show_hidden = true,
       },
+      win_options = {
+        signcolumn = 'yes:2',
+      },
+      watch_for_changes = true,
+      use_default_keymaps = false,
       keymaps = {
         ['?'] = 'actions.show_help',
         ['<C-v>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
@@ -37,11 +62,6 @@ return {
         ['gh'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
       },
-      use_default_keymaps = false,
-      win_options = {
-        signcolumn = 'yes:2',
-      },
-      watch_for_changes = true,
     },
   },
   {

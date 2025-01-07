@@ -35,7 +35,11 @@ return { -- Collection of various small independent plugins/modules
     -- - gm - multiply
     -- - gr - replace
     -- - gs - sort
-    require('mini.operators').setup {}
+    require('mini.operators').setup {
+      replace = {
+        prefix = 'gp',
+      },
+    }
 
     -- Better alignment functionality - https://github.com/echasnovski/mini.align
     require('mini.align').setup {

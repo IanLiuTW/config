@@ -217,7 +217,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = { 'n' , 'v' , 't' },
-        { '<leader>p',    '"0p',                 desc = 'Cursor - [P]aste copied text' },
+        -- { '<leader>p',    '"0p',                 desc = 'Cursor - [P]aste copied text' },  -- Use mini-operators: `gp`
         { '<leader>j',    '10j',                 desc = 'Cursor - [j] * 10' },
         { '<leader>k',    '10k',                 desc = 'Cursot - [k] * 10' },
         { '<C-Right>', '3<C-w><C->>',         noremap = true, silent = true, desc = 'Pane increase width' },

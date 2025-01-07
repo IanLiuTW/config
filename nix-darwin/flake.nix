@@ -100,6 +100,7 @@
             "middleclick"
             "ghostty"
             "hammerspoon"
+            "stats"
             "brave-browser"
             "google-chrome"
             "podman-desktop"
