@@ -54,16 +54,20 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
     ".zshrc" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/zsh/.zshrc"; };
-    ".gitconfig" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/git/.gitconfig"; };
-    ".config/kitty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/kitty/.config/kitty"; };
     ".config/starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/starship/.config/starship.toml"; };
-    ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
-    ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
-    ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
-    ".config/lazygit/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazygit/.config/lazygit/config.yml"; };
-    ".config/ghostty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/ghostty/.config/ghostty"; };
-    ".config/sketchybar" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/sketchybar/.config/sketchybar"; };
     ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
+    ".config/sketchybar" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/sketchybar/.config/sketchybar"; };
+
+    ".gitconfig" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/git/.gitconfig"; };
+    ".hammerspoon" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/hammerspoon/.hammerspoon"; };
+    ".docker/config.json" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/docker/.docker/config.json"; };
+
+    ".config/ghostty" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/ghostty/.config/ghostty"; };
+    ".config/nvim" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nvim/.config/nvim"; };
+
+    ".config/yazi" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/yazi/.config/yazi"; };
+    ".config/lazygit/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazygit/.config/lazygit/config.yml"; };
+    ".config/lazydocker/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazydocker/.config/lazydocker/config.yml"; };
 
     ".config/pycodestyle".text = ''
       [pycodestyle]
