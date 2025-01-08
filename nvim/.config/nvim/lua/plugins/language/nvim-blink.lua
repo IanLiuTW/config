@@ -104,9 +104,10 @@ return {
         },
       },
       list = {
-        selection = function(ctx)
-          return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
-        end,
+        selection = {
+          preselect = true,
+          auto_insert = false,
+        },
       },
     },
 
@@ -121,14 +122,6 @@ return {
           return { 'lsp', 'path', 'snippets', 'buffer' }
         end
       end,
-      providers = {
-        snippets = {
-          opts = {
-            friendly_snippets = true,
-            search_paths = { vim.fn.stdpath 'config' .. '/snippets' },
-          },
-        },
-      },
     },
 
     signature = {
