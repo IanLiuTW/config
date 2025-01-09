@@ -15,7 +15,7 @@
 - Refer to the flakes.
 
   - [nix-darwin/flake.nix](nix-darwin/flake.nix)
-  - [nix-darwin/home.nix](nix-darwin/home.nix).
+  - [nix-darwin/home.nix](nix-darwin/home.nix)
 
 ```bash
 darwin-rebuild switch --flake ~/config/nix-darwin#work
@@ -26,9 +26,9 @@ home-manager switch --flake ~/config/nix-darwin/
 
 > Note to self: The Nix method preferable and up-to-date. The script method could be outdated and needs to be revised before use.
 
-See [\_scripts/dev_env](_scripts/dev_env) for setup scripts, and/or pick and choose additional tools.
+See [\_scripts/dev_env](_scripts/dev_env) for setup scripts.
 
-The main use of this method is to put a script in a Devcontainer config and set up basic cli tools.
+The main use of this method is to put a script to be run by a Devcontainer config to set up basic cli tools.
 
 ```bash
 git clone https://github.com/IanLiuTW/config ~/config && chmod +x ~/config/_scripts/dev_env/setup_apt.sh && ~/config/_scripts/dev_env/setup_apt.sh
@@ -36,7 +36,7 @@ git clone https://github.com/IanLiuTW/config ~/config && chmod +x ~/config/_scri
 
 ### 3. Stow
 
-Manually set up using `stow`. (Refer to the Nix flakes for packages to install.)
+Manually set up using `stow`. Refer to the Nix flakes for packages to install.
 
 ```bash
 git clone https://github.com/IanLiuTW/config ~/config && cd ~/config
