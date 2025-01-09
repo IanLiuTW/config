@@ -6,9 +6,10 @@
 
 ### 1. Nix
 
-- Install `nix` and `home-manager`.
+- Install `nix`, `nix-darwin`, and `home-manager`.
 
   - [Nix](https://nixos.org/download/)
+  - [Nix Darwin](https://github.com/LnL7/nix-darwin)
   - [Home Manager](https://nix-community.github.io/home-manager/)
 
 - Refer to the flakes.
