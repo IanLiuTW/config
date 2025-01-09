@@ -2,14 +2,14 @@
 
 ## Setup
 
-- Clone this repo under the home directory.
+- Clone this repo to the home directory.
 
 ### 1. Nix
 
 - Install `nix` and `home-manager`.
 
   - [Nix](https://nixos.org/download/)
-  - [nix-community/home-manager](https://nix-community.github.io/home-manager/)
+  - [Home Manager](https://nix-community.github.io/home-manager/)
 
 - Refer to the flakes.
 
