@@ -11,13 +11,13 @@
   - [Nix](https://nixos.org/download/)
   - [nix-community/home-manager](https://nix-community.github.io/home-manager/)
 
-- See [nix-darwin/flake.nix] and [nix-darwin/home.nix].
+- See [nix-darwin/flake.nix](nix-darwin/flake.nix) and [nix-darwin/home.nix](nix-darwin/home.nix).
 
 ### 2. Script
 
 > Note to self: The Nix method preferable and up-to-date. The script method could be outdated and needs to be revised before use.
 
-See [_scripts/dev_env] for setup scripts, and/or pick and choose additional tools.
+See [\_scripts/dev_env](_scripts/dev_env) for setup scripts, and/or pick and choose additional tools.
 
 The main use of this method is to put a script in a Devcontainer config and set up basic cli tools.
 
