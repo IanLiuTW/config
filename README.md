@@ -1,17 +1,25 @@
-# config
+# My config (AKA dotfile)
 
-## Quick Setup
+## Setup
 
 - Clone this repo under the home directory.
 
 ### 1. Nix
 
-- Use `nix` and `home-manager` for the setup.
+- Install `nix` and `home-manager`.
 
   - [Nix](https://nixos.org/download/)
   - [nix-community/home-manager](https://nix-community.github.io/home-manager/)
 
-- See [nix-darwin/flake.nix](nix-darwin/flake.nix) and [nix-darwin/home.nix](nix-darwin/home.nix).
+- Refer to the flakes.
+
+  - [nix-darwin/flake.nix](nix-darwin/flake.nix)
+  - [nix-darwin/home.nix](nix-darwin/home.nix).
+
+```bash
+darwin-rebuild switch --flake ~/config/nix-darwin#work
+home-manager switch --flake ~/config/nix-darwin/
+```
 
 ### 2. Script
 
@@ -27,7 +35,7 @@ git clone https://github.com/IanLiuTW/config ~/config && chmod +x ~/config/_scri
 
 ### 3. Stow
 
-Manually set up using `stow`.
+Manually set up using `stow`. (Refer to the Nix flakes for packages to install.)
 
 ```bash
 git clone https://github.com/IanLiuTW/config ~/config && cd ~/config
