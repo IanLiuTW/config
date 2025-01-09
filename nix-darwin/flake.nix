@@ -96,10 +96,10 @@
             "docker-buildx"
             "docker-credential-helper"
             "colima"
-            # "podman"
-            # "podman-compose"
             "sketchybar"
             "aichat"
+            # "podman"
+            # "podman-compose"
           ];
           casks = [
             "middleclick"
@@ -108,7 +108,6 @@
             "stats"
             "brave-browser"
             "google-chrome"
-            # "podman-desktop"
             "devpod"
             "postman"
             "mongodb-compass"
@@ -125,6 +124,7 @@
             "spotify"
             "tunnelblick"
             "citrix-workspace"
+            # "podman-desktop"
           ];
           masApps = {
             "Slack" = 803453959;

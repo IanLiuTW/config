@@ -53,6 +53,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ".config/nix" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/nix/.config/nix"; };
+
     ".zshrc" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/zsh/.zshrc"; };
     ".config/starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/starship/.config/starship.toml"; };
     ".aerospace.toml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/aerospace/.aerospace.toml"; };
