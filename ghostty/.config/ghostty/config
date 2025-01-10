@@ -34,6 +34,9 @@ macos-option-as-alt = true
 # macos-icon = custom-style
 # macos-icon-frame = chrome
 
+auto-update = off
+auto-update-channel = tip
+
 working-directory = home
 window-inherit-working-directory = true
 window-inherit-font-size = true
