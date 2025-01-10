@@ -1,31 +1,31 @@
-vim.api.nvim_create_autocmd('Colorscheme', {
-  group = vim.api.nvim_create_augroup('config_custom_highlights_barbar', {}),
-  callback = function()
+-- vim.api.nvim_create_autocmd('Colorscheme', {
+--   group = vim.api.nvim_create_augroup('config_custom_highlights_barbar', {}),
+--   callback = function()
     -- Override colorscheme settings before the colorscheme 'load()' call
-    local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
+    -- local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
 
-    vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-      fg = '#7EA662',
-    })
-    vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-      fg = '#4FA6ED',
-    })
-    vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-      fg = '#E55561',
-    })
-    vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-      fg = '#7EA662',
-    })
-    vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
-      bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-      fg = '#7EA662',
-    })
-  end,
-})
+    -- vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
+    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+    --   fg = '#7EA662',
+    -- })
+    -- vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
+    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+    --   fg = '#4FA6ED',
+    -- })
+    -- vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
+    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+    --   fg = '#E55561',
+    -- })
+    -- vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
+    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+    --   fg = '#7EA662',
+    -- })
+    -- vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
+    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+    --   fg = '#7EA662',
+    -- })
+--   end,
+-- })
 
 return {
   'romgrk/barbar.nvim',

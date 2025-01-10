@@ -101,7 +101,7 @@
   #  /etc/profiles/per-user/ianliu/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    # EDITOR = "nvim";
     # POETRY_VIRTUALENVS_IN_PROJECT = "true";
   };
 
