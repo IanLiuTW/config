@@ -102,3 +102,4 @@ keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 keybind = f1=write_screen_file:paste
 keybind = f2=write_screen_file:open
+keybind = f3=write_scrollback_file:open

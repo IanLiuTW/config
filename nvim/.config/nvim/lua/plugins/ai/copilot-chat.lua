@@ -137,7 +137,7 @@ return {
         prompt = '/COPILOT_GENERATE Please generate tests for my code.',
       },
       FixDiagnostic = {
-        prompt = 'Please assist with the following diagnostic issues in file:',
+        prompt = '/COPILOT_GENERATE Please assist with the following diagnostic issues in file:',
         selection = select.diagnostics,
       },
       ExplainDiagnostic = {
@@ -241,8 +241,8 @@ return {
     }
   end,
   keys = {
-    { '<C-q><C-q>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
-    { '<C-q><C-q>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Open Chat (Visual)' },
+    { '<C-q><cr>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
+    { '<C-q><cr>', ':CopilotChatVisual<cr>', mode = 'x', desc = 'CopilotChat - Open Chat (Visual)' },
     { '<C-q><Space>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
     { '<C-q><Space>', ':CopilotChatInlineVisual<cr>', mode = 'x', desc = 'CopilotChat - Open Inline Chat (Visual)' },
     {

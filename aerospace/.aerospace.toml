@@ -4,7 +4,7 @@
 # ]
 
 after-startup-command = [
- 'exec-and-forget /run/current-system/sw/bin/borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+ 'exec-and-forget /run/current-system/sw/bin/borders active_color=0xff0080c9 inactive_color=0xff494d64 width=5.0',
 ]
 
 # Start AeroSpace at login
@@ -57,7 +57,7 @@ if.app-name-regex-substring = 'citrix'
 run = ['layout floating', 'move-node-to-workspace 6']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'ghostty'
+if.app-id="com.mitchellh.ghostty"
 run = ['layout floating']
 
 # Possible values: (qwerty|dvorak)
@@ -73,12 +73,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 6
-inner.vertical =   6
-outer.top =        0
-outer.bottom =     0
-outer.left =       0
-outer.right =      0
+inner.horizontal = 8
+inner.vertical =   8
+outer.top =        5
+outer.bottom =     8
+outer.left =       8
+outer.right =      8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

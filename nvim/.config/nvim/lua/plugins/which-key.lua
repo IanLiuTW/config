@@ -164,21 +164,21 @@ return { -- Useful plugin to show you pending keybinds.
       -- Normal Mode
       {
         mode = 'n',
-        { '<Esc>',            '<cmd>nohlsearch<CR>',                      desc = 'nohlsearch' },
-        {'<leader>dx',        ':.lua<CR>',                                desc = 'Execute - Current Line with Lua'},
-        {'<leader>dX',        '<CMD>source %<CR>',                        desc = 'Execute - Source Current File'},
+        { '<Esc>',           '<cmd>nohlsearch<CR>',                         desc = 'nohlsearch' },
+        {'<leader>dx',       ':.lua<CR>',                                   desc = 'Execute - Current Line with Lua'},
+        {'<leader>dX',       '<CMD>source %<CR>',                           desc = 'Execute - Source Current File'},
         -- Autocommands keybindings
-        { '<leader>d/',      '<Cmd>CopyPath<CR>',                         desc = 'User Command - Copy Path' },
-        { 'dm',      '<Cmd>Delmark<CR>',                         desc = 'User Command - Delete Mark' },
+        { '<leader>d/',      '<Cmd>CopyPath<CR>',                           desc = 'User Command - Copy Path' },
+        { 'dm',              '<Cmd>Delmark<CR>',                            desc = 'User Command - Delete Mark' },
         -- Plugin keybindings
-        { '<leader>,,',      '<Cmd>Lazy<CR>',                             desc = 'Lazy - Open Menu' },
-        { '<leader>,u',      '<Cmd>Lazy update<CR>',                      desc = 'Lazy - Update Plugins' },
-        { '<leader>,m',      '<cmd>Mason<CR>',                            desc = 'Mason - Open Menu' },
+        { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
+        { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
+        { '<leader>,m',      '<cmd>Mason<CR>',                              desc = 'Mason - Open Menu' },
         -- Buffer keybindings
-        { '<leader><CR>',   '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
-        { '<leader>bn',     '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
-        { '<leader>bd',     '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
-        { '<leader>bD',     '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
+        { '<C-\\>',          '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
+        { '<leader>bn',      '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
+        { '<leader>bd',      '<Cmd>bd<CR>',  noremap = true, silent = true, desc = 'Buffer - Close' },
+        { '<leader>bD',      '<Cmd>bd!<CR>', noremap = true, silent = true, desc = 'Buffer - Force Close' },
         -- Window keybindings
         { '<S-BS>',     '<Cmd>fc<CR>', noremap = true, silent = true, desc = 'Window - Close Floating Window' },
         -- { '',     '<Cmd>sp<CR>', noremap = true, silent = true, desc = 'Pane Horizontal Split' },

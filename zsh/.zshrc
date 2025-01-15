@@ -189,6 +189,7 @@ alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias config='cd ~/config && nvim'
 alias todo='nvim ~/.todo'
+alias ai='aichat << EOF'
 
 # [Commands] Start
 nerdfetch

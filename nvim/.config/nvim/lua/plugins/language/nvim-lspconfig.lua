@@ -40,7 +40,7 @@ return {
           basedpyright = {
             analysis = {
               autoSearchPaths = true,
-              typeCheckingMode = 'standard',
+              typeCheckingMode = 'off',
             },
           },
         },
