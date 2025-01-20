@@ -16,6 +16,7 @@ return {
       TODO = { icon = ' ', color = 'info', alt = { 'todo', 'unimplemented' } },
       HACK = { icon = ' ', color = 'warning' },
       WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
+      DBG =  { icon = ' ', color = 'warning' },
       PERF = { icon = ' ', alt = { 'OPTIM' } },
       NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
       TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },

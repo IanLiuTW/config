@@ -198,7 +198,7 @@ return {
         hidden = false,
       },
       recent = {
-        folded = false,
+        folded = true,
         hidden = false,
       },
       rebase = {
