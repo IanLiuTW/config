@@ -9,12 +9,40 @@ return {
       fps = 100, -- frames per second. Global setting for all animations
     },
     bigfile = { enabled = true },
-    -- picker = { enabled = false },
+    picker = {
+      sources = {
+        explorer = {
+          win = {
+              list = {
+                keys = {
+                  ["l"] = "confirm",
+                  ["h"] = "explorer_close",
+
+                  ["a"] = "explorer_add",
+                  ["d"] = "explorer_del",
+                  ["r"] = "explorer_rename",
+                  ["c"] = "explorer_copy",
+                  ["m"] = "explorer_move",
+                  ["y"] = "explorer_yank",
+
+                  ["H"] = "explorer_up",
+                  ["L"] = "explorer_focus",
+                  ["<c-c>"] = "explorer_cd",
+                },
+              },
+            },
+        }
+      }
+    },
+    explorer = {
+      enabled = true,
+      replace_netrw = true,
+    },
     dashboard = {
       preset = {
         keys = {
           { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
-          { icon = ' ', key = '\\', desc = 'File Browser (Neo-Tree)', action = ':Neotree reveal' },
+          { icon = ' ', key = '\\', desc = 'File Browser (Explorer)', action = ':lua Snacks.explorer()' },
           { icon = ' ', key = '-', desc = 'File Browser (Oil)', action = ':Oil --float' },
           { icon = ' ', key = 'r', desc = 'Restore CWD Session', action = ':SessionLoad' },
           { icon = ' ', key = '.', desc = 'Restore Last Session', action = ':SessionLoadLast' },
@@ -251,6 +279,7 @@ return {
     { '<leader>,x', function() Snacks.dim() end, desc = 'Snacks Dim - Toggle Zen', mode = { 'n' } },
     { '<leader>,z', function() Snacks.zen.zen() end, desc = 'Snacks Zen - Toggle Zen', mode = { 'n' } },
     { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Snacks Zen - Toggle Zoom', mode = { 'n' } },
+    { '\\', function() Snacks.explorer() end, desc = 'Snacks Explorer - Toggle Explorer', mode = { 'n' } },
     {
       '<leader>,<leader>',
         function() Snacks.win {

@@ -39,8 +39,8 @@ return {
         settings = {
           basedpyright = {
             analysis = {
-              autoSearchPaths = true,
               typeCheckingMode = 'off',
+              autoSearchPaths = true,
             },
           },
         },

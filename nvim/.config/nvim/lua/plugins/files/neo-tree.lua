@@ -1,6 +1,7 @@
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
+    enabled = false,
     version = '*',
     event = 'VeryLazy',
     dependencies = {
@@ -10,9 +11,9 @@ return {
       -- '3rd/image.nvim',
     },
     cmd = 'Neotree',
-    keys = {
-      { '\\', '<CMD>Neotree reveal<CR>', desc = 'NeoTree reveal' },
-    },
+    -- keys = {
+    --   { '\\', '<CMD>Neotree reveal<CR>', desc = 'NeoTree reveal' },
+    -- },
     opts = {
       source_selector = {
         winbar = true,
