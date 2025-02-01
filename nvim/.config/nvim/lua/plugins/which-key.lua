@@ -148,7 +148,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>b',        group = '[B]uffer',               mode = { 'n', 'x' } },
       { '<leader>c',        group = '[C]hanges (Gitsigns)',   mode = { 'n', 'x' } },
       { '<leader>d',        group = '[D]o',                   mode = { 'n', 'x' } },
-      { '<leader>e',        group = '[E] Debug',                 mode = { 'n', 'x' } },
+      { '<leader>e',        group = '[E] Debug',              mode = { 'n', 'x' } },
       { '<leader>w',        group = '[W] Trouble',            mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
       { '<leader>h',        group = '[H]arpoon',              mode = { 'n', 'x' } },
@@ -157,7 +157,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>y',        group = '[Y] Tasks',              mode = { 'n', 'x' } },
       { '<leader>,',        group = '[,] Settings / Sessions',mode = { 'n', 'x' } },
-      { '<leader><leader>', group = '[󱁐] Telescope',          mode = { 'n', 'x' } },
+      { '<leader><leader>', group = '[󱁐] Picker',             mode = { 'n', 'x' } },
       { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
 

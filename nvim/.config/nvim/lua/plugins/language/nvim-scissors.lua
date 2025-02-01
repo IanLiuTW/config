@@ -1,6 +1,5 @@
 return {
   'chrisgrieser/nvim-scissors',
-  dependencies = 'nvim-telescope/telescope.nvim',
   lazy = true,
   keys = {
     { '<leader>d[', function() require('scissors').editSnippet() end, mode = {'n'}, desc = 'Scissors - Edit Snippets' },

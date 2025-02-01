@@ -113,14 +113,8 @@ return {
       local client = vim.lsp.get_client_by_id(event.data.client_id)
 
       -- Navigation
-      map('<leader>D', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-      map('<leader>dD', require('telescope.builtin').lsp_type_definitions, 'Goto Type [D]efinition')
       map('<leader>dd', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-      map('<leader>di', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
       -- Search and References
-      map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols')
-      map('<leader>dS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols')
-      map('<leader>dr', require('telescope.builtin').lsp_references, 'Find References')
       -- Code Actions and Help
       map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
       map('S', vim.lsp.buf.signature_help, 'Signature Help')

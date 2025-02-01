@@ -8,31 +8,210 @@ return {
     animation = {
       fps = 100, -- frames per second. Global setting for all animations
     },
-    bigfile = { enabled = true },
+    bigfile = {
+      enabled = true
+    },
     picker = {
+      ui_select = true,
+      win = {
+        -- input window
+        input = {
+          keys = {
+            -- to close the picker on ESC instead of going to normal mode,
+            -- add the following keymap to your config
+            -- ["<Esc>"] = { "close", mode = { "n", "i" } },
+            ["/"] = "toggle_focus",
+            ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
+            ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
+            ["<C-c>"] = { "close", mode = "i" },
+            ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
+            ["<CR>"] = { "confirm", mode = { "n", "i" } },
+            ["<Down>"] = { "list_down", mode = { "i", "n" } },
+            ["<Esc>"] = "close",
+            ["<S-CR>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
+            ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
+            ["<ScrollWheelDown>"] = { "list_scroll_wheel_down", mode = { "i", "n" } },
+            ["<ScrollWheelUp>"] = { "list_scroll_wheel_up", mode = { "i", "n" } },
+            ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
+            ["<Up>"] = { "list_up", mode = { "i", "n" } },
+            ["<a-d>"] = { "inspect", mode = { "n", "i" } },
+            ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
+            ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+            ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+            ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
+            ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
+            ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
+            ["<c-a>"] = { "select_all", mode = { "n", "i" } },
+            ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
+            ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
+            ["<c-j>"] = { "list_down", mode = { "i", "n" } },
+            ["<c-k>"] = { "list_up", mode = { "i", "n" } },
+            ["<c-n>"] = { "list_down", mode = { "i", "n" } },
+            ["<c-p>"] = { "list_up", mode = { "i", "n" } },
+            ["<c-q>"] = { "qflist", mode = { "i", "n" } },
+            ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+            ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
+            ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+            ["?"] = "toggle_help_input",
+            ["G"] = "list_bottom",
+            ["gg"] = "list_top",
+            ["j"] = "list_down",
+            ["k"] = "list_up",
+            ["q"] = "close",
+            [":"] = { "flash" },
+            ["<c-;>"] = { "flash", mode = { "n", "i" } },
+          },
+          b = {
+            minipairs_disable = true,
+          },
+        },
+        -- result list window
+        list = {
+          keys = {
+            ["/"] = "toggle_focus",
+            ["<2-LeftMouse>"] = "confirm",
+            ["<CR>"] = "confirm",
+            ["<Down>"] = "list_down",
+            ["<Esc>"] = "close",
+            ["<S-CR>"] = { { "pick_win", "jump" } },
+            ["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
+            ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
+            ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
+            ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
+            ["<Up>"] = "list_up",
+            ["<a-d>"] = "inspect",
+            ["<a-f>"] = "toggle_follow",
+            ["<a-h>"] = "toggle_hidden",
+            ["<a-i>"] = "toggle_ignored",
+            ["<a-m>"] = "toggle_maximize",
+            ["<a-p>"] = "toggle_preview",
+            ["<a-w>"] = "cycle_win",
+            ["<c-a>"] = "select_all",
+            ["<c-b>"] = "preview_scroll_up",
+            ["<c-d>"] = "list_scroll_down",
+            ["<c-f>"] = "preview_scroll_down",
+            ["<c-j>"] = "list_down",
+            ["<c-k>"] = "list_up",
+            ["<c-n>"] = "list_down",
+            ["<c-p>"] = "list_up",
+            ["<c-s>"] = "edit_split",
+            ["<c-u>"] = "list_scroll_up",
+            ["<c-v>"] = "edit_vsplit",
+            ["?"] = "toggle_help_list",
+            ["G"] = "list_bottom",
+            ["gg"] = "list_top",
+            ["i"] = "focus_input",
+            ["j"] = "list_down",
+            ["k"] = "list_up",
+            ["q"] = "close",
+            ["zb"] = "list_scroll_bottom",
+            ["zt"] = "list_scroll_top",
+            ["zz"] = "list_scroll_center",
+          },
+          wo = {
+            conceallevel = 2,
+            concealcursor = "nvc",
+          },
+        },
+        -- preview window
+        preview = {
+          keys = {
+            ["<Esc>"] = "close",
+            ["q"] = "close",
+            ["i"] = "focus_input",
+            ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
+            ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
+            ["<a-w>"] = "cycle_win",
+          },
+        },
+      },
       sources = {
-        explorer = {
+        buffers = {
+          layout = {
+            preset = "dropdown",
+          },
           win = {
-              list = {
-                keys = {
-                  ["l"] = "confirm",
-                  ["h"] = "explorer_close",
-
-                  ["a"] = "explorer_add",
-                  ["d"] = "explorer_del",
-                  ["r"] = "explorer_rename",
-                  ["c"] = "explorer_copy",
-                  ["m"] = "explorer_move",
-                  ["y"] = "explorer_yank",
-
-                  ["H"] = "explorer_up",
-                  ["L"] = "explorer_focus",
-                  ["<c-c>"] = "explorer_cd",
-                },
+            input = {
+              keys = {
+                ["x"] = "bufdelete",
+                ["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
               },
             },
+            list = { keys = { ["x"] = "bufdelete" } },
+          },
+        },
+        colorschemes = {
+          layout = {
+            preset = "ivy",
+          },
+        },
+        grep = {
+          hidden = true
+        },
+        git_branches = {
+          layout = {
+            preset = "ivy",
+          },
+        },
+        files = {
+          hidden = true,
+          ignored = true,
+          follow = true,
+        },
+        git_files = {
+          hidden = true,
+          untracked = true
+        },
+        lines = {
+          layout = {
+            preset = "default",
+            preview = "preview"
+          }
+        },
+        explorer = {
+          win = {
+            list = {
+              keys = {
+                ["l"] = "confirm",
+                ["h"] = "explorer_close",
+
+                ["a"] = "explorer_add",
+                ["d"] = "explorer_del",
+                ["r"] = "explorer_rename",
+                ["c"] = "explorer_copy",
+                ["m"] = "explorer_move",
+                ["y"] = "explorer_yank",
+
+                ["H"] = "explorer_up",
+                ["L"] = "explorer_focus",
+                ["<c-c>"] = "explorer_cd",
+              },
+            },
+          },
         }
-      }
+      },
+      actions = {
+        flash = function(picker)
+          require("flash").jump({
+            pattern = "^",
+            label = { after = { 0, 0 } },
+            search = {
+              mode = "search",
+              exclude = {
+                function(win)
+                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+                end,
+              },
+            },
+            action = function(match)
+              local idx = picker.list:row2idx(match.pos[1])
+              picker.list:_move(idx, true, true)
+            end,
+          })
+        end,
+      },
     },
     explorer = {
       enabled = true,
@@ -46,7 +225,7 @@ return {
           { icon = ' ', key = '-', desc = 'File Browser (Oil)', action = ':Oil --float' },
           { icon = ' ', key = 'r', desc = 'Restore CWD Session', action = ':SessionLoad' },
           { icon = ' ', key = '.', desc = 'Restore Last Session', action = ':SessionLoadLast' },
-          { icon = '󱦞 ', key = '/', desc = 'Select Session', action = ':Telescope persisted' },
+          { icon = '󱦞 ', key = 'p', desc = 'Select Project', action = ':lua Snacks.picker.projects()' },
           {
             text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search File', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  f', hl = 'SnacksDashboardKey' }, },
             action = ":lua Snacks.dashboard.pick('files')",
@@ -116,7 +295,9 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    quickfile = { enabled = true },
+    quickfile = {
+      enabled = true
+    },
     -- input = { enabled = true },
     indent = {
       indent = {
@@ -221,7 +402,9 @@ return {
       },
       refresh = 50, -- refresh at most every 50ms },
     },
-    words = { enabled = true },
+    words = {
+      enabled = true
+    },
     zen = {
       toggles = {
         dim = true,
@@ -260,26 +443,84 @@ return {
     },
   },
   keys = {
-    { '<C-BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
-    { '<leader>bb', function() Snacks.scratch() end, desc = 'Snacks Scratch - Toggle Scratch Buffer' },
-    { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Snacks Scratch - Select Scratch Buffer' },
+    -- Picker
+    { "<leader><tab>", function() Snacks.picker.buffers() end, desc = "Picker - Buffers" },
+    { "<leader><leader>:", function() Snacks.picker.command_history() end, desc = "Picker - Command History" },
+    { "<leader><leader>,", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Picker - Find Config File" },
+    { "<leader><leader>F", function() Snacks.picker.files() end, desc = "Picker - Find Files" },
+    { "<leader><leader>f", function() Snacks.picker.git_files() end, desc = "Picker - Find Git Files" },
+    { "<leader><leader>.", function() Snacks.picker.recent() end, desc = "Picker - Recent" },
+    -- -- git
+    { "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Picker - Git Log File" },
+    { "<leader>gL", function() Snacks.picker.git_log() end, desc = "Picker - Git Log" },
+    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Picker - Git Status" },
+    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Picker - Git Branches" },
+    { "<leader>gz", function() Snacks.picker.git_stash() end, desc = "Picker - Git Stash" },
+    -- -- Grep
+    { "<leader>/", function() Snacks.picker.lines() end, desc = "Picker - Buffer Lines" },
+    { "<leader><leader>/", function() Snacks.picker.grep_buffers() end, desc = "Picker - Grep Open Buffers" },
+    { "<leader><leader>g", function() Snacks.picker.grep() end, desc = "Picker - Grep" },
+    { "<leader><leader>G", function() Snacks.picker.grep_word() end, desc = "Picker - Grep Word", mode = { "n", "x" } },
+    -- -- search
+    { "<leader><leader>r", function() Snacks.picker.resume() end, desc = "Picker - Resume" },
+    { "<leader><leader>d", function() Snacks.picker.diagnostics() end, desc = "Picker - Diagnostics" },
+    { "<leader><leader>h", function() Snacks.picker.highlights() end, desc = "Picker - Highlights" },
+    { "<leader><leader>m", function() Snacks.picker.marks() end, desc = "Picker - Marks" },
+    { "<leader><leader>z", function() Snacks.picker.zoxide() end, desc = "Zoxide" },
+    { "<leader><leader>c", function() Snacks.picker.colorschemes() end, desc = "Picker - Colorschemes" },
+    { "<leader><leader>i", function() Snacks.picker.icons() end, desc = "Icons" },
+    { "<leader><leader>n", function() Snacks.picker.notifications() end, desc = "Picker - Notifications" },
+    { "<leader><leader><leader>", function() Snacks.picker.pickers() end, desc = "Picker - Pickers" },
+    { "<leader><leader>p", function() Snacks.picker.projects() end, desc = "Picker - Projects" },
+    { "<leader><leader>;", function() Snacks.picker.todo_comments() end, desc = "Picker - Todo" },
+    { "<leader><leader>:", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Picker - Todo/Fix/Fixme" },
+    { "<leader><leader>j", function() Snacks.picker.jumps() end, desc = "Picker - Jumps" },
+    { "<leader><leader>l", function() Snacks.picker.loclist() end, desc = "Picker - Location List" },
+    { "<leader><leader>q", function() Snacks.picker.qflist() end, desc = "Picker - Quickfix List" },
+    -- -- search - advanced
+    { "<leader><leader>K", function() Snacks.picker.keymaps() end, desc = "Picker - Keymaps" },
+    { "<leader><leader>M", function() Snacks.picker.man() end, desc = "Picker - Man Pages" },
+    { '<leader><leader>"', function() Snacks.picker.registers() end, desc = "Picker - Registers" },
+    { "<leader><leader>A", function() Snacks.picker.autocmds() end, desc = "Picker - Autocmds" },
+    { "<leader><leader>C", function() Snacks.picker.commands() end, desc = "Picker - Commands" },
+    { "<leader><leader>?", function() Snacks.picker.help() end, desc = "Picker - Help Pages" },
+    { "<leader><leader>L", function() Snacks.picker.Lazy() end, desc = "Picker - Lazy Packages" },
+    -- Picker - LSP
+    { "<leader>D", function() Snacks.picker.lsp_definitions() end, desc = "LSP - Goto Definition" },
+    { "<leader>dD", function() Snacks.picker.lsp_type_definitions() end, desc = "LSP - Goto T[y]pe Definition" },
+    { "<leader>dr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "LSP - References" },
+    { "<leader>di", function() Snacks.picker.lsp_implementations() end, desc = "LSP - Goto Implementation" },
+    { "<leader>ds", function() Snacks.picker.lsp_symbols() end, desc = "LSP - Symbols" },
+    { "<leader>dS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP - Workspace Symbols" },
+    -- Rename
     { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
-    { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Snacks Git - Browse' },
+    -- Buffer
+    { '<C-BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
+    -- Scratch
+    { '<leader>bb', function() Snacks.scratch() end, desc = 'Scratch - Toggle Scratch Buffer' },
+    { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Scratch - Select Scratch Buffer' },
+    -- Git
+    { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Git - Browse' },
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-    -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-    { "<leader>gG", function() Snacks.lazygit() end, desc = "Snacks - Lazygit" },
-    { "<leader>gl", function() Snacks.lazygit.log_file() end, desc = "Snack - Lazygit Log (Current File)" },
-    { "<leader>gL", function() Snacks.lazygit.log() end, desc = "Snacks - Lazygit Log (CWD)" },
-    { '<BS>', function() Snacks.notifier.hide() end, desc = 'Snacks Notifier - Dismiss All' },
-    { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Snacks Notifier - Show History' },
-    { '<leader>,p', function() Snacks.profiler.scratch() end, desc = 'Snacks Profiler - Scratch Buffer' },
-    { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Snacks Words - Next Reference', mode = { 'n', 't' } },
-    { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Snacks Words - Prev Reference', mode = { 'n', 't' } },
-    { '<leader>,x', function() Snacks.dim() end, desc = 'Snacks Dim - Toggle Zen', mode = { 'n' } },
-    { '<leader>,z', function() Snacks.zen.zen() end, desc = 'Snacks Zen - Toggle Zen', mode = { 'n' } },
-    { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Snacks Zen - Toggle Zoom', mode = { 'n' } },
-    { '\\', function() Snacks.explorer() end, desc = 'Snacks Explorer - Toggle Explorer', mode = { 'n' } },
+    -- LazyGit
+    { "<leader>gG", function() Snacks.lazygit() end, desc = "Lazygit - Toggle" },
+    -- { "<leader>gL", function() Snacks.lazygit.log_file() end, desc = "Snack - Lazygit Log (Current File)" },
+    -- { "<leader>gL", function() Snacks.lazygit.log() end, desc = "- Lazygit Log (CWD)" },
+    -- Notifier
+    { '<BS>', function() Snacks.notifier.hide() end, desc = 'Notifier - Dismiss All' },
+    { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Notifier - Show History' },
+    -- Profiler
+    { '<leader>,p', function() Snacks.profiler.scratch() end, desc = 'Profiler - Scratch Buffer' },
+    -- Words
+    { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Words - Next Reference', mode = { 'n', 't' } },
+    { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Words - Prev Reference', mode = { 'n', 't' } },
+    -- Dim
+    { '<leader>,x', function() Snacks.dim() end, desc = 'Dim - Toggle Zen', mode = { 'n' } },
+    -- Zen
+    { '<leader>,z', function() Snacks.zen.zen() end, desc = 'Zen - Toggle Zen', mode = { 'n' } },
+    { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
+    -- Explorer
+    { '\\', function() Snacks.explorer() end, desc = 'Explorer - Toggle Explorer', mode = { 'n' } },
     {
       '<leader>,<leader>',
         function() Snacks.win {
@@ -288,8 +529,10 @@ return {
           height = 0.6,
           wo = { spell = false, wrap = false, signcolumn = 'yes', statuscolumn = ' ', conceallevel = 3 },
         } end,
-      desc = 'Snacks Win - Neovim News',
+      desc = 'Win - Neovim News',
     },
+    -- Terminal
+    -- { "<c-/>",      function() Snacks.terminal() end, desc = "Terminal - Toggle" },
   },
   init = function()
     ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>

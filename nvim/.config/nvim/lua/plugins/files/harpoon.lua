@@ -2,7 +2,7 @@ return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
   event = 'VeryLazy',
-  dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+  dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     local harpoon = require 'harpoon'
     harpoon:setup()
@@ -22,28 +22,5 @@ return {
     -- vim.keymap.set('n', '<leader>h0',     function() harpoon:list():select(0) end,                     { desc = 'Harpoon - [0] Select Buffer' })
     vim.keymap.set('n', '[h',                   function() harpoon:list():prev() end,                        { desc = 'Harpoon - Previous' })
     vim.keymap.set('n', ']h',                   function() harpoon:list():next() end,                        { desc = 'Harpoon - Next' })
-
-    -- basic telescope configuration
-    local conf = require('telescope.config').values
-    local function toggle_telescope(harpoon_files)
-      local file_paths = {}
-      for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-      end
-
-      require('telescope.pickers')
-        .new({}, {
-          prompt_title = 'Harpoon',
-          finder = require('telescope.finders').new_table {
-            results = file_paths,
-          },
-          previewer = conf.file_previewer {},
-          sorter = conf.generic_sorter {},
-        })
-        :find()
-    end
-    vim.keymap.set('n', '<leader><leader>h', function()
-      toggle_telescope(harpoon:list())
-    end, { desc = 'Harpoon - Search Harpoon List' })
   end,
 }

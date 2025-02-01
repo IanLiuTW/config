@@ -5,8 +5,7 @@ return {
   build = 'make tiktoken',
   dependencies = {
     'zbirenbaum/copilot.lua', -- zbirenbaum/copilot.lua or github/copilot.vim
-    { 'nvim-lua/plenary.nvim', branch = 'master' },
-    'nvim-telescope/telescope.nvim',
+    { 'nvim-lua/plenary.nvim', branch = 'master' }
   },
   opts = {
     model = 'gpt-4o', -- GPT model to use, 'gpt-3.5-turbo', 'gpt-4', or 'gpt-4o'
@@ -281,15 +280,18 @@ return {
     {
       '<C-q>a',
       function()
-        local actions = require 'CopilotChat.actions'
-        require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+        local actions = require("CopilotChat.actions")
+        actions.pick(actions.prompt_actions())
       end,
       desc = 'CopilotChat - Prompt actions',
     },
     {
       '<C-q>a',
       function()
-        require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions { selection = require('CopilotChat.select').visual })
+        local actions = require("CopilotChat.actions")
+        actions.pick(actions.prompt_actions({
+            selection = require("CopilotChat.select").visual,
+        }))
       end,
       mode = 'x',
       desc = 'CopilotChat - Prompt actions',

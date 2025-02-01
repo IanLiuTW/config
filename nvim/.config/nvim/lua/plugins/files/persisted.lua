@@ -1,13 +1,9 @@
 return {
   'olimorris/persisted.nvim',
   event = 'VimEnter',
-  dependencies = {
-    'nvim-telescope/telescope.nvim',
-  },
   keys = {
     { '<leader>,r', '<cmd>SessionLoad<cr>', desc = 'Persisted - Restore CWD Session' },
     { '<leader>,.', '<cmd>SessionLoadLast<cr>', desc = 'Persisted - Restore Last Session' },
-    { '<leader>,/', '<cmd>Telescope persisted<cr>', desc = 'Persisted - Search Sessions' },
     { '<leader>,l', ':SessionLoadFromFile ', desc = 'Persisted - Load Session From File' },
     { '<leader>,s', '<cmd>SessionSave<cr>', desc = 'Persisted - Save Session' },
     { '<leader>,\\', '<cmd>SessionToggle<cr>', desc = 'Persisted - Toggle Session' },
@@ -39,19 +35,6 @@ return {
         end
         return true
       end,
-      telescope = {
-        mappings = { -- Mappings for managing sessions in Telescope
-          copy_session = '<C-y>',
-          change_branch = '<C-b>',
-          delete_session = '<C-x>',
-        },
-        icons = { -- icons displayed in the Telescope picker
-          selected = ' ',
-          dir = '  ',
-          branch = ' ',
-        },
-      },
     }
-    require('telescope').load_extension 'persisted'
   end,
 }
