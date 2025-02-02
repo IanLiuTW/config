@@ -1,223 +1,7 @@
 ---@diagnostic disable: undefined-global
--- stylua: ignore
-return {
-  'folke/snacks.nvim',
-  priority = 1000,
-  lazy = false,
-  opts = {
-    animation = {
-      fps = 100, -- frames per second. Global setting for all animations
-    },
-    bigfile = {
-      enabled = true
-    },
-    picker = {
-      ui_select = true,
-      win = {
-        -- input window
-        input = {
-          keys = {
-            -- to close the picker on ESC instead of going to normal mode,
-            -- add the following keymap to your config
-            -- ["<Esc>"] = { "close", mode = { "n", "i" } },
-            ["/"] = "toggle_focus",
-            ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
-            ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
-            ["<C-c>"] = { "close", mode = "i" },
-            ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
-            ["<CR>"] = { "confirm", mode = { "n", "i" } },
-            ["<Down>"] = { "list_down", mode = { "i", "n" } },
-            ["<Esc>"] = "close",
-            ["<S-CR>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
-            ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
-            ["<ScrollWheelDown>"] = { "list_scroll_wheel_down", mode = { "i", "n" } },
-            ["<ScrollWheelUp>"] = { "list_scroll_wheel_up", mode = { "i", "n" } },
-            ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
-            ["<Up>"] = { "list_up", mode = { "i", "n" } },
-            ["<a-d>"] = { "inspect", mode = { "n", "i" } },
-            ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
-            ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-            ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
-            ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
-            ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
-            ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
-            ["<c-a>"] = { "select_all", mode = { "n", "i" } },
-            ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
-            ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
-            ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
-            ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
-            ["<c-j>"] = { "list_down", mode = { "i", "n" } },
-            ["<c-k>"] = { "list_up", mode = { "i", "n" } },
-            ["<c-n>"] = { "list_down", mode = { "i", "n" } },
-            ["<c-p>"] = { "list_up", mode = { "i", "n" } },
-            ["<c-q>"] = { "qflist", mode = { "i", "n" } },
-            ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
-            ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
-            ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
-            ["?"] = "toggle_help_input",
-            ["G"] = "list_bottom",
-            ["gg"] = "list_top",
-            ["j"] = "list_down",
-            ["k"] = "list_up",
-            ["q"] = "close",
-            [":"] = { "flash" },
-            ["<c-;>"] = { "flash", mode = { "n", "i" } },
-          },
-          b = {
-            minipairs_disable = true,
-          },
-        },
-        -- result list window
-        list = {
-          keys = {
-            ["/"] = "toggle_focus",
-            ["<2-LeftMouse>"] = "confirm",
-            ["<CR>"] = "confirm",
-            ["<Down>"] = "list_down",
-            ["<Esc>"] = "close",
-            ["<S-CR>"] = { { "pick_win", "jump" } },
-            ["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
-            ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
-            ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
-            ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
-            ["<Up>"] = "list_up",
-            ["<a-d>"] = "inspect",
-            ["<a-f>"] = "toggle_follow",
-            ["<a-h>"] = "toggle_hidden",
-            ["<a-i>"] = "toggle_ignored",
-            ["<a-m>"] = "toggle_maximize",
-            ["<a-p>"] = "toggle_preview",
-            ["<a-w>"] = "cycle_win",
-            ["<c-a>"] = "select_all",
-            ["<c-b>"] = "preview_scroll_up",
-            ["<c-d>"] = "list_scroll_down",
-            ["<c-f>"] = "preview_scroll_down",
-            ["<c-j>"] = "list_down",
-            ["<c-k>"] = "list_up",
-            ["<c-n>"] = "list_down",
-            ["<c-p>"] = "list_up",
-            ["<c-s>"] = "edit_split",
-            ["<c-u>"] = "list_scroll_up",
-            ["<c-v>"] = "edit_vsplit",
-            ["?"] = "toggle_help_list",
-            ["G"] = "list_bottom",
-            ["gg"] = "list_top",
-            ["i"] = "focus_input",
-            ["j"] = "list_down",
-            ["k"] = "list_up",
-            ["q"] = "close",
-            ["zb"] = "list_scroll_bottom",
-            ["zt"] = "list_scroll_top",
-            ["zz"] = "list_scroll_center",
-          },
-          wo = {
-            conceallevel = 2,
-            concealcursor = "nvc",
-          },
-        },
-        -- preview window
-        preview = {
-          keys = {
-            ["<Esc>"] = "close",
-            ["q"] = "close",
-            ["i"] = "focus_input",
-            ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
-            ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
-            ["<a-w>"] = "cycle_win",
-          },
-        },
-      },
-      sources = {
-        buffers = {
-          layout = {
-            preset = "dropdown",
-          },
-          win = {
-            input = {
-              keys = {
-                ["x"] = "bufdelete",
-                ["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
-              },
-            },
-            list = { keys = { ["x"] = "bufdelete" } },
-          },
-        },
-        colorschemes = {
-          layout = {
-            preset = "ivy",
-          },
-        },
-        grep = {
-          hidden = true
-        },
-        git_branches = {
-          layout = {
-            preset = "ivy",
-          },
-        },
-        files = {
-          hidden = true,
-          ignored = true,
-          follow = true,
-        },
-        git_files = {
-          hidden = true,
-          untracked = true
-        },
-        lines = {
-          layout = {
-            preset = "default",
-            preview = "preview"
-          }
-        },
-        explorer = {
-          win = {
-            list = {
-              keys = {
-                ["l"] = "confirm",
-                ["h"] = "explorer_close",
 
-                ["a"] = "explorer_add",
-                ["d"] = "explorer_del",
-                ["r"] = "explorer_rename",
-                ["c"] = "explorer_copy",
-                ["m"] = "explorer_move",
-                ["y"] = "explorer_yank",
-
-                ["H"] = "explorer_up",
-                ["L"] = "explorer_focus",
-                ["<c-c>"] = "explorer_cd",
-              },
-            },
-          },
-        }
-      },
-      actions = {
-        flash = function(picker)
-          require("flash").jump({
-            pattern = "^",
-            label = { after = { 0, 0 } },
-            search = {
-              mode = "search",
-              exclude = {
-                function(win)
-                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
-                end,
-              },
-            },
-            action = function(match)
-              local idx = picker.list:row2idx(match.pos[1])
-              picker.list:_move(idx, true, true)
-            end,
-          })
-        end,
-      },
-    },
-    explorer = {
-      enabled = true,
-      replace_netrw = true,
-    },
-    dashboard = {
+-- stylua: ignore start
+local dashboard_setup = {
       preset = {
         keys = {
           { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
@@ -290,13 +74,242 @@ return {
         },
         { section = 'startup' },
       },
+}
+
+local picker_setup = {
+      ui_select = true,
+      previewers = {
+        git = {
+          native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
+        },
+      },
+      win = {
+        -- input window
+        input = {
+          keys = {
+            -- ["<Esc>"] = { "close", mode = { "n", "i" } }, -- to close the picker on ESC instead of going to normal mode
+            ['<Esc>'] = 'close',
+            ['<C-c>'] = { 'close', mode = 'i' },
+            ['<C-y>'] = { 'confirm', mode = { 'n', 'i' } },
+            ['<C-e>'] = { { 'pick_win', 'jump' }, mode = { 'n', 'i' } },
+            ['<CR>'] = { 'select_and_next', mode = { 'i', 'n' } },
+            ['<S-CR>'] = { 'select_and_prev', mode = { 'i', 'n' } },
+            ['<C-,>'] = { 'history_back', mode = { 'i', 'n' } },
+            ['<C-.>'] = { 'history_forward', mode = { 'i', 'n' } },
+            ['<ScrollWheelDown>'] = { 'list_scroll_wheel_down', mode = { 'i', 'n' } },
+            ['<ScrollWheelUp>'] = { 'list_scroll_wheel_up', mode = { 'i', 'n' } },
+            ['<C-w>'] = { '<c-s-w>', mode = { 'i' }, expr = true, desc = 'delete word' },
+            ['<c-i>'] = { 'inspect', mode = { 'n', 'i' } },
+            ['<c-1>'] = { 'toggle_ignored', mode = { 'i', 'n' } },
+            ['<c-2>'] = { 'toggle_hidden', mode = { 'i', 'n' } },
+            ['<c-3>'] = { 'toggle_follow', mode = { 'i', 'n' } },
+            ['<c-m>'] = { 'toggle_maximize', mode = { 'i', 'n' } },
+            ['<c-g>'] = { 'toggle_live', mode = { 'i', 'n' } },
+            ['<S-Tab>'] = { 'toggle_preview', mode = { 'i', 'n' } },
+            ['<Tab>'] = { 'cycle_win', mode = { 'i', 'n' } },
+            ['<c-a>'] = { 'select_all', mode = { 'n', 'i' } },
+            ['<c-u>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+            ['<c-d>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+            ['<c-b>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+            ['<c-f>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+            ['<c-j>'] = { 'list_down', mode = { 'i', 'n' } },
+            ['<c-k>'] = { 'list_up', mode = { 'i', 'n' } },
+            ['<c-n>'] = { 'list_down', mode = { 'i', 'n' } },
+            ['<c-p>'] = { 'list_up', mode = { 'i', 'n' } },
+            ['<c-q>'] = { 'qflist', mode = { 'i', 'n' } },
+            ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } },
+            ['<c-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
+            ['/'] = 'toggle_focus',
+            ['?'] = 'toggle_help_input',
+            ['G'] = 'list_bottom',
+            ['gg'] = 'list_top',
+            ['j'] = 'list_down',
+            ['k'] = 'list_up',
+            ['q'] = 'close',
+            [':'] = { 'flash' },
+            ['<c-;>'] = { 'flash', mode = { 'n', 'i' } },
+          },
+          b = {
+            minipairs_disable = true,
+          },
+        },
+        -- result list window
+        list = {
+          keys = {
+            ['<Esc>'] = 'close',
+            ['<2-LeftMouse>'] = 'confirm',
+            ['<c-y>'] = 'confirm',
+            ['<c-e>'] = { { 'pick_win', 'jump' } },
+            ['<CR>'] = { 'select_and_next', mode = { 'n', 'x' } },
+            ['<S-CR>'] = { 'select_and_prev', mode = { 'n', 'x' } },
+            ['<ScrollWheelDown>'] = 'list_scroll_wheel_down',
+            ['<ScrollWheelUp>'] = 'list_scroll_wheel_up',
+            ['<c-i>'] = 'inspect',
+            ['<c-1>'] = 'toggle_ignored',
+            ['<c-2>'] = 'toggle_hidden',
+            ['<c-3>'] = 'toggle_follow',
+            ['<c-m>'] = 'toggle_maximize',
+            ['<S-Tab>'] = 'toggle_preview',
+            ['<Tab>'] = 'cycle_win',
+            ['<c-a>'] = 'select_all',
+            ['<c-u>'] = 'list_scroll_up',
+            ['<c-d>'] = 'list_scroll_down',
+            ['<c-b>'] = 'preview_scroll_up',
+            ['<c-f>'] = 'preview_scroll_down',
+            ['<c-p>'] = 'list_up',
+            ['<c-n>'] = 'list_down',
+            ['<c-k>'] = 'list_up',
+            ['<c-j>'] = 'list_down',
+            ['<c-s>'] = 'edit_split',
+            ['<c-v>'] = 'edit_vsplit',
+            ['/'] = 'toggle_focus',
+            ['?'] = 'toggle_help_list',
+            ['G'] = 'list_bottom',
+            ['gg'] = 'list_top',
+            ['i'] = 'focus_input',
+            ['j'] = 'list_down',
+            ['k'] = 'list_up',
+            ['q'] = 'close',
+            ['zb'] = 'list_scroll_bottom',
+            ['zt'] = 'list_scroll_top',
+            ['zz'] = 'list_scroll_center',
+            [':'] = { 'flash' },
+            ['<c-;>'] = { 'flash', mode = { 'n', 'i' } },
+          },
+          wo = {
+            conceallevel = 2,
+            concealcursor = 'nvc',
+          },
+        },
+        -- preview window
+        preview = {
+          keys = {
+            ['<Esc>'] = 'close',
+            ['q'] = 'close',
+            ['i'] = 'focus_input',
+            ['<ScrollWheelDown>'] = 'list_scroll_wheel_down',
+            ['<ScrollWheelUp>'] = 'list_scroll_wheel_up',
+            ['<Tab>'] = 'cycle_win',
+          },
+        },
+      },
+      sources = {
+        buffers = {
+          layout = {
+            preset = 'dropdown',
+          },
+          win = {
+            input = {
+              keys = {
+                ['x'] = 'bufdelete',
+                ['<c-x>'] = { 'bufdelete', mode = { 'n', 'i' } },
+              },
+            },
+            list = { keys = { ['x'] = 'bufdelete' } },
+          },
+        },
+        colorschemes = {
+          layout = {
+            preset = 'ivy',
+          },
+        },
+        grep = {
+          hidden = true,
+        },
+        git_branches = {
+          layout = {
+            preset = 'ivy',
+          },
+        },
+        files = {
+          hidden = true,
+          ignored = true,
+          follow = true,
+        },
+        git_files = {
+          hidden = true,
+          untracked = true,
+        },
+        lines = {
+          layout = {
+            preset = 'default',
+            preview = 'preview',
+          },
+        },
+        explorer = {
+          win = {
+            list = {
+              keys = {
+                ['l'] = 'confirm',
+                ['h'] = 'explorer_close',
+                ['u'] = 'explorer_update',
+                ['o'] = 'explorer_open', -- open with system application
+                ['<S-Tab>'] = 'toggle_preview',
+                ['a'] = 'explorer_add',
+                ['d'] = 'explorer_del',
+                ['r'] = 'explorer_rename',
+                ['c'] = 'explorer_copy',
+                ['m'] = 'explorer_move',
+                ['y'] = 'explorer_yank',
+                ['H'] = 'explorer_up',
+                ['L'] = 'explorer_focus',
+                ['.'] = 'explorer_cd',
+                [']g'] = 'explorer_git_next',
+                ['[g'] = 'explorer_git_prev',
+                ['<c-1>'] = 'toggle_ignored',
+                ['<c-2>'] = 'toggle_hidden',
+                ['<c-c>'] = 'explorer_close_all',
+              },
+            },
+          },
+        },
+      },
+      actions = {
+        flash = function(picker)
+          require('flash').jump {
+            pattern = '^',
+            label = { after = { 0, 0 } },
+            search = {
+              mode = 'search',
+              exclude = {
+                function(win)
+                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                end,
+              },
+            },
+            action = function(match)
+              local idx = picker.list:row2idx(match.pos[1])
+              picker.list:_move(idx, true, true)
+            end,
+          }
+        end,
+      },
+}
+-- stylua: ignore end
+
+return {
+  'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
+  opts = {
+    animation = {
+      fps = 100, -- frames per second. Global setting for all animations
     },
+    bigfile = {
+      enabled = true,
+    },
+    picker = picker_setup,
+    explorer = {
+      enabled = true,
+      replace_netrw = true,
+    },
+    dashboard = dashboard_setup,
     notifier = {
       enabled = true,
       timeout = 3000,
     },
     quickfile = {
-      enabled = true
+      enabled = true,
     },
     -- input = { enabled = true },
     indent = {
@@ -354,34 +367,34 @@ return {
     lazygit = {
       configure = false,
       theme = {
-          selectedLineBgColor = { bg = "black" }
+        selectedLineBgColor = { bg = 'black' },
       },
       win = {
-        position = "float",
+        position = 'float',
         backdrop = 60,
         height = 0.96,
         width = 0.98,
         zindex = 50,
-      }
+      },
     },
     scope = {
       enabled = true,
-      keys ={
+      keys = {
         jump = {
-          ["[["] = {
+          ['[['] = {
             bottom = false,
             edge = true,
             treesitter = { enabled = false },
-            desc = "jump to top edge of scope",
+            desc = 'jump to top edge of scope',
           },
-          ["]]"] = {
+          [']]'] = {
             bottom = true,
             edge = true,
             treesitter = { enabled = false },
-            desc = "jump to bottom edge of scope",
+            desc = 'jump to bottom edge of scope',
           },
         },
-      }
+      },
     },
     scroll = {
       animate = {
@@ -403,7 +416,7 @@ return {
       refresh = 50, -- refresh at most every 50ms },
     },
     words = {
-      enabled = true
+      enabled = true,
     },
     zen = {
       toggles = {
@@ -442,6 +455,7 @@ return {
       },
     },
   },
+  -- stylua: ignore start
   keys = {
     -- Picker
     { "<leader><tab>", function() Snacks.picker.buffers() end, desc = "Picker - Buffers" },
@@ -456,14 +470,16 @@ return {
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Picker - Git Status" },
     { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Picker - Git Branches" },
     { "<leader>gz", function() Snacks.picker.git_stash() end, desc = "Picker - Git Stash" },
-    -- -- Grep
+    { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Picker - Git Diff" },
+    -- -- grep
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Picker - Buffer Lines" },
     { "<leader><leader>/", function() Snacks.picker.grep_buffers() end, desc = "Picker - Grep Open Buffers" },
     { "<leader><leader>g", function() Snacks.picker.grep() end, desc = "Picker - Grep" },
     { "<leader><leader>G", function() Snacks.picker.grep_word() end, desc = "Picker - Grep Word", mode = { "n", "x" } },
     -- -- search
     { "<leader><leader>r", function() Snacks.picker.resume() end, desc = "Picker - Resume" },
-    { "<leader><leader>d", function() Snacks.picker.diagnostics() end, desc = "Picker - Diagnostics" },
+    { "<leader><leader>d", function() Snacks.picker.diagnostics_buffer() end, desc = "Picker - Diagnostics Buffer" },
+    { "<leader><leader>D", function() Snacks.picker.diagnostics() end, desc = "Picker - Diagnostics" },
     { "<leader><leader>h", function() Snacks.picker.highlights() end, desc = "Picker - Highlights" },
     { "<leader><leader>m", function() Snacks.picker.marks() end, desc = "Picker - Marks" },
     { "<leader><leader>z", function() Snacks.picker.zoxide() end, desc = "Zoxide" },
@@ -521,6 +537,7 @@ return {
     { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
     -- Explorer
     { '\\', function() Snacks.explorer() end, desc = 'Explorer - Toggle Explorer', mode = { 'n' } },
+    -- News
     {
       '<leader>,<leader>',
         function() Snacks.win {
@@ -534,49 +551,50 @@ return {
     -- Terminal
     -- { "<c-/>",      function() Snacks.terminal() end, desc = "Terminal - Toggle" },
   },
+  -- stylua: ignore end
   init = function()
-    ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
-    local progress = vim.defaulttable()
-    vim.api.nvim_create_autocmd('LspProgress', {
-      ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
-      callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
-        if not client or type(value) ~= 'table' then
-          return
-        end
-        local p = progress[client.id]
+    -- local progress = vim.defaulttable()
+    -- vim.api.nvim_create_autocmd('LspProgress', {
+    --   ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
+    --   callback = function(ev)
+    --     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    --     local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+    --     if not client or type(value) ~= 'table' then
+    --       return
+    --     end
+    --     local p = progress[client.id]
+    --
+    --     for i = 1, #p + 1 do
+    --       if i == #p + 1 or p[i].token == ev.data.params.token then
+    --         p[i] = {
+    --           token = ev.data.params.token,
+    --           msg = ('[%3d%%] %s%s'):format(
+    --             value.kind == 'end' and 100 or value.percentage or 100,
+    --             value.title or '',
+    --             value.message and (' **%s**'):format(value.message) or ''
+    --           ),
+    --           done = value.kind == 'end',
+    --         }
+    --         break
+    --       end
+    --     end
+    --
+    --     local msg = {} ---@type string[]
+    --     progress[client.id] = vim.tbl_filter(function(v)
+    --       return table.insert(msg, v.msg) or not v.done
+    --     end, p)
+    --
+    --     local spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
+    --     vim.notify(table.concat(msg, '\n'), 'info', {
+    --       id = 'lsp_progress',
+    --       title = client.name,
+    --       opts = function(notif)
+    --         notif.icon = #progress[client.id] == 0 and ' ' or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+    --       end,
+    --     })
+    --   end,
+    -- })
 
-        for i = 1, #p + 1 do
-          if i == #p + 1 or p[i].token == ev.data.params.token then
-            p[i] = {
-              token = ev.data.params.token,
-              msg = ('[%3d%%] %s%s'):format(
-                value.kind == 'end' and 100 or value.percentage or 100,
-                value.title or '',
-                value.message and (' **%s**'):format(value.message) or ''
-              ),
-              done = value.kind == 'end',
-            }
-            break
-          end
-        end
-
-        local msg = {} ---@type string[]
-        progress[client.id] = vim.tbl_filter(function(v)
-          return table.insert(msg, v.msg) or not v.done
-        end, p)
-
-        local spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
-        vim.notify(table.concat(msg, '\n'), 'info', {
-          id = 'lsp_progress',
-          title = client.name,
-          opts = function(notif)
-            notif.icon = #progress[client.id] == 0 and ' ' or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
-          end,
-        })
-      end,
-    })
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
@@ -596,10 +614,9 @@ return {
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>,B'
         Snacks.toggle.diagnostics():map '<leader>,D'
         Snacks.toggle.treesitter():map '<leader>,T'
-
         -- Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>,R'
         -- Snacks.toggle.line_number():map '<leader>,N'
-        -- Snacks.toggle.inlay_hints():map '<leader>,I'
+        -- Snacks.toggle.inlay_hints():map '<leader>,I' -- LSP has this function
       end,
     })
   end,

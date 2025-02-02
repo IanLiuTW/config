@@ -145,6 +145,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias kc="kubectl"
 alias bt="bpytop"
+alias po="posting"
 alias ssh="TERM=xterm-256color ssh"
 # [Alias] Navigation
 alias dir='dir --color=auto'

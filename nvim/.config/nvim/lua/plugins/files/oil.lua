@@ -50,7 +50,7 @@ return {
         ['<cr>'] = 'actions.select',
         ['<C-l>'] = 'actions.select',
         ['<C-h>'] = 'actions.parent',
-        ['<Tab>'] = 'actions.preview',
+        ['<S-Tab>'] = 'actions.preview',
         ['q'] = 'actions.close',
         ['-'] = 'actions.close',
         ['R'] = 'actions.refresh',

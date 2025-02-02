@@ -98,6 +98,7 @@
             "colima"
             "sketchybar"
             "aichat"
+            "posting"
             # "podman"
             # "podman-compose"
           ];

@@ -55,7 +55,7 @@ keybind = super+shift+backspace=inspector:toggle
 keybind = super+t=new_tab
 keybind = super+n=new_window
 keybind = super+/=toggle_quick_terminal
-keybind = super+z=toggle_fullscreen
+keybind = super+m=toggle_fullscreen
 keybind = super+q=quit
 keybind = super+w=close_surface
 
@@ -100,6 +100,6 @@ keybind = super+shift+g=scroll_to_bottom
 
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
-keybind = f1=write_screen_file:paste
-keybind = f2=write_screen_file:open
-keybind = f3=write_scrollback_file:open
+# keybind = super+f1=write_screen_file:paste
+# keybind = super+f2=write_screen_file:open
+# keybind = super+f3=write_scrollback_file:open
