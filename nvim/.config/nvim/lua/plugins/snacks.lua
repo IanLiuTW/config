@@ -75,12 +75,14 @@ local dashboard_setup = {
     { section = 'startup' },
   },
 }
+-- stylua: ignore end
 
 local picker_setup = {
   ui_select = true,
   matcher = {
-    cwd_bonus = false, -- give bonus for matching files in the cwd
+    cwd_bonus = true, -- give bonus for matching files in the cwd
     frecency = true, -- frecency bonus
+    history_bonus = true,
   },
   previewers = {
     git = {
@@ -94,10 +96,10 @@ local picker_setup = {
         -- ["<Esc>"] = { "close", mode = { "n", "i" } }, -- to close the picker on ESC instead of going to normal mode
         ['<Esc>'] = 'close',
         ['<C-c>'] = { 'close', mode = 'i' },
-        ['<C-y>'] = { 'confirm', mode = { 'n', 'i' } },
-        ['<C-e>'] = { { 'pick_win', 'jump' }, mode = { 'n', 'i' } },
-        ['<CR>'] = { 'select_and_next', mode = { 'i', 'n' } },
-        ['<S-CR>'] = { 'select_and_prev', mode = { 'i', 'n' } },
+        ['<CR>'] = { 'confirm', mode = { 'n', 'i' } },
+        ['<S-CR>'] = { { 'pick_win', 'jump' }, mode = { 'n', 'i' } },
+        ['<C-y>'] = { 'select_and_next', mode = { 'i', 'n' } },
+        ['<c-e>'] = { 'select_and_prev', mode = { 'i', 'n' } },
         ['<C-,>'] = { 'history_back', mode = { 'i', 'n' } },
         ['<C-.>'] = { 'history_forward', mode = { 'i', 'n' } },
         ['<ScrollWheelDown>'] = { 'list_scroll_wheel_down', mode = { 'i', 'n' } },
@@ -142,10 +144,10 @@ local picker_setup = {
       keys = {
         ['<Esc>'] = 'close',
         ['<2-LeftMouse>'] = 'confirm',
-        ['<c-y>'] = 'confirm',
-        ['<c-e>'] = { { 'pick_win', 'jump' } },
-        ['<CR>'] = { 'select_and_next', mode = { 'n', 'x' } },
-        ['<S-CR>'] = { 'select_and_prev', mode = { 'n', 'x' } },
+        ['<CR>'] = 'confirm',
+        ['<S-CR>'] = { { 'pick_win', 'jump' } },
+        ['<c-y>'] = { 'select_and_next', mode = { 'n', 'x' } },
+        ['<c-e>'] = { 'select_and_prev', mode = { 'n', 'x' } },
         ['<ScrollWheelDown>'] = 'list_scroll_wheel_down',
         ['<ScrollWheelUp>'] = 'list_scroll_wheel_up',
         ['<c-i>'] = 'inspect',
@@ -241,6 +243,9 @@ local picker_setup = {
       },
     },
     explorer = {
+      layout = {
+        preview = { main = true, enabled = false },
+      },
       win = {
         list = {
           keys = {
@@ -289,7 +294,6 @@ local picker_setup = {
     end,
   },
 }
--- stylua: ignore end
 
 return {
   'folke/snacks.nvim',
@@ -497,6 +501,8 @@ return {
     { "<leader><leader>j", function() Snacks.picker.jumps() end, desc = "Picker - Jumps" },
     { "<leader><leader>l", function() Snacks.picker.loclist() end, desc = "Picker - Location List" },
     { "<leader><leader>q", function() Snacks.picker.qflist() end, desc = "Picker - Quickfix List" },
+    { "<leader><leader>u", function() Snacks.picker.undo() end, desc = "Picker - Undo" },
+    { "<leader><leader>s", function() Snacks.picker.spelling() end, desc = "Picker - Spelling" },
     -- -- search - advanced
     { "<leader><leader>K", function() Snacks.picker.keymaps() end, desc = "Picker - Keymaps" },
     { "<leader><leader>M", function() Snacks.picker.man() end, desc = "Picker - Man Pages" },
