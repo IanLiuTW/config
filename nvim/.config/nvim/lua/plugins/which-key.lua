@@ -167,9 +167,11 @@ return { -- Useful plugin to show you pending keybinds.
         { '<Esc>',           '<cmd>nohlsearch<CR>',                         desc = 'nohlsearch' },
         {'<leader>dx',       ':.lua<CR>',                                   desc = 'Execute - Current Line with Lua'},
         {'<leader>dX',       '<CMD>source %<CR>',                           desc = 'Execute - Source Current File'},
-        -- Autocommands keybindings
+        -- User Commands keybindings
         { '<leader>d/',      '<Cmd>CopyPath<CR>',                           desc = 'User Command - Copy Path' },
         { 'dm',              '<Cmd>Delmark<CR>',                            desc = 'User Command - Delete Mark' },
+        { '<leader>,v',      '<Cmd>VirtualTextSeverityMinInfo<CR>',         desc = 'User Command - Virtual Text Min Severity: Info' },
+        { '<leader>,V',      '<Cmd>VirtualTextSeverityMinHint<CR>',         desc = 'User Command - Virtual Text Min Severity: Hint' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },

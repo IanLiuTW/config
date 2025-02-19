@@ -73,6 +73,15 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+-- [[ Diagnostic Commands ]]
+-- Set virtual text severity to Hint
+vim.api.nvim_create_user_command('VirtualTextSeverityMinHint', function()
+  vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.HINT } } }
+end, {})
+-- Set virtual text severity to INFO
+vim.api.nvim_create_user_command('VirtualTextSeverityMinInfo', function()
+  vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.INFO } } }
+end, {})
 -- [[ Tool Commands ]]
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
@@ -104,6 +113,7 @@ for name, icon in pairs(symbols) do
 end
 vim.diagnostic.config {
   update_in_insert = true,
+  severity_sort = true,
   virtual_text = {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,
