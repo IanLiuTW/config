@@ -322,6 +322,7 @@ return {
       enabled = true,
     },
     -- input = { enabled = true },
+    image = { enabled = true },
     indent = {
       indent = {
         char = '│',
