@@ -133,6 +133,17 @@ return {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = 'mono',
     },
+
+    cmdline = {
+      completion = {
+        menu = {
+          auto_show = true,
+          -- auto_show = function(ctx)
+          --   return vim.fn.getcmdtype() == ':'
+          -- end,
+        },
+      },
+    },
   },
 
   opts_extend = { 'sources.default' },
