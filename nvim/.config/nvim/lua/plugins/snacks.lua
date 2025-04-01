@@ -124,7 +124,7 @@ local picker_setup = {
         ['<c-p>'] = { 'list_up', mode = { 'i', 'n' } },
         ['<c-q>'] = { 'qflist', mode = { 'i', 'n' } },
         ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } },
-        ["<c-t>"] = { "tab", mode = { "n", "i" } },
+        ['<c-t>'] = { 'tab', mode = { 'n', 'i' } },
         ['<c-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
         ['/'] = 'toggle_focus',
         ['?'] = 'toggle_help_input',
@@ -168,7 +168,7 @@ local picker_setup = {
         ['<c-k>'] = 'list_up',
         ['<c-j>'] = 'list_down',
         ['<c-s>'] = 'edit_split',
-        ["<c-t>"] = 'tab',
+        ['<c-t>'] = 'tab',
         ['<c-v>'] = 'edit_vsplit',
         ['/'] = 'toggle_focus',
         ['?'] = 'toggle_help_list',
@@ -243,6 +243,12 @@ local picker_setup = {
         preset = 'default',
         preview = 'preview',
       },
+    },
+    git_log = {
+      layout = { layout = { height = 0.95, width = 0.95 } },
+    },
+    git_log_file = {
+      layout = { layout = { height = 0.95, width = 0.95 } },
     },
     explorer = {
       layout = {
@@ -533,8 +539,6 @@ return {
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     -- LazyGit
     { "<leader>gG", function() Snacks.lazygit() end, desc = "Lazygit - Toggle" },
-    -- { "<leader>gL", function() Snacks.lazygit.log_file() end, desc = "Snack - Lazygit Log (Current File)" },
-    -- { "<leader>gL", function() Snacks.lazygit.log() end, desc = "- Lazygit Log (CWD)" },
     -- Notifier
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Notifier - Dismiss All' },
     { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Notifier - Show History' },
