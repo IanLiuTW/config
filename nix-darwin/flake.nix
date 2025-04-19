@@ -38,6 +38,10 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
+          swift
+          darwin.apple_sdk.frameworks.Foundation
+          darwin.apple_sdk.frameworks.CoreFoundation
+
           gettext
           mkalias
           cmake

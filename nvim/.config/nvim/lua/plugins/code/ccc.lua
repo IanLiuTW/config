@@ -2,6 +2,7 @@ return {
   'uga-rosa/ccc.nvim',
   lazy = true,
   event = 'BufRead',
+  enabled = false,
   commands = {
     'CccPick',
     'CccHighlighterToggle',

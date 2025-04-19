@@ -183,6 +183,7 @@ if command -v bat >/dev/null 2>&1; then
 fi
 # [Alias] nix
 alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-up='nix flake update --flake ~/config/nix-darwin/'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 alias dev='nix develop'
 # [Alias]
