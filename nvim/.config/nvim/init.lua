@@ -82,6 +82,11 @@ end, {})
 vim.api.nvim_create_user_command('VirtualTextSeverityMinInfo', function()
   vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.INFO } } }
 end, {})
+-- Toggle virtual line
+vim.api.nvim_create_user_command('VirtualLinesToggle', function()
+  local current = vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = not current })
+end, {})
 -- [[ Tool Commands ]]
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
@@ -114,6 +119,7 @@ end
 vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
+  virtual_lines = true,
   virtual_text = {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,

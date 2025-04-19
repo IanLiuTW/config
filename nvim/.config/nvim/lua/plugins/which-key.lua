@@ -160,6 +160,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader><leader>', group = '[󱁐] Picker',             mode = { 'n', 'x' } },
       { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
+      { '<leader>,v',       group = 'Virtual Text Min Severity',       mode = { 'n', 'x' } },
 
       -- Normal Mode
       {
@@ -170,8 +171,9 @@ return { -- Useful plugin to show you pending keybinds.
         -- User Commands keybindings
         { '<leader>d/',      '<Cmd>CopyPath<CR>',                           desc = 'User Command - Copy Path' },
         { 'dm',              '<Cmd>Delmark<CR>',                            desc = 'User Command - Delete Mark' },
-        { '<leader>,v',      '<Cmd>VirtualTextSeverityMinInfo<CR>',         desc = 'User Command - Virtual Text Min Severity: Info' },
-        { '<leader>,V',      '<Cmd>VirtualTextSeverityMinHint<CR>',         desc = 'User Command - Virtual Text Min Severity: Hint' },
+        { '<leader>,vi',     '<Cmd>VirtualTextSeverityMinInfo<CR>',         desc = 'User Command - Virtual Text Min Severity: Info' },
+        { '<leader>,vh',     '<Cmd>VirtualTextSeverityMinHint<CR>',         desc = 'User Command - Virtual Text Min Severity: Hint' },
+        { '<leader>,V',      '<Cmd>VirtualLinesToggle<CR>',                 desc = 'User Command - Virtual Lines Toggle' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
