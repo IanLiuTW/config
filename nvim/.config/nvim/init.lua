@@ -85,7 +85,7 @@ end, {})
 -- Toggle virtual line
 vim.api.nvim_create_user_command('VirtualLinesToggle', function()
   local current = vim.diagnostic.config().virtual_lines
-  vim.diagnostic.config({ virtual_lines = not current })
+  vim.diagnostic.config { virtual_lines = not current }
 end, {})
 -- [[ Tool Commands ]]
 -- G is a wrapper around git
@@ -111,11 +111,6 @@ vim.api.nvim_create_user_command('Delmark', function()
 end, { desc = 'Delete mark by key with popup input' })
 
 -- [[ Configure diagnostic symbols ]]
-local symbols = { Error = '󰅙', Info = '󰋼', Hint = '󰌵', Warn = '' }
-for name, icon in pairs(symbols) do
-  local hl = 'DiagnosticSign' .. name
-  vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-end
 vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
@@ -126,7 +121,13 @@ vim.diagnostic.config {
     spacing = 1,
   },
   signs = {
-    severity = { min = vim.diagnostic.severity.ERROR },
+    severity = { min = vim.diagnostic.severity.WARN },
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '󰌵',
+    },
   },
 }
 

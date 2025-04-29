@@ -208,7 +208,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 't',
-        { '<esc>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
+        { '<C-BS>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
       },
       {
         mode = { 'n', 'v' },
