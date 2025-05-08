@@ -114,7 +114,7 @@ end, { desc = 'Delete mark by key with popup input' })
 vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
-  virtual_lines = true,
+  virtual_lines = false,
   virtual_text = {
     severity = { min = vim.diagnostic.severity.INFO },
     source = true,
