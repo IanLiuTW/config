@@ -25,7 +25,7 @@ theme = Dark Modern
 
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.1
-quick-terminal-autohide = false
+quick-terminal-autohide = true
 
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon = hidden
