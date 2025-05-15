@@ -105,6 +105,7 @@ vim.api.nvim_create_user_command('Delmark', function()
   vim.ui.input({ prompt = 'Enter mark to delete: ' }, function(input)
     if input and input ~= '' then
       vim.cmd('delm ' .. input)
+      vim.cmd('redraw!')
       vim.notify('Deleted mark: ' .. input)
     end
   end)

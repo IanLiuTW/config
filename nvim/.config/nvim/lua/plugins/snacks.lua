@@ -448,7 +448,7 @@ return {
     },
     zen = {
       toggles = {
-        dim = true,
+        dim = false,
         git_signs = true,
         mini_diff_signs = false,
         diagnostics = true,
@@ -458,7 +458,7 @@ return {
         statusline = false, -- can only be shown when using the global statusline
         tabline = false,
       },
-      win = { style = 'zen' },
+      win = { style = 'zen', width = 0.6 },
       zoom = {
         toggles = {
           dim = true,
