@@ -242,16 +242,17 @@ return {
     }
   end,
   keys = {
-    { '<C-q><C-q>', ':CopilotChatToggle<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Toggle' },
+    -- { '<C-q><C-q>', ':CopilotChatToggle<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Toggle' },
     { '<C-q>q', ':CopilotChatClose<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Close' },
-    { '<C-q><bs>', '<cmd>CopilotChatReset<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Reste' },
+    { '<C-q><bs>', '<cmd>CopilotChatReset<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Reset' },
     { '<C-q>.', '<cmd>CopilotChatStop<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Stop' },
 
+    { '<C-q><C-q>', ':CopilotChat<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Start' },
     { '<C-q><cr>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
     { '<C-q><S-cr>', ':CopilotChatBuffers<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffers)' },
     { '<C-q><C-cr>', ':CopilotChatFiles<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Files)' },
-    { '<C-q><Tab>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
-    -- { '<C-q><S-Tab>', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
+    { '<C-q><Tab>', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
+    -- { '<C-q><S-Tab>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
 
     { '<C-q><Space>', '<cmd>CopilotChatPrompts<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Select Prompt' },
     { '<C-q>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Model' },

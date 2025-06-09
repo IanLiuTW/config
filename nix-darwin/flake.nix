@@ -57,7 +57,7 @@
           asdf-vm
           lua5_1
           lua51Packages.luarocks
-          nodejs_23
+          nodejs_24
           python312
 
           neovim
@@ -181,6 +181,7 @@
         system.defaults = { };
 
         # nix.package = pkgs.nix;
+        system.primaryUser = "ianliu";
 
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";

@@ -91,9 +91,14 @@ end, {})
 -- G is a wrapper around git
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
-  vim.notify('[G wrapper for git] Executed: ' .. command)
+  vim.notify('[G (wrapper for git)] Executed: ' .. command)
   vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
 end, { nargs = 1 })
+vim.api.nvim_create_user_command('GG', function()
+  local command = 'git formom'
+  vim.notify '[GG (git formom)] Executed'
+  vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
+end, {})
 -- Copy the current file path to the clipboard
 vim.api.nvim_create_user_command('CopyPath', function()
   local path = vim.fn.expand '%'
@@ -105,7 +110,7 @@ vim.api.nvim_create_user_command('Delmark', function()
   vim.ui.input({ prompt = 'Enter mark to delete: ' }, function(input)
     if input and input ~= '' then
       vim.cmd('delm ' .. input)
-      vim.cmd('redraw!')
+      vim.cmd 'redraw!'
       vim.notify('Deleted mark: ' .. input)
     end
   end)

@@ -158,10 +158,10 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 alias rg='rg --hidden'
-alias desktop="cd ~/Desktop"
-alias downloads="cd ~/Downloads"
-alias documents="cd ~/Documents"
-alias pictures="cd ~/Pictures"
+alias dt="cd ~/Desktop"
+alias dl="cd ~/Downloads"
+alias doc="cd ~/Documents"
+alias pic="cd ~/Pictures"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -183,7 +183,7 @@ if command -v bat >/dev/null 2>&1; then
   alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
 # [Alias] nix
-alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-up='nix flake update --flake ~/config/nix-darwin/'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 alias dev='nix develop'
