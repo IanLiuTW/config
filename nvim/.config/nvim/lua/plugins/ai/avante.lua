@@ -1,16 +1,20 @@
 return {
   'yetone/avante.nvim',
-  event = 'BufEnter',
+  event = 'VeryLazy',
   version = false, -- set this if you want to always pull the latest change
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
     provider = 'copilot', -- Recommend using Claude
     auto_suggestions_provider = 'copilot', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-    claude = {
-      endpoint = 'https://api.anthropic.com',
-      model = 'claude-3-5-sonnet-20241022',
-      temperature = 0,
-      max_tokens = 4096,
+    providers = {
+      claude = {
+        endpoint = 'https://api.anthropic.com',
+        model = 'claude-3-5-sonnet-20241022',
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 4096,
+        },
+      },
     },
     --- When dual_boost is enabled, avante will generate two responses from the first_provider and second_provider respectively. Then use the response from the first_provider as provider1_output and the response from the second_provider as provider2_output. Finally, avante will generate a response based on the prompt and the two reference outputs, with the default Provider as normal.
     ---Note: This is an experimental feature and may not work as expected.
@@ -53,22 +57,30 @@ return {
         normal = '<CR>',
         insert = '<C-CR>',
       },
-      ask = '<C-CR>a',
-      edit = '<C-CR>e',
-      refresh = '<C-CR>r',
-      focus = '<C-CR>f',
+      ask = '<C-q>A',
+      edit = '<C-q>E',
+      refresh = '<C-q>R',
+      focus = '<C-q>F',
       toggle = {
-        default = '<C-CR><C-CR>',
-        debug = '<C-CR>d',
-        hint = '<C-CR>h',
-        suggestion = '<C-CR>s',
-        repomap = '<C-CR>R',
+        default = '<C-q><S-Tab>',
+        debug = '<C-q>D',
+        hint = '<C-q>H',
+        suggestion = '<C-q>S',
+        repomap = '<C-q>M',
       },
       sidebar = {
         apply_all = 'A',
         apply_cursor = 'a',
-        switch_windows = '<TAB>',
-        reverse_switch_windows = '<S-TAB>',
+        switch_windows = '<Tab>',
+        reverse_switch_windows = '<S-Tab>',
+        retry_user_request = 'r',
+        edit_user_request = 'e',
+        remove_file = 'd',
+        add_file = '@',
+        close = { 'q' },
+        ---@alias AvanteCloseFromInput { normal: string | nil, insert: string | nil }
+        ---@type AvanteCloseFromInput | nil
+        close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
       },
     },
     hints = { enabled = false },
@@ -81,10 +93,6 @@ return {
         enabled = true, -- true, false to enable/disable the header
         align = 'center', -- left, center, right for title
         rounded = true,
-      },
-      input = {
-        prefix = '> ',
-        height = 8, -- Height of the input window in vertical layout
       },
       edit = {
         border = 'rounded',
@@ -128,16 +136,14 @@ return {
   config = function(_, opts)
     require('avante').setup(opts)
 
-    vim.keymap.set('n', '<C-CR>g', function()
+    vim.keymap.set('n', '<C-q>G', function()
       local prompt =
         'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Be concise and only generate the commit messages. Do not include prompt details nor the results of git diff.'
-      local diffs = table.concat( vim.fn.systemlist 'git diff --cached', ' ')
+      local diffs = table.concat(vim.fn.systemlist 'git diff --cached', ' ')
       vim.cmd(':AvanteAsk ' .. prompt .. ' The results of git diff: ' .. diffs)
     end, { desc = 'avante: Generate git commit message (staged files)' })
   end,
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make',
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
     'stevearc/dressing.nvim',

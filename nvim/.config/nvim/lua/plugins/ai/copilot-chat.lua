@@ -247,11 +247,11 @@ return {
     { '<C-q><bs>', '<cmd>CopilotChatReset<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Reset' },
     { '<C-q>.', '<cmd>CopilotChatStop<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Stop' },
 
-    { '<C-q><C-q>', ':CopilotChat<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Start' },
-    { '<C-q><cr>', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
-    { '<C-q><S-cr>', ':CopilotChatBuffers<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffers)' },
-    { '<C-q><C-cr>', ':CopilotChatFiles<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Files)' },
-    { '<C-q><Tab>', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
+    { '<C-q><Tab>', ':CopilotChat<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Start' },
+    { '<C-q>1', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
+    { '<C-q>2', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
+    { '<C-q>3', ':CopilotChatBuffers<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffers)' },
+    { '<C-q>4', ':CopilotChatFiles<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Files)' },
     -- { '<C-q><S-Tab>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
 
     { '<C-q><Space>', '<cmd>CopilotChatPrompts<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Select Prompt' },
@@ -269,6 +269,6 @@ return {
     { '<C-q>b', '<cmd>CopilotChatBetterNamings<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate Better Namings' },
 
     { '<C-q>d', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
-    { '<C-q>D', '<cmd>CopilotChatExplainDiagnostic<cr>', desc = 'CopilotChat - Explain Diagnostic' },
+    { '<C-q>s', '<cmd>CopilotChatExplainDiagnostic<cr>', desc = 'CopilotChat - Explain Diagnostic' },
   },
 }
