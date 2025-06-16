@@ -138,7 +138,7 @@ return {
       },
       submit_prompt = {
         normal = '<CR>',
-        insert = '<C-CR>',
+        insert = '<S-CR>',
       },
       toggle_sticky = {
         normal = 'grr',
@@ -147,8 +147,8 @@ return {
         normal = 'grx',
       },
       accept_diff = {
-        normal = '<C-y>',
-        insert = '<C-y>',
+        normal = '<C-CR>',
+        insert = '<C-CR>',
       },
       jump_to_diff = {
         normal = 'gj',

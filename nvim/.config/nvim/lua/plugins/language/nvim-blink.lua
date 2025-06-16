@@ -5,7 +5,7 @@ return {
     'Kaiser-Yang/blink-cmp-avante',
     'rafamadriz/friendly-snippets',
   },
-  version = 'v0.*',
+  version = '1.*',
   opts = {
     keymap = {
       -- ['<CR>'] = { 'select_and_accept', 'fallback' },
