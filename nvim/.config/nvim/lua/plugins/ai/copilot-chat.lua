@@ -256,7 +256,7 @@ return {
 
     { '<C-q><Space>', '<cmd>CopilotChatPrompts<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Select Prompt' },
     { '<C-q>/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Model' },
-    { '<C-q>?', '<cmd>CopilotChatAgents<cr>', desc = 'CopilotChat - Select Agent' },
+    { '<C-q>,', '<cmd>CopilotChatAgents<cr>', desc = 'CopilotChat - Select Agent' },
 
     { '<C-q>e', '<cmd>CopilotChatExplain<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Explain code' },
     { '<C-q>v', '<cmd>CopilotChatReview<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Review code' },

@@ -62,6 +62,7 @@ return {
       edit = '<C-q>E',
       refresh = '<C-q>R',
       focus = '<C-q>F',
+      stop = "<C-q>>",
       toggle = {
         default = '<C-q><S-Tab>',
         debug = '<C-q>D',
@@ -83,6 +84,12 @@ return {
         ---@type AvanteCloseFromInput | nil
         close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
       },
+      files = {
+        add_current = "<C-q>C", -- Add current buffer to selected files
+        add_all_buffers = "<C-q>B", -- Add all buffer files to selected files
+      },
+      select_model = "<C-q>?", -- Select model command
+      select_history = "<C-q><", -- Select history command
     },
     hints = { enabled = false },
     -- windows = {
