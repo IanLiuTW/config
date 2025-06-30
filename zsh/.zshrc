@@ -95,7 +95,7 @@ zstyle ':fzf-tab:*' accept-line 'ctrl-y'
 # zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' worker 0  # disable async loading for better performance
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
-zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zinit cdreplay -q
@@ -192,7 +192,8 @@ alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias config='cd ~/config && nvim'
 alias todo='nvim ~/.todo'
-alias ai='aichat << EOF'
+alias ai='aichat'
+alias gm='gemini'
 
 # [Commands] Start
 nerdfetch

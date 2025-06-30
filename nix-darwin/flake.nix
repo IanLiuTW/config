@@ -39,8 +39,8 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
           swift
-          darwin.apple_sdk.frameworks.Foundation
-          darwin.apple_sdk.frameworks.CoreFoundation
+          # darwin.apple_sdk.frameworks.Foundation
+          # darwin.apple_sdk.frameworks.CoreFoundation
 
           gettext
           mkalias
@@ -102,6 +102,7 @@
             "colima"
             "sketchybar"
             "aichat"
+            "gemini-cli"
             "posting"
             # "podman"
             # "podman-compose"
