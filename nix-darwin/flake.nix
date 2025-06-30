@@ -93,17 +93,18 @@
           enable = true;
           brews = [
             "bpytop"
-            "sops"
-            "go-jira"
             "docker"
             "docker-compose"
             "docker-buildx"
             "docker-credential-helper"
             "colima"
+            "jj"
             "sketchybar"
             "aichat"
             "gemini-cli"
             "posting"
+            "sops"
+            "go-jira"
             # "podman"
             # "podman-compose"
           ];
@@ -118,7 +119,6 @@
             "postman"
             "mongodb-compass"
             "dbvisualizer"
-            "gitbutler"
             "devtoys"
             "zed"
             "chatgpt"
