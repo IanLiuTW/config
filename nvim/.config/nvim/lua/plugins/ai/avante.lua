@@ -62,7 +62,7 @@ return {
       edit = '<C-q>E',
       refresh = '<C-q>R',
       focus = '<C-q>F',
-      stop = "<C-q>>",
+      stop = '<C-q>>',
       toggle = {
         default = '<C-q><S-Tab>',
         debug = '<C-q>D',
@@ -80,40 +80,38 @@ return {
         remove_file = 'd',
         add_file = '@',
         close = { 'q' },
-        ---@alias AvanteCloseFromInput { normal: string | nil, insert: string | nil }
-        ---@type AvanteCloseFromInput | nil
-        close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
+        close_from_input = { normal = 'q', insert = '<C-c>' },
       },
       files = {
-        add_current = "<C-q>C", -- Add current buffer to selected files
-        add_all_buffers = "<C-q>B", -- Add all buffer files to selected files
+        add_current = '<C-q>C', -- Add current buffer to selected files
+        add_all_buffers = '<C-q>B', -- Add all buffer files to selected files
       },
-      select_model = "<C-q>?", -- Select model command
-      select_history = "<C-q><", -- Select history command
+      select_model = '<C-q>?', -- Select model command
+      select_history = '<C-q><', -- Select history command
     },
     hints = { enabled = false },
-    -- windows = {
-    --   ---@type "right" | "left" | "top" | "bottom"
-    --   position = 'right', -- the position of the sidebar
-    --   wrap = true, -- similar to vim.o.wrap
-    --   width = 30, -- default % based on available width
-    --   sidebar_header = {
-    --     enabled = true, -- true, false to enable/disable the header
-    --     align = 'center', -- left, center, right for title
-    --     rounded = true,
-    --   },
-    --   edit = {
-    --     border = 'rounded',
-    --     start_insert = true, -- Start insert mode when opening the edit window
-    --   },
-    --   ask = {
-    --     floating = true, -- Open the 'AvanteAsk' prompt in a floating window
-    --     start_insert = false, -- Start insert mode when opening the ask window
-    --     border = 'rounded',
-    --     ---@type "ours" | "theirs"
-    --     focus_on_apply = 'ours', -- which diff to focus after applying
-    --   },
-    -- },
+    windows = {
+      --   ---@type "right" | "left" | "top" | "bottom"
+      --   position = 'right', -- the position of the sidebar
+      --   wrap = true, -- similar to vim.o.wrap
+      --   width = 30, -- default % based on available width
+      --   sidebar_header = {
+      --     enabled = true, -- true, false to enable/disable the header
+      --     align = 'center', -- left, center, right for title
+      --     rounded = true,
+      --   },
+      --   edit = {
+      --     border = 'rounded',
+      --     start_insert = true, -- Start insert mode when opening the edit window
+      --   },
+      ask = {
+        floating = false, -- Open the 'AvanteAsk' prompt in a floating window
+        start_insert = false, -- Start insert mode when opening the ask window
+        border = 'rounded',
+        ---@type "ours" | "theirs"
+        focus_on_apply = 'ours', -- which diff to focus after applying
+      },
+    },
     -- highlights = {
     --   ---@type AvanteConflictHighlights
     --   diff = {

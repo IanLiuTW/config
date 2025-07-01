@@ -38,10 +38,7 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
-          swift
-          # darwin.apple_sdk.frameworks.Foundation
-          # darwin.apple_sdk.frameworks.CoreFoundation
-
+          # System tools - CLI
           gettext
           mkalias
           cmake
@@ -52,21 +49,28 @@
           wget
           ripgrep
           _7zz-rar
-          sqlite
-
+          # System tools - GUI
+          ice-bar
+          aerospace
+          jankyborders
+          nerdfetch
+          dwt1-shell-color-scripts
+          ascii-image-converter
+          # Programming languages and tools
           asdf-vm
           lua5_1
           lua51Packages.luarocks
           nodejs_24
           python312
-
+          swift
+          # CLI tools
           neovim
           starship
           bat
           eza
           zoxide
           fzf
-
+          # Development tools
           lazygit
           lazydocker
           delta
@@ -76,14 +80,8 @@
           poppler
           pngpaste
           lynx
-
-          ice-bar
-          aerospace
-          jankyborders
-          nerdfetch
-          dwt1-shell-color-scripts
-          ascii-image-converter
-
+          sqlite
+          # Applications
           raycast
           obsidian
           discord
@@ -92,52 +90,67 @@
         homebrew = {
           enable = true;
           brews = [
+            # System tools
             "bpytop"
+            "sketchybar"
+            # Development tools
             "docker"
             "docker-compose"
             "docker-buildx"
             "docker-credential-helper"
-            "colima"
-            "jj"
-            "sketchybar"
-            "aichat"
-            "gemini-cli"
-            "posting"
-            "sops"
-            "go-jira"
             # "podman"
             # "podman-compose"
+            "colima"
+            "jj"
+            "posting"
+            "sops"
+            # AI tools
+            "aichat"
+            "gemini-cli"
+            # Project tools
+            "go-jira"
           ];
           casks = [
+            # System tools
             "middleclick"
-            "ghostty"
             "hammerspoon"
             "stats"
+            # Web browsers
             "brave-browser"
             "google-chrome"
+            "microsoft-edge@beta"
+            # Development tools
+            "ghostty"
             "devpod"
+            # "podman-desktop"
             "postman"
-            "mongodb-compass"
             "dbvisualizer"
+            "mongodb-compass"
             "devtoys"
             "zed"
+            # AI tools
             "chatgpt"
             "claude"
+            # Communication
             "element"
-            "microsoft-teams"
             "zoom"
-            "tidal"
+            "microsoft-teams"
+            # Media
             "spotify"
+            "obs"
+            "vlc"
+            # Remote access and VPN
             "tunnelblick"
             "citrix-workspace"
-            # "podman-desktop"
           ];
           masApps = {
-            "Slack" = 803453959;
+            # Microsoft suite
             "Outlook" = 985367838;
             "Word" = 462054704;
             "Excel" = 462058435;
             "PowerPoint" = 462062816;
+            # Communication
+            "Slack" = 803453959;
             "Line" = 539883307;
           };
           onActivation.cleanup = "zap"; # remove unused packages, can be removed if erring.
