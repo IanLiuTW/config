@@ -109,6 +109,7 @@ return {
               return ''
             end,
           },
+          { require 'mcphub.extensions.lualine' },
           {
             'copilot',
             show_colors = true,

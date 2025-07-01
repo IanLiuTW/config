@@ -178,6 +178,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
         { '<leader>,m',      '<cmd>Mason<CR>',                              desc = 'Mason - Open Menu' },
+        { '<leader>,q',      '<cmd>MCPHub<CR>',                             desc = 'MCPHub - Open Menu' },
         -- Buffer keybindings
         { '<C-\\>',          '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },
         { '<leader>bn',      '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },

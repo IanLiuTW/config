@@ -71,6 +71,8 @@
     ".config/lazygit/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazygit/.config/lazygit/config.yml"; };
     ".config/lazydocker/config.yml" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/lazydocker/.config/lazydocker/config.yml"; };
 
+    ".config/mcphub/servers.json" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/mcphub/servers.json"; };
+
     ".config/pycodestyle".text = ''
       [pycodestyle]
       max-line-length = 160
