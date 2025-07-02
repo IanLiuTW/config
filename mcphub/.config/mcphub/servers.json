@@ -1,0 +1,57 @@
+{
+  "nativeMCPServers": [
+    
+  ],
+  "mcpServers": {
+    "sequentialthinking": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
+      ]
+    },
+    "memory": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "-v",
+        "claude-memory:/app/dist",
+        "--rm",
+        "mcp/memory"
+      ]
+    },
+    "fetch": {
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/fetch"
+      ],
+      "disabled": false,
+      "command": "docker"
+    },
+    "time": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/time"
+      ]
+    },
+    "git": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "--mount",
+        "type=bind,src=/Users/ianliu,dst=/Users/ianliu",
+        "mcp/git"
+      ]
+    }
+  }
+}

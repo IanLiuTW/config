@@ -62,6 +62,7 @@
           lua51Packages.luarocks
           nodejs_24
           python312
+          uv
           swift
           # CLI tools
           neovim

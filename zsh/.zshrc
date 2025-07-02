@@ -186,14 +186,21 @@ fi
 alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-up='nix flake update --flake ~/config/nix-darwin/'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
-alias dev='nix develop'
-# [Alias]
+alias nix-d='nix develop'
+alias nix-r='nix run'
+# [Alias] files
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias config='cd ~/config && nvim'
 alias todo='nvim ~/.todo'
+# [Alias] dev
+alias act='source .venv/bin/activate'
+# [Alias] AI
 alias ai='aichat'
 alias gm='gemini'
+
+# [Environment] Load local environment variables
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 # [Commands] Start
 nerdfetch

@@ -1,4 +1,4 @@
-[mgr]
+[manager]
 prepend_keymap = [
 	{ on = "<C-l>", run = 'enter', desc = "enter" },
 	{ on = "<C-h>", run = 'back', desc = "back" },

@@ -1,0 +1,10 @@
+{
+  "selectedAuthType": "oauth-personal",
+  "preferredEditor": "nvim",
+  "mcpServers": {
+    "Hub": {
+      "url": "http://localhost:37373/mcp"
+    }
+  },
+  "theme": "GitHub"
+}
