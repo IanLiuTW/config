@@ -116,7 +116,7 @@ return {
       map('<leader>dd', vim.lsp.buf.declaration, 'Goto [D]eclaration')
       -- Search and References
       -- Code Actions and Help
-      map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+      -- map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' }) -- using tiny-code-action.nvim
       map('S', vim.lsp.buf.signature_help, 'Signature Help')
 
       -- Information

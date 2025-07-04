@@ -115,6 +115,11 @@ vim.api.nvim_create_user_command('Delmark', function()
     end
   end)
 end, { desc = 'Delete mark by key with popup input' })
+-- Diff this buffer
+vim.api.nvim_create_user_command('DiffThis', function()
+  vim.notify 'Executing diffthis on current buffer'
+  vim.cmd('diffthis')
+end, {})
 
 -- [[ Configure diagnostic symbols ]]
 vim.diagnostic.config {

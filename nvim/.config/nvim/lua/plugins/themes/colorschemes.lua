@@ -120,6 +120,12 @@ return {
           -- set their background accordingly if you wish to keep them dark and borderless
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+          -- Diff highlights
+          DiffAdd = { bg = '#2b3328' },
+          DiffChange = { bg = '#252535' },
+          DiffDelete = { fg = '#c34043', bg = '#43242b' },
+          DiffText = { bg = '#49443c' },
         }
       end,
     },
