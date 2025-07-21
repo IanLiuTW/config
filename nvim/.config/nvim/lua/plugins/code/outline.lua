@@ -10,6 +10,12 @@ return {
     { '<leader>O', '<cmd>Outline<CR>', desc = '[O]utline - Toggle' },
   },
   opts = {
+    outline_items = {
+      show_symbol_lineno = true,
+    },
+    preview_window = {
+      auto_preview = false,
+    },
     symbols = { icon_source = 'lspkind' },
     keymaps = {
       show_help = '?',

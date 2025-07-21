@@ -109,6 +109,7 @@
             "aichat"
             "gemini-cli"
             # Project tools
+            "gh"
             "go-jira"
           ];
           casks = [
