@@ -207,6 +207,8 @@ return { -- Useful plugin to show you pending keybinds.
         {'<leader>dx', ':lua<CR>', desc = 'Execute - Selected with Lua'},
         { '<', '<gv' },
         { '>', '>gv' },
+        { 'J', ":m '>+1<CR>gv" },
+        { 'K', ":m '<-2<CR>gv" },
       },
       {
         mode = 't',
