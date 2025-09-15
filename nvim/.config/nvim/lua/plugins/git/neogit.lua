@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'sindrets/diffview.nvim',
+    -- 'sindrets/diffview.nvim',
   },
   keys = {
     { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
@@ -143,7 +143,7 @@ return {
       -- The diffview integration enables the diff popup.
       --
       -- Requires you to have `sindrets/diffview.nvim` installed.
-      diffview = true,
+      diffview = false,
     },
     sections = {
       -- Reverting/Cherry Picking

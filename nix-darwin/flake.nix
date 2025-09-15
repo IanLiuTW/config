@@ -154,6 +154,8 @@
             # Communication
             "Slack" = 803453959;
             "Line" = 539883307;
+            # VPN
+            "Hotspot Shield" = 771076721;
           };
           onActivation.cleanup = "zap"; # remove unused packages, can be removed if erring.
           onActivation.autoUpdate = true;

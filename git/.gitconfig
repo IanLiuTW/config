@@ -109,4 +109,5 @@ defaultBranch = main
     ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
     iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
     iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
-    formom = "!formom() { git fetch origin && git merge origin/master ;}; formom"
+    fm = "!fm() { git fetch origin && git merge origin/master ;}; fm"
+    fr = "!fr() { git fetch origin && git rebase origin/master ;}; fr"
