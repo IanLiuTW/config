@@ -25,7 +25,7 @@ return {
         keymap = {
           jump_prev = '<C-b>',
           jump_next = '<C-f>',
-          accept = '<C-CR>',
+          accept = '<C-y>',
           refresh = 'R',
           open = '<C-q>',
         },

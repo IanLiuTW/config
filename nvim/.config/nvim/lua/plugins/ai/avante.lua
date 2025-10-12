@@ -64,12 +64,14 @@ return {
       refresh = '<C-q>R',
       focus = '<C-q>F',
       stop = '<C-q>>',
+      zen_mode = "<C-q>Z",
       toggle = {
         default = '<C-q><S-Tab>',
         debug = '<C-q>D',
         hint = '<C-q>H',
         suggestion = '<C-q>S',
         repomap = '<C-q>M',
+        selection = '<C-q>C',
       },
       sidebar = {
         apply_all = 'A',

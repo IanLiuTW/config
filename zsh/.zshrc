@@ -193,7 +193,7 @@ alias nix-r='nix run'
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
 alias config='cd ~/config && nvim'
-alias todo='nvim ~/.todo'
+alias todo='nvim ~/.todo.md'
 # [Alias] dev
 alias act='source .venv/bin/activate'
 # [Alias] AI

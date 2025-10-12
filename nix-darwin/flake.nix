@@ -63,6 +63,7 @@
           nodejs_24
           python312
           uv
+          pyenv
           swift
           # CLI tools
           neovim
@@ -126,7 +127,7 @@
             "devpod"
             # "podman-desktop"
             "postman"
-            "dbvisualizer"
+            "dbeaver-community"
             "mongodb-compass"
             "devtoys"
             "zed"
