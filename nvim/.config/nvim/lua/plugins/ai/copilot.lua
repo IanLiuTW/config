@@ -13,7 +13,7 @@ return {
         keymap = {
           accept = '<C-CR>',
           accept_word = '<C-h>',
-          accept_line = "<C-l>",
+          accept_line = '<C-l>',
           prev = '<C-k>',
           next = '<C-j>',
           dismiss = '<C-e>',
@@ -23,8 +23,8 @@ return {
         enabled = true,
         auto_refresh = false,
         keymap = {
-          jump_prev = '<C-b>',
-          jump_next = '<C-f>',
+          jump_prev = '<C-p>',
+          jump_next = '<C-n>',
           accept = '<C-y>',
           refresh = 'R',
           open = '<C-q>',

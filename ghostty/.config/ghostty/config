@@ -26,6 +26,8 @@ custom-shader = ./shaders/cursor_blaze_orange_ian.glsl
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.1
 quick-terminal-autohide = true
+quick-terminal-size = 95%
+quick-terminal-animation-duration = 0.05
 
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon = hidden

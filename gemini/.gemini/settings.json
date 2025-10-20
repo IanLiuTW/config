@@ -1,11 +1,19 @@
 {
-  "selectedAuthType": "oauth-personal",
-  "preferredEditor": "neovim",
   "mcpServers": {
     "Hub": {
       "url": "http://localhost:37373/mcp"
     }
   },
-  "theme": "GitHub",
-  "vimMode": false
+  "general": {
+    "preferredEditor": "neovim",
+    "vimMode": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "GitHub"
+  }
 }

@@ -1,32 +1,16 @@
 {
-  "nativeMCPServers": [],
   "mcpServers": {
-    "sequentialthinking": {
-      "command": "docker",
-      "args": ["run", "--rm", "-i", "mcp/sequentialthinking"]
-    },
-    "memory": {
-      "command": "docker",
+    "fetch": {
       "args": [
         "run",
         "-i",
-        "-v",
-        "claude-memory:/app/dist",
         "--rm",
-        "mcp/memory"
-      ]
-    },
-    "fetch": {
-      "args": ["run", "-i", "--rm", "mcp/fetch"],
-      "disabled": false,
-      "command": "docker"
-    },
-    "time": {
+        "mcp/fetch"
+      ],
       "command": "docker",
-      "args": ["run", "-i", "--rm", "mcp/time"]
+      "disabled": false
     },
     "git": {
-      "command": "docker",
       "args": [
         "run",
         "--rm",
@@ -34,16 +18,42 @@
         "--mount",
         "type=bind,src=/Users/ianliu,dst=/Users/ianliu",
         "mcp/git"
-      ]
+      ],
+      "command": "docker",
+      "disabled": false
     },
-    "test": {
-      "command": "uv",
+    "memory": {
       "args": [
-        "--directory",
-        "/Users/ianliu/work/tupl/mcp_server_test",
         "run",
-        "main.py"
-      ]
+        "-i",
+        "-v",
+        "claude-memory:/app/dist",
+        "--rm",
+        "mcp/memory"
+      ],
+      "command": "docker",
+      "disabled": false
+    },
+    "sequentialthinking": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
+      ],
+      "command": "docker",
+      "disabled": false
+    },
+    "time": {
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/time"
+      ],
+      "command": "docker",
+      "disabled": false
     }
-  }
+  },
+  "nativeMCPServers": []
 }

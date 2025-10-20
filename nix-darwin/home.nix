@@ -6,7 +6,7 @@
   home.username = "ianliu";
   home.homeDirectory = "/Users/ianliu";
 
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -28,7 +28,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    python312
+    python314
     cargo-nextest
     aoc-cli
 
