@@ -98,9 +98,6 @@ return {
     }
 
     -- LSP config
-    vim.lsp.config('copilot-language-server', {})
-    vim.lsp.enable 'copilot-language-server'
-
     vim.lsp.config('basedpyright', {
       settings = {
         basedpyright = {

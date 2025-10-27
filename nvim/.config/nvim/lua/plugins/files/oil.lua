@@ -62,13 +62,23 @@ return {
         ['gh'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
       },
+      float = {
+        padding = 1,
+        border = 'rounded',
+      },
     },
   },
   {
-    'refractalize/oil-git-status.nvim',
-    dependencies = {
-      'stevearc/oil.nvim',
+    'benomahony/oil-git.nvim',
+    dependencies = { 'stevearc/oil.nvim' },
+    opts = {
+      highlights = {
+        OilGitAdded = { fg = '#a6e3a1' }, -- green
+        OilGitModified = { fg = '#fcbc2d' }, -- yellow
+        OilGitRenamed = { fg = '#cba6f7' }, -- purple
+        OilGitUntracked = { fg = '#89b4fa' }, -- blue
+        OilGitIgnored = { fg = '#6c7086' }, -- gray
+      },
     },
-    config = true,
   },
 }

@@ -118,7 +118,7 @@ end, { desc = 'Delete mark by key with popup input' })
 -- Diff this buffer
 vim.api.nvim_create_user_command('DiffThis', function()
   vim.notify 'Executing diffthis on current buffer'
-  vim.cmd('diffthis')
+  vim.cmd 'diffthis'
 end, {})
 
 -- [[ Configure diagnostic symbols ]]
@@ -134,10 +134,16 @@ vim.diagnostic.config {
   signs = {
     severity = { min = vim.diagnostic.severity.WARN },
     text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.INFO] = '',
-      [vim.diagnostic.severity.HINT] = '󰌵',
+      [vim.diagnostic.severity.ERROR] = '', -- '',
+      [vim.diagnostic.severity.WARN] = '', -- '',
+      [vim.diagnostic.severity.INFO] = '', -- '',
+      [vim.diagnostic.severity.HINT] = '', -- '󰌵',
+    },
+    numhl = {
+      [vim.diagnostic.severity.WARN] = 'WarningMsg',
+      [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
     },
   },
 }

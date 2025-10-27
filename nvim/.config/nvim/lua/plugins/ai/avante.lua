@@ -5,6 +5,7 @@ return {
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
     provider = 'copilot', -- Recommend using Claude
+    mode = 'agentic', --  "agentic" or "legacy"
     auto_suggestions_provider = 'copilot', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
     providers = {
       claude = {
@@ -45,33 +46,33 @@ return {
         next = ']x',
       },
       suggestion = {
-        accept = '<C-CR>',
-        prev = '<C-,>',
-        next = '<C-.>',
-        dismiss = '<C-e>',
+        accept = '<C-y>',
+        prev = '<C-k>',
+        next = '<C-j>',
+        dismiss = 'Esc',
       },
       jump = {
-        prev = '<C-B>',
-        next = '<C-F>',
+        prev = '<C-P>',
+        next = '<C-N>',
       },
       submit = {
         normal = '<CR>',
-        insert = '<S-CR>',
+        insert = '<C-CR>',
       },
-      ask = '<C-q>A',
-      new_ask = '<C-q>N',
-      edit = '<C-q>E',
-      refresh = '<C-q>R',
-      focus = '<C-q>F',
-      stop = '<C-q>>',
-      zen_mode = "<C-q>Z",
+      new_ask = '<leader>;;',
+      ask = '<leader>;a',
+      edit = '<leader>;e',
+      refresh = '<leader>;r',
+      focus = '<leader>;f',
+      stop = '<leader>;x',
+      zen_mode = '<leader>;z',
       toggle = {
-        default = '<C-q><S-Tab>',
-        debug = '<C-q>D',
-        hint = '<C-q>H',
-        suggestion = '<C-q>S',
-        repomap = '<C-q>M',
-        selection = '<C-q>C',
+        default = '<leader>:',
+        debug = '<leader>;d',
+        hint = '<leader>;h',
+        suggestion = '<leader>;s',
+        repomap = '<leader>;m',
+        selection = '<leader>;v',
       },
       sidebar = {
         apply_all = 'A',
@@ -86,13 +87,13 @@ return {
         close_from_input = { normal = 'q', insert = '<C-c>' },
       },
       files = {
-        add_current = '<C-q>C', -- Add current buffer to selected files
-        add_all_buffers = '<C-q>B', -- Add all buffer files to selected files
+        add_current = '<leader>;c', -- Add current buffer to selected files
+        add_all_buffers = '<leader>;b', -- Add all buffer files to selected files
       },
-      select_model = '<C-q>?', -- Select model command
-      select_history = '<C-q><', -- Select history command
+      select_model = '<leader>;/', -- Select model command
+      select_history = '<leader>;.', -- Select history command
     },
-    hints = { enabled = false },
+    hints = { enabled = true },
     windows = {
       --   ---@type "right" | "left" | "top" | "bottom"
       --   position = 'right', -- the position of the sidebar
@@ -109,7 +110,7 @@ return {
       --   },
       ask = {
         floating = false, -- Open the 'AvanteAsk' prompt in a floating window
-        start_insert = false, -- Start insert mode when opening the ask window
+        start_insert = true, -- Start insert mode when opening the ask window
         border = 'rounded',
         ---@type "ours" | "theirs"
         focus_on_apply = 'ours', -- which diff to focus after applying
@@ -169,7 +170,7 @@ return {
   config = function(_, opts)
     require('avante').setup(opts)
 
-    vim.keymap.set('n', '<C-q>G', function()
+    vim.keymap.set('n', '<leader>;g', function()
       local prompt =
         'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Be concise and only generate the commit messages. Do not include prompt details nor the results of git diff.'
       local diffs = table.concat(vim.fn.systemlist 'git diff --cached', ' ')

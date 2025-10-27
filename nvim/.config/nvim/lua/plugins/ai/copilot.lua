@@ -1,5 +1,8 @@
 return {
   'zbirenbaum/copilot.lua',
+  requires = {
+    'copilotlsp-nvim/copilot-lsp',
+  },
   cmd = 'Copilot',
   event = 'InsertEnter',
   enabled = true,
@@ -32,6 +35,14 @@ return {
         layout = {
           position = 'right',
           ratio = 0.4,
+        },
+      },
+      nes = {
+        enabled = true,
+        keymap = {
+          accept_and_goto = '<S-CR>',
+          accept = false,
+          dismiss = '<Esc>',
         },
       },
       filetypes = {

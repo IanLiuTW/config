@@ -24,7 +24,11 @@ return {
         },
         lualine_c = {
           { 'fancy_cwd', substitute_home = true },
-          { 'filename', file_status = true, path = 1 },
+          {
+            'filename',
+            file_status = true,
+            path = 1,
+          },
         },
         lualine_x = {
           {
@@ -44,8 +48,8 @@ return {
           { 'fancy_location' },
         },
         lualine_y = {
+          -- { 'fileformat' },
           { 'encoding' },
-          { 'fileformat' },
           { 'fancy_filetype', ts_icon = '' },
           { -- LSP Servers
             function()

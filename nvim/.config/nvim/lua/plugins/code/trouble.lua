@@ -24,42 +24,42 @@ return {
   },
   keys = {
     {
-      '<leader>W',
+      '<leader>H',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
       desc = 'Trouble - Buffer Diagnostics',
     },
     {
-      '<leader>wd',
+      '<leader>hd',
       '<cmd>Trouble diagnostics toggle<cr>',
       desc = 'Trouble - All Diagnostics',
     },
     {
-      '<leader>ws',
+      '<leader>hs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
       desc = 'Trouble - Symbols',
     },
     {
-      '<leader>wc',
+      '<leader>hc',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
       desc = 'Trouble - Code LSP Definitions / references / ...',
     },
     {
-      '<leader>wl',
+      '<leader>hl',
       '<cmd>Trouble loclist toggle<cr>',
       desc = 'Trouble - Location List',
     },
     {
-      '<leader>wq',
+      '<leader>hq',
       '<cmd>Trouble qflist toggle<cr>',
       desc = 'Trouble - Quickfix List',
     },
     {
-      '<leader>w;',
+      '<leader>h;',
       '<cmd>Trouble todo toggle<cr>',
       desc = 'Trouble - Todo List',
     },
     {
-      '<leader>w<BS>',
+      '<leader>h<BS>',
       function()
         require('trouble').close()
       end,

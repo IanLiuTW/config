@@ -22,7 +22,7 @@ return {
       desc = 'Goto/Apply Next Edit Suggestion',
     },
     {
-      '<leader>L',
+      '<leader>"',
       function()
         require('sidekick.cli').toggle()
       end,
@@ -30,14 +30,14 @@ return {
       mode = { 'n', 't', 'i', 'x' },
     },
     {
-      '<leader>la',
+      '<leader>\'a',
       function()
         require('sidekick.cli').toggle()
       end,
       desc = 'Sidekick Toggle CLI',
     },
     {
-      '<leader>ls',
+      '<leader>\'s',
       function()
         -- require("sidekick.cli").select()
         -- Or to select only installed tools:
@@ -46,14 +46,14 @@ return {
       desc = 'Select CLI',
     },
     {
-      '<leader>ld',
+      '<leader>\'d',
       function()
         require('sidekick.cli').close()
       end,
       desc = 'Detach a CLI Session',
     },
     {
-      '<leader>lt',
+      '<leader>\'t',
       function()
         require('sidekick.cli').send { msg = '{this}' }
       end,
@@ -61,14 +61,14 @@ return {
       desc = 'Send This',
     },
     {
-      '<leader>lf',
+      '<leader>\'f',
       function()
         require('sidekick.cli').send { msg = '{file}' }
       end,
       desc = 'Send File',
     },
     {
-      '<leader>lv',
+      '<leader>\'v',
       function()
         require('sidekick.cli').send { msg = '{selection}' }
       end,
@@ -76,7 +76,7 @@ return {
       desc = 'Send Visual Selection',
     },
     {
-      '<leader>lp',
+      '<leader>\'p',
       function()
         require('sidekick.cli').prompt()
       end,
@@ -85,7 +85,7 @@ return {
     },
     -- Example of a keybinding to open Claude directly
     {
-      '<leader>lc',
+      '<leader>\'c',
       function()
         require('sidekick.cli').toggle { name = 'claude', focus = true }
       end,

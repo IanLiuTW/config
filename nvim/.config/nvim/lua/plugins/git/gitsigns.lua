@@ -4,7 +4,7 @@ return {
   event = 'BufRead',
   opts = {
     signcolumn = true,
-    numhl = true,
+    numhl = false,
     linehl = false,
     word_diff = false,
     signs = {

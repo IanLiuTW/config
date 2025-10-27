@@ -197,8 +197,9 @@ alias todo='nvim ~/.todo.md'
 # [Alias] dev
 alias act='source .venv/bin/activate'
 # [Alias] AI
-alias ai='aichat'
-alias gm='gemini'
+alias ge='gemini'
+alias co='codex'
+alias cl='claude'
 
 # [Environment] Load local environment variables
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

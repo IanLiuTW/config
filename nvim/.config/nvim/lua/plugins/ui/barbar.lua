@@ -62,7 +62,7 @@ return {
     { '<leader>br', '<Cmd>BufferCloseBuffersRight<CR>', noremap = true, silent = true, desc = 'Buffer - Close All on the Right' },
 
     { '<leader>bN', '<Cmd>BufferOrderByBufferNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Number' },
-    { '<leader>bT', '<Cmd>BufferOrderByName<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Name' },
+    { '<leader>bF', '<Cmd>BufferOrderByName<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Name' },
     { '<leader>bD', '<Cmd>BufferOrderByDirectory<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Directory' },
     { '<leader>bL', '<Cmd>BufferOrderByLanguage<CR>', noremap = true, silent = true, desc = 'Buffer - Order by Language' },
     { '<leader>bW', '<Cmd>BufferOrderByWindowNumber<CR>', noremap = true, silent = true, desc = 'Buffer - Order by WindowNumber' },
@@ -76,9 +76,9 @@ return {
       button = '󰅙',
       diagnostics = {
         [vim.diagnostic.severity.ERROR] = { enabled = true },
-        [vim.diagnostic.severity.WARN] = { enabled = false },
+        [vim.diagnostic.severity.WARN] = { enabled = true },
         [vim.diagnostic.severity.INFO] = { enabled = false },
-        [vim.diagnostic.severity.HINT] = { enabled = true },
+        [vim.diagnostic.severity.HINT] = { enabled = false },
       },
       gitsigns = {
         added = { enabled = true, icon = '+' },

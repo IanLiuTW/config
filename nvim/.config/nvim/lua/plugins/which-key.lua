@@ -149,17 +149,17 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>c',        group = '[C]hanges (Gitsigns)',   mode = { 'n', 'x' } },
       { '<leader>d',        group = '[D]o',                   mode = { 'n', 'x' } },
       { '<leader>e',        group = '[E] Debug',              mode = { 'n', 'x' } },
-      { '<leader>w',        group = '[W] Trouble',            mode = { 'n', 'x' } },
+      { '<leader>h',        group = '[H] Trouble',            mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
-      { '<leader>h',        group = '[H]arpoon',              mode = { 'n', 'x' } },
       { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>r',        group = '[R]un',                  mode = { 'n', 'x' } },
       { '<leader>t',        group = '[T]esting',              mode = { 'n', 'x' } },
       { '<leader>y',        group = '[Y] Tasks',              mode = { 'n', 'x' } },
       { '<leader>,',        group = '[,] Settings / Sessions',mode = { 'n', 'x' } },
       { '<leader><leader>', group = '[󱁐] Picker',             mode = { 'n', 'x' } },
+      { '<leader>\'',       group = 'AI - Sidekick',          mode = { 'n', 'x' } },
+      { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
-      { '<leader>l',        group = 'AI - Sidekick',                mode = { 'n', 'x' } },
       { '<leader>,v',       group = 'Virtual Text Min Severity',       mode = { 'n', 'x' } },
 
       -- Normal Mode
@@ -174,7 +174,7 @@ return { -- Useful plugin to show you pending keybinds.
         { 'dm',              '<Cmd>Delmark<CR>',                            desc = 'User Command - Delete Mark' },
         { '<leader>,vi',     '<Cmd>VirtualTextSeverityMinInfo<CR>',         desc = 'User Command - Virtual Text Min Severity: Info' },
         { '<leader>,vh',     '<Cmd>VirtualTextSeverityMinHint<CR>',         desc = 'User Command - Virtual Text Min Severity: Hint' },
-        { '<leader>,V',      '<Cmd>VirtualLinesToggle<CR>',                 desc = 'User Command - Virtual Lines Toggle' },
+        { '<leader>x',       '<Cmd>VirtualLinesToggle<CR>',                 desc = 'User Command - Virtual Lines Toggle' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
         { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
@@ -221,7 +221,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>J',  'i<CR><Esc>',                                                               desc = 'Cursor - Add a line break' },
         { '<leader>F',  'gg=G',                                                                     desc = 'Buffer - Format (Indentation)' },
         { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end,desc = 'Quickfix - Diagnostics Window' },
-        { '<leader>wQ', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
+        { '<leader>hQ', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
       {
         mode = { 'n' , 'v' , 't' },

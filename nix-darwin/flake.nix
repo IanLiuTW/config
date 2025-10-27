@@ -107,7 +107,6 @@
             "posting"
             "sops"
             # AI tools
-            "aichat"
             "gemini-cli"
             # Project tools
             "gh"
@@ -134,6 +133,8 @@
             # AI tools
             "chatgpt"
             "claude"
+            "codex"
+            "claude-code"
             # Communication
             "element"
             "zoom"
