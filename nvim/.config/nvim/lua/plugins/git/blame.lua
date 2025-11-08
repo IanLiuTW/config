@@ -8,8 +8,8 @@ return {
         blame_options = { '-w' },
         mappings = {
           commit_info = '<space>',
-          stack_push = '<C-B>',
-          stack_pop = '<C-F>',
+          stack_push = '<C-P>',
+          stack_pop = '<C-N>',
           show_commit = { '<TAB>', '<CR>' },
           close = { '<esc>', 'q' },
         },

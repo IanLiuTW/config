@@ -61,7 +61,7 @@
           lua5_1
           lua51Packages.luarocks
           nodejs_24
-          python312
+          python314
           uv
           pyenv
           swift
@@ -94,7 +94,7 @@
           brews = [
             # System tools
             "bpytop"
-            "sketchybar"
+            # "sketchybar" - replaced by ice-bar
             # Development tools
             "docker"
             "docker-compose"
@@ -238,7 +238,7 @@
                 "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                 "FelixKratz/homebrew-formulae" = inputs.homebrew-formulae;
               };
-              mutableTaps = false;
+              mutableTaps = true;
             };
           }
           ({ pkgs, ... }: {
