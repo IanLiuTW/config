@@ -10,7 +10,7 @@ return {
     keymap = {
       -- ['<CR>'] = { 'select_and_accept', 'fallback' },
       ['<C-Y>'] = { 'select_and_accept', 'fallback' },
-      ['<C-E>'] = { 'hide', 'fallback' },
+      ['<C-Q>'] = { 'hide', 'fallback' },
       ['<C-N>'] = { 'select_next', 'fallback' },
       ['<C-P>'] = { 'select_prev', 'fallback' },
       ['<C-F>'] = { 'scroll_documentation_down' },

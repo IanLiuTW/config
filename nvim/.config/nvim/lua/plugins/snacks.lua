@@ -577,6 +577,11 @@ return {
     { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
     -- Explorer
     { '\\', function() Snacks.explorer() end, desc = 'Explorer - Toggle Explorer', mode = { 'n' } },
+    -- Github
+    { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+    { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+    { "<leader>gr", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+    { "<leader>gR", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
     -- News
     {
       '<leader>,<leader>',

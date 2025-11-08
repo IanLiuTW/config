@@ -1,11 +1,18 @@
 return {
   'zbirenbaum/copilot.lua',
-  requires = {
+  dependencies = {
     'copilotlsp-nvim/copilot-lsp',
+    init = function()
+      vim.g.copilot_nes_debounce = 200
+    end,
+    opts = {
+      nes = {
+        move_count_threshold = 2,
+      },
+    },
   },
   cmd = 'Copilot',
   event = 'InsertEnter',
-  enabled = true,
   config = function()
     require('copilot').setup {
       suggestion = {
@@ -19,18 +26,18 @@ return {
           accept_line = '<C-l>',
           prev = '<C-k>',
           next = '<C-j>',
-          dismiss = '<C-e>',
+          dismiss = '<C-q>',
         },
       },
       panel = {
         enabled = true,
         auto_refresh = false,
         keymap = {
+          open = '<C-S-Cr>',
+          accept = '<C-y>',
           jump_prev = '<C-p>',
           jump_next = '<C-n>',
-          accept = '<C-y>',
           refresh = 'R',
-          open = '<C-q>',
         },
         layout = {
           position = 'right',
@@ -56,18 +63,17 @@ return {
         dockerfile = true,
         markdown = true,
         lua = true,
-        help = false,
         gitcommit = true,
         gitrebase = true,
         hgcommit = false,
+        nix = true,
         svn = false,
         cvs = false,
-        nix = true,
+        help = false,
         ['.'] = false,
       },
     }
   end,
-  -- vim.keymap.set('i', '<C-c>', '<C-c><Cmd>lua require("copilot.suggestion").dismiss()<CR>'),
-  vim.keymap.set('n', '<C-q><Up>', '<Cmd>Copilot enable<CR>'),
-  vim.keymap.set('n', '<C-q><Down>', '<Cmd>Copilot disable<CR>'),
+  vim.keymap.set('n', "<leader>'<Up>", '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', "<leader>'<Down>", '<Cmd>Copilot disable<CR>'),
 }

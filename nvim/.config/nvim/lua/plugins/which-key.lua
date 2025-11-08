@@ -212,7 +212,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 't',
-        { '<C-\\>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
+        { '<C-q>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
       },
       {
         mode = { 'n', 'v' },

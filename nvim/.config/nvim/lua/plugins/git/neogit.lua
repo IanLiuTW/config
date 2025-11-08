@@ -189,14 +189,14 @@ return {
       commit_editor = {
         ['q'] = 'Close',
         ['<c-y>'] = 'Submit',
-        ['<c-e>'] = 'Abort',
+        ['<c-q>'] = 'Abort',
         ['<c-p>'] = 'PrevMessage',
         ['<c-n>'] = 'NextMessage',
         ['<c-r>'] = 'ResetMessage',
       },
       commit_editor_I = {
         ['<c-y>'] = 'Submit',
-        ['<c-e>'] = 'Abort',
+        ['<c-q>'] = 'Abort',
       },
       rebase_editor = {
         ['p'] = 'Pick',
@@ -213,13 +213,13 @@ return {
         ['<c-k>'] = 'MoveUp',
         ['<c-j>'] = 'MoveDown',
         ['<c-y>'] = 'Submit',
-        ['<c-e>'] = 'Abort',
+        ['<c-q>'] = 'Abort',
         ['<c-b>'] = 'OpenOrScrollUp',
         ['<c-f>'] = 'OpenOrScrollDown',
       },
       rebase_editor_I = {
         ['<c-y>'] = 'Submit',
-        ['<c-e>'] = 'Abort',
+        ['<c-q>'] = 'Abort',
       },
       finder = {
         ['<cr>'] = 'Select',
