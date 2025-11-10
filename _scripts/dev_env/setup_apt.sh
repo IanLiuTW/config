@@ -14,12 +14,21 @@ export ASDF_DIR="$HOME/.asdf" && . "$HOME/.asdf/asdf.sh"
 asdf plugin add lua && asdf install lua 5.1 && asdf global lua 5.1
 asdf plugin add nodejs && asdf install nodejs latest && asdf global nodejs latest
 
+# [apt]
+sudo apt update
+sudo apt upgrade
+
 # [zsh]
-apt install -y zsh
+sudo apt install -y zsh
 sudo chsh -s /usr/bin/zsh $USER
 # [eza]
-wget -c https://github.com/eza-community/eza/releases/latest/download/eza_aarch64-unknown-linux-gnu.tar.gz -O - | tar xz
-sudo chmod +x eza && sudo chown root:root eza && sudo mv eza /usr/local/bin/eza
+sudo apt install -y gpg
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 # [zoxide]
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 # [fzf]
@@ -27,7 +36,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # [nvim]
-apt install -y ninja-build gettext cmake unzip curl build-essential
+sudo apt install -y ninja-build gettext cmake unzip curl build-essential
 git clone https://github.com/neovim/neovim ~/neovim
 sudo make -C ~/neovim CMAKE_BUILD_TYPE=RelWithDebInfo && make -C ~/neovim install
 apt install -y ripgrep fd-find
@@ -37,6 +46,6 @@ sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/ma
 sudo chmod +x /usr/bin/nerdfetch
 
 # [stow configs]
-apt install -y stow
+sudo apt install -y stow
 rm -rf ~/.zshrc ~/.gitconfig
 stow -d ~/config -t ~/ zsh nvim git starship
