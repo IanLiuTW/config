@@ -8,15 +8,16 @@
 #   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 # fi
 
+# [apt]
+sudo apt update
+sudo apt upgrade
+sudo apt install -y git cmake unzip curl wget build-essential libreadline-dev
+
 # [asdf and some languages]
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 export ASDF_DIR="$HOME/.asdf" && . "$HOME/.asdf/asdf.sh" 
 asdf plugin add lua && asdf install lua 5.1 && asdf global lua 5.1
 asdf plugin add nodejs && asdf install nodejs latest && asdf global nodejs latest
-
-# [apt]
-sudo apt update
-sudo apt upgrade
 
 # [zsh]
 sudo apt install -y zsh
@@ -36,10 +37,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # [nvim]
-sudo apt install -y ninja-build gettext cmake unzip curl build-essential
+apt install -y ripgrep fd-find ninja-build gettext
 git clone https://github.com/neovim/neovim ~/neovim
 sudo make -C ~/neovim CMAKE_BUILD_TYPE=RelWithDebInfo && make -C ~/neovim install
-apt install -y ripgrep fd-find
 
 # [nerdfetch]
 sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/nerdfetch -o /usr/bin/nerdfetch
