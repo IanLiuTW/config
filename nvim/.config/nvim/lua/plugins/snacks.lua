@@ -29,12 +29,12 @@ local dashboard_setup = {
       { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
     },
     header = {
-      { '████████╗██╗  ██╗██╗███████╗    ██╗███████╗    ██╗ █████╗ ███╗   ██╗\n', hl = 'NeovimDashboardLogo1' },
-      { '╚══██╔══╝██║  ██║██║██╔════╝    ██║██╔════╝    ██║██╔══██╗████╗  ██║\n', hl = 'NeovimDashboardLogo2' },
-      { '   ██║   ███████║██║███████╗    ██║███████╗    ██║███████║██╔██╗ ██║\n', hl = 'NeovimDashboardLogo3' },
-      { '   ██║   ██╔══██║██║╚════██║    ██║╚════██║    ██║██╔══██║██║╚██╗██║\n', hl = 'NeovimDashboardLogo4' },
-      { '   ██║   ██║  ██║██║███████║    ██║███████║    ██║██║  ██║██║ ╚████║\n', hl = 'NeovimDashboardLogo5' },
-      { '   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝    ╚═╝╚══════╝    ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝', hl = 'NeovimDashboardLogo6' },
+      { '         ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓        \n', hl = 'NeovimDashboardLogo1' },
+      { '         ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒        \n', hl = 'NeovimDashboardLogo2' },
+      { '        ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░        \n', hl = 'NeovimDashboardLogo3' },
+      { '        ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██         \n', hl = 'NeovimDashboardLogo4' },
+      { '        ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒        \n', hl = 'NeovimDashboardLogo5' },
+      { '        ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░        ', hl = 'NeovimDashboardLogo6' },
     },
   },
   sections = {
