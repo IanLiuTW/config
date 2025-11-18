@@ -50,7 +50,6 @@
           ripgrep
           _7zz-rar
           # System tools - GUI
-          ice-bar
           aerospace
           jankyborders
           nerdfetch
@@ -117,6 +116,7 @@
             "middleclick"
             "hammerspoon"
             "stats"
+            "jordanbaird-ice@beta"
             # Web browsers
             "brave-browser"
             "google-chrome"
@@ -183,7 +183,7 @@
             env = pkgs.buildEnv {
               name = "system-applications";
               paths = config.environment.systemPackages;
-              pathsToLink = "/Applications";
+              pathsToLink = ["/Applications"];
             };
           in
           pkgs.lib.mkForce ''
