@@ -4,4 +4,7 @@ prepend_keymap = [
 	{ on = "<C-h>", run = 'back', desc = "back" },
 	{ on = "<C-j>", run = 'arrow 1', desc = "arrow 1" },
 	{ on = "<C-k>", run = 'arrow -1', desc = "arrow -1" },
+	{ on = "<C-Backspace>", run = 'close', desc = "close" },
+	# { on = "<C-,>", run = 'tab_switch -1', desc = "tab_switch -1" },
+	# { on = "<C-.>", run = 'tab_switch 1', desc = "tab_switch 1" }
 ]
