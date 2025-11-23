@@ -25,7 +25,13 @@
   # environment.
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    # Rust tooling
+    bacon
     cargo-nextest
+    cargo-release
+    cargo-wizard
+    git-cliff
+    lld
     aoc-cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

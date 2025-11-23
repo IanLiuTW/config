@@ -40,6 +40,9 @@ return {
       win_options = {
         signcolumn = 'yes:2',
       },
+      confirmation = {
+        border = 'rounded',
+      },
       watch_for_changes = true,
       use_default_keymaps = false,
       keymaps = {
