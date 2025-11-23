@@ -74,6 +74,6 @@ return {
       },
     }
   end,
-  vim.keymap.set('n', "<leader>'<Up>", '<Cmd>Copilot enable<CR>'),
-  vim.keymap.set('n', "<leader>'<Down>", '<Cmd>Copilot disable<CR>'),
+  vim.keymap.set('n', "<leader>;<Up>", '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', "<leader>;<Down>", '<Cmd>Copilot disable<CR>'),
 }

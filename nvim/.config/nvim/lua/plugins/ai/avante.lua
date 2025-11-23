@@ -59,20 +59,20 @@ return {
         normal = '<CR>',
         insert = '<C-CR>',
       },
-      new_ask = '<leader>;;',
-      ask = '<leader>;a',
-      edit = '<leader>;e',
-      refresh = '<leader>;r',
-      focus = '<leader>;f',
-      stop = '<leader>;x',
-      zen_mode = '<leader>;z',
+      new_ask = '<leader>\';',
+      ask = '<leader>\'a',
+      edit = '<leader>\'e',
+      refresh = '<leader>\'r',
+      focus = '<leader>\'f',
+      stop = '<leader>\'x',
+      zen_mode = '<leader>\'z',
       toggle = {
-        default = '<leader>:',
-        debug = '<leader>;d',
-        hint = '<leader>;h',
-        suggestion = '<leader>;s',
-        repomap = '<leader>;m',
-        selection = '<leader>;v',
+        default = '<leader>"',
+        debug = '<leader>\'d',
+        hint = '<leader>\'h',
+        suggestion = '<leader>\'s',
+        repomap = '<leader>\'m',
+        selection = '<leader>\'v',
       },
       sidebar = {
         apply_all = 'A',
@@ -87,11 +87,11 @@ return {
         close_from_input = { normal = 'q', insert = '<C-c>' },
       },
       files = {
-        add_current = '<leader>;c', -- Add current buffer to selected files
-        add_all_buffers = '<leader>;b', -- Add all buffer files to selected files
+        add_current = '<leader>\'c', -- Add current buffer to selected files
+        add_all_buffers = '<leader>\'b', -- Add all buffer files to selected files
       },
-      select_model = '<leader>;/', -- Select model command
-      select_history = '<leader>;.', -- Select history command
+      select_model = '<leader>\'/', -- Select model command
+      select_history = '<leader>\'.', -- Select history command
     },
     hints = { enabled = true },
     windows = {
@@ -170,7 +170,7 @@ return {
   config = function(_, opts)
     require('avante').setup(opts)
 
-    vim.keymap.set('n', '<leader>;g', function()
+    vim.keymap.set('n', '<leader>\'g', function()
       local prompt =
         'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Be concise and only generate the commit messages. Do not include prompt details nor the results of git diff.'
       local diffs = table.concat(vim.fn.systemlist 'git diff --cached', ' ')

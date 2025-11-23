@@ -41,10 +41,13 @@ return {
     log_path = vim.fn.stdpath 'state' .. '/CopilotChat.log', -- Default path to log file
     history_path = vim.fn.stdpath 'data' .. '/copilotchat_history', -- Default path to stored history
 
-    question_header = '👤 User ', -- Header to use for user questions
-    answer_header = '🤖 Copilot ', -- Header to use for AI answers
-    error_header = '🛑 Error ', -- Header to use for errors
+    headers = {
+      user = '󰇘 👤 You',
+      assistant = '󰇘 🤖 Copilot',
+      tool = '󰇘 🔧 Tool',
+    },
     separator = '󰇘󰇘󰇘', -- Separator to use in chat
+    auto_fold = true,
 
     providers = {
       copilot = {},
@@ -238,37 +241,37 @@ return {
     -- Add which-key mappings
     local wk = require 'which-key'
     wk.add {
-      { '<leader>\'', group = 'A[I]', mode = { 'n', 'x' } },
+      { '<leader>;', group = 'A[I]', mode = { 'n', 'x' } },
     }
   end,
   keys = {
-    { '<leader>"', ':CopilotChatToggle<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Toggle' },
-    { '<leader>\'q', ':CopilotChatClose<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Close' },
-    { '<leader>\'<bs>', '<cmd>CopilotChatReset<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Reset' },
-    { '<leader>\'x', '<cmd>CopilotChatStop<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Stop' },
+    { '<leader>:', ':CopilotChatToggle<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Toggle' },
+    { '<leader>;q', ':CopilotChatClose<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Close' },
+    { '<leader>;<bs>', '<cmd>CopilotChatReset<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Reset' },
+    { '<leader>;x', '<cmd>CopilotChatStop<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Stop' },
 
-    { '<leader>\'\'', ':CopilotChat<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Start' },
-    { '<leader>\'<Tab>', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
-    { '<leader>\'b', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
-    { '<leader>\'B', ':CopilotChatBuffers<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffers)' },
-    { '<leader>\'F', ':CopilotChatFiles<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Files)' },
-    -- { '<leader>\'<S-Tab>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
+    { "<leader>;'", ':CopilotChat<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Start' },
+    { '<leader>;<Tab>', ':CopilotChatInline<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Open Inline Chat' },
+    { '<leader>;b', ':CopilotChatBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffer)' },
+    { '<leader>;B', ':CopilotChatBuffers<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Buffers)' },
+    { '<leader>;F', ':CopilotChatFiles<cr>', mode = 'n', desc = 'CopilotChat - Open Chat (Files)' },
+    -- { '<leader>;<S-Tab>', ':CopilotChatInlineBuffer<cr>', mode = 'n', desc = 'CopilotChat - Open Inline Chat (Buffer)' },
 
-    { '<leader>\'<Space>', '<cmd>CopilotChatPrompts<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Select Prompt' },
-    { '<leader>\'/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Model' },
-    { '<leader>\',', '<cmd>CopilotChatAgents<cr>', desc = 'CopilotChat - Select Agent' },
+    { '<leader>;<Space>', '<cmd>CopilotChatPrompts<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Select Prompt' },
+    { '<leader>;/', '<cmd>CopilotChatModels<cr>', desc = 'CopilotChat - Select Model' },
+    { '<leader>;,', '<cmd>CopilotChatAgents<cr>', desc = 'CopilotChat - Select Agent' },
 
-    { '<leader>\'e', '<cmd>CopilotChatExplain<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Explain code' },
-    { '<leader>\'v', '<cmd>CopilotChatReview<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Review code' },
-    { '<leader>\'f', '<cmd>CopilotChatFix<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Fix code' },
-    { '<leader>\'o', '<cmd>CopilotChatOptimize<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Optimize code' },
-    { "<leader>\'h", '<cmd>CopilotChatDocs<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate documentation' },
-    { '<leader>\'t', '<cmd>CopilotChatTests<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate tests' },
-    { '<leader>\'g', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
-    { '<leader>\'r', '<cmd>CopilotChatRefactor<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Refactor code' },
-    { '<leader>\'n', '<cmd>CopilotChatBetterNamings<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate Better Namings' },
+    { '<leader>;e', '<cmd>CopilotChatExplain<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Explain code' },
+    { '<leader>;v', '<cmd>CopilotChatReview<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Review code' },
+    { '<leader>;f', '<cmd>CopilotChatFix<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Fix code' },
+    { '<leader>;o', '<cmd>CopilotChatOptimize<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Optimize code' },
+    { '<leader>;h', '<cmd>CopilotChatDocs<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate documentation' },
+    { '<leader>;t', '<cmd>CopilotChatTests<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate tests' },
+    { '<leader>;g', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Generate commit message for all changes' },
+    { '<leader>;r', '<cmd>CopilotChatRefactor<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Refactor code' },
+    { '<leader>;n', '<cmd>CopilotChatBetterNamings<cr>', mode = { 'n', 'x' }, desc = 'CopilotChat - Generate Better Namings' },
 
-    { '<leader>\'d', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
-    { '<leader>\'s', '<cmd>CopilotChatExplainDiagnostic<cr>', desc = 'CopilotChat - Explain Diagnostic' },
+    { '<leader>;d', '<cmd>CopilotChatFixDiagnostic<cr>', desc = 'CopilotChat - Fix Diagnostic' },
+    { '<leader>;s', '<cmd>CopilotChatExplainDiagnostic<cr>', desc = 'CopilotChat - Explain Diagnostic' },
   },
 }
