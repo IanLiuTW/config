@@ -75,6 +75,7 @@
 
     ".config/mcphub/servers.json" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/mcphub/.config/mcphub/servers.json"; };
     ".gemini/settings.json" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/gemini/.gemini/settings.json"; };
+    ".gemini/commands" = { source = config.lib.file.mkOutOfStoreSymlink "/Users/ianliu/config/gemini/.gemini/commands"; };
 
     ".config/pycodestyle".text = ''
       [pycodestyle]
