@@ -72,17 +72,25 @@
           eza
           zoxide
           fzf
-          # Development tools
-          lazygit
-          lazydocker
+          # Development dependencies
           delta
-          yazi
           imagemagick
           ffmpegthumbnailer
           poppler
           pngpaste
           lynx
           sqlite
+          # Development tools
+          git
+          jujutsu
+          yazi
+          colima
+          lazygit
+          lazydocker
+          posting
+          gh
+          # AI tools
+          gemini-cli
           # Applications
           raycast
           obsidian
@@ -102,14 +110,8 @@
             "docker-credential-helper"
             # "podman"
             # "podman-compose"
-            "colima"
-            "jj"
-            "posting"
             "sops"
-            # AI tools
-            "gemini-cli"
             # Project tools
-            "gh"
             "go-jira"
           ];
           casks = [
