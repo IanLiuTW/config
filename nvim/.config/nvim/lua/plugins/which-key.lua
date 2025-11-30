@@ -200,7 +200,6 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 'i',
-        { 'jk', '<Esc>l', desc = 'Exit insert mode' },
       },
       {
         mode = 'x',
@@ -212,7 +211,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = 't',
-        { '<C-q>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
+        -- { '<C-q>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
       },
       {
         mode = { 'n', 'v' },

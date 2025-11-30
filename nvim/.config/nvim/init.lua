@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 --  NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.expandtab = true
@@ -187,6 +189,20 @@ require('lazy').setup({
   change_detection = {
     enabled = false,
     notify = false,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
   },
 }, {
   ui = {
