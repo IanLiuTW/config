@@ -210,6 +210,7 @@ return {
       },
       status = {
         ['<space>'] = 'Toggle',
+        ['za'] = false,
         ['<S-tab>'] = 'PeekFile',
         ['!'] = 'Command',
         ['Q'] = false,

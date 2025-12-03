@@ -8,15 +8,19 @@ return {
   version = '1.*',
   opts = {
     keymap = {
-      -- ['<CR>'] = { 'select_and_accept', 'fallback' },
       ['<C-Y>'] = { 'select_and_accept', 'fallback' },
       ['<C-Q>'] = { 'hide', 'fallback' },
+
       ['<C-N>'] = { 'select_next', 'fallback' },
       ['<C-P>'] = { 'select_prev', 'fallback' },
       ['<C-F>'] = { 'scroll_documentation_down' },
       ['<C-B>'] = { 'scroll_documentation_up' },
       ['<Tab>'] = { 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+
+      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+
       ['<C-1>'] = {
         function(cmp)
           cmp.accept { index = 1 }

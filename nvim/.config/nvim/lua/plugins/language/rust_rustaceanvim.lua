@@ -56,7 +56,7 @@ vim.g.rustaceanvim = {
       -- rust-analyzer language server configuration
       ['rust-analyzer'] = {
         checkOnSave = { command = 'clippy' },
-        diagnostics = { experimental = { enable = false } },
+        diagnostics = { experimental = { enable = true } },
         inlayHints = {
           enable = true,
           showParameterNames = true,
@@ -71,6 +71,6 @@ vim.g.rustaceanvim = {
 }
 return {
   'mrcjkb/rustaceanvim',
-  version = '^5', -- Recommended
+  version = '^6', -- Recommended
   lazy = false, -- This plugin is already lazy
 }
