@@ -92,7 +92,13 @@ return {
     }
     -- Ensure tools are installed
     require('mason-tool-installer').setup {
-      ensure_installed = { 'stylua', 'prettier', 'codespell' },
+      ensure_installed = {
+        'stylua',
+        'prettier',
+        'codespell',
+        'marksman',
+        'lua-language-server',
+      },
       auto_update = true,
       run_on_start = true,
     }

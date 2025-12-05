@@ -66,14 +66,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
--- Disable automatic comment insertion
-vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'Disable automatic comment insertion',
-  group = vim.api.nvim_create_augroup('AutoComment', {}),
-  callback = function()
-    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
-  end,
-})
+-- Disable automatic comment insertion (Use C-u in insert mode)
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   desc = 'Disable automatic comment insertion',
+--   group = vim.api.nvim_create_augroup('AutoComment', {}),
+--   callback = function()
+--     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+--   end,
+-- })
 
 -- [[ Diagnostic Commands ]]
 -- Set virtual text severity to Hint
@@ -176,7 +176,6 @@ require('lazy').setup({
     { import = 'plugins.files' },
     { import = 'plugins.git' },
     { import = 'plugins.language' },
-    { import = 'plugins.terminal' },
     { import = 'plugins.themes' },
     { import = 'plugins.ui' },
   },
