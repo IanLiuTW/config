@@ -37,16 +37,16 @@ return {
       end,
     }
 
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds, {desc = 'ufo - Open All Folds'})
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, {desc = 'ufo - Close All Folds'})
-    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, {desc = 'ufo - Open Folds Except Kinds'})
-    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, {desc = 'ufo - Close Folds With'})
-    vim.keymap.set('n', '<Tab>', 'za', {desc = 'Toggle Fold'})
+    vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'ufo - Open All Folds' })
+    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'ufo - Close All Folds' })
+    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = 'ufo - Open Folds Except Kinds' })
+    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'ufo - Close Folds With' })
+    vim.keymap.set('n', '<Tab>', 'za', { desc = 'Toggle Fold' })
     vim.keymap.set('n', '<S-Tab>', function()
       local winid = require('ufo').peekFoldedLinesUnderCursor()
       if not winid then
         vim.lsp.buf.hover()
       end
-    end, {desc = 'ufo - Peek Folded'})
+    end, { desc = 'ufo - Peek Folded' })
   end,
 }
