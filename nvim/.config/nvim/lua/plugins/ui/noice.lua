@@ -15,7 +15,8 @@ return {
   config = function()
     require('noice').setup {
       notify = {
-        enabled = false,
+        enabled = true,
+        view = 'notify', -- The default view for notifications
       },
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

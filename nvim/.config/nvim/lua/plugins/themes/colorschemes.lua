@@ -1,20 +1,28 @@
 vim.api.nvim_create_autocmd('Colorscheme', {
-  group = vim.api.nvim_create_augroup('udpate_config_custom_highlights', {}),
+  group = vim.api.nvim_create_augroup('update_config_custom_highlights', { clear = true }),
   callback = function()
-    -- vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = '#212121', fg = 'white' })
-    vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#b3b3b3', bold = true })
+    -- 1. Define your overrides in a data structure.
+    -- Don't mix logic with data.
+    local overrides = {
+      -- Kept from your original config
+      WinSeparator = { fg = '#b3b3b3', bold = true },
 
-    -- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
-    --   undercurl = true, -- or underline = true if you prefer
-    --   sp = 'Yellow', -- underline color
-    --   bg = 'LightYellow', -- background color
-    -- })
-    --
-    -- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
-    --   undercurl = true,
-    --   sp = 'Red', -- underline color
-    --   bg = 'LightRad', -- light red/pink background
-    -- })
+      -- Floating windows: Transparent backgrounds
+      NormalFloat = { bg = 'none' },
+      FloatBorder = { bg = 'none' },
+      FloatTitle = { bg = 'none' },
+
+      -- Diff highlights (Hardcoded hex is safe here)
+      DiffAdd = { bg = '#2b3328' },
+      DiffChange = { bg = '#252535' },
+      DiffDelete = { fg = '#c34043', bg = '#43242b' },
+      DiffText = { bg = '#49443c' },
+    }
+
+    -- 2. Apply the highlights in a single, clean loop.
+    for group, opts in pairs(overrides) do
+      vim.api.nvim_set_hl(0, group, opts)
+    end
   end,
 })
 

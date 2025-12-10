@@ -73,7 +73,7 @@ return { -- Collection of various small independent plugins/modules
       -- See `:h MiniBracketed.config` for more info.
 
       buffer = { suffix = 'b', options = {} },
-      comment = { suffix = 'c', options = {} },
+      comment = { suffix = '/', options = {} },
       conflict = { suffix = 'x', options = {} },
       diagnostic = { suffix = 'd', options = {} },
       file = { suffix = 'f', options = {} },

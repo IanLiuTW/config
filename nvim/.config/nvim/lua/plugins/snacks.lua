@@ -445,10 +445,10 @@ return {
       },
     },
     statuscolumn = {
-      left = { 'mark', 'fold' }, -- priority of signs on the left (high to low)
-      right = { 'sign', 'git' }, -- priority of signs on the right (high to low)
+      left = { 'mark', 'sign' }, -- priority of signs on the left (high to low)
+      right = { 'fold', 'git' }, -- priority of signs on the right (high to low)
       folds = {
-        open = true, -- show open fold icons
+        open = false, -- show open fold icons
         git_hl = false, -- use Git Signs hl for fold icons
       },
       git = {
@@ -598,8 +598,8 @@ return {
     },
     -- Terminal
     { "<c-/>",          function() Snacks.terminal() end, desc = "Terminal - Toggle", mode = { 'n', 't'} },
-    { "<leader>-",      function() Snacks.terminal.open(nil, { win = { position = "right" } }) end, desc = "Terminal - Horizontal Split" },
-    { "<leader>=",      function() Snacks.terminal.open(nil, { win = { position = "bottom" } }) end, desc = "Terminal - Vertical Split" },
+    { "<leader>-",      function() Snacks.terminal.open(nil, { win = { position = "right", width = 0.25 } }) end, desc = "Terminal - Horizontal Split" },
+    { "<leader>=",      function() Snacks.terminal.open(nil, { win = { position = "bottom", height = 0.25 } }) end, desc = "Terminal - Vertical Split" },
   },
   -- stylua: ignore end
   init = function()
