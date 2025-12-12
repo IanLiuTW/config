@@ -4,6 +4,7 @@ vim.loader.enable()
 --  NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.expandtab = true
 vim.opt.autoindent = true
+vim.opt.autoread = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.hlsearch = true
@@ -96,11 +97,6 @@ vim.api.nvim_create_user_command('G', function(opts)
   vim.notify('[G (wrapper for git)] Executed: ' .. command)
   vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
 end, { nargs = 1 })
-vim.api.nvim_create_user_command('GG', function()
-  local command = 'git formom'
-  vim.notify '[GG (git formom)] Executed'
-  vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
-end, {})
 -- Copy the current file path to the clipboard
 vim.api.nvim_create_user_command('CopyPath', function()
   local path = vim.fn.expand '%'

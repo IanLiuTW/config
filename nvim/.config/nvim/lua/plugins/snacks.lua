@@ -15,13 +15,10 @@ local dashboard_setup = {
         action = ":lua Snacks.dashboard.pick('files')",
       },
       {
-        text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search Recent Files', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  .', hl = 'SnacksDashboardKey' }, },
-        action = ":lua Snacks.dashboard.pick('oldfiles')",
-      },
-      {
         text = { { '  ', hl = 'SnacksDashboardIcon' }, { 'Search with Live Grep', hl = 'SnacksDashboardDesc', width = 50 }, { '󱁐  󱁐  g', hl = 'SnacksDashboardKey' }, },
         action = ":lua Snacks.dashboard.pick('live_grep')",
       },
+      { icon = '󰘬 ', key = 'b', desc = 'Switch Branch', action = ':lua Snacks.picker.git_branches()' },
       { icon = ' ', key = 'g', desc = 'Open Neogit', action = ':Neogit' },
       { icon = '󰀬 ', key = 'm', desc = 'Open Mason', action = ':Mason' },
       { icon = '󰒲 ', key = ',', desc = 'Open Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
@@ -406,7 +403,9 @@ return {
       end,
       priority = 200,
     },
+    gitbrowse = {},
     lazygit = {
+      enabled = true,
       configure = false,
       theme = {
         selectedLineBgColor = { bg = 'black' },
@@ -418,6 +417,9 @@ return {
         width = 0.98,
         zindex = 50,
       },
+    },
+    gh = {
+      enabled = true,
     },
     scope = {
       enabled = true,
@@ -563,8 +565,6 @@ return {
     -- Git
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Git - Browse' },
     -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-    -- LazyGit
-    { "<leader>gG", function() Snacks.lazygit() end, desc = "Lazygit - Toggle" },
     -- Notifier
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Notifier - Dismiss All' },
     { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Notifier - Show History' },
@@ -580,11 +580,17 @@ return {
     { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
     -- Explorer
     { '\\', function() Snacks.explorer() end, desc = 'Explorer - Toggle Explorer', mode = { 'n' } },
+    -- Terminal
+    { "<c-/>",          function() Snacks.terminal() end, desc = "Terminal - Toggle", mode = { 'n', 't'} },
+    { "<leader>-",      function() Snacks.terminal.open(nil, { win = { position = "right", width = 0.25 } }) end, desc = "Terminal - Horizontal Split" },
+    { "<leader>=",      function() Snacks.terminal.open(nil, { win = { position = "bottom", height = 0.25 } }) end, desc = "Terminal - Vertical Split" },
     -- Github
     { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
     { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
     { "<leader>gr", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
     { "<leader>gR", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+    -- LazyGit
+    { "<leader>gG", function() Snacks.lazygit() end, desc = "Lazygit - Toggle" },
     -- News
     {
       '<leader>,<leader>',
@@ -596,10 +602,6 @@ return {
         } end,
       desc = 'Win - Neovim News',
     },
-    -- Terminal
-    { "<c-/>",          function() Snacks.terminal() end, desc = "Terminal - Toggle", mode = { 'n', 't'} },
-    { "<leader>-",      function() Snacks.terminal.open(nil, { win = { position = "right", width = 0.25 } }) end, desc = "Terminal - Horizontal Split" },
-    { "<leader>=",      function() Snacks.terminal.open(nil, { win = { position = "bottom", height = 0.25 } }) end, desc = "Terminal - Vertical Split" },
   },
   -- stylua: ignore end
   init = function()

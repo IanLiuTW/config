@@ -65,7 +65,7 @@ return {
       
       -- normal mode
       map('n', '<leader>C', gitsigns.preview_hunk, { desc = 'Gitsigns - Hunk Preview' })
-      map('n', '<leader>cC', gitsigns.preview_hunk_inline, { desc = 'GitSigns - Hunk Preview Inline' })
+      map('n', '<leader>cc', gitsigns.preview_hunk_inline, { desc = 'GitSigns - Hunk Preview Inline' })
 
       map('n', '<leader>cs', gitsigns.stage_hunk, { desc = 'Gitsigns - [S]tage hunk' })
       map('n', '<leader>cr', gitsigns.reset_hunk, { desc = 'Gitsigns - [R]eset hunk' })
@@ -79,9 +79,9 @@ return {
       map('n', '<leader>cD', function() gitsigns.diffthis '@' end, { desc = 'Gitsigns - [D]iff against last commit' })
       
       -- Toggles
-      map('n', '<leader>cL', gitsigns.toggle_linehl, { desc = 'GitSigns - Toggle show [L]ine highlights' })
-      map('n', '<leader>cl', gitsigns.toggle_current_line_blame, { desc = 'GitSigns - Toggle show Blame [L]ine' })
-      map('n', '<leader>cw', gitsigns.toggle_word_diff, { desc = 'GitSigns - Toggle show [W]ord diff' })
+      map('n', '<leader>cH', gitsigns.toggle_linehl, { desc = 'GitSigns - Toggle show [L]ine highlights' })
+      map('n', '<leader>cL', gitsigns.toggle_current_line_blame, { desc = 'GitSigns - Toggle show Blame [L]ine' })
+      map('n', '<leader>cW', gitsigns.toggle_word_diff, { desc = 'GitSigns - Toggle show [W]ord diff' })
       
       -- Text objects
       map({ 'o', 'x' }, 'ic', ':<C-U>Gitsigns select_hunk<CR>')
