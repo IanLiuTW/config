@@ -125,12 +125,12 @@ vim.diagnostic.config {
   severity_sort = true,
   virtual_lines = false,
   virtual_text = {
-    severity = { min = vim.diagnostic.severity.INFO },
+    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
     source = true,
     spacing = 1,
   },
   signs = {
-    severity = { min = vim.diagnostic.severity.WARN },
+    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
     text = {
       [vim.diagnostic.severity.ERROR] = '', -- '',
       [vim.diagnostic.severity.WARN] = '', -- '',
@@ -144,6 +144,55 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
     },
   },
+  underline = {
+    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
+  },
+  float = {
+    severity_sort = true,
+  },
+}
+
+-- [[ Custom underline handler to set priority of underline highlights ]]
+vim.diagnostic.handlers.underline = {
+  show = function(namespace, bufnr, diagnostics, opts)
+    local ns = vim.diagnostic.get_namespace(namespace)
+    if not ns.user_data.underline_ns then
+      ns.user_data.underline_ns = vim.api.nvim_create_namespace 'diagnostic/underline'
+    end
+    local extmark_ns = ns.user_data.underline_ns
+
+    vim.api.nvim_buf_clear_namespace(bufnr, extmark_ns, 0, -1)
+
+    for _, diag in ipairs(diagnostics) do
+      local severity = diag.severity
+      local priority = 100 + (4 - severity) * 10
+      local hl_group = 'DiagnosticUnderline'
+          .. ({
+            [vim.diagnostic.severity.ERROR] = 'Error',
+            [vim.diagnostic.severity.WARN] = 'Warn',
+            [vim.diagnostic.severity.INFO] = 'Info',
+            [vim.diagnostic.severity.HINT] = 'Hint',
+          })[severity]
+        or 'DiagnosticUnderlineError'
+
+      if diag.tags and vim.tbl_contains(diag.tags, 1) then
+        hl_group = 'DiagnosticUnnecessary'
+      end
+
+      vim.api.nvim_buf_set_extmark(bufnr, extmark_ns, diag.lnum, diag.col, {
+        end_row = diag.end_lnum,
+        end_col = diag.end_col,
+        hl_group = hl_group,
+        priority = priority,
+      })
+    end
+  end,
+  hide = function(namespace, bufnr)
+    local ns = vim.diagnostic.get_namespace(namespace)
+    if ns.user_data.underline_ns then
+      vim.api.nvim_buf_clear_namespace(bufnr, ns.user_data.underline_ns, 0, -1)
+    end
+  end,
 }
 
 -- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

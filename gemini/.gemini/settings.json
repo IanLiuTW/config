@@ -6,7 +6,8 @@
   },
   "general": {
     "preferredEditor": "neovim",
-    "vimMode": false
+    "vimMode": true,
+    "previewFeatures": true
   },
   "security": {
     "auth": {

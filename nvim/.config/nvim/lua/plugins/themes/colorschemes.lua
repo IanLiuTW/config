@@ -2,9 +2,8 @@ vim.api.nvim_create_autocmd('Colorscheme', {
   group = vim.api.nvim_create_augroup('update_config_custom_highlights', { clear = true }),
   callback = function()
     -- 1. Define your overrides in a data structure.
-    -- Don't mix logic with data.
     local overrides = {
-      -- Kept from your original config
+      -- === GUI & Windows ===
       WinSeparator = { fg = '#b3b3b3', bold = true },
 
       -- Floating windows: Transparent backgrounds
@@ -12,11 +11,28 @@ vim.api.nvim_create_autocmd('Colorscheme', {
       FloatBorder = { bg = 'none' },
       FloatTitle = { bg = 'none' },
 
-      -- Diff highlights (Hardcoded hex is safe here)
+      -- === Diff Highlights ===
       DiffAdd = { bg = '#2b3328' },
       DiffChange = { bg = '#252535' },
       DiffDelete = { fg = '#c34043', bg = '#43242b' },
       DiffText = { bg = '#49443c' },
+
+      -- === LSP & Diagnostics ===
+      LspInlayHint = { bg = '#212121', fg = '#664E39' },
+
+      DiagnosticUnnecessary = {
+        fg = '#969696', -- bright white text
+      },
+      DiagnosticUnderlineError = {
+        undercurl = true,
+        sp = '#ff0000', -- Red squiggle
+        bg = '#2d202a', -- Dark red background (optional, kept from your config)
+      },
+      DiagnosticUnderlineWarn = {
+        undercurl = true,
+        sp = '#e0af68', -- Yellow/Orange squiggle
+        bg = '#2e2a2d', -- Dark yellow background (optional)
+      },
     }
 
     -- 2. Apply the highlights in a single, clean loop.
@@ -44,22 +60,11 @@ return {
         sidebars = 'dark',
         floats = 'dark',
       },
-      -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-      -- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua
       on_colors = function(colors)
         -- colors.hint = colors.orange
         colors.error = '#ff0000'
       end,
-      on_highlights = function(hl, c)
-        hl.DiagnosticUnderlineError = {
-          bg = '#2d202a',
-          undercurl = true,
-        }
-        hl.DiagnosticUnderlineWarn = {
-          bg = '#2e2a2d',
-          undercurl = true,
-        }
-      end,
+      on_highlights = function(hl, c) end,
     },
   },
   {
