@@ -150,18 +150,18 @@
             "tunnelblick"
             "citrix-workspace"
           ];
-          # masApps = { -- mas is down due to API changes from Apple
-          #   # Microsoft suite
-          #   "Outlook" = 985367838;
-          #   "Word" = 462054704;
-          #   "Excel" = 462058435;
-          #   "PowerPoint" = 462062816;
-          #   # Communication
-          #   "Slack" = 803453959;
-          #   "Line" = 539883307;
-          #   # VPN
-          #   "Hotspot Shield" = 771076721;
-          # };
+          masApps = {
+            # Microsoft suite
+            "Outlook" = 985367838;
+            "Word" = 462054704;
+            "Excel" = 462058435;
+            "PowerPoint" = 462062816;
+            # Communication
+            "Slack" = 803453959;
+            "Line" = 539883307;
+            # VPN
+            "Hotspot Shield" = 771076721;
+          };
           onActivation.cleanup = "zap"; # remove unused packages, can be removed if erring.
           onActivation.autoUpdate = true;
           onActivation.upgrade = true;
@@ -186,7 +186,7 @@
             env = pkgs.buildEnv {
               name = "system-applications";
               paths = config.environment.systemPackages;
-              pathsToLink = ["/Applications"];
+              pathsToLink = [ "/Applications" ];
             };
           in
           pkgs.lib.mkForce ''
