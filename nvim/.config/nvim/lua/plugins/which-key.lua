@@ -29,7 +29,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>c',        group = '[C]hanges (Gitsigns)',   mode = { 'n', 'x' } },
       { '<leader>d',        group = '[D]o',                   mode = { 'n', 'x' } },
       { '<leader>e',        group = '[E] Debug',              mode = { 'n', 'x' } },
-      { '<leader>h',        group = '[H] Trouble',            mode = { 'n', 'x' } },
+      { '<leader>w',        group = '[W] Trouble',            mode = { 'n', 'x' } },
       { '<leader>g',        group = '[G]it',                  mode = { 'n', 'x' } },
       { '<leader>s',        group = '[S]urround',             mode = { 'n', 'x' } },
       { '<leader>r',        group = '[R]un',                  mode = { 'n', 'x' } },
@@ -39,6 +39,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader><leader>', group = '[󱁐] Picker',             mode = { 'n', 'x' } },
       { '<leader>\'',       group = 'AI - Sidekick',          mode = { 'n', 'x' } },
       { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
+      { '<leader>h',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>,v',       group = 'Virtual Text Min Severity',       mode = { 'n', 'x' } },
 
@@ -95,12 +96,10 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = { 'n', 'v' },
-        -- { '<leader>z', '<Cmd>set wrap!<CR>',                                                       desc = 'Toggle line wrap' },
-        -- { '<leader>w',  '<cmd>write<CR>',                                                           desc = 'Buffer - [W]rite' },
         { '<leader>J',  'i<CR><Esc>',                                                               desc = 'Cursor - Add a line break' },
         { '<leader>F',  'gg=G',                                                                     desc = 'Buffer - Format (Indentation)' },
         { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end,desc = 'Quickfix - Diagnostics Window' },
-        { '<leader>hQ', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
+        { '<leader>wQ', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
       {
         mode = { 'n' , 'v' , 't' },

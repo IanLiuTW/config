@@ -16,12 +16,6 @@ return {
     vim.keymap.set('n', '<leader>4',     function() harpoon:list():select(4) end,                     { desc = 'Harpoon - [4] Select Buffer' })
     vim.keymap.set('n', '<leader>5',     function() harpoon:list():select(5) end,                     { desc = 'Harpoon - [5] Select Buffer' })
     vim.keymap.set('n', '<leader>6',     function() harpoon:list():select(6) end,                     { desc = 'Harpoon - [6] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h5',     function() harpoon:list():select(5) end,                     { desc = 'Harpoon - [5] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h6',     function() harpoon:list():select(6) end,                     { desc = 'Harpoon - [6] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h7',     function() harpoon:list():select(7) end,                     { desc = 'Harpoon - [7] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h8',     function() harpoon:list():select(8) end,                     { desc = 'Harpoon - [8] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h9',     function() harpoon:list():select(9) end,                     { desc = 'Harpoon - [9] Select Buffer' })
-    -- vim.keymap.set('n', '<leader>h0',     function() harpoon:list():select(0) end,                     { desc = 'Harpoon - [0] Select Buffer' })
     vim.keymap.set('n', '[h',                   function() harpoon:list():prev() end,                        { desc = 'Harpoon - Previous' })
     vim.keymap.set('n', ']h',                   function() harpoon:list():next() end,                        { desc = 'Harpoon - Next' })
   end,
