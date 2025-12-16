@@ -72,7 +72,7 @@ return {
       map('n', '<leader>cS', gitsigns.stage_buffer, { desc = 'Gitsigns - [S]tage buffer' })
       map('n', '<leader>cR', gitsigns.reset_buffer, { desc = 'Gitsigns - [R]eset buffer' })
 
-      map('n', '<leader>cb', function() gitsigns.blame_line { full = true } end, { desc = 'Gitsigns - [B]lame line' })
+      -- map('n', '<leader>cb', function() gitsigns.blame_line { full = true } end, { desc = 'Gitsigns - [B]lame line' }) -- replaced by Snacks
       map('n', '<leader>cB', '<cmd>Gitsigns blame<cr>', { desc = 'Gitsigns - [B]lame buffer' })
       
       map('n', '<leader>cd', ':Gitsigns diffthis ', { desc = 'Gitsigns - [D]iff against index' })

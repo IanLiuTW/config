@@ -559,12 +559,14 @@ return {
     { '<leader>dF', function() Snacks.rename.rename_file() end, desc = 'LSP - Rename File' },
     -- Buffer
     { '<C-BS>', function() Snacks.bufdelete() end, desc = 'Buffer - Delete Buffer' },
+    { '<C-S-BS>', '<Cmd>tabclose<CR>', noremap = true, silent = true, desc = 'Tab - Tab Close' },
     -- Scratch
     { '<leader>bb', function() Snacks.scratch() end, desc = 'Scratch - Toggle Scratch Buffer' },
     { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Scratch - Select Scratch Buffer' },
     -- Git
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Git - Browse' },
-    -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+    { '<leader>g<S-CR>', function() Snacks.gitbrowse({branch = "main"}) end, desc = 'Git - Browse (main)' },
+    { "<leader>cb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     -- Notifier
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Notifier - Dismiss All' },
     { '<leader>,n', function() Snacks.notifier.show_history() end, desc = 'Notifier - Show History' },

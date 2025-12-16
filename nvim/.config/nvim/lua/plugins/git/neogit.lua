@@ -4,6 +4,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- 'sindrets/diffview.nvim',
+    'folke/snacks.nvim',
   },
   keys = {
     { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
@@ -130,13 +131,9 @@ return {
       item = { '', '' },
       section = { '󰝤', '' },
     },
-    -- Each Integration is auto-detected through plugin presence, however, it can be disabled by setting to `false`
     integrations = {
-      -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `diffview`.
-      -- The diffview integration enables the diff popup.
-      --
-      -- Requires you to have `sindrets/diffview.nvim` installed.
       diffview = false,
+      snacks = true,
     },
     sections = {
       -- Reverting/Cherry Picking
