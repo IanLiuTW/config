@@ -1,12 +1,9 @@
 vim.api.nvim_create_autocmd('Colorscheme', {
   group = vim.api.nvim_create_augroup('update_config_custom_highlights', { clear = true }),
   callback = function()
-    -- 1. Define your overrides in a data structure.
     local overrides = {
       -- === GUI & Windows ===
       WinSeparator = { fg = '#b3b3b3', bold = true },
-
-      -- Floating windows: Transparent backgrounds
       NormalFloat = { bg = 'none' },
       FloatBorder = { bg = 'none' },
       FloatTitle = { bg = 'none' },
@@ -19,23 +16,32 @@ vim.api.nvim_create_autocmd('Colorscheme', {
 
       -- === LSP & Diagnostics ===
       LspInlayHint = { bg = '#212121', fg = '#664E39' },
-
       DiagnosticUnnecessary = {
-        fg = '#969696', -- bright white text
+        fg = '#969696',
       },
+
       DiagnosticUnderlineError = {
         undercurl = true,
-        sp = '#ff0000', -- Red squiggle
-        bg = '#2d202a', -- Dark red background (optional, kept from your config)
+        sp = '#ff0000',
+        bg = '#2d202a',
       },
       DiagnosticUnderlineWarn = {
         undercurl = true,
-        sp = '#e0af68', -- Yellow/Orange squiggle
-        bg = '#2e2a2d', -- Dark yellow background (optional)
+        sp = '#e0af68',
+        bg = '#2e2a2d',
+      },
+      DiagnosticUnderlineHint = {
+        undercurl = true,
+        sp = '#1abc9c',
+        bg = '#102b2a',
+      },
+      DiagnosticUnderlineInfo = {
+        undercurl = true,
+        sp = '#0db9d7',
+        bg = '#192b38',
       },
     }
 
-    -- 2. Apply the highlights in a single, clean loop.
     for group, opts in pairs(overrides) do
       vim.api.nvim_set_hl(0, group, opts)
     end
