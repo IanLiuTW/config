@@ -147,8 +147,8 @@ return {
         },
       }
 
-      vim.keymap.set('n', '<leader>,t', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter - Open Install Info' })
-      vim.keymap.set('n', '<leader>,i', '<cmd>TSModuleInfo<cr>', { desc = 'Treesitter - Open Module Info' })
+      vim.keymap.set('n', '<leader>,T', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter - Open Install Info' })
+      vim.keymap.set('n', '<leader>,M', '<cmd>TSModuleInfo<cr>', { desc = 'Treesitter - Open Module Info' })
       vim.keymap.set('n', '<leader>,H', '<cmd>TSToggle highlight<cr>', { desc = 'Treesitter - Toggle Highlight' })
       vim.keymap.set('n', '<leader>,I', '<cmd>TSToggle indent<cr>', { desc = 'Treesitter - Toggle Indent' })
     end,

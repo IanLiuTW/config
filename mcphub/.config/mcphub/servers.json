@@ -8,7 +8,7 @@
         "mcp/fetch"
       ],
       "command": "docker",
-      "disabled": false
+      "disabled": true
     },
     "git": {
       "args": [
@@ -20,7 +20,7 @@
         "mcp/git"
       ],
       "command": "docker",
-      "disabled": false
+      "disabled": true
     },
     "memory": {
       "args": [
@@ -32,7 +32,7 @@
         "mcp/memory"
       ],
       "command": "docker",
-      "disabled": false
+      "disabled": true
     },
     "sequentialthinking": {
       "args": [
@@ -42,7 +42,7 @@
         "mcp/sequentialthinking"
       ],
       "command": "docker",
-      "disabled": false
+      "disabled": true
     },
     "time": {
       "args": [
@@ -52,7 +52,7 @@
         "mcp/time"
       ],
       "command": "docker",
-      "disabled": false
+      "disabled": true
     }
   },
   "nativeMCPServers": []

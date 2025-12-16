@@ -12,7 +12,14 @@ return {
       local cmd = 'git rev-parse --is-inside-work-tree'
       return vim.fn.system(cmd) == 'true\n'
     end,
+
     cwd_change_handling = true,
+    pre_cwd_changed_cmds = {},
+    post_cwd_changed_cmds = {
+      function()
+        require('lualine').refresh()
+      end,
+    },
 
     -- suppressed_dirs = { '~/', '/', '~/Downloads' }, -- Suppress session restore/create in certain directories
     -- allowed_dirs = { '~/config', '~/codebase', '~/work/*', '~/self/*' }, -- Allow session restore/create in certain directories

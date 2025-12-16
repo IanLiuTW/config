@@ -623,7 +623,7 @@ return {
         Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>,C'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>,B'
         Snacks.toggle.diagnostics():map '<leader>,D'
-        Snacks.toggle.treesitter():map '<leader>,T'
+        -- Snacks.toggle.treesitter():map '<leader>,T'
         -- Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>,R'
         -- Snacks.toggle.line_number():map '<leader>,N'
         -- Snacks.toggle.inlay_hints():map '<leader>,I' -- LSP has this function
