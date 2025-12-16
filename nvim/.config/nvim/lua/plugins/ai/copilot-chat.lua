@@ -1,11 +1,18 @@
 return {
   'CopilotC-Nvim/CopilotChat.nvim',
-  event = 'BufEnter',
   branch = 'main',
   build = 'make tiktoken',
   dependencies = {
     'zbirenbaum/copilot.lua', -- zbirenbaum/copilot.lua or github/copilot.vim
     { 'nvim-lua/plenary.nvim', branch = 'master' },
+  },
+  cmd = {
+    'CopilotChat',
+    'CopilotChatToggle',
+    'CopilotChatBuffer',
+    'CopilotChatBuffers',
+    'CopilotChatFiles',
+    'CopilotChatInline',
   },
   opts = {
     system_prompt = 'COPILOT_INSTRUCTIONS', -- System prompt to use (can be specified manually in prompt via /).

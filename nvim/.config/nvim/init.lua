@@ -121,7 +121,7 @@ end, {})
 
 -- [[ Configure diagnostic symbols ]]
 vim.diagnostic.config {
-  update_in_insert = true,
+  update_in_insert = false,
   severity_sort = true,
   virtual_lines = false,
   virtual_text = {
@@ -179,7 +179,7 @@ vim.diagnostic.handlers.underline = {
         hl_group = 'DiagnosticUnnecessary'
       end
 
-      vim.api.nvim_buf_set_extmark(bufnr, extmark_ns, diag.lnum, diag.col, {
+      pcall(vim.api.nvim_buf_set_extmark, bufnr, extmark_ns, diag.lnum, diag.col, {
         end_row = diag.end_lnum,
         end_col = diag.end_col,
         hl_group = hl_group,
@@ -225,11 +225,11 @@ require('lazy').setup({
     { import = 'plugins.ui' },
   },
   install = { colorscheme = { 'habamax' } },
-  -- checker = {
-  --   enabled = true,
-  --   notify = true,
-  --   frequency = 86400,
-  -- },
+  checker = {
+    enabled = true,
+    notify = true,
+    frequency = 86400,
+  },
   change_detection = {
     enabled = false,
     notify = false,

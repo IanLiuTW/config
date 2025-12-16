@@ -7,7 +7,7 @@ return {
     end,
     opts = {
       nes = {
-        move_count_threshold = 2,
+        move_count_threshold = 3,
       },
     },
   },

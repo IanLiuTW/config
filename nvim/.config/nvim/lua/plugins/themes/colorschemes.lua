@@ -68,27 +68,6 @@ return {
     },
   },
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    config = function()
-      require('catppuccin').setup {
-        flavour = 'mocha',
-        transparent_background = true,
-      }
-    end,
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    lazy = false,
-    opts = {
-      styles = {
-        transparency = true,
-      },
-    },
-  },
-  {
     'rebelot/kanagawa.nvim',
     name = 'kanagawa',
     lazy = false,
@@ -121,63 +100,68 @@ return {
           DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
           DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
 
-          NormalFloat = { bg = 'none' },
-          FloatBorder = { bg = 'none' },
-          FloatTitle = { bg = 'none' },
-
-          -- Save an hlgroup with dark background and dimmed foreground
-          -- so that you can use it where your still want darker windows.
-          -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
-          -- Popular plugins that open floats will link to NormalFloat by default;
-          -- set their background accordingly if you wish to keep them dark and borderless
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-
-          -- Diff highlights
-          DiffAdd = { bg = '#2b3328' },
-          DiffChange = { bg = '#252535' },
-          DiffDelete = { fg = '#c34043', bg = '#43242b' },
-          DiffText = { bg = '#49443c' },
         }
       end,
     },
   },
-  {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    init = function()
-      vim.g.gruvbox_material_foreground = 'mix'
-      vim.g.gruvbox_material_background = 'medium'
-      vim.g.gruvbox_material_better_performance = true
-      vim.g.gruvbox_material_enable_italic = true
-      vim.g.gruvbox_material_enable_bold = true
-      vim.g.gruvbox_material_transparent_background = 1
-      vim.g.gruvbox_material_diagnostic_text_highlight = 1
-      vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
-      vim.g.gruvbox_material_current_word = 'grey background'
-      vim.g.gruvbox_material_inlay_hints_background = 'dimmed'
-      -- vim.cmd.colorscheme 'gruvbox-material'
-    end,
-  },
-  {
-    'EdenEast/nightfox.nvim',
-  },
-  {
-    'vague2k/vague.nvim',
-    config = function()
-      require('vague').setup {
-        transparent = true,
-        style = {
-          comments = 'italic',
-          keywords = 'italic',
-          functions = 'bold',
-          sidebars = 'dark',
-          floats = 'dark',
-        },
-      }
-    end,
-  },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   lazy = false,
+  --   config = function()
+  --     require('catppuccin').setup {
+  --       flavour = 'mocha',
+  --       transparent_background = true,
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   lazy = false,
+  --   opts = {
+  --     styles = {
+  --       transparency = true,
+  --     },
+  --   },
+  -- },
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.g.gruvbox_material_foreground = 'mix'
+  --     vim.g.gruvbox_material_background = 'medium'
+  --     vim.g.gruvbox_material_better_performance = true
+  --     vim.g.gruvbox_material_enable_italic = true
+  --     vim.g.gruvbox_material_enable_bold = true
+  --     vim.g.gruvbox_material_transparent_background = 1
+  --     vim.g.gruvbox_material_diagnostic_text_highlight = 1
+  --     vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
+  --     vim.g.gruvbox_material_current_word = 'grey background'
+  --     vim.g.gruvbox_material_inlay_hints_background = 'dimmed'
+  --     -- vim.cmd.colorscheme 'gruvbox-material'
+  --   end,
+  -- },
+  -- {
+  --   'EdenEast/nightfox.nvim',
+  -- },
+  -- {
+  --   'vague2k/vague.nvim',
+  --   config = function()
+  --     require('vague').setup {
+  --       transparent = true,
+  --       style = {
+  --         comments = 'italic',
+  --         keywords = 'italic',
+  --         functions = 'bold',
+  --         sidebars = 'dark',
+  --         floats = 'dark',
+  --       },
+  --     }
+  --   end,
+  -- },
 }
