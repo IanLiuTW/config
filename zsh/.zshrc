@@ -109,8 +109,8 @@ zinit light starship/starship
 # zoxide
 eval "$(zoxide init zsh)"
 # fzf
-source <(fzf --zsh)
 export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
+source <(fzf --zsh)
 # devpod
 if command -v devpod &> /dev/null; then
     source <(devpod completion zsh)
