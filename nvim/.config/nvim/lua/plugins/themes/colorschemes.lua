@@ -1,6 +1,31 @@
 vim.api.nvim_create_autocmd('Colorscheme', {
   group = vim.api.nvim_create_augroup('update_config_custom_highlights', { clear = true }),
   callback = function()
+    local function get_hl(name)
+      return vim.api.nvim_get_hl(0, { name = name, link = false })
+    end
+
+    local function color(name, attr)
+      local hl = get_hl(name)
+      return hl and hl[attr] and string.format('#%06x', hl[attr]) or 'NONE'
+    end
+
+    local c = {
+      bg                 = color('Normal', 'bg'),
+      accent             = color('Special', 'fg'),      -- Teal/Blue
+      keyword            = color('Keyword', 'fg'),      -- Purple/Red
+      markup             = color('String', 'fg'),       -- Green
+      entity             = color('Constant', 'fg'),     -- Orange
+      regexp             = color('SpecialChar', 'fg'),  -- Pink/Red
+      string             = color('String', 'fg'),
+      tag                = color('Function', 'fg'),
+      constant           = color('Constant', 'fg'),
+      vcs_added          = color('DiffAdd', 'bg'),      -- Greenish
+      selection_bg       = color('Visual', 'bg'),       -- Selection
+      selection_inactive = color('CursorLine', 'bg'),   -- Subtle background
+    }
+
+    -- 2. Define your overrides
     local overrides = {
       -- === GUI & Windows ===
       WinSeparator = { fg = '#b3b3b3', bold = true },
@@ -8,7 +33,7 @@ vim.api.nvim_create_autocmd('Colorscheme', {
       FloatBorder = { bg = 'none' },
       FloatTitle = { bg = 'none' },
 
-      -- === Diff Highlights ===
+      -- === Diff Highlights (Hardcoded Kanagawa-style) ===
       DiffAdd = { bg = '#2b3328' },
       DiffChange = { bg = '#252535' },
       DiffDelete = { fg = '#c34043', bg = '#43242b' },
@@ -16,32 +41,45 @@ vim.api.nvim_create_autocmd('Colorscheme', {
 
       -- === LSP & Diagnostics ===
       LspInlayHint = { bg = '#212121', fg = '#664E39' },
-      DiagnosticUnnecessary = {
-        fg = '#969696',
-      },
+      DiagnosticUnnecessary = { fg = '#969696' },
+      DiagnosticUnderlineError = { undercurl = true, sp = '#ff0000', bg = '#2d202a' },
+      DiagnosticUnderlineWarn = { undercurl = true, sp = '#e0af68', bg = '#2e2a2d' },
+      DiagnosticUnderlineHint = { undercurl = true, sp = '#1abc9c', bg = '#102b2a' },
+      DiagnosticUnderlineInfo = { undercurl = true, sp = '#0db9d7', bg = '#192b38' },
 
-      DiagnosticUnderlineError = {
-        undercurl = true,
-        sp = '#ff0000',
-        bg = '#2d202a',
-      },
-      DiagnosticUnderlineWarn = {
-        undercurl = true,
-        sp = '#e0af68',
-        bg = '#2e2a2d',
-      },
-      DiagnosticUnderlineHint = {
-        undercurl = true,
-        sp = '#1abc9c',
-        bg = '#102b2a',
-      },
-      DiagnosticUnderlineInfo = {
-        undercurl = true,
-        sp = '#0db9d7',
-        bg = '#192b38',
-      },
+      -- === Render Markdown (Dynamic using 'c') ===
+      RenderMarkdownCode             = { bg = c.selection_inactive },
+      RenderMarkdownCodeBorder       = { bg = c.selection_bg },
+      RenderMarkdownCodeInline       = { fg = c.tag, bg = c.selection_inactive },
+      RenderMarkdownH1               = { fg = c.accent },
+      RenderMarkdownH2               = { fg = c.keyword },
+      RenderMarkdownH3               = { fg = c.markup },
+      RenderMarkdownH4               = { fg = c.entity },
+      RenderMarkdownH5               = { fg = c.regexp },
+      RenderMarkdownH6               = { fg = c.string },
+      RenderMarkdownH1Bg             = { fg = c.bg, bg = c.accent },
+      RenderMarkdownH2Bg             = { fg = c.bg, bg = c.keyword },
+      RenderMarkdownH3Bg             = { fg = c.bg, bg = c.markup },
+      RenderMarkdownH4Bg             = { fg = c.bg, bg = c.entity },
+      RenderMarkdownH5Bg             = { fg = c.bg, bg = c.regexp },
+      RenderMarkdownH6Bg             = { fg = c.bg, bg = c.string },
+
+      -- === TreeSitter Markup (Dynamic using 'c') ===
+      ['@markup.heading']            = { fg = c.keyword, bold = true },
+      ['@markup.heading.1']          = { fg = c.accent,  bold = true },
+      ['@markup.heading.2']          = { fg = c.keyword, bold = true },
+      ['@markup.heading.3']          = { fg = c.markup,  bold = true },
+      ['@markup.heading.4']          = { fg = c.entity,  bold = true },
+      ['@markup.heading.5']          = { fg = c.regexp,  bold = true },
+      ['@markup.heading.6']          = { fg = c.string,  bold = true },
+      ['@markup.strong']             = { fg = c.keyword, bold = true },
+      ['@markup.italic']             = { fg = c.keyword, italic = true },
+      ['@markup.list']               = { fg = c.vcs_added },
+      ['@markup.raw']                = { fg = c.tag, bg = c.selection_inactive },
+      ['@markup.quote']              = { fg = c.constant, italic = true },
     }
 
+    -- 3. Apply all highlights
     for group, opts in pairs(overrides) do
       vim.api.nvim_set_hl(0, group, opts)
     end
