@@ -39,8 +39,16 @@ return {
     { 'S', mode = { 'o' }, function() require('flash').remote() end, desc = 'Flash - Remote Action' },
     { 'S', mode = { 'n' }, function() require("flash").jump({continue = true}) end, desc = 'Flash - Continue' },
     { '<leader>S', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
-    { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash - Treesitter' },
-    { '<leader><S-CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Jump' },
+    { '<CR>', mode = { 'n' }, function()
+        require("flash").treesitter({
+          actions = {
+            ["<CR>"] = "next",
+            ["<S-CR>"] = "prev"
+          }
+        })
+      end, { desc = "Flash - Treesitter incremental selection" }
+    },
+    { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Search' },
 
     { '<leader>Q', mode = { 'n', 'x' }, function() require('flash').jump {
       matcher = function(win)
@@ -80,6 +88,6 @@ return {
         state:restore()
       end,
     } end, desc = 'Flash - Remote Code Action' },
-    { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Flash - Toggle Flash Search' },
+    { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'flash - toggle flash search' },
   },
 }
