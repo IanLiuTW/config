@@ -1,8 +1,9 @@
 return {
   { -- highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    branch = 'master',
     lazy = false,
+    build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -39,7 +40,7 @@ return {
           disable = { 'ruby' },
         },
         incremental_selection = {
-          enable = true,
+          enable = false,
           disable = { 'http', 'markdown' },
           keymaps = {
             init_selection = '<CR>',
@@ -88,7 +89,7 @@ return {
             include_surrounding_whitespace = true,
           },
           swap = {
-            enable = false,
+            enable = true,
             swap_next = {
               ['<leader>dl'] = { query = '@parameter.inner', desc = 'Treesitter - Swap parameter with next' },
             },
@@ -135,7 +136,7 @@ return {
             },
           },
           lsp_interop = {
-            enable = true,
+            enable = false,
             floating_preview_opts = {
               border = 'rounded',
             },
