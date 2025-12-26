@@ -3,8 +3,6 @@ export LC_ALL=en_US.UTF-8
 export TMPDIR=/var/tmp/
 export EDITOR="nvim"  # export EDITOR=$(command -v nvim >/dev/null 2>&1 && echo "nvim" || echo "vim")
 
-set -o vi
-
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
@@ -12,6 +10,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -21,6 +20,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt noclobber
 setopt no_beep
+
+set -o vi
 
 # [Shell] If not in Nix shell, source Homebrew (MacOS)
 if [[ -z "$IN_NIX_SHELL" ]]; then

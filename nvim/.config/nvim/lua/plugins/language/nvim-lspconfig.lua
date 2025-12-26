@@ -103,18 +103,6 @@ return {
     }
 
     -- LSP config
-    vim.lsp.config('basedpyright', {
-      settings = {
-        basedpyright = {
-          analysis = {
-            typeCheckingMode = 'off',
-            autoSearchPaths = true,
-          },
-        },
-      },
-    })
-    vim.lsp.enable 'basedpyright'
-
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
@@ -137,6 +125,13 @@ return {
 
     vim.lsp.config('marksman', {})
     vim.lsp.enable 'marksman'
+
+    vim.lsp.config('ty', {
+      settings = {
+        ty = {},
+      },
+    })
+    vim.lsp.enable 'ty'
 
     vim.lsp.config('nil_ls', {
       settings = {

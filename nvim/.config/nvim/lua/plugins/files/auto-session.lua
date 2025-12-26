@@ -35,7 +35,7 @@ return {
     save_extra_data = nil, -- Function that returns extra data that should be saved with the session. Will be passed to restore_extra_data on restore
     restore_extra_data = nil, -- Function called when there's extra data saved for a session
 
-    show_auto_restore_notif = true, -- Whether to show a notification when auto-restoring
+    show_auto_restore_notif = false, -- Whether to show a notification when auto-restoring
     restore_error_handler = nil, -- Function called when there's an error restoring. By default, it ignores fold and help errors otherwise it displays the error and returns false to disable auto_save. Default handler is accessible as require('auto-session').default_restore_error_handler
     continue_restore_on_error = true, -- Keep loading the session even if there's an error
     lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
