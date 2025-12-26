@@ -155,8 +155,12 @@ local picker_setup = {
         ['j'] = 'list_down',
         ['k'] = 'list_up',
         ['q'] = 'close',
-        [':'] = { 'flash' },
-        ['<c-;>'] = { 'flash', mode = { 'n', 'i' } },
+        ['\''] = { 'flash' },
+        ['<c-\'>'] = { 'flash', mode = { 'n', 'i' } },
+        ['<c-;>'] = {
+          'sidekick_send',
+          mode = { 'n', 'i' },
+        },
       },
       b = {
         minipairs_disable = true,
@@ -321,6 +325,9 @@ local picker_setup = {
           picker.list:_move(idx, true, true)
         end,
       }
+    end,
+    sidekick_send = function(...)
+      return require('sidekick.cli.picker.snacks').send(...)
     end,
   },
 }

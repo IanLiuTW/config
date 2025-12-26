@@ -114,6 +114,22 @@ return {
             end,
           },
           {
+            'copilot',
+            show_colors = true,
+            show_loading = true,
+            symbols = {
+              status = {
+                icons = {
+                  enabled = ' ',
+                  sleep = ' ',
+                  disabled = ' ',
+                  warning = ' ',
+                  unknown = ' ',
+                },
+              },
+            },
+          },
+          {
             function()
               -- Check if MCPHub is loaded
               if not vim.g.loaded_mcphub then
@@ -152,22 +168,6 @@ return {
                 return { fg = '#ff5555' } -- Red for error/stopped
               end
             end,
-          },
-          {
-            'copilot',
-            show_colors = true,
-            show_loading = true,
-            symbols = {
-              status = {
-                icons = {
-                  enabled = ' ',
-                  sleep = ' ',
-                  disabled = ' ',
-                  warning = ' ',
-                  unknown = ' ',
-                },
-              },
-            },
           },
           -- {
           --   function()

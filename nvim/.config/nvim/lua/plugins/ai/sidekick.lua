@@ -18,7 +18,7 @@ return {
         require('sidekick.cli').toggle()
       end,
       desc = 'Sidekick - Toggle CLI',
-      mode = { 'n', 't',  'x' },
+      mode = { 'n', 't', 'x' },
     },
     {
       '<leader>;;',
