@@ -1,16 +1,5 @@
 return {
   'zbirenbaum/copilot.lua',
-  dependencies = {
-    'copilotlsp-nvim/copilot-lsp',
-    init = function()
-      vim.g.copilot_nes_debounce = 500
-    end,
-    opts = {
-      nes = {
-        move_count_threshold = 3,
-      },
-    },
-  },
   cmd = 'Copilot',
   event = 'InsertEnter',
   config = function()
@@ -42,14 +31,6 @@ return {
         layout = {
           position = 'right',
           ratio = 0.4,
-        },
-      },
-      nes = {
-        enabled = true,
-        keymap = {
-          accept_and_goto = '<S-CR>',
-          accept = false,
-          dismiss = '<Esc>',
         },
       },
       filetypes = {

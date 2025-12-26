@@ -37,7 +37,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>y',        group = '[Y] Tasks',              mode = { 'n', 'x' } },
       { '<leader>,',        group = '[,] Settings / Sessions',mode = { 'n', 'x' } },
       { '<leader><leader>', group = '[󱁐] Picker',             mode = { 'n', 'x' } },
-      { '<leader>\'',       group = 'AI - Sidekick',          mode = { 'n', 'x' } },
+      { '<leader>;',        group = 'AI',                     mode = { 'n', 'x' } },
       { '<leader>l',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>h',        group = '(Empty)',                mode = { 'n', 'x' } },
       { '<leader>n',        group = '(Empty)',                mode = { 'n', 'x' } },
