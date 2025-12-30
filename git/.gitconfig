@@ -30,7 +30,7 @@
 [pull]
     rebase = true
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [rebase]
 	autoStash = true
 [rerere]

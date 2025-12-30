@@ -53,7 +53,7 @@
           # System tools - GUI
           aerospace
           jankyborders
-          nerdfetch
+          fastfetch
           dwt1-shell-color-scripts
           ascii-image-converter
           # Programming languages and tools

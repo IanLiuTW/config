@@ -2,7 +2,7 @@ return {
   'rmagatti/auto-session',
   lazy = false,
   keys = {
-    { '<leader>,<leader>', '<cmd>AutoSession search<CR>', desc = 'Auto-Session - Session search' },
+    { '<F2>', '<cmd>AutoSession search<CR>', desc = 'Auto-Session - Session search' },
     { '<leader>,s', '<cmd>AutoSession save<CR>', desc = 'Auto-Session - Save session' },
     { '<leader>,S', '<cmd>AutoSession toggle<CR>', desc = 'Auto-Session - Toggle autosave' },
   },
@@ -44,8 +44,8 @@ return {
       picker = 'snacks',
       mappings = {
         delete_session = { { 'i', 'n' }, '<C-x>' },
-        alternate_session = { { 'i', 'n' }, '<C-r>' },
-        copy_session = { { 'i', 'n' }, '<C-y>' },
+        alternate_session = { { 'i', 'n' }, '<C-.>' },
+        copy_session = { { 'i', 'n' }, '<C-a>' },
       },
     },
   },

@@ -58,7 +58,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<leader>x',       '<Cmd>VirtualLinesToggle<CR>',                 desc = 'User Command - Virtual Lines Toggle' },
         -- Plugin keybindings
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Lazy - Open Menu' },
-        { '<leader>,u',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
+        { '<leader>,<',      '<Cmd>Lazy update<CR>',                        desc = 'Lazy - Update Plugins' },
         { '<leader>,.',      '<cmd>Mason<CR>',                              desc = 'Mason - Open Menu' },
         { '<leader>,/',      '<cmd>MCPHub<CR>',                             desc = 'MCPHub - Open Menu' },
         -- Buffer keybindings

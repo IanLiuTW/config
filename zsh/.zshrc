@@ -1,8 +1,12 @@
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 export LC_ALL=en_US.UTF-8
 export TMPDIR=/var/tmp/
-export EDITOR="nvim"  # export EDITOR=$(command -v nvim >/dev/null 2>&1 && echo "nvim" || echo "vim")
+export EDITOR="nvim"
 
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
+setopt hist_save_no_dups hist_ignore_dups hist_find_no_dups noclobber no_beep
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
@@ -11,79 +15,53 @@ HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-setopt noclobber
-setopt no_beep
-
-set -o vi
-
-# [Shell] If not in Nix shell, source Homebrew (MacOS)
 if [[ -z "$IN_NIX_SHELL" ]]; then
-  if [[ -f "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
+    if [[ -d "/opt/homebrew" ]]; then
+        export HOMEBREW_PREFIX="/opt/homebrew"
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+        export HOMEBREW_REPOSITORY="/opt/homebrew"
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+        export MANPATH="/opt/homebrew/share/man:$MANPATH"
+        export INFOPATH="/opt/homebrew/share/info:$INFOPATH"
+    fi
 fi
-# Nix home-manager
+
 USER_PROFILE_FILE="~/.nix-profile/etc/profile.d/hm-session-vars.sh"
-if [ -f "$USER_PROFILE_FILE" ]; then
-    source "$USER_PROFILE_FILE"
-fi
+[ -f "$USER_PROFILE_FILE" ] && source "$USER_PROFILE_FILE"
 
-# [Shell] Dynamically sets the terminal title to the current directory and command
-DISABLE_AUTO_TITLE="true"
-function set_terminal_title() {
-  if [[ -n "$1" ]]; then
-    print -Pn "\e]0;$PWD:t | $1\a"
-  else
-    print -Pn "\e]0;$PWD:t\a"
-  fi
-}
-function preexec() { set_terminal_title "$1"; }
-function precmd() { set_terminal_title; }
-set_terminal_title
-
-# [Plugins] Manager - zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-# Unalias zi since it's used for zoxide
 unalias zi 2>/dev/null
-autoload -Uz compinit
-compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
 
-# [Plugins] Basics
+autoload -Uz compinit
+if [[ -n "${XDG_CACHE_HOME}/zcompdump"(#qN.mh+24) ]]; then
+  compinit -d "${XDG_CACHE_HOME}/zcompdump" -C
+else
+  compinit -d "${XDG_CACHE_HOME}/zcompdump"
+fi
+
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
 zinit ice wait"0" lucid
-zinit light zsh-users/zsh-syntax-highlighting
-zinit ice wait"0" lucid
 zinit light zsh-users/zsh-completions
-zinit ice wait"1" lucid
-zinit light Aloxaf/fzf-tab
-# [Plugins] vi mode
-# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# zinit ice depth=1 wait"1" lucid
-# zinit light jeffreytse/zsh-vi-mode
-# [Plugins] OMZ's
 zinit ice wait"0" lucid
 zinit snippet OMZP::sudo
 zinit ice wait"0" lucid
 zinit snippet OMZP::command-not-found
-# zinit snippet OMZP::archlinux
-# zinit snippet OMZP::kubectl
-# zinit snippet OMZP::kubectx
-# zinit snippet OMZP::aws
-# [Plugins] Loading up
+zinit ice wait"0" lucid
+zinit light Aloxaf/fzf-tab
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-syntax-highlighting
+
+bindkey ' ' magic-space
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -92,32 +70,33 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':fzf-tab:*' prefix ''
 zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
 zstyle ':fzf-tab:*' accept-line 'ctrl-y'
-# zstyle ':fzf-tab:*' accept-line enter
-zstyle ':fzf-tab:*' worker 0  # disable async loading for better performance
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
 zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
+zstyle ':fzf-tab:*' worker 0 
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
 zinit cdreplay -q
 
-# [Prompt]
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-# [Shell] Integrations
-# zoxide
 eval "$(zoxide init zsh)"
-# fzf
 export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
 source <(fzf --zsh)
-# devpod
-if command -v devpod &> /dev/null; then
-    source <(devpod completion zsh)
-fi
 
-# [Program] Yazi - Sets `y` to run yazi; Use `q` to move CWD and `Q` to not to
+# if command -v devpod &> /dev/null; then
+#     source <(devpod completion zsh)
+# fi
+
+function set_terminal_title() {
+  print -Pn "\e]0;${PWD:t} ${1:+| $1}\a"
+}
+function preexec() { set_terminal_title "$1"; }
+function precmd() { set_terminal_title; }
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -150,6 +129,7 @@ alias kc="kubectl"
 alias bt="bpytop"
 alias po="posting"
 alias ssh="TERM=xterm-256color ssh"
+alias ff="fastfetch -c all"
 # [Alias] Navigation
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -202,8 +182,4 @@ alias ge='gemini'
 alias co='codex'
 alias cl='claude'
 
-# [Environment] Load local environment variables
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-
-# [Commands] Start
-nerdfetch
