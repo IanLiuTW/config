@@ -1,29 +1,29 @@
 -- vim.api.nvim_create_autocmd('Colorscheme', {
 --   group = vim.api.nvim_create_augroup('config_custom_highlights_barbar', {}),
 --   callback = function()
-    -- Override colorscheme settings before the colorscheme 'load()' call
-    -- local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
+-- Override colorscheme settings before the colorscheme 'load()' call
+-- local tablinesel_hl = vim.api.nvim_get_hl(0, { name = 'TabLineFill' })
 
-    -- vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
-    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-    --   fg = '#7EA662',
-    -- })
-    -- vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
-    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-    --   fg = '#4FA6ED',
-    -- })
-    -- vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
-    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-    --   fg = '#E55561',
-    -- })
-    -- vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
-    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-    --   fg = '#7EA662',
-    -- })
-    -- vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
-    --   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
-    --   fg = '#7EA662',
-    -- })
+-- vim.api.nvim_set_hl(0, 'BufferCurrentADDED', {
+--   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+--   fg = '#7EA662',
+-- })
+-- vim.api.nvim_set_hl(0, 'BufferCurrentCHANGED', {
+--   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+--   fg = '#4FA6ED',
+-- })
+-- vim.api.nvim_set_hl(0, 'BufferCurrentDELETED', {
+--   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+--   fg = '#E55561',
+-- })
+-- vim.api.nvim_set_hl(0, 'BufferCurrentERROR', {
+--   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+--   fg = '#7EA662',
+-- })
+-- vim.api.nvim_set_hl(0, 'BufferCurrentHINT', {
+--   bg = tablinesel_hl.bg and string.format('#%06x', tablinesel_hl.bg),
+--   fg = '#7EA662',
+-- })
 --   end,
 -- })
 
@@ -71,7 +71,7 @@ return {
     animation = false,
     focus_on_close = 'left',
     icons = {
-      buffer_index = true,
+      buffer_index = 'superscript',
       buffer_number = false,
       button = '󰅙',
       diagnostics = {
@@ -85,11 +85,13 @@ return {
         changed = { enabled = true, icon = '~' },
         deleted = { enabled = true, icon = '-' },
       },
-      separator = { left = '█', right = '' },
+      separator = { left = '▎', right = '' },
       modified = { button = '󱗽' },
       pinned = { button = '', filename = true },
       current = { buffer_index = false },
       inactive = { button = '󰅚' },
     },
+    maximum_padding = 2,
+    minimum_padding = 1,
   },
 }

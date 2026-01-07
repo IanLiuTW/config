@@ -154,12 +154,12 @@ return {
       vim.keymap.set('n', '<leader>,I', '<cmd>TSToggle indent<cr>', { desc = 'Treesitter - Toggle Indent' })
     end,
   },
-  {
-    'nvim-treesitter/nvim-treesitter-context',
-    event = 'bufread',
-    opts = { multiline_threshold = 1 },
-    keys = {
-      { '<leader>,X', '<cmd>TSContextToggle<cr>', desc = 'Treesitter - Toggle Context' },
-    },
-  },
+  -- {
+  --   'nvim-treesitter/nvim-treesitter-context',
+  --   event = 'bufread',
+  --   opts = { multiline_threshold = 1 },
+  --   keys = {
+  --     { '<leader>,X', '<cmd>TSContextToggle<cr>', desc = 'Treesitter - Toggle Context' },
+  --   },
+  -- },
 }

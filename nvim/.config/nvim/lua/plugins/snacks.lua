@@ -383,18 +383,18 @@ return {
       chunk = {
         -- when enabled, scopes will be rendered as chunks, except for the
         -- top-level scope which will be rendered as a scope.
-        enabled = false,
+        enabled = true,
         -- only show chunk scopes in the current window
         only_current = false,
         hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
         char = {
-          corner_top = '┌',
-          corner_bottom = '└',
-          -- corner_top = "╭",
-          -- corner_bottom = "╰",
+          -- corner_top = '┌',
+          -- corner_bottom = '└',
+          corner_top = "╭",
+          corner_bottom = "╰",
           horizontal = '─',
           vertical = '│',
-          arrow = '>',
+          arrow = '─',
         },
       },
       blank = {
@@ -570,7 +570,7 @@ return {
     { '<leader>bB', function() Snacks.scratch.select() end, desc = 'Scratch - Select Scratch Buffer' },
     -- Git
     { '<leader>g<CR>', function() Snacks.gitbrowse() end, desc = 'Git - Browse' },
-    { '<leader>g<S-CR>', function() Snacks.gitbrowse({branch = "main"}) end, desc = 'Git - Browse (main)' },
+    { '<leader>g<S-CR>', function() Snacks.gitbrowse({branch = "master"}) end, desc = 'Git - Browse (master)' },
     { "<leader>cb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     -- Notifier
     { '<BS>', function() Snacks.notifier.hide() end, desc = 'Notifier - Dismiss All' },

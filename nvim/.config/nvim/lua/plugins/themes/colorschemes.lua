@@ -11,18 +11,18 @@ vim.api.nvim_create_autocmd('Colorscheme', {
     end
 
     local c = {
-      bg                 = color('Normal', 'bg'),
-      accent             = color('Special', 'fg'),      -- Teal/Blue
-      keyword            = color('Keyword', 'fg'),      -- Purple/Red
-      markup             = color('String', 'fg'),       -- Green
-      entity             = color('Constant', 'fg'),     -- Orange
-      regexp             = color('SpecialChar', 'fg'),  -- Pink/Red
-      string             = color('String', 'fg'),
-      tag                = color('Function', 'fg'),
-      constant           = color('Constant', 'fg'),
-      vcs_added          = color('DiffAdd', 'bg'),      -- Greenish
-      selection_bg       = color('Visual', 'bg'),       -- Selection
-      selection_inactive = color('CursorLine', 'bg'),   -- Subtle background
+      bg = color('Normal', 'bg'),
+      accent = color('Special', 'fg'), -- Teal/Blue
+      keyword = color('Keyword', 'fg'), -- Purple/Red
+      markup = color('String', 'fg'), -- Green
+      entity = color('Constant', 'fg'), -- Orange
+      regexp = color('SpecialChar', 'fg'), -- Pink/Red
+      string = color('String', 'fg'),
+      tag = color('Function', 'fg'),
+      constant = color('Constant', 'fg'),
+      vcs_added = color('DiffAdd', 'bg'), -- Greenish
+      selection_bg = color('Visual', 'bg'), -- Selection
+      selection_inactive = color('CursorLine', 'bg'), -- Subtle background
     }
 
     -- 2. Define your overrides
@@ -48,35 +48,35 @@ vim.api.nvim_create_autocmd('Colorscheme', {
       DiagnosticUnderlineInfo = { undercurl = true, sp = '#0db9d7', bg = '#192b38' },
 
       -- === Render Markdown (Dynamic using 'c') ===
-      RenderMarkdownCode             = { bg = c.selection_inactive },
-      RenderMarkdownCodeBorder       = { bg = c.selection_bg },
-      RenderMarkdownCodeInline       = { fg = c.tag, bg = c.selection_inactive },
-      RenderMarkdownH1               = { fg = c.accent },
-      RenderMarkdownH2               = { fg = c.keyword },
-      RenderMarkdownH3               = { fg = c.markup },
-      RenderMarkdownH4               = { fg = c.entity },
-      RenderMarkdownH5               = { fg = c.regexp },
-      RenderMarkdownH6               = { fg = c.string },
-      RenderMarkdownH1Bg             = { fg = c.bg, bg = c.accent },
-      RenderMarkdownH2Bg             = { fg = c.bg, bg = c.keyword },
-      RenderMarkdownH3Bg             = { fg = c.bg, bg = c.markup },
-      RenderMarkdownH4Bg             = { fg = c.bg, bg = c.entity },
-      RenderMarkdownH5Bg             = { fg = c.bg, bg = c.regexp },
-      RenderMarkdownH6Bg             = { fg = c.bg, bg = c.string },
+      RenderMarkdownCode = { bg = c.selection_inactive },
+      RenderMarkdownCodeBorder = { bg = c.selection_bg },
+      RenderMarkdownCodeInline = { fg = c.tag, bg = c.selection_inactive },
+      RenderMarkdownH1 = { fg = c.accent },
+      RenderMarkdownH2 = { fg = c.keyword },
+      RenderMarkdownH3 = { fg = c.markup },
+      RenderMarkdownH4 = { fg = c.entity },
+      RenderMarkdownH5 = { fg = c.regexp },
+      RenderMarkdownH6 = { fg = c.string },
+      RenderMarkdownH1Bg = { fg = c.bg, bg = c.accent },
+      RenderMarkdownH2Bg = { fg = c.bg, bg = c.keyword },
+      RenderMarkdownH3Bg = { fg = c.bg, bg = c.markup },
+      RenderMarkdownH4Bg = { fg = c.bg, bg = c.entity },
+      RenderMarkdownH5Bg = { fg = c.bg, bg = c.regexp },
+      RenderMarkdownH6Bg = { fg = c.bg, bg = c.string },
 
       -- === TreeSitter Markup (Dynamic using 'c') ===
-      ['@markup.heading']            = { fg = c.keyword, bold = true },
-      ['@markup.heading.1']          = { fg = c.accent,  bold = true },
-      ['@markup.heading.2']          = { fg = c.keyword, bold = true },
-      ['@markup.heading.3']          = { fg = c.markup,  bold = true },
-      ['@markup.heading.4']          = { fg = c.entity,  bold = true },
-      ['@markup.heading.5']          = { fg = c.regexp,  bold = true },
-      ['@markup.heading.6']          = { fg = c.string,  bold = true },
-      ['@markup.strong']             = { fg = c.keyword, bold = true },
-      ['@markup.italic']             = { fg = c.keyword, italic = true },
-      ['@markup.list']               = { fg = c.vcs_added },
-      ['@markup.raw']                = { fg = c.tag, bg = c.selection_inactive },
-      ['@markup.quote']              = { fg = c.constant, italic = true },
+      ['@markup.heading'] = { fg = c.keyword, bold = true },
+      ['@markup.heading.1'] = { fg = c.accent, bold = true },
+      ['@markup.heading.2'] = { fg = c.keyword, bold = true },
+      ['@markup.heading.3'] = { fg = c.markup, bold = true },
+      ['@markup.heading.4'] = { fg = c.entity, bold = true },
+      ['@markup.heading.5'] = { fg = c.regexp, bold = true },
+      ['@markup.heading.6'] = { fg = c.string, bold = true },
+      ['@markup.strong'] = { fg = c.keyword, bold = true },
+      ['@markup.italic'] = { fg = c.keyword, italic = true },
+      ['@markup.list'] = { fg = c.vcs_added },
+      ['@markup.raw'] = { fg = c.tag, bg = c.selection_inactive },
+      ['@markup.quote'] = { fg = c.constant, italic = true },
     }
 
     -- 3. Apply all highlights
@@ -112,45 +112,69 @@ return {
     },
   },
   {
-    'rebelot/kanagawa.nvim',
-    name = 'kanagawa',
+    'serhez/teide.nvim',
     lazy = false,
+    priority = 1000,
     opts = {
+      style = 'storm',
       transparent = true,
-      commentStyle = { italic = true },
-      functionStyle = { bold = true },
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = { italic = true, bold = true },
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = 'none',
-            },
-          },
-        },
+      terminal_colors = true,
+      lualine_bold = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = { bold = true },
+        variables = {},
+        sidebars = 'dark',
+        floats = 'dark',
       },
-      overrides = function(colors)
-        local theme = colors.theme
-        local makeDiagnosticColor = function(color)
-          local c = require 'kanagawa.lib.color'
-          return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
-        end
-
-        return {
-          DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
-          DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
-          DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
-          DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
-
-          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-        }
+      on_colors = function(colors)
+        -- colors.hint = colors.orange
+        colors.error = '#ff0000'
       end,
+      on_highlights = function(hl, c) end,
     },
   },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   name = 'kanagawa',
+  --   lazy = false,
+  --   opts = {
+  --     transparent = true,
+  --     commentStyle = { italic = true },
+  --     functionStyle = { bold = true },
+  --     keywordStyle = { italic = true },
+  --     statementStyle = { bold = true },
+  --     typeStyle = { italic = true, bold = true },
+  --     colors = {
+  --       theme = {
+  --         all = {
+  --           ui = {
+  --             bg_gutter = 'none',
+  --           },
+  --         },
+  --       },
+  --     },
+  --     overrides = function(colors)
+  --       local theme = colors.theme
+  --       local makeDiagnosticColor = function(color)
+  --         local c = require 'kanagawa.lib.color'
+  --         return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
+  --       end
+  --
+  --       return {
+  --         DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
+  --         DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
+  --         DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
+  --         DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
+  --
+  --         NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+  --         LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+  --         MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+  --       }
+  --     end,
+  --   },
+  -- },
   -- {
   --   'catppuccin/nvim',
   --   name = 'catppuccin',

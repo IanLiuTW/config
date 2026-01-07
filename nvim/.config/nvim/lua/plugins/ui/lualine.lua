@@ -181,11 +181,11 @@ return {
         },
         lualine_z = {
           -- { 'datetime', style = ' %H:%M:%S' },
-          {
-            require('noice').api.status.command.get,
-            cond = require('noice').api.status.command.has,
-            color = { fg = 'black' },
-          },
+          -- {
+          --   require('noice').api.status.command.get,
+          --   cond = require('noice').api.status.command.has,
+          --   color = { fg = 'black' },
+          -- },
         },
       },
       extensions = {
