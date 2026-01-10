@@ -185,24 +185,24 @@ return {
     mappings = {
       commit_editor = {
         ['q'] = 'Close',
-        ['<c-y>'] = 'Submit',
+        ['<c-cr>'] = 'Submit',
         ['<c-q>'] = 'Abort',
         ['<c-p>'] = 'PrevMessage',
         ['<c-n>'] = 'NextMessage',
         ['<c-r>'] = 'ResetMessage',
       },
       commit_editor_I = {
-        ['<c-y>'] = 'Submit',
+        ['<c-cr>'] = 'Submit',
         ['<c-q>'] = 'Abort',
       },
       rebase_editor = {
-        ['<c-y>'] = 'Submit',
+        ['<c-cr>'] = 'Submit',
         ['<c-q>'] = 'Abort',
         ['<c-b>'] = 'OpenOrScrollUp',
         ['<c-f>'] = 'OpenOrScrollDown',
       },
       rebase_editor_I = {
-        ['<c-y>'] = 'Submit',
+        ['<c-cr>'] = 'Submit',
         ['<c-q>'] = 'Abort',
       },
       status = {

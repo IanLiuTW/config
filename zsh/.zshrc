@@ -55,6 +55,11 @@ zinit light Aloxaf/fzf-tab
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 zinit ice wait"0" lucid
+
+function zvm_after_init() {
+  zvm_bindkey viins '^y' autosuggest-accept
+}
+
 zinit light zsh-users/zsh-syntax-highlighting
 
 bindkey ' ' magic-space
@@ -69,10 +74,9 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':fzf-tab:*' prefix ''
 zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
-zstyle ':fzf-tab:*' accept-line 'ctrl-y'
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=ctrl-y:accept
 zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
 zstyle ':fzf-tab:*' worker 0 
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
