@@ -92,8 +92,6 @@
           # AI tools
           gemini-cli
           # Applications
-          raycast
-          obsidian
           discord
         ];
 
@@ -120,6 +118,7 @@
             "hammerspoon"
             "stats"
             "jordanbaird-ice@beta"
+            "raycast"
             # Web browsers
             "brave-browser"
             "google-chrome"
@@ -150,18 +149,18 @@
             "tunnelblick"
             "citrix-workspace"
           ];
-          masApps = {
-            # Microsoft suite
-            "Outlook" = 985367838;
-            "Word" = 462054704;
-            "Excel" = 462058435;
-            "PowerPoint" = 462062816;
-            # Communication
-            "Slack" = 803453959;
-            "Line" = 539883307;
-            # VPN
-            "Hotspot Shield" = 771076721;
-          };
+          # masApps = {
+          #   # Microsoft suite
+          #   "Outlook" = 985367838;
+          #   "Word" = 462054704;
+          #   "Excel" = 462058435;
+          #   "PowerPoint" = 462062816;
+          #   # Communication
+          #   "Slack" = 803453959;
+          #   "Line" = 539883307;
+          #   # VPN
+          #   "Hotspot Shield" = 771076721;
+          # };
           onActivation.cleanup = "zap"; # remove unused packages, can be removed if erring.
           onActivation.autoUpdate = true;
           onActivation.upgrade = true;

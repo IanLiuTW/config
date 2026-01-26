@@ -8,7 +8,7 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
   },
-  event = 'BufReadPre',
+  event = 'BufRead',
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
@@ -30,7 +30,7 @@ return {
       { '<F8>',          dap.step_out,                                                                                   desc = 'Debug: Step Out' },
       { '<F9>',          dap.step_back,                                                                                  desc = 'Debug: Step Back' },
       { '<F10>',         dap.run_last,                                                                                   desc = 'Debug: Run Last' },
-      { '<F11>',         dap.terminate,                                                                                  desc = 'Debug: Terminate' },
+      { '<F11>',         dap.terminate,                                                                                  desc = 'Debug: Stop' },
       { '<F12>',         dap.restart,                                                                                    desc = 'Debug: Restart' },
       unpack(keys),
     }
