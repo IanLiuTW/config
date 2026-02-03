@@ -1,7 +1,7 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   lazy = true,
-  ft = { 'markdown', 'Avante', 'md' },
+  ft = { 'markdown', 'md', 'AgenticChat' },
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
@@ -10,7 +10,7 @@ return {
     { '<leader>V', '<cmd>RenderMarkdown debug<cr>', desc = 'Render Markdown - Toggle Markview' },
   },
   opts = {
-    file_types = { 'markdown', 'Avante', 'md' },
+    file_types = { 'markdown', 'md', 'AgenticChat' },
     render_modes = { 'n', 'no', 'c', 't', 'i', 'ic' },
     code = {
       sign = false,

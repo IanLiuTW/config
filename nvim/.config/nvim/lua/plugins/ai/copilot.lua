@@ -53,8 +53,17 @@ return {
         help = false,
         ['.'] = false,
       },
+      -- Custom should_attach function to enable Copilot in AgenticInput buffers
+      should_attach = function(bufnr, bufname)
+        local filetype = vim.bo[bufnr].filetype
+        if filetype == 'AgenticInput' then
+          return true
+        end
+        local default_should_attach = require('copilot.config.should_attach').default
+        return default_should_attach(bufnr, bufname)
+      end,
     }
   end,
-  vim.keymap.set('n', "<leader>;<Up>", '<Cmd>Copilot enable<CR>'),
-  vim.keymap.set('n', "<leader>;<Down>", '<Cmd>Copilot disable<CR>'),
+  vim.keymap.set('n', '<leader>;<Up>', '<Cmd>Copilot enable<CR>'),
+  vim.keymap.set('n', '<leader>;<Down>', '<Cmd>Copilot disable<CR>'),
 }

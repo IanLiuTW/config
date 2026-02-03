@@ -64,7 +64,6 @@
           python314
           uv
           pyenv
-          swift
           # CLI tools
           neovim
           starship

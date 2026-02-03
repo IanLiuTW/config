@@ -13,7 +13,7 @@ return {
       desc = 'Sidekick - Goto/Apply Next Edit Suggestion',
     },
     {
-      '<leader>:',
+      '<leader>;;',
       function()
         require('sidekick.cli').toggle()
       end,
@@ -21,7 +21,7 @@ return {
       mode = { 'n', 't', 'x' },
     },
     {
-      '<leader>;;',
+      '<leader>;/',
       function()
         require('sidekick.cli').select()
       end,

@@ -13,6 +13,10 @@ return {
           statusline = 100,
         },
       },
+      disabled_filetypes = {
+        statusline = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
+        winbar = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
+      },
       sections = {
         lualine_a = {
           { 'fancy_mode', width = 3 },
