@@ -17,7 +17,7 @@ return {
         submit = {
           '<CR>', -- Normal mode, just Enter
           {
-            '<S-CR>',
+            '<C-CR>',
             mode = { 'n', 'v', 'i' },
           },
         },
