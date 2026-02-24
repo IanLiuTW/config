@@ -18,8 +18,8 @@ return {
       ['<Tab>'] = { 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
-      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      ['<s-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-s-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 
       ['<C-1>'] = {
         function(cmp)

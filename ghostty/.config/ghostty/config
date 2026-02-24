@@ -16,7 +16,7 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
-background-opacity = 0.90
+background-opacity = 1
 background-blur-radius = 30
 window-colorspace = display-p3
 window-theme = ghostty

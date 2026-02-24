@@ -3,10 +3,10 @@ return {
   opts = {},
   keys = {
     {
-      '<S-CR>',
+      '<C-CR>',
       function()
         if not require('sidekick').nes_jump_or_apply() then
-          return '<S-CR>'
+          return '<C-CR>'
         end
       end,
       expr = true,
@@ -71,6 +71,13 @@ return {
         require('sidekick.cli').toggle { name = 'gemini', focus = true }
       end,
       desc = 'Sidekick - Sidekick Toggle Gemini',
+    },
+    {
+      '<leader>;c',
+      function()
+        require('sidekick.cli').toggle { name = 'claude', focus = true }
+      end,
+      desc = 'Sidekick - Sidekick Toggle Claude',
     },
   },
 }

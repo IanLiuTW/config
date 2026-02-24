@@ -36,7 +36,7 @@ return {
         -- Search and References
         -- Code Actions and Help
         -- map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' }) -- using tiny-code-action.nvim
-        map('<c-k>', vim.lsp.buf.signature_help, 'Signature Help', { 'i', 'n', 'x', 's' })
+        map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature Help', { 'i', 'n', 'x', 's' })
 
         -- Information
         map('<Leader>,l', '<cmd>LspInfo<cr>', 'LSP Info')

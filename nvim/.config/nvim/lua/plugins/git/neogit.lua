@@ -4,6 +4,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- 'sindrets/diffview.nvim',
+    "esmuellert/codediff.nvim",
     'folke/snacks.nvim',
   },
   keys = {
@@ -133,8 +134,10 @@ return {
     },
     integrations = {
       diffview = false,
+      codediff = true,
       snacks = true,
     },
+    diff_viewer = "codediff",
     sections = {
       -- Reverting/Cherry Picking
       sequencer = {

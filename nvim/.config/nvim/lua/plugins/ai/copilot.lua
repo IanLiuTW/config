@@ -22,7 +22,7 @@ return {
         enabled = true,
         auto_refresh = false,
         keymap = {
-          open = '<C-CR>',
+          open = '<S-CR>',
           accept = '<CR>',
           jump_prev = '<C-p>',
           jump_next = '<C-n>',
@@ -53,14 +53,13 @@ return {
         help = false,
         ['.'] = false,
       },
-      -- Custom should_attach function to enable Copilot in AgenticInput buffers
-      should_attach = function(bufnr, bufname)
-        local filetype = vim.bo[bufnr].filetype
-        if filetype == 'AgenticInput' then
-          return true
+      should_attach = function(bufnr)
+        -- Disable for buffers with no filetype or special buftypes
+        local buftype = vim.api.nvim_get_option_value('buftype', { buf = bufnr })
+        if buftype == 'nofile' or buftype == 'prompt' then
+          return false
         end
-        local default_should_attach = require('copilot.config.should_attach').default
-        return default_should_attach(bufnr, bufname)
+        return true
       end,
     }
   end,

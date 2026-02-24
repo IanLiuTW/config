@@ -12,10 +12,10 @@ return {
         refresh = {
           statusline = 100,
         },
-      },
-      disabled_filetypes = {
-        statusline = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
-        winbar = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
+        disabled_filetypes = {
+          statusline = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
+          winbar = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
+        },
       },
       sections = {
         lualine_a = {

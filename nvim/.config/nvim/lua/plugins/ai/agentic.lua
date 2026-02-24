@@ -2,13 +2,20 @@ return {
   'carlos-algms/agentic.nvim',
   opts = {
     -- Available by default: "claude-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "auggie-acp"
-    provider = 'gemini-acp', -- setting the name here is all you need to get started
+    provider = 'claude-acp', -- setting the name here is all you need to get started
+    acp_providers = {
+      ['claude-acp'] = {
+        name = 'Claude ACP',
+        command = 'claude-code-acp',
+        env = {},
+      },
+    },
     keymaps = {
       widget = {
         close = 'q', -- String for a single keybinding
         change_mode = {
           {
-            '<leader>;m',
+            '<s-tab>', -- Same as Claude-code in insert mode
             mode = { 'i', 'n', 'v' },
           },
         },
@@ -28,6 +35,12 @@ return {
           },
           {
             '<C-v>', -- Same as Claude-code in insert mode
+            mode = { 'i' },
+          },
+        },
+        accept_completion = {
+          {
+            '<c-y>',
             mode = { 'i' },
           },
         },
@@ -58,7 +71,7 @@ return {
         require('agentic').add_selection_or_file_to_context()
       end,
       mode = { 'n', 'v' },
-      desc = 'Add file or selection to Agentic to Context',
+      desc = 'Agentic - Add file/selection to context',
     },
     {
       '<leader>;n',
@@ -66,7 +79,25 @@ return {
         require('agentic').new_session()
       end,
       mode = { 'n', 'v' },
-      desc = 'New Agentic Session',
+      desc = 'Agentic - New agentic session',
+    },
+    {
+      '<leader>;r',
+      function()
+        require('agentic').restore_session()
+      end,
+      desc = 'Agentic - Restore session',
+      silent = true,
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>;s',
+      function()
+        require('agentic').stop_generation()
+      end,
+      desc = 'Agentic - Stop generation',
+      silent = true,
+      mode = { 'n', 'v' },
     },
   },
 }
