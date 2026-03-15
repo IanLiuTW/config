@@ -7,10 +7,15 @@ font-family = Victor Mono
 # font-family = CodeNewRoman Nerd Font
 font-size = 16
 font-thicken = true
-bold-is-bright = true
+font-feature = calt
+font-feature = liga
 adjust-cell-width = 0
 adjust-cell-height = -1
 adjust-underline-position = -1
+
+unfocused-split-opacity = 0.5
+window-padding-balance = true
+link-url = true
 
 cursor-style = block
 cursor-style-blink = false
@@ -18,13 +23,13 @@ mouse-hide-while-typing = true
 
 background-opacity = 1
 background-blur-radius = 30
-window-colorspace = display-p3
 window-theme = ghostty
 theme = Dark Modern
 custom-shader = ./shaders/cursor_blaze_orange_ian.glsl
 
 quick-terminal-position = bottom
-quick-terminal-size = 95%
+quick-terminal-size = 80%
+quick-terminal-screen = main
 quick-terminal-animation-duration = 0.05
 quick-terminal-autohide = true
 
@@ -35,7 +40,7 @@ macos-option-as-alt = true
 # macos-icon = custom-style
 # macos-icon-frame = chrome
 
-auto-update = off
+auto-update = check
 auto-update-channel = tip
 
 working-directory = home
@@ -43,7 +48,7 @@ window-inherit-working-directory = true
 window-inherit-font-size = true
 window-save-state = always
 quit-after-last-window-closed = true
-gtk-single-instance = true
+grapheme-width-method = unicode
 
 copy-on-select = clipboard
 clipboard-trim-trailing-spaces = true

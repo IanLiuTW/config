@@ -58,6 +58,7 @@ zinit ice wait"0" lucid
 
 function zvm_after_init() {
   zvm_bindkey viins '^y' autosuggest-accept
+  source <(fzf --zsh)
 }
 
 zinit light zsh-users/zsh-syntax-highlighting
@@ -89,7 +90,6 @@ zinit light starship/starship
 
 eval "$(zoxide init zsh)"
 export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
-source <(fzf --zsh)
 
 # if command -v devpod &> /dev/null; then
 #     source <(devpod completion zsh)
@@ -123,7 +123,7 @@ alias b="bat"
 alias m="make"
 alias j="just"
 alias d="docker"
-alias du="colima start"
+alias du="colima start --memory 6"
 alias dd="colima stop"
 alias p="podman"
 alias dp="devpod"

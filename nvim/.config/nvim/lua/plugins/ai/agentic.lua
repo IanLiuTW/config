@@ -1,5 +1,10 @@
 return {
   'carlos-algms/agentic.nvim',
+  dependencies = {
+    {
+      'hakonharnes/img-clip.nvim',
+    },
+  },
   opts = {
     -- Available by default: "claude-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "auggie-acp"
     provider = 'claude-acp', -- setting the name here is all you need to get started
@@ -30,12 +35,8 @@ return {
         },
         paste_image = {
           {
-            '<leader>p',
-            mode = { 'n' },
-          },
-          {
-            '<C-v>', -- Same as Claude-code in insert mode
-            mode = { 'i' },
+            '<C-v>',
+            mode = { 'n', 'i' }, -- Same as Claude-code in insert mode
           },
         },
         accept_completion = {

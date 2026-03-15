@@ -4,89 +4,79 @@ float getSdfRectangle(in vec2 p, in vec2 xy, in vec2 b)
     return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
 }
 
-vec2 normalize(vec2 value, float isPosition) {
+vec2 toNorm(vec2 value, float isPosition) {
     return (value * 2.0 - (iResolution.xy * isPosition)) / iResolution.y;
-}
-
-float antialising(float distance) {
-    return 1. - smoothstep(0., normalize(vec2(2., 2.), 0.).x, distance);
-}
-
-vec2 getRectangleCenter(vec4 rectangle) {
-    return vec2(rectangle.x + (rectangle.z / 2.), rectangle.y - (rectangle.w / 2.));
 }
 
 float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
+// Distance from point p to line segment ab
+float distToSegment(vec2 p, vec2 a, vec2 b) {
+    vec2 ab = b - a;
+    float t = clamp(dot(p - a, ab) / dot(ab, ab), 0.0, 1.0);
+    return distance(p, a + t * ab);
+}
+
+// Returns how far along the segment (0=a, 1=b) the closest point is
+float projOnSegment(vec2 p, vec2 a, vec2 b) {
+    vec2 ab = b - a;
+    return clamp(dot(p - a, ab) / dot(ab, ab), 0.0, 1.0);
+}
+
 const vec4 TRAIL_COLOR = vec4(1.0, 0.725, 0.161, 1.0);
 const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
-const float DURATION = 0.1; // Trail duration in seconds
-const float TRAIL_WIDTH = 0.01; // Trail thickness
-const int TRAIL_SEGMENTS = 300; // Number of trail segments
-const float MIN_TRAIL_DISTANCE = 0.2; // Minimum distance to show trail
+const float DURATION = 0.25;
+const float TRAIL_WIDTH = 0.025;
+const float MIN_TRAIL_DISTANCE = 0.2;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
     #if !defined(WEB)
     fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
     #endif
-    
-    // Normalization for fragCoord to a space of -1 to 1;
-    vec2 vu = normalize(fragCoord, 1.);
+
+    vec2 vu = toNorm(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
-    
-    // Normalization for cursor position and size;
-    // cursor xy has the postion in a space of -1 to 1;
-    // zw has the width and height
-    vec4 currentCursor = vec4(normalize(iCurrentCursor.xy, 1.), normalize(iCurrentCursor.zw, 0.));
-    vec4 previousCursor = vec4(normalize(iPreviousCursor.xy, 1.), normalize(iPreviousCursor.zw, 0.));
-    
-    vec2 centerCC = getRectangleCenter(currentCursor);
-    vec2 centerCP = getRectangleCenter(previousCursor);
-    
+
+    vec4 currentCursor = vec4(toNorm(iCurrentCursor.xy, 1.), toNorm(iCurrentCursor.zw, 0.));
+    vec4 previousCursor = vec4(toNorm(iPreviousCursor.xy, 1.), toNorm(iPreviousCursor.zw, 0.));
+
+    vec2 centerCC = vec2(currentCursor.x + (currentCursor.z / 2.), currentCursor.y - (currentCursor.w / 2.));
+    vec2 centerCP = vec2(previousCursor.x + (previousCursor.z / 2.), previousCursor.y - (previousCursor.w / 2.));
+
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
-    
+
     float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
     float easedProgress = ease(progress);
-    
+
     float lineLength = distance(centerCC, centerCP);
-    
-    // Original cursor blaze logic (keeps the orange-to-normal transition)
+
+    // Cursor blaze glow (orange-to-normal transition at cursor position)
     vec4 trail = mix(TRAIL_COLOR_ACCENT, fragColor, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
     trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
     fragColor = mix(trail, fragColor, 1. - smoothstep(0., sdfCurrentCursor, easedProgress * lineLength));
-    
-    // Add trail effect between previous and current cursor positions
+
+    // Trail effect — gradient wipe from previous to current cursor
     if (lineLength > MIN_TRAIL_DISTANCE && progress < 1.0) {
-        vec2 trailDirection = centerCC - centerCP;
-        vec2 trailNormal = normalize(trailDirection);
-        
-        // Sample multiple points along the trail
-        for (int i = 0; i < TRAIL_SEGMENTS; i++) {
-            float t = float(i) / float(TRAIL_SEGMENTS - 1);
-            
-            // Position along the trail (from previous to current)
-            vec2 trailPos = mix(centerCP, centerCC, t);
-            
-            // Distance from fragment to trail point
-            float distToTrail = distance(vu, trailPos);
-            
-            // Trail opacity based on time and position
-            float timeAlpha = 1.0 - easedProgress;
-            float positionAlpha = 1.0 - t * 0.7; // Fade from previous to current
-            float alpha = timeAlpha * positionAlpha;
-            
-            // Trail width that tapers slightly
-            float trailWidthAtPoint = TRAIL_WIDTH * (1.0 - t * 0.3);
-            
-            // Create trail segment
-            if (distToTrail < trailWidthAtPoint) {
-                float trailStrength = (1.0 - distToTrail / trailWidthAtPoint) * alpha * 0.4;
-                vec4 trailColor = mix(TRAIL_COLOR, TRAIL_COLOR_ACCENT, t * 0.5);
-                fragColor = mix(fragColor, trailColor, trailStrength);
-            }
+        float dist = distToSegment(vu, centerCP, centerCC);
+        float t = projOnSegment(vu, centerCP, centerCC);
+
+        // The trail head sweeps from 0→1 over time; trail behind it fades out
+        float head = easedProgress;
+        // Only show trail behind the head, with a soft leading edge
+        float leadingEdge = smoothstep(head, head - 0.5, t);
+        // Fade out from tail (old position) over time
+        float tailFade = smoothstep(0.0, head * 0.6, t);
+
+        float trailWidthAtPoint = TRAIL_WIDTH * (1.0 - t * 0.3);
+
+        if (dist < trailWidthAtPoint) {
+            float edgeSoftness = 1.0 - dist / trailWidthAtPoint;
+            float trailStrength = edgeSoftness * leadingEdge * tailFade * 0.8;
+            vec4 trailColor = mix(TRAIL_COLOR, TRAIL_COLOR_ACCENT, t * 0.5);
+            fragColor = mix(fragColor, trailColor, trailStrength);
         }
     }
 }
