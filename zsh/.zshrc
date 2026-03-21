@@ -26,7 +26,7 @@ if [[ -z "$IN_NIX_SHELL" ]]; then
     fi
 fi
 
-USER_PROFILE_FILE="~/.nix-profile/etc/profile.d/hm-session-vars.sh"
+USER_PROFILE_FILE="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 [ -f "$USER_PROFILE_FILE" ] && source "$USER_PROFILE_FILE"
 
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
@@ -35,12 +35,8 @@ ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 unalias zi 2>/dev/null
 
-autoload -Uz compinit
-if [[ -n "${XDG_CACHE_HOME}/zcompdump"(#qN.mh+24) ]]; then
-  compinit -d "${XDG_CACHE_HOME}/zcompdump" -C
-else
-  compinit -d "${XDG_CACHE_HOME}/zcompdump"
-fi
+ZVM_LAZY_KEYBINDINGS=true
+ZVM_INIT_MODE=sourcing
 
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
@@ -52,15 +48,21 @@ zinit ice wait"0" lucid
 zinit snippet OMZP::command-not-found
 zinit ice wait"0" lucid
 zinit light Aloxaf/fzf-tab
-zinit ice depth=1
+zinit ice wait"0" lucid depth=1
 zinit light jeffreytse/zsh-vi-mode
-zinit ice wait"0" lucid
 
+# Cache fzf init to avoid subprocess each startup
+FZF_ZSH_CACHE="${XDG_CACHE_HOME}/fzf-zsh-init.zsh"
+[[ ! -f "$FZF_ZSH_CACHE" || "$(command -v fzf)" -nt "$FZF_ZSH_CACHE" ]] && fzf --zsh > "$FZF_ZSH_CACHE"
+
+# Source fzf after zvm init so zvm doesn't clobber fzf keybindings
 function zvm_after_init() {
   zvm_bindkey viins '^y' autosuggest-accept
-  source <(fzf --zsh)
+  source "$FZF_ZSH_CACHE"
 }
 
+# Syntax highlighting loaded last — triggers deferred compinit
+zinit ice wait"0" lucid atinit"zicompinit; zicdreplay"
 zinit light zsh-users/zsh-syntax-highlighting
 
 bindkey ' ' magic-space
@@ -77,18 +79,20 @@ zstyle ':fzf-tab:*' prefix ''
 zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=ctrl-y:accept
 zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
-zstyle ':fzf-tab:*' worker 0 
+zstyle ':fzf-tab:*' worker 0
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
-zinit cdreplay -q
 
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-eval "$(zoxide init zsh)"
+# Cache zoxide init to avoid subprocess each startup
+ZOXIDE_ZSH_CACHE="${XDG_CACHE_HOME}/zoxide-zsh-init.zsh"
+[[ ! -f "$ZOXIDE_ZSH_CACHE" || "$(command -v zoxide)" -nt "$ZOXIDE_ZSH_CACHE" ]] && zoxide init zsh > "$ZOXIDE_ZSH_CACHE"
+source "$ZOXIDE_ZSH_CACHE"
+
 export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
 
 # if command -v devpod &> /dev/null; then
@@ -182,8 +186,11 @@ alias todo='nvim ~/.todo.md'
 # [Alias] dev
 alias act='source .venv/bin/activate'
 # [Alias] AI
-alias ge='gemini'
+alias cc='claude'
+alias ccc='claude --continue'
+alias ccr='claude --resume'
+alias ccyolo='claude --dangerously-skip-permissions'
+alias gg='gemini'
 alias co='codex'
-alias cl='claude'
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

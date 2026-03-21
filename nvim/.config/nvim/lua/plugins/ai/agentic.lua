@@ -1,5 +1,6 @@
 return {
   'carlos-algms/agentic.nvim',
+  enabled = false,
   dependencies = {
     {
       'hakonharnes/img-clip.nvim',

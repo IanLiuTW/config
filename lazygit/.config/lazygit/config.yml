@@ -96,8 +96,8 @@ keybinding:
     gotoBottom: ">"
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: h
-    nextBlock-alt: l
+    prevBlock-alt: <c-h>
+    nextBlock-alt: <c-l>
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
     jumpToBlock:
@@ -122,8 +122,8 @@ keybinding:
     scrollDownMain: <pgdown>
     scrollUpMain-alt1: K
     scrollDownMain-alt1: J
-    scrollUpMain-alt2: <c-u>
-    scrollDownMain-alt2: <c-d>
+    scrollUpMain-alt2: <c-b>
+    scrollDownMain-alt2: <c-f>
     executeShellCommand: ":"
     createRebaseOptionsMenu: m
     pushFiles: P
@@ -163,7 +163,7 @@ keybinding:
     fetch: f
     toggleTreeView: "`"
     openMergeOptions: M
-    openStatusFilter: <c-b>
+    openStatusFilter: <c-S-b>
   branches:
     createPullRequest: o
     viewPullRequestOptions: O

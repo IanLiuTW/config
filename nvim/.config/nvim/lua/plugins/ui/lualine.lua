@@ -10,7 +10,7 @@ return {
         section_separators = { left = '', right = '' },
         globalstatus = true,
         refresh = {
-          statusline = 100,
+          statusline = 500,
         },
         disabled_filetypes = {
           statusline = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
@@ -62,18 +62,9 @@ return {
                 return ''
               end
 
-              local null_ls_installed, null_ls = pcall(require, 'null-ls')
               local buf_client_names = {}
               for _, client in pairs(buf_clients) do
-                if client.name == 'null-ls' then
-                  if null_ls_installed then
-                    for _, source in ipairs(null_ls.get_source { filetype = vim.bo.filetype }) do
-                      table.insert(buf_client_names, source.name)
-                    end
-                  end
-                elseif client.name == 'copilot' then
-                  -- Skip copilot
-                else
+                if client.name ~= 'copilot' then
                   table.insert(buf_client_names, client.name)
                 end
               end

@@ -45,7 +45,7 @@ disabled = false
 
 [cmd_duration]
 format = "[$duration]($style)"
-style = "yellow"
+style = "#994400"
 min_time = 4
 show_milliseconds = false
 disabled = false
@@ -56,8 +56,9 @@ style = "bold white"
 format = '\[[$time]($style)\]'
 
 [custom.stunnel]
-when = "ps aux | grep stunnel | grep -v grep"
-command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+disabled = true
+when = "pgrep -x stunnel"
+command = "ps -o etime= -p $(pgrep -x stunnel)"
 style = "red"
 format = "[TUNNEL OPEN for $output]($style)"
 
@@ -70,7 +71,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = 'on [$hostname](bold yellow) '
+format = 'on [$hostname](bold #FFAA33) '
 trim_at = "."
 disabled = false
 
@@ -97,7 +98,7 @@ detect_folders = []
 symbol = " "
 #pyenv_version_name = true
 format = 'via [${symbol}Python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
+style = "bold bright-yellow"
 pyenv_prefix = "venv "
 python_binary = ["./venv/bin/python", "python", "python3", "python2"]
 detect_extensions = ["py"]

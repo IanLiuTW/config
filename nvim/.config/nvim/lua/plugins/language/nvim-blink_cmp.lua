@@ -2,7 +2,6 @@ return {
   'saghen/blink.cmp',
   lazy = false,
   dependencies = {
-    'Kaiser-Yang/blink-cmp-avante',
     'rafamadriz/friendly-snippets',
   },
   version = '1.*',
@@ -122,22 +121,13 @@ return {
       default = function(ctx)
         local success, node = pcall(vim.treesitter.get_node)
         if vim.bo.filetype == 'lua' then
-          return { 'avante', 'lsp', 'path' }
+          return { 'lsp', 'path' }
         elseif success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
           return { 'buffer' }
         else
-          return { 'avante', 'lsp', 'path', 'snippets', 'buffer' }
+          return { 'lsp', 'path', 'snippets', 'buffer' }
         end
       end,
-      providers = {
-        avante = {
-          module = 'blink-cmp-avante',
-          name = 'Avante',
-          opts = {
-            -- options for blink-cmp-avante
-          },
-        },
-      },
     },
 
     signature = {

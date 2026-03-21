@@ -1,7 +1,6 @@
 return {
   'folke/trouble.nvim',
   cmd = 'Trouble',
-  event = 'BufWinEnter',
   specs = {
     'folke/snacks.nvim',
     opts = function(_, opts)

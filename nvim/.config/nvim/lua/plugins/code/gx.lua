@@ -6,7 +6,7 @@ return {
   init = function()
     vim.g.netrw_nogx = 1 -- disable netrw gx
   end,
-  dependencies = { 'nvim-lua/plenary.nvim' }, -- Required for Neovim < 0.10.0
+  -- plenary dependency removed: not needed on Neovim >= 0.10
   submodules = false, -- not needed, submodules are required only for tests
 
   -- you can specify also another config if you want

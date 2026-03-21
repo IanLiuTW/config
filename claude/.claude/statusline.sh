@@ -1,6 +1,6 @@
 #!/bin/bash
-# Line 1: Model | dir@branch (diff)
-# Line 2: tokens (%) | 5h usage @reset | 7d usage @reset | elapsed
+# Line 1:  dir   branch  +N -N  ▕████░░░░▏ tokens (%)
+# Line 2:  Model (elapsed) │ 5h usage @reset │ 7d usage @reset
 
 set -f  # disable globbing
 
@@ -11,14 +11,17 @@ if [ -z "$input" ]; then
     exit 0
 fi
 
-# ANSI colors matching oh-my-posh theme
-blue='\033[38;2;0;153;255m'
-orange='\033[38;2;255;176;85m'
-green='\033[38;2;0;160;0m'
-cyan='\033[38;2;46;149;153m'
+# ANSI colors matching starship theme
+blue='\033[1;34m'
+purple='\033[35m'
+orange='\033[38;2;255;170;51m'
+red_orange='\033[38;2;255;130;40m'
+green='\033[32m'
 red='\033[38;2;255;85;85m'
 yellow='\033[38;2;230;200;0m'
-white='\033[38;2;220;220;220m'
+white='\033[1;37m'
+brown='\033[38;2;153;68;0m'
+cyan='\033[36m'
 dim='\033[2m'
 reset='\033[0m'
 
@@ -35,7 +38,6 @@ format_tokens() {
 }
 
 # Return color escape based on usage percentage
-# Usage: usage_color <pct>
 usage_color() {
     local pct=$1
     if [ "$pct" -ge 90 ]; then echo "$red"
@@ -43,6 +45,23 @@ usage_color() {
     elif [ "$pct" -ge 50 ]; then echo "$yellow"
     else echo "$green"
     fi
+}
+
+# Thin progress bar: ▏▮▮▮▮▯▯▯▯▯▯▕ (10 segments, thin blocks)
+progress_bar() {
+    local pct=$1
+    local width=5
+    local filled=$(( pct * width / 100 ))
+    [ "$filled" -gt "$width" ] && filled=$width
+    local empty=$(( width - filled ))
+    local color
+    color=$(usage_color "$pct")
+    local bar="${color}"
+    for ((i=0; i<filled; i++)); do bar+="█"; done
+    bar+="${reset}${dim}"
+    for ((i=0; i<empty; i++)); do bar+="░"; done
+    bar+="${reset}"
+    echo "$bar"
 }
 
 # ===== Extract data from JSON =====
@@ -88,26 +107,42 @@ fi
 # Config directory (respects CLAUDE_CONFIG_DIR override)
 claude_config_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 
+# Truncate string to max length with ellipsis
+truncate() {
+    local str="$1" max="$2"
+    if [ "${#str}" -gt "$max" ]; then
+        printf "%s…" "${str:0:$((max-1))}"
+    else
+        printf "%s" "$str"
+    fi
+}
+
 # ===== Build two-line output =====
 out=""
-out+="${orange}${used_tokens}/${total_tokens}${reset} ${dim}(${reset}${green}${pct_used}%${reset}${dim})${reset}"
+sep=" ${dim}│${reset} "
 
-# Current working directory
+# Line 1: dir@branch (diff) ███░░ tokens (%)
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 if [ -n "$cwd" ]; then
-    display_dir="${cwd##*/}"
+    display_dir=$(truncate "${cwd##*/}" 25)
     git_branch=$(git -C "${cwd}" rev-parse --abbrev-ref HEAD 2>/dev/null)
-    out+=" ${dim}|${reset} "
-    out+="${cyan}${display_dir}${reset}"
+    out+="${blue}${display_dir}${reset}"
     if [ -n "$git_branch" ]; then
-        out+="${dim}@${reset}${green}${git_branch}${reset}"
+        git_branch=$(truncate "$git_branch" 20)
+        out+="${dim}@${reset}${purple}${git_branch}${reset}"
         git_stat=$(git -C "${cwd}" diff --numstat 2>/dev/null | awk '{a+=$1; d+=$2} END {if (a+d>0) printf "+%d -%d", a, d}')
         [ -n "$git_stat" ] && out+=" ${dim}(${reset}${green}${git_stat%% *}${reset} ${red}${git_stat##* }${reset}${dim})${reset}"
     fi
+    out+="${sep}"
 fi
+token_bar=$(progress_bar "$pct_used")
+token_color=$(usage_color "$pct_used")
+out+="${token_bar} ${orange}${used_tokens}/${total_tokens}${reset} ${token_color}${pct_used}%${reset}"
 
+# Line 2: Model (elapsed) │ 5h usage │ 7d usage
 out+="\n"
-out+="${blue}${model_name}${reset}"
+out+="${red_orange}${model_name}${reset}"
+[ -n "$elapsed" ] && out+=" ${dim}(${reset}${brown}${elapsed}${reset}${dim})${reset}"
 
 # ===== Cross-platform OAuth token resolution (from statusline.sh) =====
 # Tries credential sources in order: env var → macOS Keychain → Linux creds file → GNOME Keyring
@@ -271,8 +306,6 @@ format_reset_time() {
     [ -n "$formatted" ] && echo "$formatted"
 }
 
-sep=" ${dim}|${reset} "
-
 if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>&1; then
     # ---- 5-hour (current) ----
     five_hour_pct=$(echo "$usage_data" | jq -r '.five_hour.utilization // 0' | awk '{printf "%.0f", $1}')
@@ -281,7 +314,7 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>
     five_hour_color=$(usage_color "$five_hour_pct")
 
     out+="${sep}${white}5h${reset} ${five_hour_color}${five_hour_pct}%${reset}"
-    [ -n "$five_hour_reset" ] && out+=" ${dim}${five_hour_reset}${reset}"
+    [ -n "$five_hour_reset" ] && out+=" ${dim}@${five_hour_reset}${reset}"
 
     # ---- 7-day (weekly) ----
     seven_day_pct=$(echo "$usage_data" | jq -r '.seven_day.utilization // 0' | awk '{printf "%.0f", $1}')
@@ -290,16 +323,13 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>
     seven_day_color=$(usage_color "$seven_day_pct")
 
     out+="${sep}${white}7d${reset} ${seven_day_color}${seven_day_pct}%${reset}"
-    [ -n "$seven_day_reset" ] && out+=" ${dim}${seven_day_reset}${reset}"
+    [ -n "$seven_day_reset" ] && out+=" ${dim}@${seven_day_reset}${reset}"
 
 else
     # No valid usage data — show placeholders
     out+="${sep}${white}5h${reset} ${dim}-${reset}"
     out+="${sep}${white}7d${reset} ${dim}-${reset}"
 fi
-
-# Elapsed time
-[ -n "$elapsed" ] && out+="${sep}${cyan}${elapsed}${reset}"
 
 # Output two lines
 printf "%b" "$out"

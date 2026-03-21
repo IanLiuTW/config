@@ -7,7 +7,17 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 80 }
+    require('mini.ai').setup {
+      n_lines = 80,
+      custom_textobjects = {
+        e = function()
+          local from = { line = 1, col = 1 }
+          local last_line = vim.fn.line '$'
+          local to = { line = last_line, col = math.max(vim.fn.getline(last_line):len(), 1) }
+          return { from = from, to = to }
+        end,
+      },
+    }
 
     -- Add/delete/replace surroundings - https://github.com/echasnovski/mini.surround
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren

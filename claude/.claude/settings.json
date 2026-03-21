@@ -24,25 +24,20 @@
       "Bash(which:*)",
       "Bash(nvim --version:*)",
       "Bash(node --version:*)",
-      "Bash(npm list:*)"
+      "Bash(npm list:*)",
+      "Bash(cd:*)",
+      "Bash(find:*)",
+      "Grep(**)"
     ]
   },
-  "enabledPlugins": {
-    "productivity@knowledge-work-plugins": true,
-    "skill-creator@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "knowledge-work-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/knowledge-work-plugins"
-      }
-    }
-  },
-  "alwaysThinkingEnabled": true,
-  "voiceEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
-  }
+  },
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "voiceEnabled": false,
+  "skipDangerousModePermissionPrompt": true
 }

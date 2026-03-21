@@ -35,8 +35,6 @@ return {
       },
       routes = {
         { view = 'notify', filter = { event = 'msg_showmode' } },
-        { view = 'notify', filter = { event = 'msg_show', kind = '', find = 'written' } },
-        -- { view = 'cmdline', filter = { event = 'msg_show', kind = '', find = 'written' } },
         { filter = { event = 'msg_show', kind = '', find = 'written' }, opts = { skip = true } },
         {
           filter = {

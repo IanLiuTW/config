@@ -8,7 +8,6 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
   },
-  event = 'BufRead',
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'

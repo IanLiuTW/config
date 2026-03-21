@@ -1,7 +1,6 @@
 return {
   {
     'stevearc/overseer.nvim',
-    event = 'BufRead',
     cmd = {
       'OverseerRestartLast',
       'OverseerRun',
