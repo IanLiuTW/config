@@ -2,8 +2,8 @@ return {
   'NeogitOrg/neogit',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    -- 'sindrets/diffview.nvim',
-    "esmuellert/codediff.nvim",
+    'm00qek/baleia.nvim',
+    'esmuellert/codediff.nvim',
     'folke/snacks.nvim',
   },
   keys = {
@@ -59,6 +59,14 @@ return {
     console_timeout = 2000,
     -- Automatically show console if a command takes more than console_timeout milliseconds
     auto_show_console = true,
+    -- "ascii"   is the graph the git CLI generates
+    -- "unicode" is the graph like https://github.com/rbong/vim-flog
+    -- "kitty"   is the graph like https://github.com/isakbm/gitgraph.nvim - use https://github.com/rbong/flog-symbols if you don't use Kitty
+    graph_style = 'unicode',
+    -- When set, used to format the diff. Requires *baleia* to colorize text with ANSI escape sequences. An example for `Delta` is `{ 'delta', '--width', '117' }`. For `Delta`, hyperlinks must be disabled when called by `neogit`, for text to be colorized properly.
+    log_pager = { 'delta', '--width', '117', '--file-style=omit', '--file-decoration-style=omit', '--hunk-header-style=omit', '--hunk-header-decoration-style=omit' },
+    -- Show message with spinning animation when a git command is running.
+    process_spinner = true,
     -- Automatically close the console if the process exits with a 0 (success) status
     auto_close_console = true,
     status = {
@@ -136,7 +144,7 @@ return {
       codediff = true,
       snacks = true,
     },
-    diff_viewer = "codediff",
+    diff_viewer = 'codediff',
     sections = {
       -- Reverting/Cherry Picking
       sequencer = {
@@ -216,4 +224,8 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    vim.g.baleia = require('baleia').setup {}
+    require('neogit').setup(opts)
+  end,
 }

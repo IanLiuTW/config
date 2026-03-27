@@ -90,7 +90,6 @@
           gh
           # AI tools
           gemini-cli
-          claude-code-acp
           # Applications
           discord
         ];

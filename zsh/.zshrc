@@ -14,6 +14,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+WORDCHARS=${WORDCHARS//[\/.-]}
 
 if [[ -z "$IN_NIX_SHELL" ]]; then
     if [[ -d "/opt/homebrew" ]]; then
@@ -117,19 +118,20 @@ function y() {
 # [Alias] Basics
 alias q="exit"
 alias f="fg"
+alias g="rg --hidden --no-ignore"
 alias G="git"
 alias v="nvim"
-alias vv="nvim ."
-alias g="grep"
+alias V="nvim ."
 alias e="export"
 alias c="cat"
 alias b="bat"
 alias m="make"
 alias j="just"
 alias d="docker"
-alias du="colima start --memory 6"
-alias dd="colima stop"
-alias p="podman"
+alias co-up="colima start --memory 4 --disk 100"
+alias co-st="colima stop"
+alias co-cl="docker system prune -a --volumes"
+alias pm="podman"
 alias dp="devpod"
 alias lg="lazygit"
 alias ld="lazydocker"
@@ -146,7 +148,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm="rm -i"
+alias rm="rm -I"
 alias rg='rg --hidden'
 alias dt="cd ~/Desktop"
 alias dl="cd ~/Downloads"
@@ -166,7 +168,7 @@ alias la='eza --long --all --group --group-directories-first --color=always'
 alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons=always'
 alias lS='eza -1 --color=always --group-directories-first --icons=always'
 alias lt='eza --tree --level=2 --color=always --group-directories-first --icons=always'
-alias l.="eza -a | grep -E '^\.'"
+alias l.='eza -d .*'
 # [Alias] bat
 if command -v bat >/dev/null 2>&1; then
   alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
@@ -176,6 +178,7 @@ fi
 alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
 alias nix-up='nix flake update --flake ~/config/nix-darwin/'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
+alias nix-cl="sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimize"
 alias nix-d='nix develop --command zsh'
 alias nix-r='nix run'
 # [Alias] files
@@ -186,9 +189,9 @@ alias todo='nvim ~/.todo.md'
 # [Alias] dev
 alias act='source .venv/bin/activate'
 # [Alias] AI
-alias cc='claude'
-alias ccc='claude --continue'
-alias ccr='claude --resume'
+alias cc='claude --enable-auto-mode'
+alias ccc='claude --enable-auto-mode --continue'
+alias ccr='claude --enable-auto-mode --resume'
 alias ccyolo='claude --dangerously-skip-permissions'
 alias gg='gemini'
 alias co='codex'

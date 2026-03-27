@@ -1,33 +1,31 @@
 {
-  "permissions": {
+"permissions": {
     "allow": [
       "WebFetch(domain:*)",
       "Read(**)",
       "Glob(**)",
-      "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh issue view:*)",
-      "Bash(gh issue list:*)",
-      "Bash(gh repo view:*)",
-      "Bash(gh status:*)",
-      "Bash(gh api:*)",
-      "Bash(git status:*)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(git show:*)",
-      "Bash(git branch:*)",
-      "Bash(git branch -v:*)",
-      "Bash(git remote -v:*)",
-      "Bash(ls:*)",
-      "Bash(pwd:*)",
-      "Bash(which:*)",
-      "Bash(nvim --version:*)",
-      "Bash(node --version:*)",
-      "Bash(npm list:*)",
-      "Bash(cd:*)",
-      "Bash(find:*)",
-      "Grep(**)"
+      "Grep(**)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr list *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh repo view *)",
+      "Bash(gh status *)",
+      "Bash(gh api *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(ls *)",
+      "Bash(cd *)", 
+      "Bash(find *)", 
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(nvim --version)",
+      "Bash(node --version)",
+      "Bash(npm list *)"
     ]
   },
   "statusLine": {
@@ -39,5 +37,6 @@
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }
