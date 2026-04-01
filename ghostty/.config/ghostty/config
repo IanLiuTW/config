@@ -14,6 +14,7 @@ adjust-cell-height = -1
 adjust-underline-position = -1
 
 unfocused-split-opacity = 0.5
+unfocused-split-fill = #1C1C1C
 window-padding-balance = true
 link-url = true
 
@@ -21,10 +22,11 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
-background-opacity = 1
+background = #1C1C1C
+background-opacity = 0.96
 background-blur-radius = 30
 window-theme = ghostty
-theme = Darkside
+theme = Ghostty Default Style Dark
 custom-shader = ./shaders/cursor_blaze_orange_ian.glsl
 
 quick-terminal-position = bottom

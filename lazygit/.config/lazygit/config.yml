@@ -96,7 +96,6 @@ keybinding:
     gotoBottom: ">"
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: <c-h>
     nextBlock-alt: <c-l>
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
@@ -163,7 +162,7 @@ keybinding:
     fetch: f
     toggleTreeView: "`"
     openMergeOptions: M
-    openStatusFilter: <c-S-b>
+    openStatusFilter: <c-b>
   branches:
     createPullRequest: o
     viewPullRequestOptions: O

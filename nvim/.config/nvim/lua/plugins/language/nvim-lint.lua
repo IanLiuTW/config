@@ -8,7 +8,7 @@ return {
   config = function()
     local lint = require 'lint'
     lint.linters_by_ft = {
-      python = { 'flake8' },
+      python = { 'ruff' },
       json = { 'jsonlint' },
       yaml = { 'yamllint' },
       -- markdown = { 'markdownlint' },
@@ -16,7 +16,7 @@ return {
 
     table.insert(lint.linters.markdownlint.args, '--disable')
     table.insert(lint.linters.markdownlint.args, 'MD013')
-    table.insert(lint.linters.flake8.args, '--ignore=E501,W503')
+    -- ruff uses pyproject.toml/ruff.toml for config (E501/W503 ignored by default)
 
     -- Configure codespell to show as hints rather than warnings
     lint.linters.codespell = require('lint.util').wrap(lint.linters.codespell, function(diagnostic)

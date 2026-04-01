@@ -24,14 +24,16 @@
       url = "github:FelixKratz/homebrew-formulae";
       flake = false;
     };
+    nixpkgs-tp.url = "github:NixOS/nixpkgs/882842d2a908700540d206baa79efb922ac1c33d";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-formulae, rust-overlay }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-tp, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-formulae, rust-overlay }:
     let
+      pkgs-tp = import nixpkgs-tp { system = "aarch64-darwin"; };
       configuration = { pkgs, config, ... }: {
         nixpkgs.config.allowUnfree = true;
 
@@ -88,6 +90,10 @@
           lazydocker
           posting
           gh
+          kubectl
+          fluxcd
+          k9s
+          pkgs-tp.telepresence2
           # AI tools
           gemini-cli
           # Applications

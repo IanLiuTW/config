@@ -1,6 +1,6 @@
 #!/bin/bash
-# Line 1:  dir   branch  +N -N  ▕████░░░░▏ tokens (%)
-# Line 2:  Model (elapsed) │ 5h usage @reset │ 7d usage @reset
+# Line 1:  dir   branch  +N -N
+# Line 2:  Model (elapsed) │ ▕████░░░░▏ tokens (%) │ 5h usage @reset │ 7d usage @reset
 
 set -f  # disable globbing
 
@@ -20,7 +20,7 @@ green='\033[32m'
 red='\033[38;2;255;85;85m'
 yellow='\033[38;2;230;200;0m'
 white='\033[1;37m'
-brown='\033[38;2;153;68;0m'
+pink='\033[38;2;255;182;193m'
 cyan='\033[36m'
 dim='\033[2m'
 reset='\033[0m'
@@ -50,8 +50,8 @@ usage_color() {
 # Thin progress bar: ▏▮▮▮▮▯▯▯▯▯▯▕ (10 segments, thin blocks)
 progress_bar() {
     local pct=$1
-    local width=5
-    local filled=$(( pct * width / 100 ))
+    local width=4
+    local filled=$(( (pct * width + 99) / 100 ))
     [ "$filled" -gt "$width" ] && filled=$width
     local empty=$(( width - filled ))
     local color
@@ -121,28 +121,38 @@ truncate() {
 out=""
 sep=" ${dim}│${reset} "
 
-# Line 1: dir@branch (diff) ███░░ tokens (%)
+# Line 1: dir@branch (diff)
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 if [ -n "$cwd" ]; then
     display_dir=$(truncate "${cwd##*/}" 25)
     git_branch=$(git -C "${cwd}" rev-parse --abbrev-ref HEAD 2>/dev/null)
     out+="${blue}${display_dir}${reset}"
     if [ -n "$git_branch" ]; then
-        git_branch=$(truncate "$git_branch" 20)
+        git_branch=$(truncate "$git_branch" 25)
         out+="${dim}@${reset}${purple}${git_branch}${reset}"
+        git_status=$(git -C "${cwd}" status --porcelain 2>/dev/null)
         git_stat=$(git -C "${cwd}" diff --numstat 2>/dev/null | awk '{a+=$1; d+=$2} END {if (a+d>0) printf "+%d -%d", a, d}')
-        [ -n "$git_stat" ] && out+=" ${dim}(${reset}${green}${git_stat%% *}${reset} ${red}${git_stat##* }${reset}${dim})${reset}"
+        if [ -n "$git_stat" ] || [ -n "$git_status" ]; then
+            mod_count=$(echo "$git_status" | grep -c '^ M\|^MM\|^.M' 2>/dev/null)
+            add_count=$(echo "$git_status" | grep -c '^A \|^??' 2>/dev/null)
+            del_count=$(echo "$git_status" | grep -c '^ D\|^D ' 2>/dev/null)
+            file_parts=""
+            [ "$mod_count" -gt 0 ] && file_parts+="${yellow}M${mod_count}${reset}"
+            [ "$add_count" -gt 0 ] && file_parts+="${file_parts:+ }${green}A${add_count}${reset}"
+            [ "$del_count" -gt 0 ] && file_parts+="${file_parts:+ }${red}D${del_count}${reset}"
+            [ -n "$file_parts" ] && out+="${sep}${file_parts}"
+            [ -n "$git_stat" ] && out+=" ${dim}(${reset}${green}${git_stat%% *}${reset} ${red}${git_stat##* }${reset}${dim})${reset}"
+        fi
     fi
-    out+="${sep}"
 fi
-token_bar=$(progress_bar "$pct_used")
-token_color=$(usage_color "$pct_used")
-out+="${token_bar} ${orange}${used_tokens}/${total_tokens}${reset} ${token_color}${pct_used}%${reset}"
 
-# Line 2: Model (elapsed) │ 5h usage │ 7d usage
+# Line 2: Model (elapsed) │ ███░░ tokens (%) │ cache │ 5h │ 7d
 out+="\n"
 out+="${red_orange}${model_name}${reset}"
-[ -n "$elapsed" ] && out+=" ${dim}(${reset}${brown}${elapsed}${reset}${dim})${reset}"
+[ -n "$elapsed" ] && out+=" ${pink}${elapsed}${reset}"
+token_bar=$(progress_bar "$pct_used")
+token_color=$(usage_color "$pct_used")
+out+="${sep}${token_bar} ${orange}${used_tokens}/${total_tokens}${reset} ${token_color}${pct_used}%${reset}"
 
 # ===== Cross-platform OAuth token resolution (from statusline.sh) =====
 # Tries credential sources in order: env var → macOS Keychain → Linux creds file → GNOME Keyring
@@ -295,8 +305,8 @@ format_reset_time() {
             formatted=$(date -j -r "$epoch" +"%H:%M" 2>/dev/null)
             ;;
         datetime)
-            formatted=$(date -d "@$epoch" +"%m/%d %H:%M" 2>/dev/null) || \
-            formatted=$(date -j -r "$epoch" +"%m/%d %H:%M" 2>/dev/null)
+            formatted=$(date -d "@$epoch" +"%m/%d-%H:%M" 2>/dev/null) || \
+            formatted=$(date -j -r "$epoch" +"%m/%d-%H:%M" 2>/dev/null)
             ;;
         *)
             formatted=$(date -d "@$epoch" +"%b %-d" 2>/dev/null) || \
@@ -313,6 +323,13 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>
     five_hour_reset=$(format_reset_time "$five_hour_reset_iso" "time")
     five_hour_color=$(usage_color "$five_hour_pct")
 
+    if [ "$current" -gt 0 ]; then
+        cache_hit_pct=$(( cache_read * 100 / current ))
+    else
+        cache_hit_pct=0
+    fi
+    cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    out+="${sep}${white}⟳${reset}  ${cache_hit_color}${cache_hit_pct}%${reset}"
     out+="${sep}${white}5h${reset} ${five_hour_color}${five_hour_pct}%${reset}"
     [ -n "$five_hour_reset" ] && out+=" ${dim}@${five_hour_reset}${reset}"
 
@@ -327,6 +344,13 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>
 
 else
     # No valid usage data — show placeholders
+    if [ "$current" -gt 0 ]; then
+        cache_hit_pct=$(( cache_read * 100 / current ))
+    else
+        cache_hit_pct=0
+    fi
+    cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    out+="${sep}${white}⟳${reset}  ${cache_hit_color}${cache_hit_pct}%${reset}"
     out+="${sep}${white}5h${reset} ${dim}-${reset}"
     out+="${sep}${white}7d${reset} ${dim}-${reset}"
 fi

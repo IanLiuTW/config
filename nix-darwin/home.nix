@@ -45,6 +45,7 @@ in
     ".config/yazi" = link "yazi/.config/yazi";
     ".config/lazygit/config.yml" = link "lazygit/.config/lazygit/config.yml";
     ".config/lazydocker/config.yml" = link "lazydocker/.config/lazydocker/config.yml";
+    ".config/k9s" = link "k9s/.config/k9s";
 
     # Nix
     ".config/nix" = link "nix/.config/nix";

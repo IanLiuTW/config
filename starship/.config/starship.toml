@@ -22,13 +22,13 @@ command_timeout = 1000
 symbol = " "
 
 [jobs]
-symbol = ""
+symbol = ""
 style = "bold red"
 number_threshold = 1
 format = "[$symbol]($style)"
 
 [git_branch]
-symbol = " "
+symbol = " "
 format = "[$symbol$branch]($style) "
 style = "purple"
 
@@ -82,20 +82,20 @@ error_symbol = "[❯](red)"
 
 # configure directory
 [directory]
-read_only = " "
+read_only = " "
 truncation_length = 10
 truncate_to_repo = true    # truncates directory to root folder if in github repo
 style = "bold italic blue"
 
 [docker_context]
-symbol = " "
+symbol = " "
 format = '[\[$symbol$context\]](blue bold) '
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
 
 [python]
-symbol = " "
+symbol = " "
 #pyenv_version_name = true
 format = 'via [${symbol}Python (${version} )(\($virtualenv\) )]($style)'
 style = "bold bright-yellow"
@@ -105,10 +105,10 @@ detect_extensions = ["py"]
 version_format = "v${raw}"
 
 [rust]
-symbol = " "
+symbol = " "
 
 [nix_shell]
-symbol = " "
+symbol = " "
 impure_msg = '[impure shell](bold red)'
 pure_msg = '[pure shell](bold green)'
 unknown_msg = '[unknown shell](bold yellow)'
@@ -118,116 +118,18 @@ format = '[\[$symbol$state( \($name\))\]](bold blue) '
 symbol = "󰏗 "
 
 [aws]
-symbol = "  "
+symbol = "  "
 
 [nodejs]
-format = "via [ Node.js $version](bold green) "
+format = "via [ Node.js $version](bold green) "
 detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
 [golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[nim]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[ruby]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[shlvl]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
-
-[buf]
-symbol = " "
+symbol = " "
 
 [c]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[kotlin]
-symbol = " "
+symbol = " "
 
 [lua]
-symbol = " "
-
-[meson]
-symbol = "󰔷 "
-
-[ocaml]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[zig]
-symbol = " "
-
-[os.symbols]
-Amazon = " "
-Android = " "
-Arch = " "
-Debian = " "
-Fedora = " "
-FreeBSD = " "
-Kali = " "
-Linux = " "
-Macos = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+symbol = " "

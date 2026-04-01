@@ -41,7 +41,7 @@ return {
         -- Information
         map('<Leader>,l', '<cmd>LspInfo<cr>', 'LSP Info')
         -- Inlay hints toggle
-        if client and client.supports_method 'textDocument/inlayHint' then
+        if client and client:supports_method 'textDocument/inlayHint' then
           vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
           map('<leader>,I', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
@@ -49,7 +49,7 @@ return {
         end
 
         -- Setup document highlighting
-        if client and client.supports_method 'textDocument/documentHighlight' then
+        if client and client:supports_method 'textDocument/documentHighlight' then
           local highlight_group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
           -- Document highlight events
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -94,6 +94,7 @@ return {
       ensure_installed = {
         'stylua',
         'prettier',
+        'ruff',
         'codespell',
         'marksman',
         'lua-language-server',

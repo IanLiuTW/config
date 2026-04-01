@@ -1,5 +1,5 @@
 {
-"permissions": {
+  "permissions": {
     "allow": [
       "WebFetch(domain:*)",
       "Read(**)",
@@ -19,24 +19,55 @@
       "Bash(git show *)",
       "Bash(git branch *)",
       "Bash(ls *)",
-      "Bash(cd *)", 
-      "Bash(find *)", 
-      "Bash(pwd)",
+      "Bash(cd *)",
+      "Bash(find *)",
+      "Bash(curl *)",
       "Bash(which *)",
+      "Bash(pwd)",
       "Bash(nvim --version)",
       "Bash(node --version)",
       "Bash(npm list *)"
-    ]
+    ],
+    "deny": [
+      "mcp__atlassian__jira_delete_issue",
+      "mcp__atlassian__jira_remove_issue_link",
+      "mcp__atlassian__jira_remove_watcher",
+      "mcp__atlassian__jira_update_sprint",
+      "mcp__atlassian__jira_update_proforma_form_answers",
+      "mcp__atlassian__jira_batch_create_issues",
+      "mcp__atlassian__jira_create_remote_issue_link",
+      "mcp__atlassian__jira_create_sprint",
+      "mcp__atlassian__jira_create_version",
+      "mcp__atlassian__jira_batch_create_versions",
+      "mcp__atlassian__jira_add_issues_to_sprint",
+      "mcp__atlassian__jira_link_to_epic"
+    ],
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
+    "atlassian@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": false,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.githubusercontent.com",
+        "registry.npmjs.org",
+        "*.npmjs.org"
+      ]
+    }
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": false,
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "allowUnsandboxedCommands": true
 }

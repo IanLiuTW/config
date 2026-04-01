@@ -84,10 +84,10 @@ zstyle ':fzf-tab:*' worker 0
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+# Cache starship init to avoid subprocess each startup
+STARSHIP_ZSH_CACHE="${XDG_CACHE_HOME}/starship-zsh-init.zsh"
+[[ ! -f "$STARSHIP_ZSH_CACHE" || "$(command -v starship)" -nt "$STARSHIP_ZSH_CACHE" ]] && starship init zsh > "$STARSHIP_ZSH_CACHE"
+source "$STARSHIP_ZSH_CACHE"
 
 # Cache zoxide init to avoid subprocess each startup
 ZOXIDE_ZSH_CACHE="${XDG_CACHE_HOME}/zoxide-zsh-init.zsh"
@@ -135,7 +135,10 @@ alias pm="podman"
 alias dp="devpod"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias k="k9s -c svc"
 alias kc="kubectl"
+alias fx="flux"
+alias tp="telepresence"
 alias bt="bpytop"
 alias po="posting"
 alias ssh="TERM=xterm-256color ssh"
@@ -189,9 +192,9 @@ alias todo='nvim ~/.todo.md'
 # [Alias] dev
 alias act='source .venv/bin/activate'
 # [Alias] AI
-alias cc='claude --enable-auto-mode'
-alias ccc='claude --enable-auto-mode --continue'
-alias ccr='claude --enable-auto-mode --resume'
+alias cc='claude'
+alias ccc='claude --continue'
+alias ccr='claude --resume'
 alias ccyolo='claude --dangerously-skip-permissions'
 alias gg='gemini'
 alias co='codex'
