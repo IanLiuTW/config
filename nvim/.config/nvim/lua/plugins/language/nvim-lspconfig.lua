@@ -39,7 +39,7 @@ return {
         map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature Help', { 'i', 'n', 'x', 's' })
 
         -- Information
-        map('<Leader>,l', '<cmd>LspInfo<cr>', 'LSP Info')
+        map('<Leader>,l', '<cmd>checkhealth vim.lsp<cr>', 'LSP Info')
         -- Inlay hints toggle
         if client and client:supports_method 'textDocument/inlayHint' then
           vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })

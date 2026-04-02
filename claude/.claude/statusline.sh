@@ -1,6 +1,6 @@
 #!/bin/bash
-# Line 1:  dir   branch  +N -N
-# Line 2:  Model (elapsed) │ ▕████░░░░▏ tokens (%) │ 5h usage @reset │ 7d usage @reset
+# Line 1:  Model │ dir   branch  +N -N
+# Line 2:  ▕████░░░░▏ tokens (%) │ cache │ elapsed │ 5h usage @reset │ 7d usage @reset
 
 set -f  # disable globbing
 
@@ -21,6 +21,7 @@ red='\033[38;2;255;85;85m'
 yellow='\033[38;2;230;200;0m'
 white='\033[1;37m'
 pink='\033[38;2;255;182;193m'
+silver='\033[38;2;192;192;192m'
 cyan='\033[36m'
 dim='\033[2m'
 reset='\033[0m'
@@ -119,14 +120,15 @@ truncate() {
 
 # ===== Build two-line output =====
 out=""
-sep=" ${dim}│${reset} "
+sep="${dim}｜${reset}"
 
-# Line 1: dir@branch (diff)
+# Line 1: Model │ dir@branch (diff)
+out+="${red_orange}${model_name}${reset}"
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 if [ -n "$cwd" ]; then
     display_dir=$(truncate "${cwd##*/}" 25)
     git_branch=$(git -C "${cwd}" rev-parse --abbrev-ref HEAD 2>/dev/null)
-    out+="${blue}${display_dir}${reset}"
+    out+="${sep}${blue}${display_dir}${reset}"
     if [ -n "$git_branch" ]; then
         git_branch=$(truncate "$git_branch" 25)
         out+="${dim}@${reset}${purple}${git_branch}${reset}"
@@ -146,13 +148,11 @@ if [ -n "$cwd" ]; then
     fi
 fi
 
-# Line 2: Model (elapsed) │ ███░░ tokens (%) │ cache │ 5h │ 7d
+# Line 2: ███░░ tokens (%) │ cache │ elapsed │ 5h │ 7d
 out+="\n"
-out+="${red_orange}${model_name}${reset}"
-[ -n "$elapsed" ] && out+=" ${pink}${elapsed}${reset}"
 token_bar=$(progress_bar "$pct_used")
 token_color=$(usage_color "$pct_used")
-out+="${sep}${token_bar} ${orange}${used_tokens}/${total_tokens}${reset} ${token_color}${pct_used}%${reset}"
+out+="${token_bar} ${orange}${used_tokens}/${total_tokens}${reset} ${token_color}${pct_used}%${reset}"
 
 # ===== Cross-platform OAuth token resolution (from statusline.sh) =====
 # Tries credential sources in order: env var → macOS Keychain → Linux creds file → GNOME Keyring
@@ -328,8 +328,13 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e '.five_hour' >/dev/null 2>
     else
         cache_hit_pct=0
     fi
-    cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    if [ "$current" -lt 10000 ]; then
+        cache_hit_color="$dim"
+    else
+        cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    fi
     out+="${sep}${white}⟳${reset}  ${cache_hit_color}${cache_hit_pct}%${reset}"
+    [ -n "$elapsed" ] && out+="${sep}${silver}${elapsed}${reset}"
     out+="${sep}${white}5h${reset} ${five_hour_color}${five_hour_pct}%${reset}"
     [ -n "$five_hour_reset" ] && out+=" ${dim}@${five_hour_reset}${reset}"
 
@@ -349,8 +354,13 @@ else
     else
         cache_hit_pct=0
     fi
-    cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    if [ "$current" -lt 10000 ]; then
+        cache_hit_color="$dim"
+    else
+        cache_hit_color=$(usage_color $((100 - cache_hit_pct)))
+    fi
     out+="${sep}${white}⟳${reset}  ${cache_hit_color}${cache_hit_pct}%${reset}"
+    [ -n "$elapsed" ] && out+="${sep}${silver}${elapsed}${reset}"
     out+="${sep}${white}5h${reset} ${dim}-${reset}"
     out+="${sep}${white}7d${reset} ${dim}-${reset}"
 fi

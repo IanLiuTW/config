@@ -21,11 +21,11 @@
 - Comments only for genuinely complex logic. Let code be self-documenting.
 - Fail fast at boundaries. Don't add defensive code for impossible states. Let unexpected errors propagate.
 
-# Validation
+# Validation — MANDATORY
 
-After every code change, self-validate before marking done:
+After EVERY code change, you MUST validate before responding:
 
-1. Known validator exists (tests, linter, type checker, build)? Run it. Don't ask.
-2. No obvious validator? Ask the user if validation is needed.
-3. Failures? Fix and re-run until clean.
-4. Task isn't done until validation passes or user waives it.
+1. Run existing validators (tests, linter, type checker, build) without asking.
+2. No validator? Ask the user how to validate.
+3. Fix failures and re-run until clean.
+4. Do NOT mark work as done until validation passes.

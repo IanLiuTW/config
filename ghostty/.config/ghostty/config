@@ -51,6 +51,7 @@ window-inherit-font-size = true
 window-save-state = always
 quit-after-last-window-closed = true
 grapheme-width-method = unicode
+scroll-to-bottom = keystroke
 
 copy-on-select = clipboard
 clipboard-trim-trailing-spaces = true
@@ -111,6 +112,7 @@ keybind = super+shift+g=scroll_to_bottom
 keybind = super+shift+f=start_search
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
+keybind = ctrl+[=text:\x1b
 
 keybind = "f1=text:nvim "
 keybind = chain=write_screen_file:paste

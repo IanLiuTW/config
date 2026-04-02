@@ -68,6 +68,7 @@
           pyenv
           # CLI tools
           neovim
+          tree-sitter
           starship
           bat
           eza

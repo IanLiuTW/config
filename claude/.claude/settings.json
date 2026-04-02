@@ -44,13 +44,16 @@
     ],
     "defaultMode": "auto"
   },
+  "enabledPlugins": {
+    "atlassian@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "enabledPlugins": {
-    "atlassian@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
   },
   "sandbox": {
     "enabled": false,

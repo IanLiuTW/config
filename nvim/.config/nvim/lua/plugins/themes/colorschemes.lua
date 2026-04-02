@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd('Colorscheme', {
 return {
   {
     'folke/tokyonight.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       style = 'storm',
@@ -113,7 +113,7 @@ return {
   },
   {
     'serhez/teide.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       style = 'storm',
