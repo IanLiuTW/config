@@ -6,7 +6,7 @@ return {
   },
   lazy = true,
   keys = {
-    { '<C-W>\\',      '<Cmd>WindowsMaximize<CR>',             desc = 'Toggle Maximize Window'},
+    { '<C-W><CR>',      '<Cmd>WindowsMaximize<CR>',             desc = 'Toggle Maximize Window'},
     { '<C-W>_',       '<Cmd>WindowsMaximizeVertically<CR>',   desc = 'Toggle Maximize Window Vertically' },
     { '<C-W>|',       '<Cmd>WindowsMaximizeHorizontally<CR>', desc = 'Toggle Maximize Window Horiziontally' },
     { '<C-W>=',       '<Cmd>WindowsEqualize<CR>',             desc = 'Equalize Windows Size' },

@@ -54,6 +54,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id="com.mitchellh.ghostty"
+run = ['layout floating', 'move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Teams'
 run = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]

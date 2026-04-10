@@ -43,10 +43,7 @@ return {
     vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'ufo - Close Folds With' })
     vim.keymap.set('n', '<Tab>', 'za', { desc = 'Toggle Fold' })
     vim.keymap.set('n', '<S-Tab>', function()
-      local winid = require('ufo').peekFoldedLinesUnderCursor()
-      if not winid then
-        vim.lsp.buf.hover()
-      end
+      require('ufo').peekFoldedLinesUnderCursor()
     end, { desc = 'ufo - Peek Folded' })
   end,
 }

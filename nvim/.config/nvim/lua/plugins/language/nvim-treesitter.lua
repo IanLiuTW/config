@@ -13,8 +13,8 @@ return {
         'diff', 'git_config', 'git_rebase', 'gitcommit', 'gitignore',
         'markdown', 'markdown_inline', 'html', 'yaml',
         'rust', 'python', 'javascript', 'typescript', 'tsx',
-        'nix', 'json', 'toml', 'dockerfile', 'go', 'sql', 'css', 'make',
-        'just', 'ssh_config', 'ini', 'xml', 'graphql', 'helm',
+        'nix', 'json', 'json5', 'toml', 'dockerfile', 'go', 'sql', 'css', 'make',
+        'just', 'ssh_config', 'ini', 'xml', 'hocon', 'graphql', 'helm',
       }
 
       local function enable_ts(buf)

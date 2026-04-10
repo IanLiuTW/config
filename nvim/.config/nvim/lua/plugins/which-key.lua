@@ -50,8 +50,9 @@ return { -- Useful plugin to show you pending keybinds.
         {'<leader>dx',       ':.lua<CR>',                                   desc = 'Execute - Current Line with Lua'},
         {'<leader>dX',       '<CMD>source %<CR>',                           desc = 'Execute - Source Current File'},
         -- User Commands keybindings
-        { '<leader>d/',      '<Cmd>CopyPath<CR>',                           desc = 'User Command - Copy Path' },
-        { '<leader>d\\',     '<Cmd>DiffThis<CR>',                           desc = 'User Command - Diff This' },
+        { '<leader>.',       '<Cmd>CopyPath<CR>',                           desc = 'User Command - Copy Path' },
+        { '<leader>>',       '<Cmd>CopyFile<CR>',                         desc = 'User Command - Copy File' },
+        { '<leader>\\',      '<Cmd>DiffThis<CR>',                           desc = 'User Command - Diff This' },
         { 'dm',              '<Cmd>Delmark<CR>',                            desc = 'User Command - Delete Mark' },
         { '<leader>,vi',     '<Cmd>VirtualTextSeverityMinInfo<CR>',         desc = 'User Command - Virtual Text Min Severity: Info' },
         { '<leader>,vh',     '<Cmd>VirtualTextSeverityMinHint<CR>',         desc = 'User Command - Virtual Text Min Severity: Hint' },

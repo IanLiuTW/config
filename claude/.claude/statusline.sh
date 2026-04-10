@@ -67,7 +67,6 @@ progress_bar() {
 
 # ===== Extract data from JSON =====
 model_name=$(echo "$input" | jq -r '.model.display_name // "Claude"' | sed 's/ ([^)]*)//')
-
 # Context window
 size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 [ "$size" -eq 0 ] 2>/dev/null && size=200000

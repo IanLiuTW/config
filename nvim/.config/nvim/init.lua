@@ -99,9 +99,21 @@ vim.api.nvim_create_user_command('G', function(opts)
 end, { nargs = 1 })
 -- Copy the current file path to the clipboard
 vim.api.nvim_create_user_command('CopyPath', function()
-  local path = vim.fn.expand '%'
+  local abs = vim.fn.expand '%:p'
+  local root = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(vim.fn.expand '%:p:h') .. ' rev-parse --show-toplevel')[1]
+  local path = root and vim.startswith(abs, root) and abs:sub(#root + 2) or vim.fn.expand '%'
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, {})
+-- Copy the current file to the clipboard (macOS)
+vim.api.nvim_create_user_command('CopyFile', function()
+  local file = vim.fn.expand('%:p')
+  local script = string.format(
+    'osascript -e \'tell app "Finder" to set the clipboard to (POSIX file "%s")\'',
+    file
+  )
+  local result = vim.fn.system(script)
+  vim.notify('File copied: ' .. file, vim.log.levels.INFO)
 end, {})
 -- Delete a mark by key
 vim.api.nvim_create_user_command('Delmark', function()
@@ -115,8 +127,14 @@ vim.api.nvim_create_user_command('Delmark', function()
 end, { desc = 'Delete mark by key with popup input' })
 -- Diff this buffer
 vim.api.nvim_create_user_command('DiffThis', function()
-  vim.notify 'Executing diffthis on current buffer'
+  if vim.wo.diff then
+    vim.cmd 'diffoff'
+    vim.notify('Diff off', vim.log.levels.INFO)
+    return
+  end
+
   vim.cmd 'diffthis'
+  vim.notify('Diff on', vim.log.levels.INFO)
 end, {})
 
 -- [[ Configure diagnostic symbols ]]

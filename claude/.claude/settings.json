@@ -1,4 +1,7 @@
 {
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
+  },
   "permissions": {
     "allow": [
       "WebFetch(domain:*)",
@@ -44,16 +47,13 @@
     ],
     "defaultMode": "auto"
   },
-  "enabledPlugins": {
-    "atlassian@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
-  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "env": {
-    "DISABLE_AUTOUPDATER": "1"
+  "enabledPlugins": {
+    "atlassian@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": false,
@@ -69,7 +69,7 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "voiceEnabled": false,
+  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "skipAutoPermissionPrompt": true,
   "allowUnsandboxedCommands": true

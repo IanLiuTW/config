@@ -178,7 +178,7 @@ if command -v bat >/dev/null 2>&1; then
   alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
 # [Alias] nix
-alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-re='darwin-rebuild switch --flake ~/config/nix-darwin#work --use-remote-sudo'
 alias nix-up='nix flake update --flake ~/config/nix-darwin/'
 alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
 alias nix-cl="sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimize"

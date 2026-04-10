@@ -3,9 +3,21 @@
   "$docs": "https://code.claude.com/docs/en/keybindings",
   "bindings": [
     {
+      "context": "Global",
+      "bindings": {
+        "ctrl+e": "chat:externalEditor"
+      }
+    },
+    {
       "context": "Select",
       "bindings": {
         "ctrl+y": "select:accept"
+      }
+    },
+    {
+      "context": "Autocomplete",
+      "bindings": {
+        "ctrl+y": "autocomplete:accept"
       }
     }
   ]
