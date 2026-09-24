@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "Hub": {
+      "url": "http://localhost:37373/mcp"
+    }
+  },
+  "general": {
+    "preferredEditor": "neovim",
+    "vimMode": false,
+    "previewFeatures": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "120d"
+    }
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "GitHub"
+  }
+}

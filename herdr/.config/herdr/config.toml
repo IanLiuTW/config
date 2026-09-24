@@ -1,0 +1,87 @@
+onboarding = false
+# herdr configuration — https://herdr.dev
+# Linked to ~/.config/herdr/config.toml via nix home-manager.
+# Runtime files (sockets, logs, session.json) also live in that dir; only
+# this file is source-controlled.
+
+[theme]
+# Inherit the host terminal's ANSI palette so herdr's chrome tracks whatever
+# Ghostty theme is active. Swap for a built-in if you want a fixed look:
+# catppuccin, tokyo-night, dracula, nord, gruvbox, one-dark, solarized,
+# kanagawa, rose-pine, vesper.
+name = "catppuccin"
+
+auto_switch = false
+
+[theme.custom]
+# Panel divider lines. Tokyo-night's default equals panel_bg (#1a1b26),
+# making dividers invisible. Also the default selection/scrollbar-track bg,
+# which the two keys below override for sidebar rows only.
+surface_dim = "#565f89"
+# Focused agent / active space row. Tokyo-night fg_gutter.
+active_row_bg = "#3b4261"
+# Navigate-mode cursor row. Brighter than active_row_bg so the transient
+# cursor stays distinct from the focused row.
+selection_bg = "#545c7e"
+[terminal]
+# New panes inherit the source pane's CWD. "home" | "current" | fixed path.
+new_cwd = "follow"
+
+[keys]
+# Prefix is ctrl+semicolon (default is ctrl+b). Prefix-mode actions:
+prefix = "ctrl+semicolon"
+# One grammar: same keys (\ backspace , . 1-9) at every level. Bare = nvim
+# buffers; prefix+ctrl = herdr tabs; prefix+shift = herdr workspaces.
+# Exception: ctrl+tab / ctrl+shift+tab cycle workspaces without the prefix.
+new_tab = "prefix+ctrl+backslash"
+close_tab = "prefix+ctrl+backspace"
+previous_tab = "prefix+ctrl+comma"
+next_tab = "prefix+ctrl+period"
+switch_tab = "prefix+ctrl+1..9"
+
+new_workspace = "prefix+shift+backslash"
+close_workspace = "prefix+shift+backspace"
+switch_workspace = "prefix+shift+1..9"
+rename_workspace = "prefix+shift+r"
+previous_workspace = "ctrl+shift+tab"
+next_workspace = "ctrl+tab"
+
+# Session-wide navigator (default prefix+g).
+goto = "prefix+space"
+
+# Default is prefix+b.
+toggle_sidebar = "prefix+backslash"
+
+# Moved off prefix+shift+r (now rename_workspace); mirrors ghostty's
+# super+shift+enter=reload_config.
+reload_config = "prefix+shift+enter"
+
+# Remaining prefix-mode defaults (unchanged):
+#   ?  help        s  settings     q  detach       g  goto      o  notification
+#   e  edit scrollback in $EDITOR
+#   v  split vert  minus  split horiz   x  close pane   z  zoom   r  resize mode
+#   h/j/k/l  focus pane left/down/up/right   tab / shift+tab  cycle pane
+#   1..9  switch tab      shift+t  rename tab       shift+x  close tab (alt)
+#   w  workspace picker   shift+w  rename workspace shift+g  new worktree
+#   shift+p  rename pane
+# NOTE: scrollback lives per-pane inside herdr. Ghostty's cmd+u/cmd+d scroll
+# binds are no-ops here (herdr owns the alternate screen); use the mouse wheel
+# or `prefix e` to page through history.
+
+# Open lazygit in a throwaway pane (lazygit config is also in this repo).
+[[keys.command]]
+key = "prefix+alt+g"
+type = "pane"
+command = "lazygit"
+
+[ui]
+# Desktop notifications when a backgrounded agent finishes or needs attention.
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "spaces"
+[ui.toast]
+delivery = "system"
+
+[session]
+# Restore AI-agent panes into their native conversation sessions after a
+# herdr server restart (requires official integrations).
+resume_agents_on_restore = true

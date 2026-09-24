@@ -1,0 +1,50 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
+  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "bindings": [
+    {
+      "context": "Select",
+      "bindings": {
+        "ctrl+y": "select:accept"
+      }
+    },
+    {
+      "context": "Autocomplete",
+      "bindings": {
+        "ctrl+y": "autocomplete:accept"
+      }
+    },
+    {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+space": "voice:pushToTalk",
+        "space": null,
+        "ctrl+g": null,
+        "ctrl+`": "chat:externalEditor"
+      }
+    },
+    {
+      "context": "Global",
+      "bindings": {
+        "ctrl+t": null,
+        "ctrl+q": "app:toggleTodos"
+      }
+    },
+    {
+      "context": "Task",
+      "bindings": {
+        "ctrl+b": null,
+        "ctrl+t": "task:background"
+      }
+    },
+    {
+      "context": "Scroll",
+      "bindings": {
+        "ctrl+f": "scroll:fullPageDown",
+        "ctrl+b": "scroll:fullPageUp",
+        "ctrl+g": "scroll:top",
+        "ctrl+shift+g": "scroll:bottom"
+      }
+    }
+  ]
+}

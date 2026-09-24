@@ -1,0 +1,135 @@
+format = """
+$nix_shell\
+$docker_context\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$c\
+$python\
+$lua\
+$rust\
+$fill\
+$cmd_duration $jobs $time\
+$line_break\
+$character"""
+command_timeout = 1000
+
+[fill]
+symbol = " "
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "#994400"
+min_time = 4
+show_milliseconds = false
+disabled = false
+
+[time]
+disabled = false
+style = "bold white"
+format = '\[[$time]($style)\]'
+
+[custom.stunnel]
+disabled = true
+when = "pgrep -x stunnel"
+command = "ps -o etime= -p $(pgrep -x stunnel)"
+style = "red"
+format = "[TUNNEL OPEN for $output]($style)"
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = 'on [$hostname](bold #FFAA33) '
+trim_at = "."
+disabled = false
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+# vicmd_symbol = "[❮](green)"
+
+# configure directory
+[directory]
+read_only = " "
+truncation_length = 10
+truncate_to_repo = true    # truncates directory to root folder if in github repo
+style = "bold italic blue"
+
+[docker_context]
+symbol = " "
+format = '[\[$symbol$context\]](blue bold) '
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+
+[python]
+symbol = " "
+#pyenv_version_name = true
+format = 'via [${symbol}Python (${version} )(\($virtualenv\) )]($style)'
+style = "bold bright-yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[rust]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[\[$symbol$state( \($name\))\]](bold blue) '
+
+[package]
+symbol = "󰏗 "
+
+[aws]
+symbol = "  "
+
+[nodejs]
+format = "via [ Node.js $version](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+
+[golang]
+symbol = " "
+
+[c]
+symbol = " "
+
+[lua]
+symbol = " "

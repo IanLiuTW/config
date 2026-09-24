@@ -1,0 +1,17 @@
+description = "Generates a Conventional Commit message from staged changes and executes the commit."
+
+prompt = """
+Analyze the staged changes and commit them using the Conventional Commits (Commitizen) format.
+
+Follow these steps:
+
+1. Use `git diff --cached` to retrieve the currently staged changes.
+   - **Critical:** If the output is empty, stop immediately and inform me that there are no staged changes to commit.
+2. Analyze the logic and intent of the code changes.
+3. Generate a concise commit message following the format: `type(scope): description`.
+   - **Types:** feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
+   - **Style:** Use the imperative mood (e.g., "change" not "changed"), lower case, and no period at the end.
+4. Execute the commit using `git commit -m "YOUR_GENERATED_MESSAGE"`.
+
+Remember to use the Shell tool for all git interactions.
+"""

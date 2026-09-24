@@ -1,0 +1,145 @@
+{
+	"import_logging": {
+		"prefix": "lgim",
+		"body": [
+			"import logging",
+			"logging.basicConfig(level=logging.DEBUG, filename=${1:None},",
+			"                    format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')"
+		],
+		"description": "Import logging module"
+	},
+	"logging_debug": {
+		"prefix": "lgd",
+		"body": [
+			"logging.debug(${1}) #DEBUG"
+		],
+		"description": "Log debug message"
+	},
+	"try": {
+		"prefix": "try",
+		"body": [
+			"try:",
+			"    ${1:...}",
+			"except ${2:Exception}:",
+			"    ${3:...}",
+			"${4:finally:}"
+		],
+		"description": "Python try function"
+	},
+	"concurrent.futures.ThreadPoolExecutor": {
+		"prefix": "tpe",
+		"body": [
+			"from concurrent.futures import ThreadPoolExecutor",
+			"with ThreadPoolExecutor(max_workers=${1:5}) as executor:",
+			"    executor.submit(${2})"
+		],
+		"description": "Python try function"
+	},
+	"pytest_test": {
+		"prefix": "pt",
+		"body": [
+			"def test_${1:func_name}():",
+			"    ${2:...}",
+			"    assert ${3:True}"
+		],
+		"description": "Pytest test function"
+	},
+	"function": {
+		"prefix": "def",
+		"body": [
+			"def ${1:func_name}(${2:self}${3}):",
+			"    ${4:...}",
+			"    ${5:return}"
+		],
+		"description": "Python function"
+	},
+	"abstract_function": {
+		"prefix": "abs",
+		"body": [
+			"@abstractmethod",
+			"def ${1:func_name}():",
+			"    ${2:...}"
+		],
+		"description": "Python abstract function"
+	},
+	"static_function": {
+		"prefix": "sta",
+		"body": [
+			"@staticmethod",
+			"def ${1:func_name}(${2}):",
+			"    ${3:...}"
+		],
+		"description": "Python static function"
+	},
+	"enum": {
+		"prefix": "enum",
+		"body": [
+			"from enum import Enum, auto",
+			"class ${1:name}(Enum):",
+			"    ${2:_} = auto()"
+		],
+		"description": "Python enum module"
+	},
+	"abc": {
+		"prefix": "abc",
+		"body": [
+			"from abc import ABC, abstractmethod",
+			"class ${1:name}(ABC):",
+			"    ${2:...}"
+		],
+		"description": "Python abc module"
+	},
+	"class": {
+		"prefix": "cl",
+		"body": [
+			"class ${1:name}${2}:",
+			"    ${3:...}"
+		],
+		"description": "Python class"
+	},
+	"dataclass": {
+		"prefix": "dc",
+		"body": [
+			"from dataclasses import dataclass, field",
+			"@dataclass"
+		],
+		"description": "Python abc module"
+	},
+	"pprint": {
+		"prefix": "pp",
+		"body": [
+			"from pprint import pprint",
+			"pprint(${1:name})"
+		],
+		"description": "Python pprint function"
+	},
+	"print": {
+		"prefix": "pr",
+		"body": [
+			"print(${1:name})"
+		],
+		"description": "Python print function"
+	},
+	"print_f": {
+		"prefix": "pf",
+		"body": [
+			"print(f\"${1}\")"
+		],
+		"description": "Python print f function"
+	},
+	"print_f_debug": {
+		"prefix": "pfd",
+		"body": [
+			"print(f\"{${1}=}\") #DEBUG"
+		],
+		"description": "Python print f debug function"
+	},
+	"print_traceback_format_exc": {
+		"prefix": "ptb",
+		"body": [
+			"import traceback",
+			"print(traceback.format_exc())"
+		],
+		"description": "Python print function for traceback"
+	}
+}

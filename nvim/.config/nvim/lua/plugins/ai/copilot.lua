@@ -1,0 +1,70 @@
+return {
+  'zbirenbaum/copilot.lua',
+  cmd = 'Copilot',
+  event = 'InsertEnter',
+  config = function()
+    require('copilot').setup {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
+        debounce = 75,
+        keymap = {
+          accept = '<C-y>',
+          accept_word = '<C-up>',
+          accept_line = '<C-down>',
+          prev = '<C-left>',
+          next = '<C-right>',
+          dismiss = '<C-q>',
+        },
+      },
+      panel = {
+        enabled = false,
+        auto_refresh = false,
+        keymap = {
+          open = '<S-CR>',
+          accept = '<CR>',
+          jump_prev = '<C-p>',
+          jump_next = '<C-n>',
+          refresh = 'R',
+        },
+        layout = {
+          position = 'right',
+          ratio = 0.4,
+        },
+      },
+      filetypes = {
+        python = true,
+        yaml = true,
+        toml = true,
+        json = true,
+        jsonc = true,
+        javascript = true,
+        typescript = true,
+        dockerfile = true,
+        markdown = true,
+        lua = true,
+        gitcommit = true,
+        gitrebase = true,
+        hgcommit = false,
+        nix = true,
+        svn = false,
+        cvs = false,
+        help = false,
+        ['.'] = false,
+      },
+      should_attach = function(bufnr)
+        -- Disable for buffers with no filetype or special buftypes
+        local buftype = vim.api.nvim_get_option_value('buftype', { buf = bufnr })
+        if buftype == 'nofile' or buftype == 'prompt' then
+          return false
+        end
+        return true
+      end,
+    }
+  end,
+  keys = {
+    { '<leader>;<Up>', '<Cmd>Copilot enable<CR>', desc = 'Copilot - Enable' },
+    { '<leader>;<Down>', '<Cmd>Copilot disable<CR>', desc = 'Copilot - Disable' },
+  },
+}

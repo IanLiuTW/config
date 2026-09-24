@@ -1,0 +1,100 @@
+##############################################
+#                                            #
+#         Superfile vim-like Hotkeys         #
+#                                            #
+##############################################
+
+# Based on the official vim preset (src/superfile_config/vimHotkeys.toml).
+# Tweaks: ctrl+d/ctrl+u = half-page scroll, h/l = parent/enter directory,
+# enter/l = confirm (enter dir, open file with system default app),
+# e = open in $EDITOR, y/c/p/x = copy/cut/paste/delete,
+# . / > = copy path / copy pwd, s / ctrl+s = sort menu / reverse sort,
+# all toggles on ctrl+ (., v, s, f).
+
+###############################################################################
+#                                Global hotkeys                               #
+###############################################################################
+
+# Note: These hotkeys should be unique.
+
+#-- Basic Actions
+confirm = ['enter', 'l', 'right']
+quit = ['q', 'ctrl+c']
+cd_quit = ['Q', '']
+
+#-- Navigation
+list_up = ['k', 'up', '']
+list_down = ['j', 'down', '']
+page_up = ['ctrl+u', '']
+page_down = ['ctrl+d', '']
+
+#-- File Panel Controls
+create_new_file_panel = ['ctrl+\', '']
+close_file_panel = ['ctrl+backspace', '']
+next_file_panel = ['ctrl+l', '']
+previous_file_panel = ['ctrl+h', '']
+split_file_panel = ['N', '']
+toggle_file_preview_panel = ['shift+tab', '']
+open_sort_options_menu = ['s', '']
+toggle_reverse_sort = ['ctrl+s', '']
+
+#-- Focus Manipulation
+focus_on_process_bar = ['ctrl+p', '']
+focus_on_sidebar = ['tab', '']
+focus_on_metadata = ['ctrl+m', '']
+
+#-- File/Dir Creation/Renaming
+file_panel_item_create = ['a', '']
+file_panel_item_rename = ['r', '']
+
+#-- Main File Operations
+copy_items = ['y', '']
+cut_items = ['c', '']
+paste_items = ['p', '']
+delete_items = ['x', '']
+permanently_delete_items = ['D', '']
+
+#-- Archive Manipulation
+extract_file = ['ctrl+x', '']
+compress_file = ['ctrl+z', '']
+
+#-- Editor Actions
+open_file_with_editor = ['e', 'ctrl+`']
+open_current_directory_with_editor = ['shift+enter', '']
+
+#-- Other Actions
+pinned_directory = ['P', '']
+toggle_dot_file = ['ctrl+.', '']
+change_panel_mode = ['v', '']
+open_help_menu = ['?', '']
+open_spf_prompt = [';', '']
+open_command_line = [':', '']
+open_zoxide = ['z', '']
+copy_path = ['.', '']
+copy_present_working_directory = ['>', '']
+toggle_footer = ['ctrl+f', '']
+
+###############################################################################
+#                                Typing hotkeys                               #
+###############################################################################
+
+# Note: These hotkeys can override all hotkeys.
+
+confirm_typing = ['enter', '']
+cancel_typing = ['esc', 'ctrl+c']
+
+###############################################################################
+#                            Mode-Specific Hotkeys                            #
+###############################################################################
+
+# Note: These hotkeys can conflict with other modes, but not with global
+# hotkeys.
+
+#-- Normal Mode Actions
+parent_directory = ['h', 'left', '']
+search_bar = ['/', '']
+
+#-- Selection Mode Actions
+file_panel_select_mode_items_select_down = ['ctrl+e', '']
+file_panel_select_mode_items_select_up = ['ctrl+y', '']
+file_panel_select_all_items = ['A', '']

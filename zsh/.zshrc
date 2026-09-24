@@ -1,0 +1,254 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export LC_ALL=en_US.UTF-8
+export TMPDIR=/var/tmp/
+export EDITOR="nvim"
+
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
+setopt hist_save_no_dups hist_ignore_dups hist_find_no_dups noclobber no_beep
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy/mm/dd"
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+WORDCHARS=${WORDCHARS//[\/.-]}
+
+if [[ -z "$IN_NIX_SHELL" ]]; then
+    if [[ -d "/opt/homebrew" ]]; then
+        export HOMEBREW_PREFIX="/opt/homebrew"
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+        export HOMEBREW_REPOSITORY="/opt/homebrew"
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+        export MANPATH="/opt/homebrew/share/man:$MANPATH"
+        export INFOPATH="/opt/homebrew/share/info:$INFOPATH"
+    fi
+fi
+
+USER_PROFILE_FILE="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+[ -f "$USER_PROFILE_FILE" ] && source "$USER_PROFILE_FILE"
+
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+unalias zi 2>/dev/null
+
+ZVM_LAZY_KEYBINDINGS=true
+ZVM_INIT_MODE=sourcing
+
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-autosuggestions
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-completions
+zinit ice wait"0" lucid
+zinit snippet OMZP::sudo
+zinit ice wait"0" lucid
+zinit snippet OMZP::command-not-found
+zinit ice wait"0" lucid
+zinit light Aloxaf/fzf-tab
+zinit ice wait"0" lucid depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# Cache fzf init to avoid subprocess each startup
+FZF_ZSH_CACHE="${XDG_CACHE_HOME}/fzf-zsh-init.zsh"
+[[ ! -f "$FZF_ZSH_CACHE" || "$(command -v fzf)" -nt "$FZF_ZSH_CACHE" ]] && fzf --zsh > "$FZF_ZSH_CACHE"
+
+# Source fzf after zvm init so zvm doesn't clobber fzf keybindings
+function zvm_after_init() {
+  zvm_bindkey viins '^y' autosuggest-accept
+  source "$FZF_ZSH_CACHE"
+  bindkey '^g' fzf-cd-widget   # remap Alt-C -> Ctrl-G (Alt-C taken by system)
+}
+
+# compinit's file-count check never matches what compdump writes (fpath holds
+# duplicate and mixed-version dirs from nix + brew + zinit), so it rebuilt the
+# dump on every start — ~1.7s. -C loads the dump unchecked; the age gate does a
+# real rebuild once a day so new completions still get picked up.
+function zicompinit_fast() {
+  setopt localoptions extendedglob   # (#q...) qualifiers inside [[ ]]
+  autoload -Uz compinit
+  local zcd=$XDG_CACHE_HOME/zcompdump
+  if [[ -n $zcd(#qN.mh+24) ]]; then compinit -d $zcd; else compinit -C -d $zcd; fi
+}
+
+# Syntax highlighting loaded last — triggers deferred compinit
+zinit ice wait"0" lucid atinit"zicompinit_fast; zicdreplay"
+zinit light zsh-users/zsh-syntax-highlighting
+
+bindkey ' ' magic-space
+bindkey '^y' autosuggest-accept
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':fzf-tab:*' prefix ''
+zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=ctrl-y:accept
+zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
+zstyle ':fzf-tab:*' worker 0
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Cache starship init to avoid subprocess each startup
+STARSHIP_ZSH_CACHE="${XDG_CACHE_HOME}/starship-zsh-init.zsh"
+[[ ! -f "$STARSHIP_ZSH_CACHE" || "$(command -v starship)" -nt "$STARSHIP_ZSH_CACHE" ]] && starship init zsh > "$STARSHIP_ZSH_CACHE"
+source "$STARSHIP_ZSH_CACHE"
+
+# Cache zoxide init to avoid subprocess each startup
+ZOXIDE_ZSH_CACHE="${XDG_CACHE_HOME}/zoxide-zsh-init.zsh"
+[[ ! -f "$ZOXIDE_ZSH_CACHE" || "$(command -v zoxide)" -nt "$ZOXIDE_ZSH_CACHE" ]] && zoxide init zsh > "$ZOXIDE_ZSH_CACHE"
+source "$ZOXIDE_ZSH_CACHE"
+
+export FZF_DEFAULT_OPTS="--bind shift-tab:toggle-preview"
+export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
+
+# Tab title: "<repo>:<subdir> | <program>", prefixed with a marker while a
+# command runs or when the last one failed. Repo root is found by walking up
+# for .git (a file in worktrees, hence -e) to avoid forking git each prompt.
+function set_terminal_title() {
+  local marker=$1 top=$PWD rel dir cmd
+  local -a w=(${(z)2})
+  if [[ ${w[1]:t} == sudo ]]; then
+    shift w
+    # skip sudo's own flags; -u and friends consume the following word too
+    while (( $#w )) && [[ ${w[1]} == -* ]]; do
+      [[ ${w[1]} == -[ugpChRTU] ]] && shift w
+      (( $#w )) && shift w
+    done
+    cmd="#${${w[1]:t}:-sudo}"
+  else
+    cmd=${w[1]:t}
+  fi
+  while [[ $top != / && ! -e $top/.git ]]; do top=${top:h}; done
+  if [[ $top == / ]]; then
+    dir=${${PWD:t}:-/}
+  else
+    rel=${${PWD#$top}#/}
+    dir="${top:t}${rel:+:$rel}"
+  fi
+  print -n "\e]0;${marker}${dir}${cmd:+ | $cmd}\a"
+}
+function preexec() { set_terminal_title '▸ ' "$1"; }
+function precmd() {
+  local ret=$?
+  local marker=
+  # 130/148 are Ctrl-C and Ctrl-Z, not failures worth flagging
+  (( ret == 0 || ret == 130 || ret == 148 )) || marker="✗${ret} "
+  set_terminal_title "$marker"
+}
+
+function spf() {
+	case "$(uname -s)" in
+		Darwin) export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir" ;;
+		Linux)  export SPF_LAST_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/superfile/lastdir" ;;
+	esac
+	command spf "$@"
+	[ ! -f "$SPF_LAST_DIR" ] || {
+		. "$SPF_LAST_DIR"
+		rm -f -- "$SPF_LAST_DIR"
+	}
+}
+
+# [Alias] Basics
+alias q="exit"
+alias g="rg --hidden --no-ignore"
+alias G="git"
+alias f="spf"
+alias v="nvim"
+alias vv="nvim ."
+alias e="export"
+alias c="cat"
+alias b="bat"
+alias m="make"
+alias j="just"
+alias d="docker"
+alias do-up="colima start --memory 4 --disk 100"
+alias do-down="colima stop"
+alias do-prune='docker system prune -a --filter "until=720h"'
+alias do-stop='c=$(docker ps -q); [ -n "$c" ] && docker stop ${(f)c} || echo "no running containers"'
+alias dp="devpod"
+alias lg="lazygit"
+alias ld="lazydocker"
+alias k="k9s -c svc"
+alias kc="kubectl"
+alias fx="flux"
+alias tp="telepresence"
+alias bt="btop"
+alias di="dua i"
+alias pc="procs"
+alias po="posting"
+alias ssh="TERM=xterm-256color ssh"
+alias ff="fastfetch -c all"
+# [Alias] Navigation
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -I"
+alias rg='rg --hidden'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -='cd -'
+alias zz="__zoxide_zi"
+# [Alias] eza
+alias ls='eza --color=always --group-directories-first --icons=always'
+alias ll='eza -la --icons=always --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=always --group-directories-first --icons=always'
+alias lm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons=always'
+alias la='eza --long --all --group --group-directories-first --color=always'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons=always'
+alias lS='eza -1 --color=always --group-directories-first --icons=always'
+alias lt='eza --tree --level=2 --color=always --group-directories-first --icons=always'
+alias l.='eza -d .*'
+# [Alias] bat
+if command -v bat >/dev/null 2>&1; then
+  alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
+# [Alias] nix
+alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-up='nix flake update --flake ~/config/nix-darwin/'
+alias nix-hm='home-manager switch --flake ~/config/nix-darwin/'
+alias nix-cl="sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimize"
+alias nix-d='nix develop --command zsh'
+alias nix-r='nix run'
+# [Alias] files
+alias vrc="nvim ~/.zshrc"
+alias src="source ~/.zshrc"
+alias todo='nvim ~/.todo.md'
+alias con='cd ~/config'
+alias des="cd ~/Desktop"
+alias dow="cd ~/Downloads"
+alias doc="cd ~/Documents"
+alias pic="cd ~/Pictures"
+# [Alias] dev
+alias act='source .venv/bin/activate'
+# [Alias] AI
+alias cc='claude'
+alias ccc='claude --continue'
+alias ccr='claude --resume'
+alias ccyolo='claude --dangerously-skip-permissions'
+alias gg='agy'
+alias co='codex'
+alias h='herdr'
+
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+# pnpm
+export PNPM_HOME="/Users/ianliu/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

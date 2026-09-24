@@ -1,0 +1,111 @@
+[user]
+    name = Ian Liu
+    email = ian.liu@tupl.com
+[help]
+    autocorrect = 30
+[core]
+    autocrlf = false
+    quotepath = false
+    editor = nvim
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    dark = true
+    side-by-side = false
+    line-numbers = true
+[diff]
+    algorithm = histogram
+    colorMoved = default
+[transfer]
+    fsckobjects = true
+[receive]
+    fsckObjects = true
+[fetch]
+    fsckobjects = true
+[push]
+    autoSetupRemote = true
+	default = current
+    useForceIfIncludes = true
+[pull]
+    rebase = true
+[merge]
+    conflictstyle = zdiff3
+[rebase]
+	autoStash = true
+[rerere]
+    enabled = true
+[branch]
+    sort = -committerdate
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[init]
+defaultBranch = main
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[alias]
+    a = add
+    aa = add .
+    c = commit
+    ca = commit --amend -C HEAD
+    co = checkout
+    cb = checkout -b
+    sw = switch
+    cl = clone
+    s = status
+    ss = status -sb
+    b = branch
+    bu = branch -u
+    bm = branch -m
+    bv = branch -vv
+    bl = blame
+    m = merge
+    default-branch = "!git symbolic-ref refs/remotes/origin/HEAD --short | sed 's|^origin/||'"
+    mm = "!git merge \"$(git default-branch)\""
+    mom = "!git merge \"origin/$(git default-branch)\""
+    re = remote
+    rev = remote -v
+    rea = remote add
+    res = remote set-url
+    rer = remote rename
+    reem = remote remove
+    rs = reset
+    rsh = reset HEAD
+    rshs = reset HEAD --soft
+    rshh = reset HEAD --hard
+    st = stash
+    stp = stash pop
+    sta = stash apply
+    staash = stash --all
+    std = stash drop
+    rv = revert
+    f = fetch
+    fa = fetch --all
+    for = fetch origin
+    pu = push --force-with-lease
+    puu = push -u
+    pl = pull
+    di = diff
+    type = cat-file -t
+    dump = cat-file -p
+    rl = reflog
+    l = log
+    ls = log --stat
+    lo = log --oneline
+    lc = log --pretty=oneline
+    lss = log --show-signature
+    ll = log --pretty=format:'%h [%Cgreen%an%Creset] %ad - %ar : %s%d' --graph --date=short
+    lg = log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short
+    alias = "config --get-regexp ^alias\\."
+    ig = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
+    iga = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi >> .gitignore"
+    iac = "!giac() { git init && git add . && git commit -m 'init' ;}; giac"
+    fm = "!git fetch origin && git merge \"origin/$(git default-branch)\""
+    fr = "!git fetch origin && git rebase \"origin/$(git default-branch)\""

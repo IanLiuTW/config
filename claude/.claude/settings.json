@@ -1,0 +1,128 @@
+{
+  "env": {
+    "DISABLE_AUTOUPDATER": "1",
+    "CLAUDE_TIMESTAMPS_TZ": "America/Los_Angeles"
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:*)",
+      "Read(**)",
+      "Grep(**)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr list *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh repo view *)",
+      "Bash(gh status *)",
+      "Bash(gh api *)",
+      "Bash(git *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(ls *)",
+      "Bash(cd *)",
+      "Bash(find *)",
+      "Bash(curl *)",
+      "Bash(which *)",
+      "Bash(pwd)",
+      "Bash(sops *)",
+      "Bash(kubectl *)",
+      "Bash(bash *)",
+      "Bash(nvim --version)",
+      "Bash(node --version)",
+      "Bash(npm list *)",
+      "mcp__plugin_atlassian_atlassian__createJiraIssue",
+      "mcp__plugin_atlassian_atlassian__createIssueLink",
+      "mcp__plugin_atlassian_atlassian__editJiraIssue",
+      "mcp__plugin_atlassian_atlassian__transitionJiraIssue",
+      "mcp__claude_ai_Atlassian_MCP__createJiraIssue",
+      "mcp__claude_ai_Atlassian_MCP__createIssueLink",
+      "mcp__claude_ai_Atlassian_MCP__editJiraIssue",
+      "mcp__claude_ai_Atlassian_MCP__transitionJiraIssue"
+    ],
+    "deny": [
+      "mcp__atlassian__jira_delete_issue",
+      "mcp__atlassian__jira_remove_issue_link",
+      "mcp__atlassian__jira_remove_watcher",
+      "mcp__atlassian__jira_update_sprint",
+      "mcp__atlassian__jira_update_proforma_form_answers",
+      "mcp__atlassian__jira_batch_create_issues",
+      "mcp__atlassian__jira_create_remote_issue_link",
+      "mcp__atlassian__jira_create_sprint",
+      "mcp__atlassian__jira_create_version",
+      "mcp__atlassian__jira_batch_create_versions",
+      "mcp__atlassian__jira_add_issues_to_sprint",
+      "mcp__atlassian__jira_link_to_epic"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/ianliu/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "atlassian@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "outputStyle": "Tech Style",
+  "viewMode": "focus",
+  "sandbox": {
+    "enabled": false,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.githubusercontent.com",
+        "registry.npmjs.org",
+        "*.npmjs.org"
+      ]
+    }
+  },
+  "feedbackDrafts": "off",
+  "alwaysThinkingEnabled": true,
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "tap"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "theme": "custom:tokyonight-night",
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "Organization: Tupl. Primary use: software development",
+      "Key internal services: Jira and Confluence at tuplio.atlassian.net — the team's own issue tracker and wiki. Creating, editing, linking, commenting on, and transitioning issues there, and creating or updating Confluence pages, is routine internal workflow, not publication to an external system."
+    ]
+  },
+  "voiceEnabled": true,
+  "allowUnsandboxedCommands": true
+}
