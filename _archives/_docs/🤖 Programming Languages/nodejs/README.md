@@ -1,13 +1,13 @@
-# Nodejs
+# Node.js
 
-[Node.js](https://github.com/asdf-vm/asdf-nodejs)
+Plugin: [asdf-nodejs](https://github.com/asdf-vm/asdf-nodejs)
 
-```bash
-sudo apt install dirmngr gpg curl gawk
-
+```shell
 asdf plugin add nodejs
 asdf install nodejs latest
-asdf global nodejs latest
+asdf set -u nodejs latest
 
-node -v
+node --version
 ```
+
+The plugin README lists the build dependencies for each platform. Read it before the first install.

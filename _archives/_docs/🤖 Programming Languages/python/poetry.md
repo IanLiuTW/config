@@ -1,345 +1,134 @@
 # Poetry
 
-- [Poetry](https://python-poetry.org/)
+[Poetry](https://python-poetry.org/) manages a Python project's dependencies, lockfile, virtual environment and build. These notes are for Poetry 2.x. Poetry 2.0 adopted the standard `[project]` table in `pyproject.toml` and removed or moved several commands; the notes at the end list them.
 
-## **Installation**
+[uv](https://docs.astral.sh/uv/) covers the same tasks and is much faster. Consider it for a new project.
 
-### **Installing with `pipx`**
+## Install
 
-```bash
-pipx install poetry
-```
+Install Poetry in its own environment, never into a project's environment:
 
-```bash
+```shell
+pipx install poetry                  # or: uv tool install poetry
 poetry --version
 ```
 
-### **Enable tab completion for Bash**
+Upgrade with `pipx upgrade poetry`, and uninstall with `pipx uninstall poetry`.
 
-```bash
-sudo install -m 777 /dev/null /etc/bash_completion.d/poetry.bash-completion
-poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
+Shell completion for zsh, with Oh My Zsh:
+
+```shell
+mkdir -p "$ZSH_CUSTOM/plugins/poetry"
+poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
+# then add "poetry" to plugins=(...) in ~/.zshrc
 ```
 
-You may need to restart your shell in order for the changes to take effect.
+For bash: `poetry completions bash >> ~/.bash_completion`.
 
-### **(Optional) Set poetry to create the virtualenv inside the project’s root directory**
+## Recommended configuration
 
-```bash
-poetry config virtualenvs.in-project true
+```shell
+poetry config virtualenvs.in-project true   # create the environment in ./.venv
+poetry config --list                        # show every setting
 ```
 
-### **(Optional) Export** PYTHON_KEYRING_BACKEND variable to avoid `Failed to create the collection: Prompt dismissed..` issue
+If Poetry hangs or fails with a keyring prompt on a headless machine, turn off the keyring:
 
-```bash
-echo 'export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring' >> ~/.bashrc
+```shell
+poetry config keyring.enabled false
 ```
 
-See all the current config
+## Create a project
 
-```bash
-poetry config --list
+```shell
+poetry new my-project                 # src layout (the default in 2.x)
+poetry new my-project --flat          # package at the root instead of under src/
+poetry new my-folder --name my_package
+poetry init                           # add pyproject.toml to an existing directory
 ```
 
-### **Updating & Uninstalling**
+## Dependencies
 
-```bash
-pipx upgrade poetry
+```shell
+poetry add requests                   # latest compatible version
+poetry add "requests>=2.32,<3"        # with a constraint
+poetry add requests@^2.32
+poetry add "requests[socks]"          # with extras
+poetry add git+https://github.com/<user>/<repo>.git#<branch-or-tag>
+poetry add ../my-package/             # a local path
+poetry add --group dev pytest ruff    # into a dependency group (-G dev)
+poetry remove requests
+poetry remove --group dev pytest
 ```
 
-```bash
-pipx uninstall poetry
+```shell
+poetry install                        # install from poetry.lock, including the project
+poetry install --without dev          # skip a group
+poetry install --only main            # only the runtime dependencies
+poetry sync                           # install, and also remove packages not in the lockfile
+poetry update                         # upgrade within the constraints, and rewrite poetry.lock
+poetry update requests                # upgrade some packages only
+poetry lock                           # refresh poetry.lock after you edit pyproject.toml by hand
+poetry lock --regenerate              # rebuild poetry.lock from scratch
+poetry check                          # validate pyproject.toml and its consistency with poetry.lock
 ```
 
-## **Basic usage**
-
-The `pyproject.toml` file is what is the most important here. This will orchestrate your project and its dependencies.
-
-### **Project setup**
-
-```bash
-poetry new project_name
-```
-
-If you want to name your project differently than the folder, you can pass the `--name` option:
-
-```bash
-poetry new my_folder --name my_package
-```
-
-If you want to use a src folder, you can use the `--src` option:
-
-```bash
-poetry new --src my_package
-```
-
-### **Initializing a pre-existing project**
-
-```bash
-poetry init
-```
-
-### **Activating the virtual environment**
-
-```bash
-poetry shell
-```
-
-```bash
-exit # exit the shell
-```
-
-### **Adding dependencies**
-
-```bash
-poetry add package_name
-```
-
-To install dependencies to dev:
-
-```bash
-poetry add -D package_name
-poetry add --dev package_name
-```
-
-If you do not specify a version constraint, poetry will choose a suitable one based on the available package versions. You also can specify a constraint when adding a package, like so:
-
-```bash
-poetry add requests pendulum
-poetry add pendulum@^2.0.5
-poetry add "pendulum>=2.0.5"
-poetry add -D pytest@6.2.5
-poetry add pendulum@latest
-# You can also add git dependencies:
-poetry add git+https://github.com/sdispater/pendulum.git
-# or use ssh instead of https:
-poetry add git+ssh://git@github.com/sdispater/pendulum.git
-# If you need to checkout a specific branch, tag or revision, you can specify it when using add:
-poetry add git+https://github.com/sdispater/pendulum.git#develop
-poetry add git+https://github.com/sdispater/pendulum.git#2.0.5
-# or make them point to a local directory or file:
-poetry add ./my-package/
-poetry add ../my-package/dist/my-package-0.1.0.tar.gz
-poetry add ../my-package/dist/my_package-0.1.0.whl
-# If the package(s) you want to install provide extras, you can specify them when adding the package:
-poetry add requests[security,socks]
-poetry add "requests[security,socks]~=2.22.0"
-poetry add "git+https://github.com/pallets/flask.git@1.1.1[dotenv,dev]"
-```
-
-### **Removing dependencies**
-
-```bash
-poetry remove package_name
-```
-
-To remove dependencies from dev:
-
-```bash
-poetry remove -D package_name
-# or
-poetry remove --dev package_name
-```
-
-### **Installing dependencies**
-
-```bash
-poetry install
-```
-
-You can specify to the command that you do not want the development dependencies installed by passing the `--no-dev` option.
-
-```bash
-poetry install --no-dev
-```
-
-If you want to remove old dependencies no longer present in the lock file, use the `--remove-untracked` option.
-
-```bash
-poetry install --remove-untracked
-```
-
-### **Updating dependencies**
-
-```bash
-poetry update
-```
-
-This will resolve all dependencies of the project and write the exact versions into `poetry.lock`.
-
-If you just want to update a few packages and not all, you can list them as such:
-
-```bash
-poetry update requests toml
-```
-
-Note that this will not update versions for dependencies outside their version constraints specified in the `pyproject.toml` file.
-
-### **Showing dependencies**
-
-```bash
-poetry show
-```
-
-If you want to see the details of a certain package, you can pass the package name:
-
-```bash
-poetry show package_name
-```
-
-More parameters:
-
-```bash
-poetry show -v  # shows the location of .venv
-poetry show --tree
+```shell
+poetry show                           # installed packages
+poetry show --tree                    # dependency tree
 poetry show --outdated
+poetry show --top-level               # only direct dependencies
+poetry search <name>
 ```
 
-### **Checking the `pyproject.toml` file**
+## Run commands in the environment
 
-```bash
-poetry check
-```
-
-### **Locking the `pyproject.toml` file**
-
-By default, this will lock all dependencies to the latest available compatible versions. To only refresh the lock file, use the `--no-update` option.
-
-```bash
-poetry lock
-```
-
-```bash
-poetry lock --no-update
-```
-
-### **Using `poetry run`**
-
-```bash
-poetry run python your_script.py
-# or
+```shell
+poetry run python script.py
 poetry run pytest
+eval $(poetry env activate)           # activate the environment in the current shell
 ```
 
-### **Searching packages**
+## Environments
 
-```bash
-poetry search package_name
-```
-
-```bash
-poetry search requests pendulum
-```
-
-## **Configuration**
-
-### **Local configuration**
-
-```bash
-poetry config virtualenvs.create false --local
-```
-
-### **Listing the current configuration**
-
-```bash
-poetry config --list
-```
-
-### **Displaying a single configuration setting**
-
-```bash
-poetry config virtualenvs.path
-```
-
-### **Adding or updating a configuration setting**
-
-```bash
-poetry config virtualenvs.path /path/to/cache/directory/virtualenvs
-```
-
-### **Removing a specific setting**
-
-```bash
-poetry config virtualenvs.path --unset
-```
-
-### **Create the virtualenv inside the project’s root directory**
-
-```bash
-poetry config virtualenvs.in-project true
-```
-
-Defaults to `None`. If set to `true`, the virtualenv wil be created and expected in a folder named `.venv` within the root directory of the project.
-
-If not set explicitly (default), `poetry` will use the virtualenv from the `.venv` directory when one is available. If set to `false`, `poetry` will ignore any existing `.venv` directory.
-
-### **Set a new alternative repository**
-
-```bash
-poetry config repositories.<name>
-```
-
-See [Repositories](https://python-poetry.org/docs/repositories/) for more information.
-
-## **Managing environments**
-
-### **Displaying the environment information**
-
-```bash
-poetry env info
-```
-
-If you only want to know the path to the virtual environment, you can pass the `--path` option to `env info`:
-
-```bash
-poetry env info --path
-```
-
-### **Listing the environments associated with the project**
-
-```bash
+```shell
+poetry env info                       # details of the current environment
+poetry env info --path                # its path only
 poetry env list
-```
-
-### **Switching between environments**
-
-```bash
+poetry env use 3.13                   # create or switch to an environment with Python 3.13
 poetry env use /full/path/to/python
+poetry env remove 3.13
+poetry env remove --all
 ```
 
-If you have the python executable in your `PATH` you can use it:
+## Package sources
 
-```bash
-poetry env use python3.7
+```shell
+poetry source add <name> <url>
+poetry source add --priority=explicit <name> <url>   # used only for packages that name it
+poetry source show
 ```
 
-You can even just use the minor Python version in this case:
+See [Repositories](https://python-poetry.org/docs/repositories/) for priorities and credentials.
 
-```bash
-poetry env use 3.7
-```
+## Export to requirements.txt
 
-If you want to disable the explicitly activated virtual environment, you can use the special `system` Python version to retrieve the default behavior:
+Poetry 2 no longer includes `export`. Install the plugin first:
 
-```bash
-poetry env use system
-```
-
-### **Deleting the environments**
-
-```bash
-poetry env remove /full/path/to/python
-poetry env remove python3.7
-poetry env remove 3.7
-poetry env remove test-O3eWbxRl-py3.7
-```
-
-If you remove the currently activated virtual environment, it will be automatically deactivated.
-
-## **Export**
-
-### **Exporting the env to the `requirements.txt` file**
-
-```bash
+```shell
+pipx inject poetry poetry-plugin-export      # or: poetry self add poetry-plugin-export
 poetry export -f requirements.txt --output requirements.txt
+poetry export --without-hashes -f requirements.txt --output requirements.txt
 ```
+
+## Changes in Poetry 2.0
+
+| Poetry 1.x | Poetry 2.x |
+|---|---|
+| `poetry shell` | `eval $(poetry env activate)`, or install the `poetry-plugin-shell` plugin |
+| `poetry export` built in | `poetry-plugin-export` plugin |
+| `poetry add -D` or `--dev` | `poetry add --group dev` (`-D` still works as a shortcut) |
+| `poetry install --no-dev` | `poetry install --without dev` or `--only main` |
+| `poetry install --remove-untracked` | `poetry sync` |
+| `poetry lock --no-update` | `poetry lock` (it no longer upgrades by default); `--regenerate` rebuilds |
+| Metadata in `[tool.poetry]` | Metadata in the standard `[project]` table |

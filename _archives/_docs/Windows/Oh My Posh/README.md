@@ -1,82 +1,60 @@
 # Oh My Posh
 
-## ****Installation****
+[Oh My Posh](https://ohmyposh.dev/) draws a themed prompt in any shell. This folder holds the theme [`ohmyposhv1-ian.omp.json`](ohmyposhv1-ian.omp.json). The official theme [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) is a close alternative.
 
-### ****Installation (Windows)****
+## 1. Install Oh My Posh
 
-### ****Install `Nerd Fonts`**
-
-Go to [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts/releases/tag/v2.1.0)
-
-**Install `OhMyPosh`**
+Windows:
 
 ```powershell
-winget install JanDeDobbeleer.OhMyPosh -s winget
+winget install JanDeDobbeleer.OhMyPosh --source winget
+# upgrade later with:
+winget upgrade JanDeDobbeleer.OhMyPosh --source winget
 ```
 
-For updating the module
+Linux (installs to `~/bin` or `~/.local/bin`):
 
-```powershell
-winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+```shell
+curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
-**Adjust Windows Terminal config**
+Inside WSL, follow the Linux steps.
 
-- In `Settings` => `PowerShell Core`, `Windows PowerShell`, `WSL` => `Appearance`: Change the `Font face` to `CaskaydiaCove Nerd Font Mono` (or other desired font).
+## 2. Install a Nerd Font
 
-**Setting `Oh My Posh` theme**
+The themes use icons from a [Nerd Font](https://www.nerdfonts.com/). Oh My Posh can install one:
 
-```powershell
-New-Item -Path '~/.ohmyposhv1-ian.omp.json' -ItemType File
-notepad $HOME/.ohmyposhv1-ian.omp.json
+```shell
+oh-my-posh font install CascadiaCode   # installs "CaskaydiaCove Nerd Font" and "CaskaydiaCove Nerd Font Mono"
+oh-my-posh font list                   # every font you can install
 ```
 
-- Copy [ohmyposhv1-ian.omp.json](https://github.com/IanLiuTW/config/blob/main/Oh%20My%20Posh/ohmyposhv1-ian.omp.json) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
+Install the font on the machine that runs the terminal window. For WSL or a container, that is the Windows host.
 
-**Setting `$PROFILE`**
+Then select the font in the terminal. In Windows Terminal: **Settings > Profiles > Defaults > Appearance > Font face**.
 
-```powershell
-notepad $PROFILE
-```
+## 3. Add the theme
+
+Copy [`ohmyposhv1-ian.omp.json`](ohmyposhv1-ian.omp.json) to your home directory as `~/.ohmyposhv1-ian.omp.json`.
+
+## 4. Load the prompt from your shell profile
+
+PowerShell. Open the profile with `notepad $PROFILE` and add:
 
 ```powershell
 oh-my-posh init pwsh --config ~/.ohmyposhv1-ian.omp.json | Invoke-Expression
 ```
 
-### ****Installation (Linux)****
+bash. Add to `~/.bashrc`:
 
-**Install `Oh My Posh`**
-
-```bash
-winget install JanDeDobbeleer.OhMyPosh -s wingetsudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+```shell
+eval "$(oh-my-posh init bash --config ~/.ohmyposhv1-ian.omp.json)"
 ```
 
-**Install font (Not needed if using WSL)**
+zsh. Add to `~/.zshrc`:
 
-```bash
-mkdir ~/.fonts && cd "$_"
-
-wget -O CascadiaCode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
-unzip CascadiaCode.zip
-rm CascadiaCode.zip
-
-sudo fc-cache -vr
-fc-list
+```shell
+eval "$(oh-my-posh init zsh --config ~/.ohmyposhv1-ian.omp.json)"
 ```
 
-**Create `ohmyposhv1-ian.omp.json`**
-
-```bash
-mkdir ~/.poshthemes
-vim ~/.poshthemes/ohmyposhv1-ian.omp.json
-```
-
-- Copy [ohmyposhv1-ian.omp.json](https://github.com/IanLiuTW/config/blob/main/Oh%20My%20Posh/ohmyposhv1-ian.omp.json) or [montys](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json) to `ohmyposhv1-ian.omp.json`
-
-Add this line to `.bashrc`
-
-```bash
-# Oh My Posh theme
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/ohmyposhv1-ian.omp.json)"
-```
+Open a new shell to see the prompt.
