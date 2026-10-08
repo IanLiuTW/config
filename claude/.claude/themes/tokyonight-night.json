@@ -1,0 +1,88 @@
+{
+  "name": "TokyoNight Night",
+  "base": "dark",
+  "overrides": {
+    "text": "#5ec6e6",
+    "inverseText": "#1a1b26",
+    "inactive": "#565f89",
+    "inactiveShimmer": "#737aa2",
+    "subtle": "#3b4261",
+
+    "claude": "#ff9e64",
+    "claudeShimmer": "#ffc7a0",
+    "claudeBlue_FOR_SYSTEM_SPINNER": "#7aa2f7",
+    "claudeBlueShimmer_FOR_SYSTEM_SPINNER": "#a9c4ff",
+
+    "permission": "#7aa2f7",
+    "permissionShimmer": "#a9c4ff",
+    "suggestion": "#7aa2f7",
+    "remember": "#7aa2f7",
+    "autoAccept": "#bb9af7",
+    "autoAcceptShimmer": "#d7c0ff",
+    "skill": "#bb9af7",
+    "merged": "#bb9af7",
+    "effortUltra": "#bb9af7",
+    "planMode": "#1abc9c",
+    "ide": "#7aa2f7",
+    "fastMode": "#ff9e64",
+    "fastModeShimmer": "#ffc7a0",
+
+    "bashBorder": "#ff007c",
+    "promptBorder": "#3b4261",
+    "promptBorderShimmer": "#545c7e",
+
+    "success": "#9ece6a",
+    "error": "#f7768e",
+    "warning": "#e0af68",
+    "warningShimmer": "#ffd7a0",
+
+    "diffAdded": "#20303b",
+    "diffRemoved": "#37222c",
+    "diffAddedDimmed": "#1d2733",
+    "diffRemovedDimmed": "#2b1e25",
+    "diffAddedWord": "#449dab",
+    "diffRemovedWord": "#914c54",
+
+    "selectionBg": "#283457",
+    "userMessageBackground": "#28323d",
+    "userMessageBackgroundHover": "#333e4b",
+    "composerSidebarBackground": "#16161e",
+    "bashMessageBackgroundColor": "#302838",
+    "memoryBackgroundColor": "#1f2b33",
+
+    "rate_limit_fill": "#7aa2f7",
+    "rate_limit_empty": "#3b4261",
+
+    "briefLabelYou": "#7dcfff",
+    "briefLabelClaude": "#22c55e",
+
+    "red_FOR_SUBAGENTS_ONLY": "#f7768e",
+    "blue_FOR_SUBAGENTS_ONLY": "#7aa2f7",
+    "green_FOR_SUBAGENTS_ONLY": "#9ece6a",
+    "yellow_FOR_SUBAGENTS_ONLY": "#e0af68",
+    "purple_FOR_SUBAGENTS_ONLY": "#9d7cd8",
+    "orange_FOR_SUBAGENTS_ONLY": "#ff9e64",
+    "pink_FOR_SUBAGENTS_ONLY": "#ff007c",
+    "cyan_FOR_SUBAGENTS_ONLY": "#7dcfff",
+
+    "professionalBlue": "#7aa2f7",
+    "chromeYellow": "#e0af68",
+    "clawd_body": "#ff9e64",
+    "clawd_background": "#1a1b26",
+
+    "rainbow_red": "#f7768e",
+    "rainbow_orange": "#ff9e64",
+    "rainbow_yellow": "#e0af68",
+    "rainbow_green": "#9ece6a",
+    "rainbow_blue": "#7aa2f7",
+    "rainbow_indigo": "#9d7cd8",
+    "rainbow_violet": "#bb9af7",
+    "rainbow_red_shimmer": "#ffa8b8",
+    "rainbow_orange_shimmer": "#ffc7a0",
+    "rainbow_yellow_shimmer": "#ffd7a0",
+    "rainbow_green_shimmer": "#c3e88d",
+    "rainbow_blue_shimmer": "#a9c4ff",
+    "rainbow_indigo_shimmer": "#c4adff",
+    "rainbow_violet_shimmer": "#dcc4ff"
+  }
+}

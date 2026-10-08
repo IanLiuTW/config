@@ -1,0 +1,125 @@
+gui:
+  branchColors: {}
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  nerdFontsVersion: "3"
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  language: auto
+  timeFormat: 02 Jan 06 15:04 MST
+  commitLength:
+    show: true
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showRandomTip: true
+  showCommandLog: true
+  showBottomLine: true
+  commandLogSize: 8
+  splitDiff: auto
+  theme:
+    activeBorderColor:
+      - '#74c7ec'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#74c7ec'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+  authorColors:
+    '*': '#b4befe'
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+      useConfig: false
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+    args: ""
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  overrideGpg: false
+  disableForcePushing: false
+  commitPrefix: # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-commit-message-prefix
+    - pattern: "^(\\w+-\\w+).*"
+      replace: '$1: '
+  parseEmoji: false
+  log:
+    order: topo-order
+    showGraph: "always"
+    showWholeGraph: false
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+update:
+  method: prompt
+  days: 14
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+# Only deviations from lazygit 0.63.1 defaults live here. Anything omitted keeps its
+# default: the user config is unmarshalled onto the populated default struct, so this
+# file is a patch, not a snapshot. `lazygit -c` prints the full defaults.
+#
+# Every binding takes a scalar or a list of alternates; `<disabled>` unbinds. Context
+# bindings (files/branches/commits/main) shadow universal ones, so a letter reused
+# inside a panel wins there and the universal meaning survives everywhere else.
+keybinding:
+  universal:
+    # neogit `s` = Stage. Universal, so it also stages hunks/lines in the diff view.
+    # Shadowed in branches (sortOrder) and commits (squashDown), which is fine —
+    # neogit's `s` only means stage in the status buffer. Reaching the files panel
+    # depends on stashAllChanges vacating `s` below.
+    select: [<space>, s]
+    # neogit `x` = Discard. Takes over `d` entirely: in files it opens the discard
+    # menu whose "Discard all changes" item is already `x` (files.confirmDiscard),
+    # making `x x` discard. Universal, so `x` is also drop commit/stash and delete
+    # branch/tag/remote/worktree — everything `d` used to do.
+    remove: x
+    # neogit `d` = DiffPopup. Freed by remove above, and replaces `W` outright.
+    # lazygit already diffs the selection into the main panel, so this menu is
+    # the ref-vs-ref diff. `<ctrl+e>` (diffingMenu-alt) still works.
+    diffingMenu: d
+  files:
+    # neogit `Z` = StashPopup. Vacates `s` for stage above. Shadows universal.redo in
+    # this panel only; `Z` is still redo in status/branches/commits, and the `S`
+    # stash-options menu is untouched.
+    stashAllChanges: Z
+    # neogit `X` = ResetPopup. `D` keeps working; `X` was unbound here.
+    viewResetOptions: [D, X]
+  commits:
+    # neogit `X` = ResetPopup. `g` keeps working; `X` was unbound here.
+    viewResetOptions: [g, X]
+os:
+  editPreset: "nvim-remote"
+disableStartupPopups: false
+customCommands:
+  - key: "b"
+    command: "gh browse"
+    context: "files"
+  - key: "b"
+    command: 'gh browse "{{.SelectedLocalCommit.Sha}}"'
+    context: "commits"
+services: {}
+notARepository: skip
+promptToReturnFromSubprocess: true

@@ -1,0 +1,122 @@
+font-family = Victor Mono
+# font-family = SauceCodePro Nerd Font
+# font-family = Monofur Nerd Font
+# font-family = CommitMono Nerd Font
+# font-family = Hack Nerd Font Mono
+# font-family = CaskaydiaCove Nerd Font
+# font-family = CodeNewRoman Nerd Font
+font-size = 18
+font-thicken = true
+font-feature = calt
+font-feature = liga
+adjust-cell-width = 0
+adjust-cell-height = -1
+adjust-underline-position = -1
+
+unfocused-split-opacity = 0.5
+unfocused-split-fill = #1a1b26
+window-padding-balance = true
+link-url = true
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+background-opacity = 0.96
+background-blur-radius = 30
+window-theme = ghostty
+theme = TokyoNight Night
+custom-shader = ./shaders/cursor_blaze_orange_ian.glsl
+
+quick-terminal-position = bottom
+quick-terminal-size = 75%
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = true
+
+macos-non-native-fullscreen = true
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+macos-icon = holographic
+# macos-icon-frame = chrome
+
+auto-update = check
+auto-update-channel = stable
+
+working-directory = home
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-save-state = always
+quit-after-last-window-closed = true
+grapheme-width-method = unicode
+scroll-to-bottom = keystroke
+
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+shell-integration-features = no-cursor,sudo,no-title
+
+keybind = clear
+keybind = super+shift+enter=reload_config
+keybind = super+shift+backspace=inspector:toggle
+
+keybind = super+t=new_tab
+keybind = super+n=new_window
+keybind = super+/=toggle_quick_terminal
+keybind = super+m=toggle_fullscreen
+keybind = super+q=quit
+keybind = super+w=close_surface
+
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+0=reset_font_size
+
+keybind = super+comma=previous_tab
+keybind = super+period=next_tab
+keybind = super+[=previous_tab
+keybind = super+]=next_tab
+keybind = super+1=goto_tab:1
+keybind = super+2=goto_tab:2
+keybind = super+3=goto_tab:3
+keybind = super+4=goto_tab:4
+keybind = super+5=goto_tab:5
+keybind = super+6=goto_tab:6
+keybind = super+7=goto_tab:7
+keybind = super+8=goto_tab:8
+keybind = super+9=last_tab
+keybind = super+shift+comma=move_tab:-1
+keybind = super+shift+period=move_tab:+1
+
+keybind = super+s=new_split:auto
+# keybind = super+w>s=new_split:down
+# keybind = super+w>v=new_split:right
+keybind = super+h=goto_split:left
+keybind = super+l=goto_split:right
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+left=resize_split:left,30
+keybind = super+right=resize_split:right,30
+keybind = super+up=resize_split:up,30
+keybind = super+down=resize_split:down,30
+keybind = super+enter=toggle_split_zoom
+keybind = super+shift+0=equalize_splits
+
+keybind = super+u=scroll_page_fractional:-0.5
+keybind = super+d=scroll_page_fractional:0.5
+keybind = super+b=scroll_page_up
+keybind = super+f=scroll_page_down
+keybind = super+g=scroll_to_top
+keybind = super+shift+g=scroll_to_bottom
+
+keybind = super+shift+f=start_search
+keybind = performable:super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = ctrl+[=text:\x1b
+# Claim ctrl+tab from the macOS native-tab menu shortcuts and forward the
+# kitty CSI-u sequences so herdr still sees the real keys.
+keybind = ctrl+tab=text:\x1b[9;5u
+keybind = ctrl+shift+tab=text:\x1b[9;6u
+
+keybind = "f1=text:nvim "
+keybind = chain=write_screen_file:paste
+keybind = chain=text:\n

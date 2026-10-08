@@ -1,0 +1,231 @@
+return {
+  'NeogitOrg/neogit',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'm00qek/baleia.nvim',
+    'esmuellert/codediff.nvim',
+    'folke/snacks.nvim',
+  },
+  keys = {
+    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
+    { '<leader>gc', '<Cmd>Neogit commit<CR>', desc = 'NeoGit - Commit Panel' },
+    { '<leader>gZ', '<Cmd>Neogit stash<CR>', desc = 'NeoGit - Stash Panel' },
+    { '<leader>gf', '<Cmd>Neogit fetch<CR>', desc = 'NeoGit - Fetch Panel' },
+    { '<leader>gp', '<Cmd>Neogit pull<CR>', desc = 'NeoGit - Pull Panel' },
+    { '<leader>gP', '<Cmd>Neogit push<CR>', desc = 'NeoGit - Push Panel' },
+  },
+  opts = {
+    disable_hint = false,
+    disable_context_highlighting = false,
+    disable_signs = false,
+    disable_insert_on_commit = true,
+    filewatcher = {
+      interval = 1000,
+      enabled = true,
+    },
+    -- Persist the values of switches/options within and across sessions
+    remember_settings = true,
+    -- Scope persisted settings on a per-project basis
+    use_per_project_settings = true,
+    -- Table of settings to never persist. Uses format "Filetype--cli-value"
+    ignored_settings = {
+      'NeogitPushPopup--force-with-lease',
+      'NeogitPushPopup--force',
+      'NeogitPullPopup--rebase',
+      'NeogitCommitPopup--allow-empty',
+      'NeogitRevertPopup--no-edit',
+    },
+    -- Configure highlight group features
+    highlight = {
+      italic = true,
+      bold = true,
+      underline = true,
+    },
+    -- Set to false if you want to be responsible for creating _ALL_ keymappings
+    use_default_keymaps = true,
+    -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
+    -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
+    auto_refresh = true,
+    -- Value used for `--sort` option for `git branch` command
+    -- By default, branches will be sorted by commit date descending
+    -- Flag description: https://git-scm.com/docs/git-branch#Documentation/git-branch.txt---sortltkeygt
+    -- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
+    sort_branches = '-committerdate',
+    -- Change the default way of opening neogit
+    kind = 'tab',
+    -- Disable line numbers and relative line numbers
+    disable_line_numbers = true,
+    -- The time after which an output console is shown for slow running commands
+    console_timeout = 2000,
+    -- Automatically show console if a command takes more than console_timeout milliseconds
+    auto_show_console = true,
+    -- "ascii"   is the graph the git CLI generates
+    -- "unicode" is the graph like https://github.com/rbong/vim-flog
+    -- "kitty"   is the graph like https://github.com/isakbm/gitgraph.nvim - use https://github.com/rbong/flog-symbols if you don't use Kitty
+    graph_style = 'unicode',
+    -- When set, used to format the diff. Requires *baleia* to colorize text with ANSI escape sequences. An example for `Delta` is `{ 'delta', '--width', '117' }`. For `Delta`, hyperlinks must be disabled when called by `neogit`, for text to be colorized properly.
+    log_pager = { 'delta', '--width', '117', '--file-style=omit', '--file-decoration-style=omit', '--hunk-header-style=omit', '--hunk-header-decoration-style=omit' },
+    -- Show message with spinning animation when a git command is running.
+    process_spinner = true,
+    -- Automatically close the console if the process exits with a 0 (success) status
+    auto_close_console = true,
+    status = {
+      show_head_commit_hash = true,
+      recent_commit_count = 10,
+      HEAD_padding = 10,
+      HEAD_folded = false,
+      mode_padding = 3,
+      mode_text = {
+        M = 'modified',
+        N = 'new file',
+        A = 'added',
+        D = 'deleted',
+        C = 'copied',
+        U = 'updated',
+        R = 'renamed',
+        DD = 'unmerged',
+        AU = 'unmerged',
+        UD = 'unmerged',
+        UA = 'unmerged',
+        DU = 'unmerged',
+        AA = 'unmerged',
+        UU = 'unmerged',
+        ['?'] = '',
+      },
+    },
+    commit_editor = {
+      kind = 'tab',
+      -- Accepted values:
+      -- "split" to show the staged diff below the commit editor
+      -- "vsplit" to show it to the right
+      -- "split_above" Like :top split
+      -- "vsplit_left" like :vsplit, but open to the left
+      -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
+      -- ""
+      show_staged_diff = true,
+      staged_diff_split_kind = 'auto',
+    },
+    commit_select_view = {
+      kind = 'tab',
+    },
+    commit_view = {
+      kind = 'vsplit',
+      verify_commit = vim.fn.executable 'gpg' == 1, -- Can be set to true or false, otherwise we try to find the binary
+    },
+    log_view = {
+      kind = 'tab',
+    },
+    rebase_editor = {
+      kind = 'auto',
+    },
+    reflog_view = {
+      kind = 'tab',
+    },
+    merge_editor = {
+      kind = 'auto',
+    },
+    tag_editor = {
+      kind = 'auto',
+    },
+    preview_buffer = {
+      kind = 'split',
+    },
+    popup = {
+      kind = 'split',
+    },
+    signs = {
+      -- { CLOSED, OPENED }
+      hunk = { '⤑', '⇣' },
+      item = { '', '' },
+      section = { '󰝤', '' },
+    },
+    integrations = {
+      diffview = false,
+      codediff = true,
+      snacks = true,
+    },
+    diff_viewer = 'codediff',
+    sections = {
+      -- Reverting/Cherry Picking
+      sequencer = {
+        folded = false,
+        hidden = false,
+      },
+      untracked = {
+        folded = false,
+        hidden = false,
+      },
+      unstaged = {
+        folded = false,
+        hidden = false,
+      },
+      staged = {
+        folded = false,
+        hidden = false,
+      },
+      stashes = {
+        folded = true,
+        hidden = false,
+      },
+      unpulled_upstream = {
+        folded = false,
+        hidden = false,
+      },
+      unmerged_upstream = {
+        folded = false,
+        hidden = false,
+      },
+      unpulled_pushRemote = {
+        folded = false,
+        hidden = false,
+      },
+      unmerged_pushRemote = {
+        folded = false,
+        hidden = false,
+      },
+      recent = {
+        folded = true,
+        hidden = false,
+      },
+      rebase = {
+        folded = false,
+        hidden = false,
+      },
+    },
+    mappings = {
+      commit_editor = {
+        ['q'] = 'Close',
+        ['<c-cr>'] = 'Submit',
+        ['<c-q>'] = 'Abort',
+        ['<c-p>'] = 'PrevMessage',
+        ['<c-n>'] = 'NextMessage',
+        ['<c-r>'] = 'ResetMessage',
+      },
+      commit_editor_I = {
+        ['<c-cr>'] = 'Submit',
+        ['<c-q>'] = 'Abort',
+      },
+      rebase_editor = {
+        ['<c-cr>'] = 'Submit',
+        ['<c-q>'] = 'Abort',
+        ['<c-b>'] = 'OpenOrScrollUp',
+        ['<c-f>'] = 'OpenOrScrollDown',
+      },
+      rebase_editor_I = {
+        ['<c-cr>'] = 'Submit',
+        ['<c-q>'] = 'Abort',
+      },
+      status = {
+        ['<space>'] = 'Toggle',
+        ['za'] = false,
+        ['<S-tab>'] = 'PeekFile',
+        ['!'] = 'Command',
+        ['Q'] = false,
+      },
+    },
+  },
+  config = function(_, opts)
+    vim.g.baleia = require('baleia').setup {}
+    require('neogit').setup(opts)
+  end,
+}
