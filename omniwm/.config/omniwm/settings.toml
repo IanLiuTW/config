@@ -165,15 +165,19 @@ mode = "macOS"
 
 [statusBar]
 showAppNames = false
+showIcon = true
 showWorkspaceName = true
 useWorkspaceId = true
 
 [workspaceBar]
+autoHide = false
+autoHideHideDelayMilliseconds = 0.0
+autoHideRevealDelayMilliseconds = 0.0
 backgroundOpacity = 0.5
 deduplicateAppIcons = false
 enabled = true
 excludedBundleIDs = []
-height = 36.0
+height = 38.0
 hideEmptyWorkspaces = false
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = true
@@ -186,11 +190,11 @@ reserveLayoutSpace = false
 revealHoldMilliseconds = 0.0
 revealModifier = "option"
 showAccentHighlights = true
-showFloatingWindows = false
+showFloatingWindows = true
 showItemBackgrounds = true
 showLabels = true
 solidBlackBackground = false
-systemStatsButton = false
+systemStatsButton = true
 transparentBackground = false
 windowLevel = "popup"
 xOffset = 0.0
@@ -1093,6 +1097,10 @@ id = "raiseAllFloatingWindows"
 
 [[hotkeys]]
 binding = "Unassigned"
+id = "toggleFloatingFocus"
+
+[[hotkeys]]
+binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
@@ -1141,7 +1149,7 @@ id = "toggleSystemStats"
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
-layoutType = "default"
+layoutType = "niri"
 name = "1"
 
 [workspaces.monitorAssignment]

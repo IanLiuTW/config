@@ -250,6 +250,7 @@
           nerd-fonts.terminess-ttf
           nerd-fonts.bigblue-terminal
           victor-mono
+          inter
         ];
         system.activationScripts.applications.text =
           let
