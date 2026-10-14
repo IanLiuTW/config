@@ -87,6 +87,7 @@
           zoxide
           fzf
           # Development dependencies
+          nixfmt # Mason's nixfmt package is Linux-only
           delta
           imagemagick
           ffmpegthumbnailer
