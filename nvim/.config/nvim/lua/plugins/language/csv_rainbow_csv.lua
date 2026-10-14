@@ -17,8 +17,8 @@ return {
     'RainbowMultiDelim',
   },
   keys = {
-    { '<leader>dc', '<cmd>RainbowAlign<CR>', desc = 'Rainbow CSV - Align' },
-    { '<leader>dC', '<cmd>RainbowDelim<CR>', desc = 'Rainbow CSV - Set Delimeter' },
+    { '<leader>dc', '<cmd>RainbowAlign<CR>', desc = 'Edit - Align CSV' },
+    { '<leader>dC', '<cmd>RainbowDelim<CR>', desc = 'Edit - Set CSV delimiter' },
   },
   config = function()
     vim.g.disable_rainbow_statusline = 1

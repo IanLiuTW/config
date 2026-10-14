@@ -2,11 +2,11 @@ return {
   'smjonas/inc-rename.nvim',
   keys = {
     {
-      '<leader>dR',
+      '<leader>cn',
       function()
         return ':IncRename ' .. vim.fn.expand '<cword>'
       end,
-      desc = 'LSP - Rename Variable',
+      desc = 'Code - Rename symbol',
       expr = true,
     },
   },

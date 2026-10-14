@@ -2,9 +2,9 @@ return {
   'rmagatti/auto-session',
   lazy = false,
   keys = {
-    { '<F2>', '<cmd>AutoSession search<CR>', desc = 'Auto-Session - Session search' },
-    { '<leader>,a', '<cmd>AutoSession save<CR>', desc = 'Auto-Session - Save session' },
-    { '<leader>,A', '<cmd>AutoSession toggle<CR>', desc = 'Auto-Session - Toggle autosave' },
+    { '<F2>', '<cmd>AutoSession search<CR>', desc = 'Session - Search' },
+    { '<leader>,a', '<cmd>AutoSession save<CR>', desc = 'Session - Save' },
+    { '<leader>,A', '<cmd>AutoSession toggle<CR>', desc = 'Session - Toggle autosave' },
   },
 
   opts = {

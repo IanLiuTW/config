@@ -9,12 +9,12 @@ return {
         require('conform').format()
       end,
       mode = 'n',
-      desc = 'Buffer - Format (Conform)',
+      desc = 'Code - Format',
     },
     {
       '<leader>,f',
       '<Cmd>ConformInfo<CR>',
-      desc = 'Conform - Show [F]ormatter Info',
+      desc = 'Tools - Formatter info',
     },
   },
   opts = {

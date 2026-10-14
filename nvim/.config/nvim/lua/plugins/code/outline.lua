@@ -6,8 +6,8 @@ return {
   },
   cmd = { 'Outline', 'OutlineOpen' },
   keys = { -- Example mapping to toggle outline
-    { '<leader>o', '<cmd>Outline!<CR>', desc = '[O]utline - Toggle (w/o Switching)' },
-    { '<leader>O', '<cmd>Outline<CR>', desc = '[O]utline - Toggle' },
+    { '<leader>co', '<cmd>Outline!<CR>', desc = 'Code - Outline (keep focus)' },
+    { '<leader>cO', '<cmd>Outline<CR>', desc = 'Code - Outline (jump into it)' },
   },
   opts = {
     outline_items = {

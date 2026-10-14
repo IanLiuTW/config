@@ -26,8 +26,8 @@ return {
     }
 
     local dropbar_api = require 'dropbar.api'
-    vim.keymap.set('n', "<Leader>'", dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-    vim.keymap.set('n', "['", dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
-    vim.keymap.set('n', "]'", dropbar_api.select_next_context, { desc = 'Select next context' })
+    vim.keymap.set('n', "<Leader>'", dropbar_api.pick, { desc = 'Winbar - Pick symbol' })
+    vim.keymap.set('n', "['", dropbar_api.goto_context_start, { desc = 'Jump - Start of current context' })
+    vim.keymap.set('n', "]'", dropbar_api.select_next_context, { desc = 'Jump - Next context' })
   end,
 }

@@ -11,12 +11,12 @@ return {
       'OverseerTaskAction',
     },
     keys = {
-      { '<leader>Y', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Overseer - Restart Last Task' },
-      { '<leader>yr', '<cmd>OverseerRun<cr>', desc = 'Overseer - Run Task' },
-      { '<leader>yR', '<cmd>OverseerShell<cr>', desc = 'Overseer - Run Shell Command' },
+      { '<leader>R', '<cmd>OverseerRestartLast<cr>', noremap = true, silent = true, desc = 'Task - Restart last' },
+      { '<leader>rr', '<cmd>OverseerRun<cr>', desc = 'Task - Run' },
+      { '<leader>rR', '<cmd>OverseerShell<cr>', desc = 'Task - Run shell command' },
 
-      { '<leader>y<space>', '<cmd>OverseerToggle<cr>', desc = 'Overseer - Toggle Task List' },
-      { '<leader>ya', '<cmd>OverseerTaskAction<cr>', desc = 'Overseer - Task Action' },
+      { '<leader>r<space>', '<cmd>OverseerToggle<cr>', desc = 'Task - Toggle list' },
+      { '<leader>ra', '<cmd>OverseerTaskAction<cr>', desc = 'Task - Action' },
     },
     config = function()
       require('overseer').setup {

@@ -68,8 +68,8 @@ return { -- Collection of various small independent plugins/modules
         map.gen_integration.diagnostic(),
       },
     }
-    vim.keymap.set('n', '<leader>m', MiniMap.toggle, { desc = 'Minimap - Toggle' })
-    vim.keymap.set('n', '<leader>M', MiniMap.toggle_focus, { desc = 'Minimap - Toggle Focus' })
+    vim.keymap.set('n', '<leader>um', MiniMap.toggle, { desc = 'Toggle Minimap' })
+    vim.keymap.set('n', '<leader>uM', MiniMap.toggle_focus, { desc = 'Toggle Minimap focus' })
 
     require('mini.bracketed').setup {
       -- First-level elements are tables describing behavior of a target:

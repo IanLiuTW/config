@@ -3,8 +3,8 @@ return {
   version = "*",
   lazy = true,
   keys = {
-    { "<Leader>db", "<Plug>(FromBase64)", mode = "x" , desc = "Base64 decode" },
-    { "<Leader>dB", "<Plug>(ToBase64)", mode = "x", desc = "Base64 encode" },
+    { "<Leader>db", "<Plug>(FromBase64)", mode = "x" , desc = "Edit - Base64 decode" },
+    { "<Leader>dB", "<Plug>(ToBase64)", mode = "x", desc = "Edit - Base64 encode" },
   },
   config = function()
     require("nvim-base64").setup()

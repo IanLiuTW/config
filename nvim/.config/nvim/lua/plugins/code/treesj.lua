@@ -5,19 +5,19 @@ return {
     {
       '<leader>d<',
       '<Cmd>TSJJoin<CR>',
-      desc = 'TreeSJ - Join',
+      desc = 'Edit - Join node',
       mode = {'n', 'v'}
     },
     {
       '<leader>d>',
       '<Cmd>TSJSplit<CR>',
-      desc = 'TreeSJ - Split',
+      desc = 'Edit - Split node',
       mode = {'n', 'v'}
     },
     {
       '<leader>d,',
       '<Cmd>TSJToggle<CR>',
-      desc = 'TreeSJ - Toggle',
+      desc = 'Edit - Toggle split / join',
       mode = {'n', 'v'}
     },
     {
@@ -25,7 +25,7 @@ return {
       function()
         require('treesj').toggle { split = { recursive = true } }
       end,
-      desc = 'TreeSJ - Toggle (Recursive)',
+      desc = 'Edit - Toggle split / join (recursive)',
     },
   },
   dependencies = { 'nvim-treesitter/nvim-treesitter' },

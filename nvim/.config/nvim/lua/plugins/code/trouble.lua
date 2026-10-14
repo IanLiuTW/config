@@ -17,74 +17,74 @@ return {
   },
   keys = {
     {
-      '<leader>W',
+      '<leader>xx',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-      desc = 'Trouble - Buffer Diagnostics',
+      desc = 'Diagnostics - Buffer (Trouble)',
     },
     {
-      '<leader>wd',
+      '<leader>xX',
       '<cmd>Trouble diagnostics toggle<cr>',
-      desc = 'Trouble - All Diagnostics',
+      desc = 'Diagnostics - All buffers (Trouble)',
     },
     {
-      '<leader>ws',
+      '<leader>xs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
-      desc = 'Trouble - Symbols',
+      desc = 'List - Symbols',
     },
     {
-      '<leader>wc',
+      '<leader>xc',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      desc = 'Trouble - Code LSP Definitions / references / ...',
+      desc = 'List - LSP definitions and references',
     },
     {
-      '<leader>wl',
+      '<leader>xl',
       '<cmd>Trouble loclist toggle<cr>',
-      desc = 'Trouble - Location List',
+      desc = 'List - Location list',
     },
     {
-      '<leader>wq',
+      '<leader>xq',
       '<cmd>Trouble qflist toggle<cr>',
-      desc = 'Trouble - Quickfix List',
+      desc = 'List - Quickfix list',
     },
     {
-      '<leader>w;',
+      '<leader>xt',
       '<cmd>Trouble todo toggle<cr>',
-      desc = 'Trouble - Todo List',
+      desc = 'List - Todo comments',
     },
     {
-      '<leader>w<BS>',
+      '<leader>x<BS>',
       function()
         require('trouble').close()
       end,
-      desc = 'Trouble - Close',
+      desc = 'List - Close Trouble',
     },
     {
       ']w',
       function()
         require('trouble').next { skip_groups = true, jump = true }
       end,
-      desc = 'Trouble - Next',
+      desc = 'List - Next item',
     },
     {
       '[w',
       function()
         require('trouble').prev { skip_groups = true, jump = true }
       end,
-      desc = 'Trouble - Previous',
+      desc = 'List - Previous item',
     },
     {
       ']W',
       function()
         require('trouble').last { skip_groups = true, jump = true }
       end,
-      desc = 'Trouble - Last',
+      desc = 'List - Last item',
     },
     {
       '[W',
       function()
         require('trouble').first { skip_groups = true, jump = true }
       end,
-      desc = 'Trouble - First',
+      desc = 'List - First item',
     },
   },
   config = function()

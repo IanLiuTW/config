@@ -49,7 +49,7 @@ return {
         else
           gitsigns.nav_hunk 'next'
         end
-      end, { desc = 'GitSigns - Jump to next git [c]hange' })
+      end, { desc = 'Hunk - Next' })
 
       map('n', '[c', function()
         if vim.wo.diff then
@@ -57,34 +57,31 @@ return {
         else
           gitsigns.nav_hunk 'prev'
         end
-      end, { desc = 'GitSigns - Jump to previous git [c]hange' })
+      end, { desc = 'Hunk - Previous' })
 
       -- visual mode
-      map('v', '<leader>cs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'GitSigns - stage git hunk' })
-      map('v', '<leader>cr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'GitSigns - reset git hunk' })
+      map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Hunk - Stage selection' })
+      map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Hunk - Reset selection' })
       
       -- normal mode
-      map('n', '<leader>C', gitsigns.preview_hunk, { desc = 'Gitsigns - Hunk Preview' })
-      map('n', '<leader>cc', gitsigns.preview_hunk_inline, { desc = 'GitSigns - Hunk Preview Inline' })
+      map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Hunk - Preview' })
+      map('n', '<leader>hP', gitsigns.preview_hunk_inline, { desc = 'Hunk - Preview inline' })
 
-      map('n', '<leader>cs', gitsigns.stage_hunk, { desc = 'Gitsigns - [S]tage hunk' })
-      map('n', '<leader>cr', gitsigns.reset_hunk, { desc = 'Gitsigns - [R]eset hunk' })
-      map('n', '<leader>cS', gitsigns.stage_buffer, { desc = 'Gitsigns - [S]tage buffer' })
-      map('n', '<leader>cR', gitsigns.reset_buffer, { desc = 'Gitsigns - [R]eset buffer' })
+      map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'Hunk - Stage' })
+      map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Hunk - Reset' })
+      map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Hunk - Stage buffer' })
+      map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Hunk - Reset buffer' })
 
-      -- map('n', '<leader>cb', function() gitsigns.blame_line { full = true } end, { desc = 'Gitsigns - [B]lame line' }) -- replaced by Snacks
-      map('n', '<leader>cB', '<cmd>Gitsigns blame<cr>', { desc = 'Gitsigns - [B]lame buffer' })
+      -- <leader>hb (blame line) is mapped by Snacks
+      map('n', '<leader>hB', '<cmd>Gitsigns blame<cr>', { desc = 'Hunk - Blame buffer' })
       
-      map('n', '<leader>cd', ':Gitsigns diffthis ', { desc = 'Gitsigns - [D]iff against index' })
-      map('n', '<leader>cD', function() gitsigns.diffthis '@' end, { desc = 'Gitsigns - [D]iff against last commit' })
+      map('n', '<leader>hd', ':Gitsigns diffthis ', { desc = 'Hunk - Diff against index' })
+      map('n', '<leader>hD', function() gitsigns.diffthis '@' end, { desc = 'Hunk - Diff against last commit' })
       
-      -- Toggles
-      map('n', '<leader>cH', gitsigns.toggle_linehl, { desc = 'GitSigns - Toggle show [L]ine highlights' })
-      map('n', '<leader>cL', gitsigns.toggle_current_line_blame, { desc = 'GitSigns - Toggle show Blame [L]ine' })
-      map('n', '<leader>cW', gitsigns.toggle_word_diff, { desc = 'GitSigns - Toggle show [W]ord diff' })
-      
+      -- Toggles live under <leader>ug (snacks.lua)
+
       -- Text objects
-      map({ 'o', 'x' }, 'ic', ':<C-U>Gitsigns select_hunk<CR>')
+      map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Hunk - Select' })
     end,
   },
 }

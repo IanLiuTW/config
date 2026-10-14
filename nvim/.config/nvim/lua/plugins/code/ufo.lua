@@ -17,12 +17,12 @@ return {
     vim.o.foldenable = true
   end,
   keys = {
-    { 'zR',      function() require('ufo').openAllFolds() end,               desc = 'ufo - Open All Folds' },
-    { 'zM',      function() require('ufo').closeAllFolds() end,              desc = 'ufo - Close All Folds' },
-    { 'zr',      function() require('ufo').openFoldsExceptKinds() end,       desc = 'ufo - Open Folds Except Kinds' },
-    { 'zm',      function() require('ufo').closeFoldsWith() end,             desc = 'ufo - Close Folds With' },
-    { '<Tab>',   'za',                                                       desc = 'Toggle Fold' },
-    { '<S-Tab>', function() require('ufo').peekFoldedLinesUnderCursor() end, desc = 'ufo - Peek Folded' },
+    { 'zR',      function() require('ufo').openAllFolds() end,               desc = 'Fold - Open all' },
+    { 'zM',      function() require('ufo').closeAllFolds() end,              desc = 'Fold - Close all' },
+    { 'zr',      function() require('ufo').openFoldsExceptKinds() end,       desc = 'Fold - Open all except kinds' },
+    { 'zm',      function() require('ufo').closeFoldsWith() end,             desc = 'Fold - Close at level' },
+    { '<Tab>',   'za',                                                       desc = 'Fold - Toggle' },
+    { '<S-Tab>', function() require('ufo').peekFoldedLinesUnderCursor() end, desc = 'Fold - Peek' },
   },
   opts = {
     open_fold_hl_timeout = 200,

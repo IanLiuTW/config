@@ -7,63 +7,63 @@ return {
       function()
         require('neotest').run.run()
       end,
-      desc = 'NeoTest: [R]un the nearest test',
+      desc = 'Test - Run nearest',
     },
     {
       '<leader>tt',
       function()
         require('neotest').run.run(vim.fn.expand '%')
       end,
-      desc = 'NeoTest: Run the current [F]ile',
+      desc = 'Test - Run file',
     },
     {
       '<leader>td',
       function()
         require('neotest').run.run { strategy = 'dap' }
       end,
-      desc = 'NeoTest: [D]ebug the nearest test',
+      desc = 'Test - Debug nearest',
     },
     {
       '<leader>tx',
       function()
         require('neotest').run.stop()
       end,
-      desc = 'NeoTest: [S]top the test',
+      desc = 'Test - Stop',
     },
     {
       '<leader>ta',
       function()
         require('neotest').run.attach()
       end,
-      desc = 'NeoTest: [A]ttach to the test',
+      desc = 'Test - Attach',
     },
     {
       '<leader>ts',
       function()
         require('neotest').summary.toggle()
       end,
-      desc = 'NeoTest: Display [S]ummary of tests',
+      desc = 'Test - Summary',
     },
     {
       '<leader>to',
       function()
         require('neotest').output.open()
       end,
-      desc = 'NeoTest: Display [O]utput of tests',
+      desc = 'Test - Output',
     },
     {
       '<leader>tO',
       function()
         require('neotest').output_panel.toggle()
       end,
-      desc = 'NeoTest: Open [O]utput Panel of tests',
+      desc = 'Test - Output panel',
     },
     {
       '<leader>tw',
       function()
         require('neotest').watch.toggle()
       end,
-      desc = 'NeoTest: [W]atch the tests',
+      desc = 'Test - Watch',
     },
   },
   dependencies = {

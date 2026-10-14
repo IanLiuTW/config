@@ -11,8 +11,8 @@ return {
     lazy = false, -- owns directory buffers (`nvim .`, `:e dir`), so it must be loaded before they open
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '-', '<CMD>Oil --float<CR>', desc = 'Open Oil Float' },
-      { '_', '<CMD>Oil<CR>', desc = 'Open Oil' },
+      { '-', '<CMD>Oil --float<CR>', desc = 'Explorer - Oil (float)' },
+      { '_', '<CMD>Oil<CR>', desc = 'Explorer - Oil' },
     },
     opts = {
       columns = {

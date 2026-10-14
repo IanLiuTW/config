@@ -59,7 +59,7 @@ return {
         require('todo-comments').jump_next()
       end,
       mode = 'n',
-      desc = 'Todo - Jump to next todo',
+      desc = 'Jump - Next todo comment',
     },
     {
       '[;',
@@ -67,7 +67,7 @@ return {
         require('todo-comments').jump_prev()
       end,
       mode = 'n',
-      desc = 'Todo - Jump to previous todo',
+      desc = 'Jump - Previous todo comment',
     },
   },
 }

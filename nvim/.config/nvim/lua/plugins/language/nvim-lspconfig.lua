@@ -90,12 +90,16 @@ local function setup_copilot()
       ic.enable(value, { bufnr = buf })
     end
   end
-  vim.keymap.set('n', '<leader>;<Up>', function()
-    set_enabled(true)
-  end, { desc = 'Copilot - Enable' })
-  vim.keymap.set('n', '<leader>;<Down>', function()
-    set_enabled(false)
-  end, { desc = 'Copilot - Disable' })
+  Snacks.toggle
+    .new({
+      id = 'copilot',
+      name = 'Copilot',
+      get = function()
+        return enabled
+      end,
+      set = set_enabled,
+    })
+    :map '<leader>ua'
 
   -- Hide suggestions while the blink.cmp menu is open
   vim.api.nvim_create_autocmd('User', {
@@ -140,26 +144,17 @@ return {
       group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
       callback = function(event)
         local map = function(keys, func, desc, mode)
-          vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
+          vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'Code - ' .. desc })
         end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        -- Navigation
-        map('<leader>dd', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-        -- Search and References
-        -- Code Actions and Help
-        -- map('<leader>a', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' }) -- using tiny-code-action.nvim
-        map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature Help', { 'i', 'n', 'x', 's' })
+        map('<leader>cD', vim.lsp.buf.declaration, 'Declaration')
+        map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature help', { 'i', 'n', 'x', 's' })
 
-        -- Information
-        map('<Leader>,l', '<cmd>checkhealth vim.lsp<cr>', 'LSP Info')
-        -- Inlay hints toggle
+        -- Inlay hints start on; <leader>ui toggles them per buffer
         if client and client:supports_method 'textDocument/inlayHint' then
           vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-          map('<leader>,I', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, 'Toggle Inlay Hints')
         end
 
         -- Semantic tokens are turned off: they override treesitter highlighting

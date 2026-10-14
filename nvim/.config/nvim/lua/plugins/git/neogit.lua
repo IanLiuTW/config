@@ -7,12 +7,12 @@ return {
     'folke/snacks.nvim',
   },
   keys = {
-    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'NeoGit - Open' },
-    { '<leader>gc', '<Cmd>Neogit commit<CR>', desc = 'NeoGit - Commit Panel' },
-    { '<leader>gZ', '<Cmd>Neogit stash<CR>', desc = 'NeoGit - Stash Panel' },
-    { '<leader>gf', '<Cmd>Neogit fetch<CR>', desc = 'NeoGit - Fetch Panel' },
-    { '<leader>gp', '<Cmd>Neogit pull<CR>', desc = 'NeoGit - Pull Panel' },
-    { '<leader>gP', '<Cmd>Neogit push<CR>', desc = 'NeoGit - Push Panel' },
+    { '<leader>gg', '<Cmd>Neogit<CR>', desc = 'Git - Neogit' },
+    { '<leader>gc', '<Cmd>Neogit commit<CR>', desc = 'Git - Commit' },
+    { '<leader>gZ', '<Cmd>Neogit stash<CR>', desc = 'Git - Stash (Neogit)' },
+    { '<leader>gf', '<Cmd>Neogit fetch<CR>', desc = 'Git - Fetch' },
+    { '<leader>gp', '<Cmd>Neogit pull<CR>', desc = 'Git - Pull' },
+    { '<leader>gP', '<Cmd>Neogit push<CR>', desc = 'Git - Push' },
   },
   opts = {
     disable_hint = false,

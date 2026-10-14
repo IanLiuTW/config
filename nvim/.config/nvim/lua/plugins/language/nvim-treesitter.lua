@@ -49,20 +49,7 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '<leader>,H', function()
-        if vim.b.ts_highlight then
-          vim.treesitter.stop()
-        else
-          vim.treesitter.start()
-        end
-      end, { desc = 'Treesitter - Toggle Highlight' })
-      vim.keymap.set('n', '<leader>,N', function()
-        if vim.bo.indentexpr ~= '' then
-          vim.bo.indentexpr = ''
-        else
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end
-      end, { desc = 'Treesitter - Toggle Indent' })
+      -- Highlight and indent toggles live under <leader>u (snacks.lua)
     end,
   },
   {
@@ -91,11 +78,11 @@ return {
 
       -- Select keymaps
       local select_maps = {
-        { 'a1', '@function.outer', 'textobjects', 'Treesitter - Select outer part of a function' },
-        { 'i1', '@function.inner', 'textobjects', 'Treesitter - Select inner part of a function' },
-        { 'a2', '@class.outer', 'textobjects', 'Treesitter - Select outer part of a class' },
-        { 'i2', '@class.inner', 'textobjects', 'Treesitter - Select inner part of a class' },
-        { 'a3', '@local.scope', 'locals', 'Treesitter - Select language scope' },
+        { 'a1', '@function.outer', 'textobjects', 'Select - Around function' },
+        { 'i1', '@function.inner', 'textobjects', 'Select - Inside function' },
+        { 'a2', '@class.outer', 'textobjects', 'Select - Around class' },
+        { 'i2', '@class.inner', 'textobjects', 'Select - Inside class' },
+        { 'a3', '@local.scope', 'locals', 'Select - Around scope' },
       }
       for _, m in ipairs(select_maps) do
         vim.keymap.set({ 'x', 'o' }, m[1], function()
@@ -106,27 +93,27 @@ return {
       -- Swap keymaps
       vim.keymap.set('n', '<leader>dl', function()
         ts_swap.swap_next '@parameter.inner'
-      end, { desc = 'Treesitter - Swap parameter with next' })
+      end, { desc = 'Edit - Swap parameter right' })
       vim.keymap.set('n', '<leader>dh', function()
         ts_swap.swap_previous '@parameter.inner'
-      end, { desc = 'Treesitter - Swap parameter with previous' })
+      end, { desc = 'Edit - Swap parameter left' })
 
       -- Move keymaps
       local move_maps = {
         -- goto_next_start
-        { ']1', 'goto_next_start', '@function.outer', 'textobjects', 'Treesitter - Next function start' },
-        { ']2', 'goto_next_start', '@class.outer', 'textobjects', 'Treesitter - Next class start' },
-        { ']3', 'goto_next_start', '@local.scope', 'locals', 'Treesitter - Next scope' },
-        { ']z', 'goto_next_start', '@fold', 'folds', 'Treesitter - Next fold' },
+        { ']1', 'goto_next_start', '@function.outer', 'textobjects', 'Jump - Next function start' },
+        { ']2', 'goto_next_start', '@class.outer', 'textobjects', 'Jump - Next class start' },
+        { ']3', 'goto_next_start', '@local.scope', 'locals', 'Jump - Next scope' },
+        { ']z', 'goto_next_start', '@fold', 'folds', 'Jump - Next fold' },
         -- goto_next_end
-        { ']!', 'goto_next_end', '@function.outer', 'textobjects', 'Treesitter - Next function end' },
-        { ']@', 'goto_next_end', '@class.outer', 'textobjects', 'Treesitter - Next class end' },
+        { ']!', 'goto_next_end', '@function.outer', 'textobjects', 'Jump - Next function end' },
+        { ']@', 'goto_next_end', '@class.outer', 'textobjects', 'Jump - Next class end' },
         -- goto_previous_start
-        { '[1', 'goto_previous_start', '@function.outer', 'textobjects', 'Treesitter - Previous function start' },
-        { '[2', 'goto_previous_start', '@class.outer', 'textobjects', 'Treesitter - Previous class start' },
+        { '[1', 'goto_previous_start', '@function.outer', 'textobjects', 'Jump - Previous function start' },
+        { '[2', 'goto_previous_start', '@class.outer', 'textobjects', 'Jump - Previous class start' },
         -- goto_previous_end
-        { '[!', 'goto_previous_end', '@function.outer', 'textobjects', 'Treesitter - Previous function end' },
-        { '[@', 'goto_previous_end', '@class.outer', 'textobjects', 'Treesitter - Previous class end' },
+        { '[!', 'goto_previous_end', '@function.outer', 'textobjects', 'Jump - Previous function end' },
+        { '[@', 'goto_previous_end', '@class.outer', 'textobjects', 'Jump - Previous class end' },
       }
       for _, m in ipairs(move_maps) do
         vim.keymap.set({ 'n', 'x', 'o' }, m[1], function()

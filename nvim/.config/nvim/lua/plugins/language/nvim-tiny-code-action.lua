@@ -15,7 +15,7 @@ return {
       function()
         require('tiny-code-action').code_action {}
       end,
-      desc = 'Code Action',
+      desc = 'Code - Action',
     },
   },
 }

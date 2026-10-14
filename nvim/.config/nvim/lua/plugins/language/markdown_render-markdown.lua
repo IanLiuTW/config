@@ -4,8 +4,8 @@ return {
   ft = { 'markdown' },
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
   keys = {
-    { '<leader>v', '<cmd>RenderMarkdown toggle<cr>', desc = 'Render Markdown - Toggle' },
-    { '<leader>V', '<cmd>RenderMarkdown debug<cr>', desc = 'Render Markdown - Debug' },
+    { '<leader>ur', '<cmd>RenderMarkdown toggle<cr>', desc = 'Toggle Render markdown' },
+    { '<leader>,r', '<cmd>RenderMarkdown debug<cr>', desc = 'Tools - Render-markdown debug' },
   },
   ---@module 'render-markdown'
   ---@type render.md.UserConfig

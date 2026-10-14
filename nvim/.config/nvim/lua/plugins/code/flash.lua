@@ -36,10 +36,10 @@ return {
     },
   },
   keys = {
-    { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash - Jump' },
-    { 'S', mode = { 'o' }, function() require('flash').remote() end, desc = 'Flash - Remote Action' },
-    { 'S', mode = { 'n' }, function() require("flash").jump({continue = true}) end, desc = 'Flash - Continue' },
-    { '<leader>S', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Flash - Jump Line' },
+    { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Jump - To label' },
+    { 'S', mode = { 'o' }, function() require('flash').remote() end, desc = 'Jump - Remote action' },
+    { 'S', mode = { 'n' }, function() require("flash").jump({continue = true}) end, desc = 'Jump - Continue last jump' },
+    { '<leader>S', mode = { 'n', 'x', 'o' }, function() require('flash').jump { search = { mode = 'search', max_length = 0 }, label = { after = { 0, 0 } }, pattern = '^' } end, desc = 'Jump - To line' },
     { '<CR>', mode = { 'n' }, function()
         require("flash").treesitter({
           actions = {
@@ -47,11 +47,11 @@ return {
             ["<S-CR>"] = "prev"
           }
         })
-      end, desc = "Flash - Treesitter incremental selection"
+      end, desc = "Jump - Select treesitter node (repeat to grow)"
     },
-    { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Search' },
+    { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Jump - Treesitter search' },
 
-    { '<leader>Q', mode = { 'n', 'x' }, function() require('flash').jump {
+    { '<leader>xF', mode = { 'n', 'x' }, function() require('flash').jump {
       matcher = function(win)
         return vim.tbl_map(function(diag)
           return {
@@ -69,7 +69,7 @@ return {
         end)
         state:restore()
       end,
-    } end, desc = 'Flash - Remote Diagnostic' },
+    } end, desc = 'Diagnostics - Jump to one and show float' },
     { '<leader>A', mode = { 'n', 'x' }, function() require('flash').jump {
       matcher = function(win)
         return vim.tbl_map(function(diag)
@@ -88,7 +88,7 @@ return {
         end)
         state:restore()
       end,
-    } end, desc = 'Flash - Remote Code Action' },
-    { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'flash - toggle flash search' },
+    } end, desc = 'Code - Action at a jumped-to diagnostic' },
+    { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Jump - Toggle flash in search' },
   },
 }
