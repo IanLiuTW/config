@@ -8,7 +8,7 @@ local permission_hlgroups = {
 return {
   {
     'stevearc/oil.nvim',
-    lazy = false, -- owns directory buffers (`nvim .`, `:e dir`), so it must be loaded before they open
+    lazy = false, -- Owns directory buffers (`nvim .`, `:e dir`), so it must be loaded before they open
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '-', '<CMD>Oil --float<CR>', desc = 'Explorer - Oil (float)' },
@@ -81,13 +81,13 @@ return {
     },
     config = function(_, opts)
       require('oil-git-status').setup(opts)
-      -- colors from the teide-dark palette; re-applied because :colorscheme clears them
+      -- Colors from the teide-dark palette, re-applied because :colorscheme clears them
       local function set_highlights()
-        vim.api.nvim_set_hl(0, 'OilGitStatusIndex', { fg = '#38FFA5' }) -- staged: green
-        vim.api.nvim_set_hl(0, 'OilGitStatusWorkingTree', { fg = '#FFE77A' }) -- unstaged: yellow
-        vim.api.nvim_set_hl(0, 'OilGitStatusIndexUntracked', { fg = '#5CCEFF' }) -- untracked: blue
+        vim.api.nvim_set_hl(0, 'OilGitStatusIndex', { fg = '#38FFA5' }) -- Staged
+        vim.api.nvim_set_hl(0, 'OilGitStatusWorkingTree', { fg = '#FFE77A' }) -- Unstaged
+        vim.api.nvim_set_hl(0, 'OilGitStatusIndexUntracked', { fg = '#5CCEFF' }) -- Untracked
         vim.api.nvim_set_hl(0, 'OilGitStatusWorkingTreeUntracked', { fg = '#5CCEFF' })
-        vim.api.nvim_set_hl(0, 'OilGitStatusIndexRenamed', { fg = '#A592FF' }) -- renamed: purple
+        vim.api.nvim_set_hl(0, 'OilGitStatusIndexRenamed', { fg = '#A592FF' }) -- Renamed
         vim.api.nvim_set_hl(0, 'OilGitStatusWorkingTreeRenamed', { fg = '#A592FF' })
       end
       set_highlights()

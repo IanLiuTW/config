@@ -21,24 +21,22 @@ return {
       end,
     },
 
-    -- suppressed_dirs = { '~/', '/', '~/Downloads' }, -- Suppress session restore/create in certain directories
-    -- allowed_dirs = { '~/config', '~/codebase', '~/work/*', '~/self/*' }, -- Allow session restore/create in certain directories
-    bypass_save_filetypes = { 'snacks_dashboard' }, -- List of filetypes to bypass auto save when the only buffer open is one of the file types listed, useful to ignore dashboards
-    close_filetypes_on_save = { 'checkhealth' }, -- Buffers with matching filetypes will be closed before saving
+    bypass_save_filetypes = { 'snacks_dashboard' },
+    close_filetypes_on_save = { 'checkhealth' },
 
-    git_use_branch_name = true, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
-    git_auto_restore_on_branch_change = true, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
+    git_use_branch_name = true,
+    git_auto_restore_on_branch_change = true,
 
-    auto_delete_empty_sessions = true, -- Enables/disables deleting the session if there are only unnamed/empty buffers when auto-saving
-    purge_after_minutes = nil, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
+    auto_delete_empty_sessions = true,
+    purge_after_minutes = nil,
 
-    save_extra_data = nil, -- Function that returns extra data that should be saved with the session. Will be passed to restore_extra_data on restore
-    restore_extra_data = nil, -- Function called when there's extra data saved for a session
+    save_extra_data = nil,
+    restore_extra_data = nil,
 
-    show_auto_restore_notif = false, -- Whether to show a notification when auto-restoring
-    restore_error_handler = nil, -- Function called when there's an error restoring. By default, it ignores fold and help errors otherwise it displays the error and returns false to disable auto_save. Default handler is accessible as require('auto-session').default_restore_error_handler
-    continue_restore_on_error = true, -- Keep loading the session even if there's an error
-    lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
+    show_auto_restore_notif = false,
+    restore_error_handler = nil,
+    continue_restore_on_error = true,
+    lsp_stop_on_restore = false,
 
     session_lens = {
       picker = 'snacks',

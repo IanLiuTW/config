@@ -1,12 +1,8 @@
-return { -- Collection of various small independent plugins/modules
+return {
   'echasnovski/mini.nvim',
-  event = 'BufEnter',
+  event = 'VeryLazy',
   config = function()
-    -- Better Around/Inside textobjects - https://github.com/echasnovski/mini.ai
-    -- Examples:
-    --  - va)  - [V]isually select [A]round [)]paren
-    --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-    --  - ci'  - [C]hange [I]nside [']quote
+    -- `e` selects the whole buffer
     require('mini.ai').setup {
       n_lines = 80,
       custom_textobjects = {
@@ -19,39 +15,30 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
-    -- Add/delete/replace surroundings - https://github.com/echasnovski/mini.surround
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
+    -- Surround keys live under <leader>s because flash owns `s`
     require('mini.surround').setup {
       highlight_duration = 1000,
       mappings = {
-        add = '<leader>sa', -- Add surrounding in Normal and Visual modes
-        delete = '<leader>sd', -- Delete surrounding
-        find = '<leader>sf', -- Find surrounding (to the right)
-        find_left = '<leader>sF', -- Find surrounding (to the left)
-        highlight = '<leader>sh', -- Highlight surrounding
-        replace = '<leader>ss', -- Replace surrounding
-        update_n_lines = '<leader>sn', -- Update `n_lines`
+        add = '<leader>sa',
+        delete = '<leader>sd',
+        find = '<leader>sf',
+        find_left = '<leader>sF',
+        highlight = '<leader>sh',
+        replace = '<leader>ss',
+        update_n_lines = '<leader>sn',
 
-        suffix_last = 'p', -- Suffix to search with "prev" method
-        suffix_next = 'n', -- Suffix to search with "next" method
+        suffix_last = 'p',
+        suffix_next = 'n',
       },
     }
 
-    -- Introduce new operators - https://github.com/echasnovski/mini.operators
-    -- - g= - evaluate
-    -- - gx - exchange
-    -- - gm - multiply
-    -- - gr - replace
-    -- - gs - sort
+    -- g= evaluate, gx exchange, gm multiply, gs sort. Replace moves to gp because Neovim's LSP maps use gr
     require('mini.operators').setup {
       replace = {
         prefix = 'gp',
       },
     }
 
-    -- Better alignment functionality - https://github.com/echasnovski/mini.align
     require('mini.align').setup {
       mappings = {
         start = '<leader>da',
@@ -59,7 +46,6 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
-    -- Show minimap of the current buffer - https://github.com/echasnovski/mini.map
     local map = require 'mini.map'
     map.setup {
       integrations = {
@@ -72,16 +58,6 @@ return { -- Collection of various small independent plugins/modules
     vim.keymap.set('n', '<leader>uM', MiniMap.toggle_focus, { desc = 'Toggle Minimap focus' })
 
     require('mini.bracketed').setup {
-      -- First-level elements are tables describing behavior of a target:
-      --
-      -- - <suffix> - single character suffix. Used after `[` / `]` in mappings.
-      --   For example, with `b` creates `[B`, `[b`, `]b`, `]B` mappings.
-      --   Supply empty string `''` to not create mappings.
-      --
-      -- - <options> - table overriding target options.
-      --
-      -- See `:h MiniBracketed.config` for more info.
-
       buffer = { suffix = 'b', options = {} },
       comment = { suffix = '/', options = {} },
       conflict = { suffix = 'x', options = {} },
@@ -94,37 +70,8 @@ return { -- Collection of various small independent plugins/modules
       quickfix = { suffix = 'q', options = {} },
       treesitter = { suffix = 't', options = {} },
       undo = { suffix = 'u', options = {} },
-      window = { suffix = '', options = {} }, -- ]w/[w belong to Trouble
+      window = { suffix = '', options = {} }, -- Trouble owns ]w/[w
       yank = { suffix = 'y', options = {} },
     }
-    
-    -- require('mini.pairs').setup {}
-
-    -- require('mini.indentscope').setup {}
-
-    -- -- Simple and easy statusline.
-    -- --  You could remove this setup call if you don't like it,
-    -- --  and try some other statusline plugin
-    -- local statusline = require 'mini.statusline'
-    -- -- set use_icons to true if you have a Nerd Font
-    -- statusline.setup { use_icons = vim.g.have_nerd_font }
-    --
-    -- -- You can configure sections in the statusline by overriding their
-    -- -- default behavior. For example, here we set the section for
-    -- -- cursor location to LINE:COLUMN
-    -- ---@diagnostic disable-next-line: duplicate-set-field
-    -- statusline.section_location = function()
-    --   return '%2l:%-2v'
-    -- end
-
-    -- require('mini.files').setup {
-    --   windows = {
-    --     preview = true,
-    --     width_preview = 80,
-    --   },
-    -- }
-    -- vim.keymap.set('n', '<leader>.', '<cmd>:lua MiniFiles.open(nil, false)<CR>', { desc = '[.] Open Mini Files' })
-    -- -- ... and there is more!
-    -- --  Check out: https://github.com/echasnovski/mini.nvim
   end,
 }

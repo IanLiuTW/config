@@ -13,9 +13,9 @@ return {
       yaml = { 'yamllint' },
     }
 
-    -- ruff uses pyproject.toml/ruff.toml for config (E501/W503 ignored by default)
+    -- ruff reads its rules from pyproject.toml or ruff.toml
 
-    -- Configure codespell to show as hints rather than warnings
+    -- Show codespell findings as hints, not warnings
     lint.linters.codespell = require('lint.util').wrap(lint.linters.codespell, function(diagnostic)
       diagnostic.severity = vim.diagnostic.severity.HINT
       return diagnostic

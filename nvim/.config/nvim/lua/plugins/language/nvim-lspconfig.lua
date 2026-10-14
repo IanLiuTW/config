@@ -1,5 +1,4 @@
--- GitHub Copilot through copilot-language-server and Neovim's built-in inline completion.
--- Keys match the former copilot.lua setup.
+-- GitHub Copilot through copilot-language-server and Neovim's built-in inline completion
 local function setup_copilot()
   local ic = vim.lsp.inline_completion
   local ns = vim.api.nvim_create_namespace 'nvim.lsp.inline_completion'
@@ -20,7 +19,7 @@ local function setup_copilot()
     return #vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { limit = 1 }) > 0
   end
 
-  -- Accept only the leading part of the suggestion that matches one of `patterns`.
+  -- Accept only the leading part of the suggestion that matches one of `patterns`
   local function accept_partial(patterns)
     return ic.get {
       on_accept = function(item)
@@ -114,9 +113,11 @@ end
 
 return {
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     {
       'williamboman/mason.nvim',
+      cmd = 'Mason',
       opts = {
         ui = {
           icons = {
@@ -164,7 +165,7 @@ return {
       end,
     })
 
-    -- Ensure tools are installed
+    -- Mason tools
     require('mason-tool-installer').setup {
       ensure_installed = {
         'stylua',
@@ -184,7 +185,7 @@ return {
       debounce_hours = 24,
     }
 
-    -- LSP config
+    -- Language servers
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
@@ -222,9 +223,9 @@ return {
             command = { 'nixfmt' },
           },
           nix = {
-            maxMemoryMB = 2048, -- Increase memory limit if needed
+            maxMemoryMB = 2048,
             flake = {
-              autoEvalInputs = false, -- evaluating every flake input costs too much memory
+              autoEvalInputs = false, -- Evaluating every flake input costs too much memory
             },
           },
           diagnostics = {

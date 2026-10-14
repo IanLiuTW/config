@@ -7,7 +7,7 @@ return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  lazy = false, -- setup() registers the autocmds that track cursor positions in listed files
+  event = 'VeryLazy', -- setup() registers the autocmds that track cursor positions in listed files
   keys = {
     { '<leader>`', function() require('harpoon').ui:toggle_quick_menu(list()) end, desc = 'Harpoon - Menu' },
     { '<leader>~', function() list():add() end,                                   desc = 'Harpoon - Add file' },

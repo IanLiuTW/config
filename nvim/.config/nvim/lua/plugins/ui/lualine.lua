@@ -1,5 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
+  -- Loads after the first screen is drawn, so Neovim's default statusline shows for one frame
+  event = 'VeryLazy',
   dependencies = { 'nvim-tree/nvim-web-devicons', 'meuter/lualine-so-fancy.nvim' },
   config = function()
     require('lualine').setup {
@@ -47,10 +49,9 @@ return {
           { 'fancy_location' },
         },
         lualine_y = {
-          -- { 'fileformat' },
           { 'encoding' },
-          { 'filetype' }, -- { 'fancy_filetype', ts_icon = '' },
-          { -- LSP Servers
+          { 'filetype' },
+          { -- LSP servers
             function()
               local buf_clients = vim.lsp.get_clients { bufnr = 0 }
               if buf_clients == nil then
@@ -66,9 +67,8 @@ return {
               return '󰌘 ' .. table.concat(buf_client_names, ' ')
             end,
           },
-          { -- LSP Formatter
+          { -- Formatters
             function()
-              -- Check if 'conform' is available
               local status, conform = pcall(require, 'conform')
               if not status then
                 return 'Conform not installed'
@@ -76,7 +76,6 @@ return {
 
               local lsp_format = require 'conform.lsp_format'
 
-              -- Get formatters for the current buffer
               local formatters = conform.list_formatters_for_buffer()
               if formatters and #formatters > 0 then
                 local formatterNames = {}
@@ -92,7 +91,6 @@ return {
                 return '󰷈 ' .. table.concat(formatterNames, ' ')
               end
 
-              -- Check if there's an LSP formatter
               local bufnr = vim.api.nvim_get_current_buf()
               local lsp_clients = lsp_format.get_format_clients { bufnr = bufnr }
 
@@ -103,36 +101,13 @@ return {
               return ''
             end,
           },
-          -- {
-          --   function()
-          --     local status = vim.api.nvim_call_function('codeium#GetStatusString', {})
-          --     if not status then
-          --       return ''
-          --     end
-          --     return ' ' .. status
-          --   end,
-          -- },
         },
-        lualine_z = {
-          -- { 'datetime', style = ' %H:%M:%S' },
-          -- {
-          --   require('noice').api.status.command.get,
-          --   cond = require('noice').api.status.command.has,
-          --   color = { fg = 'black' },
-          -- },
-        },
+        lualine_z = {},
       },
       extensions = {
         'lazy',
         'mason',
         'fzf',
-        -- 'man',
-        -- 'neo-tree',
-        -- 'oil',
-        -- 'overseer',
-        -- 'symbols-outline',
-        -- 'toggleterm',
-        -- 'trouble',
       },
     }
   end,

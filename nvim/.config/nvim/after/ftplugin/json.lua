@@ -1,4 +1,4 @@
--- When creating a new line with o, make sure there is a trailing comma on the current line
+-- `o` first appends a comma to the current line unless it ends in `,`, `{` or `[`
 vim.keymap.set('n', 'o', function()
   local line = vim.api.nvim_get_current_line()
   local should_add_comma = string.find(line, '[^,{[]$')

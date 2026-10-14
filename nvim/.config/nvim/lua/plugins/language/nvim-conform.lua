@@ -19,7 +19,6 @@ return {
   },
   opts = {
     notify_on_error = true,
-    -- Formatter configurations by filetype
     formatters_by_ft = {
       lua = { 'stylua' },
       python = {
@@ -44,8 +43,7 @@ return {
       markdown = { 'prettier' },
       nix = { 'nixfmt' },
 
-      -- Global formatters
-      -- ['*'] = { 'codespell' }, -- this auto fixes spelling mistakes
+      -- `_` applies to filetypes with no formatter listed above
       ['_'] = { 'trim_whitespace' },
     },
     formatters = {
@@ -56,12 +54,11 @@ return {
         },
       },
     },
-    -- Default formatting options
     default_format_opts = {
       lsp_format = 'fallback',
       async = true,
       quiet = false,
-      timeout_ms = 500, -- Add timeout for better responsiveness
+      timeout_ms = 500,
     },
   },
 }

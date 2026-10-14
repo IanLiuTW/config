@@ -1,5 +1,4 @@
 return {
-  -- See `:help gitsigns` to understand what the configuration keys do
   'lewis6991/gitsigns.nvim',
   event = 'BufRead',
   opts = {
@@ -26,7 +25,7 @@ return {
     current_line_blame = false,
     current_line_blame_opts = {
       virt_text = true,
-      virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+      virt_text_pos = 'right_align',
       delay = 100,
       ignore_whitespace = false,
       virt_text_priority = 100,
@@ -59,11 +58,11 @@ return {
         end
       end, { desc = 'Hunk - Previous' })
 
-      -- visual mode
+      -- Visual mode
       map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Hunk - Stage selection' })
       map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'Hunk - Reset selection' })
       
-      -- normal mode
+      -- Normal mode
       map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Hunk - Preview' })
       map('n', '<leader>hP', gitsigns.preview_hunk_inline, { desc = 'Hunk - Preview inline' })
 

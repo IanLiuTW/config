@@ -2,7 +2,7 @@ return {
   'MeanderingProgrammer/render-markdown.nvim',
   lazy = true,
   ft = { 'markdown' },
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+  dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
   keys = {
     { '<leader>ur', '<cmd>RenderMarkdown toggle<cr>', desc = 'Toggle Render markdown' },
     { '<leader>,r', '<cmd>RenderMarkdown debug<cr>', desc = 'Tools - Render-markdown debug' },

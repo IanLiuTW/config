@@ -3,32 +3,28 @@
 local picker_setup = {
   ui_select = true,
   matcher = {
-    fuzzy = true, -- use fuzzy matching
-    smartcase = true, -- use smartcase
-    ignorecase = true, -- use ignorecase
-    sort_empty = false, -- sort results when the search string is empty
-    filename_bonus = true, -- give bonus for matching file names (last part of the path)
-    file_pos = true, -- support patterns like `file:line:col` and `file:line`
-    -- the bonusses below, possibly require string concatenation and path normalization,
-    -- so this can have a performance impact for large lists and increase memory usage
-    cwd_bonus = false, -- give bonus for matching files in the cwd
-    frecency = false, -- frecency bonus
-    history_bonus = false, -- give more weight to chronological order
+    fuzzy = true,
+    smartcase = true,
+    ignorecase = true,
+    sort_empty = false,
+    filename_bonus = true,
+    file_pos = true,
+    -- These bonuses cost time and memory on large lists
+    cwd_bonus = false,
+    frecency = false,
+    history_bonus = false,
   },
   sort = {
-    -- default sort is by score, text length and index
     fields = { 'score:desc', '#text', 'idx' },
   },
   previewers = {
     git = {
-      native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
+      native = true, -- Render git diffs and commits in the terminal, not in Neovim
     },
   },
   win = {
-    -- input window
     input = {
       keys = {
-        -- ["<Esc>"] = { "close", mode = { "n", "i" } }, -- to close the picker on ESC instead of going to normal mode
         ['<Esc>'] = 'close',
         ['<C-c>'] = { 'close', mode = 'i' },
         ['<CR>'] = { 'confirm', mode = { 'i', 'n' } },
@@ -75,7 +71,6 @@ local picker_setup = {
         minipairs_disable = true,
       },
     },
-    -- result list window
     list = {
       keys = {
         ['<Esc>'] = 'close',
@@ -124,7 +119,6 @@ local picker_setup = {
         concealcursor = 'nvc',
       },
     },
-    -- preview window
     preview = {
       keys = {
         ['<Esc>'] = 'close',
@@ -195,7 +189,7 @@ local picker_setup = {
             ['l'] = 'confirm',
             ['h'] = 'explorer_close',
             ['u'] = 'explorer_update',
-            ['O'] = 'explorer_open', -- open with system application
+            ['O'] = 'explorer_open',
             ['<S-Tab>'] = 'toggle_preview',
             ['a'] = 'explorer_add',
             ['d'] = 'explorer_del',
@@ -244,7 +238,7 @@ return {
   lazy = false,
   opts = {
     animation = {
-      fps = 100, -- frames per second. Global setting for all animations
+      fps = 100,
     },
     bigfile = {
       enabled = true,
@@ -252,7 +246,7 @@ return {
     picker = picker_setup,
     explorer = {
       enabled = true,
-      replace_netrw = false, -- oil.nvim owns directory buffers
+      replace_netrw = false, -- Oil owns directory buffers
     },
     notifier = {
       enabled = true,
@@ -261,16 +255,14 @@ return {
     quickfile = {
       enabled = true,
     },
-    -- input = { enabled = true },
     image = { enabled = true },
     indent = {
       indent = {
         char = '│',
         blank = ' ',
-        -- blank = "∙",
-        only_scope = false, -- only show indent guides of the scope
-        only_current = false, -- only show indent guides in the current window
-        hl = 'SnacksIndent', ---@type string|string[] hl groups for indent guides
+        only_scope = false,
+        only_current = false,
+        hl = 'SnacksIndent',
       },
       scope = {
         enabled = true,
@@ -278,25 +270,20 @@ return {
           enabled = true,
           easing = 'linear',
           duration = {
-            step = 50, -- ms per step
-            total = 300, -- maximum duration
+            step = 50,
+            total = 300,
           },
         },
         char = '│',
-        underline = true, -- underline the start of the scope
-        only_current = false, -- only show scope in the current window
-        hl = 'SnacksIndentScope', ---@type string|string[] hl group for scopes
+        underline = true,
+        only_current = false,
+        hl = 'SnacksIndentScope',
       },
       chunk = {
-        -- when enabled, scopes will be rendered as chunks, except for the
-        -- top-level scope which will be rendered as a scope.
         enabled = true,
-        -- only show chunk scopes in the current window
         only_current = false,
-        hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
+        hl = 'SnacksIndentChunk',
         char = {
-          -- corner_top = '┌',
-          -- corner_bottom = '└',
           corner_top = "╭",
           corner_bottom = "╰",
           horizontal = '─',
@@ -306,10 +293,8 @@ return {
       },
       blank = {
         char = ' ',
-        -- char = "·",
-        hl = 'SnacksIndentBlank', ---@type string|string[] hl group for blank spaces
+        hl = 'SnacksIndentBlank',
       },
-      -- filter for buffers to enable indent guides
       filter = function(buf)
         return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ''
       end,
@@ -359,17 +344,16 @@ return {
       },
     },
     statuscolumn = {
-      left = { 'mark', 'sign' }, -- priority of signs on the left (high to low)
-      right = { 'fold', 'git' }, -- priority of signs on the right (high to low)
+      left = { 'mark', 'sign' },
+      right = { 'fold', 'git' },
       folds = {
-        open = false, -- show open fold icons
-        git_hl = false, -- use Git Signs hl for fold icons
+        open = false,
+        git_hl = false,
       },
       git = {
-        -- patterns to match Git signs
         patterns = { 'GitSign', 'MiniDiffSign' },
       },
-      refresh = 50, -- refresh at most every 50ms },
+      refresh = 50,
     },
     words = {
       enabled = true,
@@ -383,7 +367,7 @@ return {
         inlay_hints = true,
       },
       show = {
-        statusline = false, -- can only be shown when using the global statusline
+        statusline = false,
         tabline = false,
       },
       win = { style = 'zen', width = 0.6 },
@@ -401,13 +385,13 @@ return {
         },
         win = {
           backdrop = false,
-          width = 0, -- full width
+          width = 0, -- 0 means full width
         },
       },
     },
     styles = {
       notification = {
-        wo = { wrap = true }, -- Wrap notifications
+        wo = { wrap = true },
       },
     },
     terminal = {},
@@ -513,14 +497,14 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
-        -- Setup some globals for debugging (lazy-loaded)
+        -- Debug helpers: dd() inspects values, bt() prints a backtrace
         _G.dd = function(...)
           Snacks.debug.inspect(...)
         end
         _G.bt = function()
           Snacks.debug.backtrace()
         end
-        vim.print = _G.dd -- Override print to use snacks for `:=` command
+        vim.print = _G.dd -- `:=` prints through Snacks
 
         -- UI toggles live under <leader>u; which-key shows each one's state
         local ts_indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

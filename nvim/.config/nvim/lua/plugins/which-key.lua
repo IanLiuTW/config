@@ -1,5 +1,5 @@
 -- stylua: ignore
-return { -- Useful plugin to show you pending keybinds.
+return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
   keys = {
@@ -41,7 +41,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>ug',       group = 'Git',                     mode = { 'n', 'x' } },
       { '<leader>x',        group = 'Diagnostics / lists',     mode = { 'n', 'x' } },
 
-      -- Normal Mode
+      -- Normal mode
       {
         mode = 'n',
         { '<Esc>',           '<cmd>nohlsearch<CR>',                         desc = 'Search - Clear highlight' },
@@ -79,7 +79,6 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         mode = { 'n', 'v' },
-        -- { '<leader>p',    '"0p',                 desc = 'Cursor - [P]aste copied text' },  -- Use mini-operators: `gp`
         { '<leader>j',    '10j',                 desc = 'Cursor - Down 10 lines' },
         { '<leader>k',    '10k',                 desc = 'Cursor - Up 10 lines' },
       },

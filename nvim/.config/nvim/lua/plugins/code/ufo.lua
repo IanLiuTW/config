@@ -1,4 +1,4 @@
--- Fold providers per filetype: { main, fallback }. Unlisted filetypes use ufo's default { 'lsp', 'indent' }.
+-- Fold provider per filetype ('' turns folding off). Other filetypes use ufo's default { 'lsp', 'indent' }
 local providers = {
   vim = 'indent',
   python = 'indent',

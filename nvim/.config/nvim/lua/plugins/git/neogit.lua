@@ -23,11 +23,9 @@ return {
       interval = 1000,
       enabled = true,
     },
-    -- Persist the values of switches/options within and across sessions
     remember_settings = true,
-    -- Scope persisted settings on a per-project basis
     use_per_project_settings = true,
-    -- Table of settings to never persist. Uses format "Filetype--cli-value"
+    -- Never remember these switches between runs
     ignored_settings = {
       'NeogitPushPopup--force-with-lease',
       'NeogitPushPopup--force',
@@ -35,39 +33,22 @@ return {
       'NeogitCommitPopup--allow-empty',
       'NeogitRevertPopup--no-edit',
     },
-    -- Configure highlight group features
     highlight = {
       italic = true,
       bold = true,
       underline = true,
     },
-    -- Set to false if you want to be responsible for creating _ALL_ keymappings
     use_default_keymaps = true,
-    -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
-    -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
     auto_refresh = true,
-    -- Value used for `--sort` option for `git branch` command
-    -- By default, branches will be sorted by commit date descending
-    -- Flag description: https://git-scm.com/docs/git-branch#Documentation/git-branch.txt---sortltkeygt
-    -- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
     sort_branches = '-committerdate',
-    -- Change the default way of opening neogit
     kind = 'tab',
-    -- Disable line numbers and relative line numbers
     disable_line_numbers = true,
-    -- The time after which an output console is shown for slow running commands
     console_timeout = 2000,
-    -- Automatically show console if a command takes more than console_timeout milliseconds
     auto_show_console = true,
-    -- "ascii"   is the graph the git CLI generates
-    -- "unicode" is the graph like https://github.com/rbong/vim-flog
-    -- "kitty"   is the graph like https://github.com/isakbm/gitgraph.nvim - use https://github.com/rbong/flog-symbols if you don't use Kitty
     graph_style = 'unicode',
-    -- When set, used to format the diff. Requires *baleia* to colorize text with ANSI escape sequences. An example for `Delta` is `{ 'delta', '--width', '117' }`. For `Delta`, hyperlinks must be disabled when called by `neogit`, for text to be colorized properly.
+    -- baleia (set up in config) colors the ANSI output of delta
     log_pager = { 'delta', '--width', '117', '--file-style=omit', '--file-decoration-style=omit', '--hunk-header-style=omit', '--hunk-header-decoration-style=omit' },
-    -- Show message with spinning animation when a git command is running.
     process_spinner = true,
-    -- Automatically close the console if the process exits with a 0 (success) status
     auto_close_console = true,
     status = {
       show_head_commit_hash = true,
@@ -95,13 +76,6 @@ return {
     },
     commit_editor = {
       kind = 'tab',
-      -- Accepted values:
-      -- "split" to show the staged diff below the commit editor
-      -- "vsplit" to show it to the right
-      -- "split_above" Like :top split
-      -- "vsplit_left" like :vsplit, but open to the left
-      -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
-      -- ""
       show_staged_diff = true,
       staged_diff_split_kind = 'auto',
     },
@@ -110,7 +84,7 @@ return {
     },
     commit_view = {
       kind = 'vsplit',
-      verify_commit = vim.fn.executable 'gpg' == 1, -- Can be set to true or false, otherwise we try to find the binary
+      verify_commit = vim.fn.executable 'gpg' == 1,
     },
     log_view = {
       kind = 'tab',
@@ -134,7 +108,7 @@ return {
       kind = 'split',
     },
     signs = {
-      -- { CLOSED, OPENED }
+      -- { closed, open }
       hunk = { '⤑', '⇣' },
       item = { '', '' },
       section = { '󰝤', '' },
@@ -146,7 +120,7 @@ return {
     },
     diff_viewer = 'codediff',
     sections = {
-      -- Reverting/Cherry Picking
+      -- Revert or cherry-pick in progress
       sequencer = {
         folded = false,
         hidden = false,

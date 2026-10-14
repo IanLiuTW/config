@@ -8,6 +8,7 @@ return {
     local Rule = require 'nvim-autopairs.rule'
     local cond = require 'nvim-autopairs.conds'
 
+    -- Pair quotes only after whitespace, `=`, `,` or an opening bracket
     local chars = { '"', "'", '`' }
 
     for _, char in ipairs(chars) do
@@ -16,12 +17,11 @@ return {
       end
     end
 
+    -- A space typed inside (), [], {} or || gets a matching space before the closing character
     npairs.add_rules {
       Rule(' ', ' ')
         :with_pair(function(opts)
-          -- Get the two characters around the cursor
           local pair = opts.line:sub(opts.col - 1, opts.col)
-          -- Check if we are inside any of these pairs
           return vim.tbl_contains({ '()', '[]', '{}', '||' }, pair)
         end)
         :with_move(cond.none())
@@ -30,6 +30,7 @@ return {
         :use_key ' ',
     }
 
+    -- Rust: pair <> after a type or path (`Vec<`, `Foo::<`) and || in closure position
     npairs.add_rule(Rule('<', '>', {
       'rust',
     }):with_pair(cond.before_regex('%a+:?:?$', 3)):with_move(function(opts)

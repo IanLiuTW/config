@@ -1,7 +1,5 @@
 vim.loader.enable()
 
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
---  NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.autoread = true
@@ -14,25 +12,25 @@ vim.opt.wrap = false
 vim.opt.spell = false
 vim.opt.relativenumber = true
 vim.opt.conceallevel = 0
-vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
-vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim. See `:help 'clipboard'`
-vim.opt.breakindent = true -- Enable break indent
-vim.opt.undofile = true -- Save undo history
-vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.mouse = 'a'
+vim.opt.showmode = false
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
-vim.opt.updatetime = 250 -- Decrease update time
-vim.opt.timeoutlen = 200 -- Decrease mapped sequence wait time. Displays which-key popup sooner
-vim.opt.splitright = true -- Configure how new splits should be opened
+vim.opt.signcolumn = 'yes'
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 200 -- Low so which-key opens sooner
+vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '»─', multispace = ' ', trail = '·', nbsp = '␣' }
-vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
-vim.opt.cursorline = false -- Show which line your cursor is on
-vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.fixeol = false -- Don't automatically append an end of line at the end of files
-vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- 'localoptions' so filetype/highlighting restore correctly (auto-session)
+vim.opt.inccommand = 'split'
+vim.opt.cursorline = false
+vim.opt.scrolloff = 5
+vim.opt.fixeol = false -- Keep files without a final newline as they are
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- localoptions lets auto-session restore filetype and highlighting
 vim.opt.spellfile = vim.fn.expand '~/.config/nvim/spell/en.utf-8.add'
 vim.opt.guicursor = {
   'n:block-blinkwait0-blinkoff50-blinkon50',
@@ -43,11 +41,12 @@ vim.opt.guicursor = {
 }
 vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:▶]]
 
+-- Set before lazy.nvim loads plugins, so their maps use this leader
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
--- [[ FileType Autocommands]]
+-- [[ Filetypes ]]
 local filetype_group = vim.api.nvim_create_augroup('filetype', { clear = true })
 vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
   group = filetype_group,
@@ -55,8 +54,7 @@ vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
   command = 'set ft=hocon',
 })
 
--- [[ Tool Autocommands ]] See `:help lua-guide-autocommands`
--- Highlight when yanking (copying) text
+-- [[ Autocommands ]]
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
@@ -64,37 +62,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
--- Disable automatic comment insertion (Use C-u in insert mode)
--- vim.api.nvim_create_autocmd('BufEnter', {
---   desc = 'Disable automatic comment insertion',
---   group = vim.api.nvim_create_augroup('AutoComment', {}),
---   callback = function()
---     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
---   end,
--- })
 
--- [[ Diagnostic Commands ]]
--- Set virtual text severity to Hint
+-- [[ Diagnostic commands ]]
 vim.api.nvim_create_user_command('VirtualTextSeverityMinHint', function()
   vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.HINT } } }
 end, {})
--- Set virtual text severity to INFO
 vim.api.nvim_create_user_command('VirtualTextSeverityMinInfo', function()
   vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.INFO } } }
 end, {})
--- Toggle virtual line
 vim.api.nvim_create_user_command('VirtualLinesToggle', function()
   local current = vim.diagnostic.config().virtual_lines
   vim.diagnostic.config { virtual_lines = not current }
 end, {})
--- [[ Tool Commands ]]
--- G is a wrapper around git
+-- [[ Tool commands ]]
+-- :G runs git with the unnamed register as stdin
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
   vim.notify('[G (wrapper for git)] Executed: ' .. command)
   print(vim.fn.system(command, vim.fn.getreg('"', 1, true)))
 end, { nargs = 1 })
--- Copy the current file path to the clipboard
+-- Copy the file path relative to the git root
 vim.api.nvim_create_user_command('CopyPath', function()
   -- Resolve symlinks (e.g. ~/.config/nvim -> ~/config/...) so the path matches git's real toplevel
   local abs = vim.uv.fs_realpath(vim.fn.expand '%:p') or vim.fn.expand '%:p'
@@ -103,13 +90,12 @@ vim.api.nvim_create_user_command('CopyPath', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
--- Copy the current file's absolute path to the clipboard
 vim.api.nvim_create_user_command('CopyFullPath', function()
   local path = vim.fn.expand '%:p'
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
--- Copy the current file to the clipboard (macOS)
+-- Copy the file itself, not its path, to the macOS clipboard
 vim.api.nvim_create_user_command('CopyFile', function()
   local file = vim.fn.expand('%:p')
   local script = string.format(
@@ -123,7 +109,6 @@ vim.api.nvim_create_user_command('CopyFile', function()
   end
   vim.notify('File copied: ' .. file, vim.log.levels.INFO)
 end, {})
--- Delete a mark by key
 vim.api.nvim_create_user_command('Delmark', function()
   vim.ui.input({ prompt = 'Enter mark to delete: ' }, function(input)
     if input and input ~= '' then
@@ -133,7 +118,6 @@ vim.api.nvim_create_user_command('Delmark', function()
     end
   end)
 end, { desc = 'Delete mark by key with popup input' })
--- Diff this buffer
 vim.api.nvim_create_user_command('DiffThis', function()
   if vim.wo.diff then
     vim.cmd 'diffoff'
@@ -145,7 +129,7 @@ vim.api.nvim_create_user_command('DiffThis', function()
   vim.notify('Diff on', vim.log.levels.INFO)
 end, {})
 
--- [[ Configure diagnostic symbols ]]
+-- [[ Diagnostics ]]
 vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
@@ -158,10 +142,10 @@ vim.diagnostic.config {
   signs = {
     severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
     text = {
-      [vim.diagnostic.severity.ERROR] = '', -- '',
-      [vim.diagnostic.severity.WARN] = '', -- '',
-      [vim.diagnostic.severity.INFO] = '', -- '',
-      [vim.diagnostic.severity.HINT] = '', -- '󰌵',
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
     },
     numhl = {
       [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
@@ -178,7 +162,8 @@ vim.diagnostic.config {
   },
 }
 
--- [[ Custom underline handler to set priority of underline highlights ]]
+-- [[ Underline handler ]]
+-- Replaces the built-in handler so higher severities get higher extmark priority and draw on top
 vim.diagnostic.handlers.underline = {
   show = function(namespace, bufnr, diagnostics, opts)
     local ns = vim.diagnostic.get_namespace(namespace)
@@ -221,7 +206,7 @@ vim.diagnostic.handlers.underline = {
   end,
 }
 
--- [[ Install `lazy.nvim` plugin manager ]] See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -237,7 +222,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
--- [[ Configure and install plugins ]]
+-- [[ Plugins ]]
 require('lazy').setup({
   spec = {
     { import = 'plugins' },
@@ -292,5 +277,4 @@ require('lazy').setup({
     },
   },
 })
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

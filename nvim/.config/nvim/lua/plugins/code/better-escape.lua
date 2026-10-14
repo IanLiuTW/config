@@ -3,8 +3,8 @@ return {
   event = 'InsertEnter',
   config = function()
     require('better_escape').setup {
-      timeout = vim.o.timeoutlen, -- after `timeout` passes, you can press the escape key and the plugin will ignore it
-      default_mappings = true, -- setting this to false removes all the default mappings
+      timeout = vim.o.timeoutlen,
+      default_mappings = true,
       mappings = {
         i = {
           j = {
@@ -21,11 +21,7 @@ return {
             k = '<C-\\><C-n>',
           },
         },
-        v = {
-          -- j = {
-          --   k = '<Esc>',
-          -- },
-        },
+        v = {},
         s = {
           j = {
             k = '<Esc>',

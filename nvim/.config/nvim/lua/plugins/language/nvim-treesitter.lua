@@ -55,6 +55,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'main',
+    event = 'VeryLazy',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       local ts_select = require 'nvim-treesitter-textobjects.select'
@@ -100,18 +101,14 @@ return {
 
       -- Move keymaps
       local move_maps = {
-        -- goto_next_start
         { ']1', 'goto_next_start', '@function.outer', 'textobjects', 'Jump - Next function start' },
         { ']2', 'goto_next_start', '@class.outer', 'textobjects', 'Jump - Next class start' },
         { ']3', 'goto_next_start', '@local.scope', 'locals', 'Jump - Next scope' },
         { ']z', 'goto_next_start', '@fold', 'folds', 'Jump - Next fold' },
-        -- goto_next_end
         { ']!', 'goto_next_end', '@function.outer', 'textobjects', 'Jump - Next function end' },
         { ']@', 'goto_next_end', '@class.outer', 'textobjects', 'Jump - Next class end' },
-        -- goto_previous_start
         { '[1', 'goto_previous_start', '@function.outer', 'textobjects', 'Jump - Previous function start' },
         { '[2', 'goto_previous_start', '@class.outer', 'textobjects', 'Jump - Previous class start' },
-        -- goto_previous_end
         { '[!', 'goto_previous_end', '@function.outer', 'textobjects', 'Jump - Previous function end' },
         { '[@', 'goto_previous_end', '@class.outer', 'textobjects', 'Jump - Previous class end' },
       }
@@ -122,12 +119,4 @@ return {
       end
     end,
   },
-  -- {
-  --   'nvim-treesitter/nvim-treesitter-context',
-  --   event = 'bufread',
-  --   opts = { multiline_threshold = 1 },
-  --   keys = {
-  --     { '<leader>,X', '<cmd>TSContextToggle<cr>', desc = 'Treesitter - Toggle Context' },
-  --   },
-  -- },
 }

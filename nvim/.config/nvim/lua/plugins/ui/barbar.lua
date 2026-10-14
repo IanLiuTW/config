@@ -9,8 +9,6 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   keys = {
-    -- { '<leader>{', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move left' },
-    -- { '<leader>}', '<Cmd>BufferMoveNext<CR>', noremap = true, silent = true, desc = 'Buffer - Move right' },
     { '<C-,>', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },
     { '<C-.>', '<Cmd>BufferNext<CR>', noremap = true, silent = true, desc = 'Buffer - Next' },
     { '<C-S-,>', '<Cmd>BufferMovePrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Move left' },
