@@ -252,7 +252,7 @@ return {
     picker = picker_setup,
     explorer = {
       enabled = true,
-      replace_netrw = true,
+      replace_netrw = false, -- oil.nvim owns directory buffers
     },
     notifier = {
       enabled = true,
@@ -446,7 +446,7 @@ return {
     { "<leader><leader><leader>", function() Snacks.picker.pickers() end, desc = "Picker - Pickers" },
     { "<leader><leader>p", function() Snacks.picker.projects() end, desc = "Picker - Projects" },
     { "<leader><leader>;", function() Snacks.picker.todo_comments() end, desc = "Picker - Todo" },
-    { "<leader><leader>:", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Picker - Todo/Fix/Fixme" },
+    { "<leader><leader>'", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Picker - Todo/Fix/Fixme" },
     { "<leader><leader>j", function() Snacks.picker.jumps() end, desc = "Picker - Jumps" },
     { "<leader><leader>l", function() Snacks.picker.loclist() end, desc = "Picker - Location List" },
     { "<leader><leader>q", function() Snacks.picker.qflist() end, desc = "Picker - Quickfix List" },
@@ -459,7 +459,7 @@ return {
     { "<leader><leader>A", function() Snacks.picker.autocmds() end, desc = "Picker - Autocmds" },
     { "<leader><leader>C", function() Snacks.picker.commands() end, desc = "Picker - Commands" },
     { "<leader><leader>?", function() Snacks.picker.help() end, desc = "Picker - Help Pages" },
-    { "<leader><leader>L", function() Snacks.picker.Lazy() end, desc = "Picker - Lazy Packages" },
+    { "<leader><leader>L", function() Snacks.picker.lazy() end, desc = "Picker - Lazy Packages" },
     -- Picker - LSP
     { "<leader>D", function() Snacks.picker.lsp_definitions() end, desc = "LSP - Goto Definition" },
     { "<leader>dD", function() Snacks.picker.lsp_type_definitions() end, desc = "LSP - Goto T[y]pe Definition" },
@@ -485,13 +485,14 @@ return {
     -- Profiler
     { '<leader>,p', function() Snacks.profiler.scratch() end, desc = 'Profiler - Scratch Buffer' },
     -- Words
-    { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Words - Next Reference', mode = { 'n', 't' } },
-    { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Words - Prev Reference', mode = { 'n', 't' } },
+    { ']r', function() Snacks.words.jump(vim.v.count1) end, desc = 'Words - Next Reference' },
+    { '[r', function() Snacks.words.jump(-vim.v.count1) end, desc = 'Words - Prev Reference' },
     -- Dim
     { '<leader>,x', function() Snacks.dim() end, desc = 'Dim - Toggle Zen', mode = { 'n' } },
     -- Zen
     { '<leader>,z', function() Snacks.zen.zen() end, desc = 'Zen - Toggle Zen', mode = { 'n' } },
     { '<leader>,Z', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
+    { '<C-w><CR>', function() Snacks.zen.zoom() end, desc = 'Zen - Toggle Zoom', mode = { 'n' } },
     -- Explorer
     { '\\', function() Snacks.explorer() end, desc = 'Explorer - Toggle Explorer', mode = { 'n' } },
     -- Terminal

@@ -96,17 +96,23 @@ return { -- Useful plugin to show you pending keybinds.
         -- { '<C-q>', '<C-\\><C-n>', desc = 'Exit terminal mode' },
       },
       {
-        mode = { 'n', 'v' },
+        mode = 'n',
         { '<leader>J',  'i<CR><Esc>',                                                               desc = 'Cursor - Add a line break' },
         { '<leader>F',  'gg=G',                                                                     desc = 'Buffer - Format (Indentation)' },
+      },
+      {
+        mode = { 'n', 'v' },
         { '<leader>q',  function() vim.diagnostic.open_float({source = true, border="rounded"}) end,desc = 'Quickfix - Diagnostics Window' },
         { '<leader>wQ', function() vim.diagnostic.setloclist() end,                                 desc = 'Quickfix - Diagnostics List (Legacy)' },
       },
       {
-        mode = { 'n' , 'v' , 't' },
+        mode = { 'n', 'v' },
         -- { '<leader>p',    '"0p',                 desc = 'Cursor - [P]aste copied text' },  -- Use mini-operators: `gp`
         { '<leader>j',    '10j',                 desc = 'Cursor - [j] * 10' },
-        { '<leader>k',    '10k',                 desc = 'Cursot - [k] * 10' },
+        { '<leader>k',    '10k',                 desc = 'Cursor - [k] * 10' },
+      },
+      {
+        mode = { 'n' , 'v' , 't' },
         { '<C-Right>', '3<C-w><C->>',         noremap = true, silent = true, desc = 'Pane increase width' },
         { '<C-Left>',  '3<C-w><C-<>',         noremap = true, silent = true, desc = 'Pane decrease width' },
         { '<C-Up>',    '3<C-w><C-+>',         noremap = true, silent = true, desc = 'Pane increase height' },

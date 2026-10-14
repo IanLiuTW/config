@@ -25,7 +25,9 @@ return {
         if not highlight_disabled[ft] then
           pcall(vim.treesitter.start, buf)
         end
-        if not indent_disabled[ft] then
+        -- Without an indents query the treesitter indentexpr returns 0/-1; keep the ftplugin's indent instead
+        local lang = vim.treesitter.language.get_lang(ft)
+        if not indent_disabled[ft] and lang and vim.treesitter.query.get(lang, 'indents') then
           vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
       end
@@ -47,7 +49,6 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '<leader>,T', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter - Open Install Info' })
       vim.keymap.set('n', '<leader>,H', function()
         if vim.b.ts_highlight then
           vim.treesitter.stop()
@@ -115,7 +116,6 @@ return {
         -- goto_next_start
         { ']1', 'goto_next_start', '@function.outer', 'textobjects', 'Treesitter - Next function start' },
         { ']2', 'goto_next_start', '@class.outer', 'textobjects', 'Treesitter - Next class start' },
-        { ']o', 'goto_next_start', { '@loop.inner', '@loop.outer' }, 'textobjects', 'Treesitter - Next loop' },
         { ']3', 'goto_next_start', '@local.scope', 'locals', 'Treesitter - Next scope' },
         { ']z', 'goto_next_start', '@fold', 'folds', 'Treesitter - Next fold' },
         -- goto_next_end
@@ -127,9 +127,6 @@ return {
         -- goto_previous_end
         { '[!', 'goto_previous_end', '@function.outer', 'textobjects', 'Treesitter - Previous function end' },
         { '[@', 'goto_previous_end', '@class.outer', 'textobjects', 'Treesitter - Previous class end' },
-        -- goto_next / goto_previous (closest)
-        { ']i', 'goto_next', '@conditional.outer', 'textobjects', 'Treesitter - Next conditional' },
-        { '[i', 'goto_previous', '@conditional.outer', 'textobjects', 'Treesitter - Previous conditional' },
       }
       for _, m in ipairs(move_maps) do
         vim.keymap.set({ 'n', 'x', 'o' }, m[1], function()

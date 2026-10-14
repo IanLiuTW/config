@@ -6,7 +6,7 @@ return {
     {
       '<leader>f',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format()
       end,
       mode = 'n',
       desc = 'Buffer - Format (Conform)',
@@ -42,7 +42,7 @@ return {
       },
       json = { 'prettier' },
       markdown = { 'prettier' },
-      nix = { 'nixpkgs_fmt' },
+      nix = { 'nixfmt' },
 
       -- Global formatters
       -- ['*'] = { 'codespell' }, -- this auto fixes spelling mistakes
@@ -58,7 +58,7 @@ return {
     },
     -- Default formatting options
     default_format_opts = {
-      lsp_fallback = true,
+      lsp_format = 'fallback',
       async = true,
       quiet = false,
       timeout_ms = 500, -- Add timeout for better responsiveness

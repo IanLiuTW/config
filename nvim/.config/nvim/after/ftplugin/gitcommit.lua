@@ -9,5 +9,10 @@ local function get_git_branch()
 end
 
 vim.keymap.set({ 'n', 'i' }, '<S-CR>', function()
-  vim.api.nvim_put({ get_git_branch() .. ': ' }, 'c', true, true)
+  local branch = get_git_branch()
+  if not branch then
+    vim.notify('No current branch (detached HEAD?)', vim.log.levels.WARN)
+    return
+  end
+  vim.api.nvim_put({ branch .. ': ' }, 'c', true, true)
 end, { buffer = true, noremap = true, silent = true })

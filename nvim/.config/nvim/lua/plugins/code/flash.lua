@@ -9,7 +9,8 @@ local function setupCustomHighlightGroup()
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', {
-  desc = '',
+  group = vim.api.nvim_create_augroup('flash_custom_highlights', { clear = true }),
+  desc = 'Flash - Apply custom highlights',
   callback = function()
     setupCustomHighlightGroup()
   end,
@@ -46,7 +47,7 @@ return {
             ["<S-CR>"] = "prev"
           }
         })
-      end, { desc = "Flash - Treesitter incremental selection" }
+      end, desc = "Flash - Treesitter incremental selection"
     },
     { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Flash - Treesitter Search' },
 

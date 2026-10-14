@@ -41,10 +41,6 @@ vim.opt.guicursor = {
   'c:block-blinkwait0-blinkoff50-blinkon50',
   'o:block50',
 }
-vim.o.foldcolumn = '1'
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:▶]]
 
 vim.g.mapleader = ' '
@@ -96,11 +92,12 @@ end, {})
 vim.api.nvim_create_user_command('G', function(opts)
   local command = 'git ' .. opts.args
   vim.notify('[G (wrapper for git)] Executed: ' .. command)
-  vim.cmd('echo system("' .. command .. '", getreg(\'"\', 1, 1))')
+  print(vim.fn.system(command, vim.fn.getreg('"', 1, true)))
 end, { nargs = 1 })
 -- Copy the current file path to the clipboard
 vim.api.nvim_create_user_command('CopyPath', function()
-  local abs = vim.fn.expand '%:p'
+  -- Resolve symlinks (e.g. ~/.config/nvim -> ~/config/...) so the path matches git's real toplevel
+  local abs = vim.uv.fs_realpath(vim.fn.expand '%:p') or vim.fn.expand '%:p'
   local root = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(vim.fn.expand '%:p:h') .. ' rev-parse --show-toplevel')[1]
   local path = root and vim.startswith(abs, root) and abs:sub(#root + 2) or vim.fn.expand '%'
   vim.fn.setreg('+', path)
@@ -120,6 +117,10 @@ vim.api.nvim_create_user_command('CopyFile', function()
     file
   )
   local result = vim.fn.system(script)
+  if vim.v.shell_error ~= 0 then
+    vim.notify('CopyFile failed: ' .. result, vim.log.levels.ERROR)
+    return
+  end
   vim.notify('File copied: ' .. file, vim.log.levels.INFO)
 end, {})
 -- Delete a mark by key
@@ -182,7 +183,7 @@ vim.diagnostic.handlers.underline = {
   show = function(namespace, bufnr, diagnostics, opts)
     local ns = vim.diagnostic.get_namespace(namespace)
     if not ns.user_data.underline_ns then
-      ns.user_data.underline_ns = vim.api.nvim_create_namespace 'diagnostic/underline'
+      ns.user_data.underline_ns = vim.api.nvim_create_namespace('diagnostic/underline/' .. ns.name)
     end
     local extmark_ns = ns.user_data.underline_ns
 
@@ -240,7 +241,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   spec = {
     { import = 'plugins' },
-    { import = 'plugins.ai' },
     { import = 'plugins.tools' },
     { import = 'plugins.code' },
     { import = 'plugins.files' },

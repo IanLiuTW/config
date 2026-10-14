@@ -69,12 +69,9 @@ return {
   dependencies = {
     'nvim-neotest/nvim-nio',
     'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-python',
-    'nvim-neotest/neotest-vim-test',
-    -- 'rouge8/neotest-rust', -- Disabled: Switching to rustaceanvim
   },
   config = function()
     require('neotest').setup {
@@ -83,11 +80,6 @@ return {
         require 'neotest-python' {
           dap = { justMyCode = false },
         },
-        require 'neotest-vim-test' {
-          ignore_file_types = { 'python', 'vim', 'lua' },
-        },
-        require 'rustaceanvim.neotest',
-        -- require 'neotest-rust', -- Disabled: Switching to rustaceanvim
       },
     }
   end,

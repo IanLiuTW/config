@@ -11,9 +11,7 @@ return {
     local chars = { '"', "'", '`' }
 
     for _, char in ipairs(chars) do
-      local rule = npairs.get_rule(char)[1]
-
-      if rule then
+      for _, rule in ipairs(npairs.get_rules(char)) do
         rule:with_pair(cond.before_regex('[%s=,%(%[{]$', 1))
       end
     end

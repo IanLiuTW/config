@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd('Colorscheme', {
     end
 
     local c = {
-      bg = color('Normal', 'bg'),
       accent = color('Special', 'fg'), -- Teal/Blue
       keyword = color('Keyword', 'fg'), -- Purple/Red
       markup = color('String', 'fg'), -- Green
@@ -43,12 +42,6 @@ vim.api.nvim_create_autocmd('Colorscheme', {
       RenderMarkdownH4 = { fg = c.entity },
       RenderMarkdownH5 = { fg = c.regexp },
       RenderMarkdownH6 = { fg = c.string },
-      RenderMarkdownH1Bg = { fg = c.bg, bg = c.accent },
-      RenderMarkdownH2Bg = { fg = c.bg, bg = c.keyword },
-      RenderMarkdownH3Bg = { fg = c.bg, bg = c.markup },
-      RenderMarkdownH4Bg = { fg = c.bg, bg = c.entity },
-      RenderMarkdownH5Bg = { fg = c.bg, bg = c.regexp },
-      RenderMarkdownH6Bg = { fg = c.bg, bg = c.string },
 
       -- === TreeSitter Markup (Dynamic using 'c') ===
       ['@markup.heading'] = { fg = c.keyword, bold = true },
@@ -96,7 +89,6 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = true,
-    priority = 1000,
     opts = {
       style = 'storm',
       transparent = true,
@@ -114,13 +106,11 @@ return {
         -- colors.hint = colors.orange
         colors.error = '#ff0000'
       end,
-      on_highlights = function(hl, c) end,
     },
   },
   {
     'serhez/teide.nvim',
     lazy = true,
-    priority = 1000,
     opts = {
       style = 'dark',
       transparent = true,
@@ -138,7 +128,6 @@ return {
         -- colors.hint = colors.orange
         colors.error = '#ff0000'
       end,
-      on_highlights = function(hl, c) end,
     },
   },
   -- {

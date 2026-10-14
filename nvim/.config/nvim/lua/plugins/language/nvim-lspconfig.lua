@@ -1,10 +1,129 @@
+-- GitHub Copilot through copilot-language-server and Neovim's built-in inline completion.
+-- Keys match the former copilot.lua setup.
+local function setup_copilot()
+  local ic = vim.lsp.inline_completion
+  local ns = vim.api.nvim_create_namespace 'nvim.lsp.inline_completion'
+  local disabled_filetypes = { help = true, hgcommit = true, svn = true, cvs = true }
+  local enabled = true
+
+  vim.lsp.config('copilot', {
+    root_dir = function(bufnr, on_dir)
+      if not disabled_filetypes[vim.bo[bufnr].filetype] then
+        on_dir(vim.fs.root(bufnr, '.git') or vim.fn.getcwd())
+      end
+    end,
+  })
+  vim.lsp.enable 'copilot'
+  ic.enable(true)
+
+  local function visible()
+    return #vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { limit = 1 }) > 0
+  end
+
+  -- Accept only the leading part of the suggestion that matches one of `patterns`.
+  local function accept_partial(patterns)
+    return ic.get {
+      on_accept = function(item)
+        local text = item.insert_text
+        if type(text) ~= 'string' or not item.range then
+          return item
+        end
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        local start_row, start_col = item.range:to_extmark()
+        if start_row ~= cursor[1] - 1 then
+          return item
+        end
+        local typed = cursor[2] - start_col
+        local rest = text:sub(typed + 1)
+        for _, pattern in ipairs(patterns) do
+          local piece = rest:match(pattern)
+          if piece then
+            return vim.tbl_extend('force', item, { insert_text = text:sub(1, typed) .. piece })
+          end
+        end
+        return item
+      end,
+    }
+  end
+
+  local function dismiss()
+    ic.enable(false, { bufnr = 0 })
+    vim.api.nvim_create_autocmd({ 'TextChangedI', 'InsertLeave' }, {
+      buffer = 0,
+      once = true,
+      callback = function(ev)
+        ic.enable(enabled, { bufnr = ev.buf })
+      end,
+    })
+  end
+
+  local function map(lhs, action, fallback, desc)
+    vim.keymap.set('i', lhs, function()
+      if not visible() then
+        return fallback
+      end
+      vim.schedule(action)
+      return ''
+    end, { expr = true, desc = 'Copilot - ' .. desc })
+  end
+
+  map('<C-y>', ic.get, '<C-y>', 'Accept')
+  map('<C-Up>', function()
+    accept_partial { '^%s*[%w_]+', '^%s*[^%w_%s]+' }
+  end, '<C-Up>', 'Accept Word')
+  map('<C-Down>', function()
+    accept_partial { '^[^\n]+', '^\n[^\n]*' }
+  end, '<C-Down>', 'Accept Line')
+  map('<C-Right>', function()
+    ic.select { count = 1 }
+  end, '<C-Right>', 'Next Suggestion')
+  map('<C-Left>', function()
+    ic.select { count = -1 }
+  end, '<C-Left>', 'Previous Suggestion')
+  map('<C-q>', dismiss, '<C-q>', 'Dismiss')
+
+  -- Buffer-level state (set by dismiss and the blink.cmp hooks) overrides the global one, so set both
+  local function set_enabled(value)
+    enabled = value
+    ic.enable(value)
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      ic.enable(value, { bufnr = buf })
+    end
+  end
+  vim.keymap.set('n', '<leader>;<Up>', function()
+    set_enabled(true)
+  end, { desc = 'Copilot - Enable' })
+  vim.keymap.set('n', '<leader>;<Down>', function()
+    set_enabled(false)
+  end, { desc = 'Copilot - Disable' })
+
+  -- Hide suggestions while the blink.cmp menu is open
+  vim.api.nvim_create_autocmd('User', {
+    pattern = { 'BlinkCmpMenuOpen', 'BlinkCmpMenuClose' },
+    callback = function(ev)
+      if enabled then
+        ic.enable(ev.match == 'BlinkCmpMenuClose', { bufnr = 0 })
+      end
+    end,
+  })
+end
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true },
-    'williamboman/mason-lspconfig.nvim',
+    {
+      'williamboman/mason.nvim',
+      opts = {
+        ui = {
+          icons = {
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
+          },
+        },
+      },
+    },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'j-hui/fidget.nvim', opts = {} },
     {
       'folke/lazydev.nvim',
       ft = 'lua',
@@ -14,19 +133,14 @@ return {
         },
       },
     },
-    { 'Bilal2453/luvit-meta', lazy = true },
     { 'saghen/blink.cmp' },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
       callback = function(event)
-        local map = function(keys, func, desc, mode, mapcheck)
-          mode = mode or 'n'
-
-          if not mapcheck or vim.fn.mapcheck(keys, mode) == '' then
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
-          end
+        local map = function(keys, func, desc, mode)
+          vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'LSP - ' .. desc })
         end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -48,47 +162,13 @@ return {
           end, 'Toggle Inlay Hints')
         end
 
-        -- Setup document highlighting
-        if client and client:supports_method 'textDocument/documentHighlight' then
-          local highlight_group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
-          -- Document highlight events
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
-            group = highlight_group,
-            callback = vim.lsp.buf.document_highlight,
-          })
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
-            group = highlight_group,
-            callback = vim.lsp.buf.clear_references,
-          })
-          -- Cleanup on LSP detach
-          vim.api.nvim_create_autocmd('LspDetach', {
-            buffer = event.buf,
-            callback = function()
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = highlight_group, buffer = event.buf }
-            end,
-          })
-        end
-
-        -- Diagnostic navigation because it messes up the highlighting
+        -- Semantic tokens are turned off: they override treesitter highlighting
         if client then
           client.server_capabilities.semanticTokensProvider = nil
         end
       end,
     })
 
-    -- Mason setup
-    require('mason').setup {
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗',
-        },
-      },
-    }
     -- Ensure tools are installed
     require('mason-tool-installer').setup {
       ensure_installed = {
@@ -98,9 +178,15 @@ return {
         'codespell',
         'marksman',
         'lua-language-server',
+        'ty',
+        'nil',
+        'rust-analyzer',
+        'copilot-language-server',
       },
       auto_update = true,
       run_on_start = true,
+      start_delay = 3000,
+      debounce_hours = 24,
     }
 
     -- LSP config
@@ -138,12 +224,12 @@ return {
       settings = {
         ['nil'] = {
           formatting = {
-            command = { 'nixpkgs-fmt' }, -- Use nixpkgs-fmt for formatting
+            command = { 'nixfmt' },
           },
           nix = {
             maxMemoryMB = 2048, -- Increase memory limit if needed
             flake = {
-              autoEvalInputs = true, -- Auto-evaluate flake inputs
+              autoEvalInputs = false, -- evaluating every flake input costs too much memory
             },
           },
           diagnostics = {
@@ -153,5 +239,17 @@ return {
       },
     })
     vim.lsp.enable 'nil_ls'
+
+    vim.lsp.config('rust_analyzer', {
+      settings = {
+        ['rust-analyzer'] = {
+          check = { command = 'clippy' },
+          diagnostics = { experimental = { enable = true } },
+        },
+      },
+    })
+    vim.lsp.enable 'rust_analyzer'
+
+    setup_copilot()
   end,
 }

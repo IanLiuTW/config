@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'AndreM222/copilot-lualine', 'meuter/lualine-so-fancy.nvim', 'folke/noice.nvim' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'meuter/lualine-so-fancy.nvim' },
   config = function()
     require('lualine').setup {
       options = {
@@ -10,10 +10,6 @@ return {
         globalstatus = true,
         refresh = {
           statusline = 500,
-        },
-        disabled_filetypes = {
-          statusline = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
-          winbar = { 'AgenticChat', 'AgenticInput', 'AgenticCode', 'AgenticFiles' },
         },
       },
       sections = {
@@ -106,22 +102,6 @@ return {
 
               return ''
             end,
-          },
-          {
-            'copilot',
-            show_colors = true,
-            show_loading = true,
-            symbols = {
-              status = {
-                icons = {
-                  enabled = ' ',
-                  sleep = ' ',
-                  disabled = ' ',
-                  warning = ' ',
-                  unknown = ' ',
-                },
-              },
-            },
           },
           -- {
           --   function()

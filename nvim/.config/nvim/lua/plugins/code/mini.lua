@@ -94,7 +94,7 @@ return { -- Collection of various small independent plugins/modules
       quickfix = { suffix = 'q', options = {} },
       treesitter = { suffix = 't', options = {} },
       undo = { suffix = 'u', options = {} },
-      window = { suffix = 'w', options = {} },
+      window = { suffix = '', options = {} }, -- ]w/[w belong to Trouble
       yank = { suffix = 'y', options = {} },
     }
     

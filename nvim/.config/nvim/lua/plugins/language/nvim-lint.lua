@@ -2,7 +2,7 @@ return {
   'mfussenegger/nvim-lint',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    { 'williamboman/mason.nvim', config = true },
+    'williamboman/mason.nvim',
     'rshkarin/mason-nvim-lint',
   },
   config = function()
@@ -21,15 +21,19 @@ return {
       return diagnostic
     end)
 
-    -- Debounced linting for better performance
+    -- Lint file buffers on open, save and leaving insert mode
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-    vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
+    vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePost', 'InsertLeave' }, {
       group = lint_augroup,
-      callback = function()
-        -- Debounce linting
+      callback = function(ev)
         vim.defer_fn(function()
-          lint.try_lint()
-          lint.try_lint 'codespell'
+          if not vim.api.nvim_buf_is_valid(ev.buf) or vim.bo[ev.buf].buftype ~= '' then
+            return
+          end
+          vim.api.nvim_buf_call(ev.buf, function()
+            lint.try_lint()
+            lint.try_lint 'codespell'
+          end)
         end, 100)
       end,
     })

@@ -8,14 +8,8 @@ return {
         picker = {
           actions = require('trouble.sources.snacks').actions,
           win = {
-            input = {
-              keys = {
-                ['<c-w>'] = {
-                  'trouble_open',
-                  mode = { 'n', 'i' },
-                },
-              },
-            },
+            input = { keys = { ['<a-t>'] = { 'trouble_open', mode = { 'n', 'i' } } } },
+            list = { keys = { ['<a-t>'] = 'trouble_open' } },
           },
         },
       })
