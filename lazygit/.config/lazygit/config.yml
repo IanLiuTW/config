@@ -1,5 +1,4 @@
 gui:
-  branchColors: {}
   scrollHeight: 2
   scrollPastBottom: true
   mouseEvents: true
@@ -41,12 +40,13 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
-  authorColors:
-    '*': '#b4befe'
+    authorColors:
+      '*': '#b4befe'
+    branchColorPatterns: {}
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never
       useConfig: false
   commit:
     signOff: false
