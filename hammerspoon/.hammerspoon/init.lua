@@ -66,15 +66,17 @@ local function show(lines)
 end
 
 local function tick()
-    local t = os.date("*t")
+    -- Round to the nearest minute: hs.timer can fire up to 1 s early, and 07:59:59 is before START
+    local clock = math.floor((os.time() + 30) / 60) * 60
+    local t = os.date("*t", clock)
     local now = t.hour * 3600 + t.min * 60
     if t.wday == 1 or t.wday == 7 or now < START or now > STOP then
         workCanvas:hide()
         return
     end
-    local today = os.date("%Y-%m-%d")
+    local today = os.date("%Y-%m-%d", clock)
+    local stamp = os.date("%Y-%m-%d  %H:%M", clock)
     workTask = hs.task.new("/usr/bin/make", function(rc, out, err)
-        local stamp = os.date("%Y-%m-%d  %H:%M")
         if rc ~= 0 then
             show({ { stamp, BRIGHT },
                    { "make failed (rc=" .. rc .. ")", BAD },
@@ -100,9 +102,26 @@ local function tick()
     workTask:start()
 end
 
--- Anchored at startTime, so ticks land on the clock grid and endTime is hit exactly
+local INTERVAL = hs.timer.seconds(WORK.interval)
+
+-- hs.timer counts time that stops during sleep, so a repeating timer drifts off
+-- the clock grid overnight. Arm one shot per slot from the wall clock instead.
+local function schedule(after)
+    if workTimer then workTimer:stop() end
+    local slot = after < START and START
+        or START + (math.floor((after - START) / INTERVAL) + 1) * INTERVAL
+    if slot > STOP then slot = START end  -- doAt rolls a past time to tomorrow
+    workTimer = hs.timer.doAt(slot, function()
+        tick()
+        schedule(math.max(slot, hs.timer.localTime()))
+    end)
+end
+
 if WORK.projectDir then
-    workTimer = hs.timer.doAt(WORK.startTime, WORK.interval, tick)
+    schedule(hs.timer.localTime())
+    workWake = hs.caffeinate.watcher.new(function(event)
+        if event == hs.caffeinate.watcher.systemDidWake then schedule(hs.timer.localTime()) end
+    end):start()
     tick()
 else
     hs.alert.show("Work-hours tracker off: set workProjectDir in ~/.hammerspoon/local.lua")
