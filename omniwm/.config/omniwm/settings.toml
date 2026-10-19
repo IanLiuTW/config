@@ -848,7 +848,7 @@ binding = "Control+Option+End"
 id = "moveColumnToLast"
 
 [[hotkeys]]
-binding = "Control+Option+T"
+binding = "Option+Shift+T"
 id = "toggleColumnTabbed"
 
 [[hotkeys]]
