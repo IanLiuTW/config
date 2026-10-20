@@ -1,6 +1,6 @@
 # config
 
-Dotfiles and system configuration for an Apple Silicon Mac (`aarch64-darwin`). [nix-darwin](https://github.com/nix-darwin/nix-darwin) manages the system packages, Homebrew and macOS settings. [Home Manager](https://github.com/nix-community/home-manager) links the dotfiles into `$HOME`.
+Dotfiles and system configuration for an Apple Silicon Mac (`aarch64-darwin`). [nix-darwin](https://github.com/nix-darwin/nix-darwin) manages the system packages, Homebrew and Nix settings. [Home Manager](https://github.com/nix-community/home-manager) links the dotfiles into `$HOME`.
 
 ## How it works
 
@@ -21,24 +21,33 @@ Homebrew is declarative. On each system rebuild, Homebrew uninstalls every formu
    git clone https://github.com/IanLiuTW/config ~/config
    ```
 
-3. Build and switch the configuration. This applies both `flake.nix` and `home.nix`. The first run uses `nix run`, because `darwin-rebuild` is not installed yet:
+3. Build and switch the configuration. This applies both `flake.nix` and `home.nix`. The first run uses `nix run`, because `darwin-rebuild` is not installed yet. Flakes are not enabled until this switch, so the command enables them for itself:
 
    ```shell
-   sudo nix run github:nix-darwin/nix-darwin#darwin-rebuild -- switch --flake ~/config/nix-darwin#work
+   sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-darwin/nix-darwin#darwin-rebuild -- switch --flake ~/config/nix-darwin#work
    ```
 
    If a dotfile target already exists (for example a default `~/.zshrc`), Home Manager renames it with a `.before-hm` suffix.
 
 4. Open a new terminal. From now on, use the aliases below.
 
+5. Do the steps that the flake does not manage:
+
+   - **Keyboard shortcuts.** In System Settings > Keyboard > Keyboard Shortcuts, set Mission Control to Ctrl+Option+M and Application windows to Ctrl+Option+N. Turn off "Move left a space", "Move right a space" and both Spotlight shortcuts, and set "Select the previous input source" to Cmd+Space. This frees Ctrl+arrow keys for Neovim and Cmd+Space for Raycast.
+   - **Docker CLI plugins.** Homebrew's `docker-compose` and `docker-buildx` work only after you add `"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]` to `~/.docker/config.json`. Without it, `docker compose` fails with "unknown command".
+   - **herdr hook for Claude Code.** Run `herdr integration install claude`. It creates `~/.claude/hooks/herdr-agent-state.sh`, which the `SessionStart` hook in `claude/.claude/settings.json` runs. Without it, every Claude Code session starts with a hook error. Check it with `herdr integration status`.
+
 ### Machine-specific files
 
-These files are gitignored, so each Mac creates its own. All are optional.
+These files are gitignored or live outside the repository, so each Mac creates its own. All are optional.
 
 | File | Holds | Read by |
 |---|---|---|
 | `git/local.gitconfig` | Extra Git settings, such as `includeIf` rules for a work identity | `git/.gitconfig` includes it last, so it wins |
-| `claude/managed-settings.local.json` | Claude Code settings to keep out of this repo, such as `autoMode.environment` entries | `nix-re` copies it to `/Library/Application Support/ClaudeCode/managed-settings.d/50-local.json` |
+| `git/work.gitconfig` | A work identity, such as `user.email` | `git/local.gitconfig` includes it through `includeIf` rules |
+| `~/.zshrc.local` | Machine-specific shell variables and secrets | `zsh/.zshrc` sources it near the end |
+| `~/.claude/skills` | A separate, private Git clone of Claude Code skills | The daily `claude-skills-pull` agent. Without it, the agent does nothing |
+| `claude/managed-settings.local.json` | Claude Code settings to keep out of this repo, such as `autoMode.environment` entries | `nix-rebuild` copies it to `/Library/Application Support/ClaudeCode/managed-settings.d/50-local.json` |
 | `hammerspoon/.hammerspoon/local.lua` | `return { workProjectDir = "..." }` for the work-hours tracker | `init.lua`. Without it, the tracker stays off |
 | `_exports/Raycast/Raycast.rayconfig` | The Raycast settings export | Imported by hand |
 
@@ -48,21 +57,26 @@ The aliases are defined in [`zsh/.zshrc`](zsh/.zshrc).
 
 | Alias | Command | Use it after you change |
 |---|---|---|
-| `nix-re` | `sudo darwin-rebuild switch --flake ~/config/nix-darwin#work` | `flake.nix` or `home.nix`: system and user packages, Homebrew, fonts, macOS settings, dotfile links |
-| `nix-up` | `nix flake update --flake ~/config/nix-darwin/ && nix-re` | Nothing. It updates `flake.lock` and runs `nix-re` |
-| `nix-cl` | `nix-collect-garbage -d` (system and user) and `nix-store --optimize` | Nothing. It frees disk space |
-| `nix-d` | `nix develop --command zsh` | Nothing. It enters a project's dev shell |
+| `nix-rebuild` | `sudo darwin-rebuild switch --flake ~/config/nix-darwin#work` | `flake.nix` or `home.nix`: system and user packages, Homebrew, fonts, per-app macOS defaults, dotfile links |
+| `nix-update` | `nix flake update --flake ~/config/nix-darwin/ && nix-rebuild` | Nothing. It updates `flake.lock` and runs `nix-rebuild` |
+| `nix-clean` | `nix-collect-garbage -d` (system and user) and `nix-store --optimize` | Nothing. It frees disk space |
+| `nix-dev` | `nix develop --command zsh` | Nothing. It enters a project's dev shell |
+| `nix-run` | `nix run` | Nothing. It runs a flake app, such as `nix-run nixpkgs#hello` |
 
 An edit to a linked dotfile needs no command. Some programs read their config only at startup, so restart them.
 
-nix-darwin also runs garbage collection every Sunday at 03:00, and it deletes generations older than 7 days.
+nix-darwin also runs garbage collection every Sunday at 03:00, and it deletes system generations older than 7 days. It runs as root, so it does not delete Home Manager or user-profile generations. A weekly Home Manager agent expires Home Manager generations older than 7 days; run `nix-clean` for user-profile generations.
+
+Two launchd agents run every day at 08:00. Each one retries up to 3 times and posts a "Cron job failed" notification if all tries fail:
+
+- `nix-flake-update` runs `nix flake update` on this repository. So `nix-darwin/flake.lock` often shows as modified in `git status`, and the next `nix-rebuild` applies the new lock. Log: `~/Library/Logs/nix-flake-update.log`.
+- `claude-skills-pull` runs `git pull` in `~/.claude/skills`, but only while that checkout is on `master`. Log: `~/Library/Logs/claude-skills-pull.log`.
 
 ## Contents
 
 | Folder | Linked to | What it configures |
 |---|---|---|
 | [`nix-darwin/`](nix-darwin) | | The flake, the Home Manager module and `flake.lock` |
-| [`nix/`](nix) | `~/.config/nix` | Nix user settings |
 | [`zsh/`](zsh) | `~/.zshrc` | Shell, aliases and functions |
 | [`starship/`](starship) | `~/.config/starship.toml` | Prompt |
 | [`ghostty/`](ghostty) | `~/.config/ghostty` | Terminal |
@@ -71,14 +85,11 @@ nix-darwin also runs garbage collection every Sunday at 03:00, and it deletes ge
 | [`zed/`](zed) | `~/.config/zed/settings.json` | Zed editor |
 | [`git/`](git) | `~/.gitconfig` | Git |
 | [`lazygit/`](lazygit) | `~/.config/lazygit/config.yml` | lazygit |
-| [`lazydocker/`](lazydocker) | `~/.config/lazydocker/config.yml` | lazydocker |
 | [`k9s/`](k9s) | `~/.config/k9s` | k9s (Kubernetes TUI) |
 | [`superfile/`](superfile) | `~/.config/superfile/` | superfile file manager (config and hotkeys) |
 | [`omniwm/`](omniwm) | `~/.config/omniwm/settings.toml` | OmniWM tiling window manager. Changes made in its Settings window are written back to this file |
 | [`hammerspoon/`](hammerspoon) | `~/.hammerspoon` | Hammerspoon automation |
 | [`claude/`](claude) | `~/.claude/` | Claude Code settings, instructions, output styles, status line, theme and key bindings |
-| [`gemini/`](gemini) | `~/.gemini/` | Gemini CLI settings and custom commands |
-| [`mcphub/`](mcphub) | `~/.config/mcphub/servers.json` | MCP server list, in the `servers.json` format of [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim) |
 | [`_exports/`](_exports) | Not linked | Settings to import by hand: Tabliss, VS Code key bindings. The Raycast export stays local (see [Machine-specific files](#machine-specific-files)) |
 | [`_archives/`](_archives) | Not linked | Configs and notes that are no longer in use. They are not maintained |
 
@@ -91,8 +102,10 @@ On a machine without Nix, link the folders with [GNU Stow](https://www.gnu.org/s
 ```shell
 git clone https://github.com/IanLiuTW/config ~/config
 cd ~/config
-stow zsh git ghostty nvim    # one folder name per package
+stow --no-folding zsh git ghostty nvim    # one folder name per package
 ```
+
+`--no-folding` makes Stow link each file instead of a whole folder. Without it, `stow claude` links `~/.claude` to the repository, and the programs then write their runtime state and credentials into the working tree.
 
 Install the programs yourself. `flake.nix` lists them. Remove or move each program's default config first, or Stow refuses to replace it.
 
