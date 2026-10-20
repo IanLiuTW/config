@@ -210,12 +210,6 @@ minHeight = 600.0
 minWidth = 800.0
 
 [[appRules]]
-bundleId = "com.eltima.cmd1.pro.mas"
-id = "4BA546DA-2875-4BEF-B13F-1539E833B1A0"
-minHeight = 550.0
-minWidth = 950.0
-
-[[appRules]]
 assignToWorkspace = "3"
 bundleId = "com.google.Chrome"
 id = "486CEFA6-69AA-4A3C-AF27-BCD38F4F138B"
@@ -236,34 +230,10 @@ minHeight = 220.0
 minWidth = 574.0
 
 [[appRules]]
-bundleId = "app.zen-browser.zen"
-id = "1CF39647-F30D-4E76-9686-79B551F1B094"
-minHeight = 495.0
-minWidth = 500.0
-
-[[appRules]]
-bundleId = "org.mozilla.firefox"
-id = "005C00D3-F665-47F8-BDAE-D80790E9E46B"
-minHeight = 120.0
-minWidth = 500.0
-
-[[appRules]]
-bundleId = "company.thebrowser.dia"
-id = "C21156B1-0224-4998-97E3-8F4FA65B9F3B"
-minHeight = 420.0
-minWidth = 500.0
-
-[[appRules]]
 bundleId = "com.spotify.client"
 id = "2DE9390B-0DB4-4D0C-9ABA-06F76F1D4EA9"
 layout = "float"
 minHeight = 600.0
-minWidth = 800.0
-
-[[appRules]]
-bundleId = "com.hnc.Discord"
-id = "AF752D95-8497-4844-BE20-4C93E73BAEF2"
-minHeight = 500.0
 minWidth = 800.0
 
 [[appRules]]
@@ -348,39 +318,9 @@ id = "4BC01283-3C04-55F1-820E-4D020DAF9940"
 layout = "float"
 
 [[appRules]]
-appNameSubstring = "docker"
-bundleId = ""
-id = "7DBB9169-E072-5B2E-81E5-52BC271D29E4"
-layout = "float"
-
-[[appRules]]
-appNameSubstring = "podman"
-bundleId = ""
-id = "8C964B6B-81F6-57FE-9E4C-D59278034AC5"
-layout = "float"
-
-[[appRules]]
 appNameSubstring = "gemini"
 bundleId = ""
 id = "2BFBA43A-4BFB-5307-A761-27DFAF2138C2"
-layout = "float"
-
-[[appRules]]
-appNameSubstring = "tidal"
-bundleId = ""
-id = "3A90EEC2-EF5B-571C-887F-89753E62E1C7"
-layout = "float"
-
-[[appRules]]
-appNameSubstring = "line"
-bundleId = ""
-id = "B54830B3-51DF-5F0F-934F-D719643B3AE5"
-layout = "float"
-
-[[appRules]]
-appNameSubstring = "element"
-bundleId = ""
-id = "14C040C2-046F-5FF6-95A1-790A11CDE3FA"
 layout = "float"
 
 [[hotkeys]]

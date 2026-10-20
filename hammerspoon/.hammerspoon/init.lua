@@ -3,8 +3,8 @@ require("hs.ipc")
 
 -- Machine-specific values (gitignored): local.lua returns a table,
 -- e.g. return { workProjectDir = os.getenv("HOME") .. "/work/..." }
-local ok, LOCAL = pcall(dofile, hs.configdir .. "/local.lua")
-if not ok or type(LOCAL) ~= "table" then LOCAL = {} end
+local localPath = hs.configdir .. "/local.lua"
+local LOCAL = hs.fs.attributes(localPath) and dofile(localPath) or {}
 
 -- Work-hours tracker: elapsed vs logged time, top-right of the focused screen.
 -- Runs every `interval` from `startTime` to `endTime` inclusive, weekdays only.
@@ -78,9 +78,15 @@ local function tick()
     local stamp = os.date("%Y-%m-%d  %H:%M", clock)
     workTask = hs.task.new("/usr/bin/make", function(rc, out, err)
         if rc ~= 0 then
+            -- Last stderr line that is not make's own "make: ***" summary
+            local msg = ""
+            for l in (err or ""):gmatch("[^\n]+") do
+                if l:find("%S") and not l:find("^make: %*%*%*") then msg = l end
+            end
+            if msg == "" then msg = (err or ""):gsub("%s+$", "") end
             show({ { stamp, BRIGHT },
                    { "make failed (rc=" .. rc .. ")", BAD },
-                   { (err or ""):gsub("%s+$", ""):sub(1, 24), MUTED },
+                   { msg:sub(1, 24), MUTED },
                    { "", MUTED } })
             return
         end
