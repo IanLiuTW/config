@@ -1,31 +1,22 @@
 onboarding = false
 # herdr configuration — https://herdr.dev
-# Linked to ~/.config/herdr/config.toml via nix home-manager.
-# Runtime files (sockets, logs, session.json) also live in that dir; only
-# this file is source-controlled.
 
 [theme]
-# Inherit the host terminal's ANSI palette so herdr's chrome tracks whatever
-# Ghostty theme is active. Swap for a built-in if you want a fixed look:
-# catppuccin, tokyo-night, dracula, nord, gruvbox, one-dark, solarized,
-# kanagawa, rose-pine, vesper.
+# Fixed built-in theme. "terminal" inherits the host terminal's ANSI palette.
 name = "catppuccin"
 
 auto_switch = false
 
 [theme.custom]
-# Panel divider lines. Tokyo-night's default equals panel_bg (#1a1b26),
-# making dividers invisible. Also the default selection/scrollbar-track bg,
-# which the two keys below override for sidebar rows only.
+# Tokyo Night hexes layered on the catppuccin base.
+# Panel divider lines. Also the default selection/scrollbar-track bg, which
+# the two keys below override for sidebar rows only.
 surface_dim = "#565f89"
 # Focused agent / active space row. Tokyo-night fg_gutter.
 active_row_bg = "#3b4261"
 # Navigate-mode cursor row. Brighter than active_row_bg so the transient
 # cursor stays distinct from the focused row.
 selection_bg = "#545c7e"
-[terminal]
-# New panes inherit the source pane's CWD. "home" | "current" | fixed path.
-new_cwd = "follow"
 
 [keys]
 # Prefix is ctrl+semicolon (default is ctrl+b). Prefix-mode actions:
@@ -57,12 +48,11 @@ toggle_sidebar = "prefix+backslash"
 reload_config = "prefix+shift+enter"
 
 # Remaining prefix-mode defaults (unchanged):
-#   ?  help        s  settings     q  detach       g  goto      o  notification
+#   ?  help        s  settings     q  detach       o  notification
 #   e  edit scrollback in $EDITOR
 #   v  split vert  minus  split horiz   x  close pane   z  zoom   r  resize mode
 #   h/j/k/l  focus pane left/down/up/right   tab / shift+tab  cycle pane
-#   1..9  switch tab      shift+t  rename tab       shift+x  close tab (alt)
-#   w  workspace picker   shift+w  rename workspace shift+g  new worktree
+#   shift+t  rename tab   w  workspace picker   shift+g  new worktree
 #   shift+p  rename pane
 # NOTE: scrollback lives per-pane inside herdr. Ghostty's cmd+u/cmd+d scroll
 # binds are no-ops here (herdr owns the alternate screen); use the mouse wheel
@@ -75,15 +65,9 @@ type = "pane"
 command = "lazygit"
 
 [ui]
-# Desktop notifications when a backgrounded agent finishes or needs attention.
 show_agent_labels_on_pane_borders = true
-agent_panel_sort = "spaces"
 prompt_new_workspace_name = true
 status_indicators = "symbols"
 [ui.toast]
+# Desktop notifications when a backgrounded agent finishes or needs attention.
 delivery = "system"
-
-[session]
-# Restore AI-agent panes into their native conversation sessions after a
-# herdr server restart (requires official integrations).
-resume_agents_on_restore = true

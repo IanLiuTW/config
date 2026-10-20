@@ -9,7 +9,7 @@
 # enter/l = confirm (enter dir, open file with system default app),
 # e = open in $EDITOR, y/c/p/x = copy/cut/paste/delete,
 # . / > = copy path / copy pwd, s / ctrl+s = sort menu / reverse sort,
-# all toggles on ctrl+ (., v, s, f).
+# all toggles on ctrl+ (., s, f); v = panel mode, shift+tab = preview panel.
 
 ###############################################################################
 #                                Global hotkeys                               #

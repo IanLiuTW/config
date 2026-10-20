@@ -1,25 +1,7 @@
+# Only deviations from lazygit 0.66.1 defaults; `lazygit -c` prints the full defaults.
 gui:
-  scrollHeight: 2
-  scrollPastBottom: true
-  mouseEvents: true
   nerdFontsVersion: "3"
-  skipDiscardChangeWarning: false
-  skipStashWarning: false
-  sidePanelWidth: 0.3333
-  expandFocusedSidePanel: false
-  mainPanelSplitMode: flexible
-  language: auto
   timeFormat: 02 Jan 06 15:04 MST
-  commitLength:
-    show: true
-  skipNoStagedFilesWarning: false
-  showListFooter: true
-  showFileTree: true
-  showRandomTip: true
-  showCommandLog: true
-  showBottomLine: true
-  commandLogSize: 8
-  splitDiff: auto
   theme:
     activeBorderColor:
       - '#74c7ec'
@@ -42,45 +24,14 @@ gui:
       - '#f9e2af'
     authorColors:
       '*': '#b4befe'
-    branchColorPatterns: {}
 git:
   diffRenderers:
     - colorArg: always
       command: delta --dark --paging=never
       useConfig: false
-  commit:
-    signOff: false
-  merging:
-    manualCommit: false
-    args: ""
-  skipHookPrefix: WIP
-  autoFetch: true
-  autoRefresh: true
-  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-  overrideGpg: false
-  disableForcePushing: false
   commitPrefix: # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-commit-message-prefix
-    - pattern: "^(\\w+-\\w+).*"
+    - pattern: "^([A-Z][A-Z0-9]+-\\d+).*"
       replace: '$1: '
-  parseEmoji: false
-  log:
-    order: topo-order
-    showGraph: "always"
-    showWholeGraph: false
-  allBranchesLogCmds:
-    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
-update:
-  method: prompt
-  days: 14
-refresher:
-  refreshInterval: 10
-  fetchInterval: 60
-confirmOnQuit: false
-quitOnTopLevelReturn: false
-# Only deviations from lazygit 0.63.1 defaults live here. Anything omitted keeps its
-# default: the user config is unmarshalled onto the populated default struct, so this
-# file is a patch, not a snapshot. `lazygit -c` prints the full defaults.
-#
 # Every binding takes a scalar or a list of alternates; `<disabled>` unbinds. Context
 # bindings (files/branches/commits/main) shadow universal ones, so a letter reused
 # inside a panel wins there and the universal meaning survives everywhere else.
@@ -112,14 +63,11 @@ keybinding:
     viewResetOptions: [g, X]
 os:
   editPreset: "nvim-remote"
-disableStartupPopups: false
 customCommands:
-  - key: "b"
+  - key: "O"
     command: "gh browse"
     context: "files"
-  - key: "b"
-    command: 'gh browse "{{.SelectedLocalCommit.Sha}}"'
+  - key: "O"
+    command: 'gh browse "{{.SelectedCommit.Hash}}"'
     context: "commits"
-services: {}
 notARepository: skip
-promptToReturnFromSubprocess: true

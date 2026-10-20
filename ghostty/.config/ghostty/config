@@ -9,30 +9,24 @@ font-size = 18
 font-thicken = true
 font-feature = calt
 font-feature = liga
-adjust-cell-width = 0
 adjust-cell-height = -1
 adjust-underline-position = -1
 
 unfocused-split-opacity = 0.5
-unfocused-split-fill = #1a1b26
 window-padding-balance = true
-link-url = true
 
-cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
 background-opacity = 0.96
-background-blur-radius = 30
+background-blur = 30
 window-theme = ghostty
 theme = TokyoNight Night
 custom-shader = ./shaders/cursor_blaze_orange_ian.glsl
 
 quick-terminal-position = bottom
 quick-terminal-size = 75%
-quick-terminal-screen = main
 quick-terminal-animation-duration = 0.1
-quick-terminal-autohide = true
 
 macos-non-native-fullscreen = true
 macos-titlebar-proxy-icon = hidden
@@ -45,15 +39,10 @@ auto-update = check
 auto-update-channel = stable
 
 working-directory = home
-window-inherit-working-directory = true
-window-inherit-font-size = true
 window-save-state = always
 quit-after-last-window-closed = true
-grapheme-width-method = unicode
-scroll-to-bottom = keystroke
 
 copy-on-select = clipboard
-clipboard-trim-trailing-spaces = true
 shell-integration-features = no-cursor,sudo,no-title
 
 keybind = clear
@@ -88,8 +77,6 @@ keybind = super+shift+comma=move_tab:-1
 keybind = super+shift+period=move_tab:+1
 
 keybind = super+s=new_split:auto
-# keybind = super+w>s=new_split:down
-# keybind = super+w>v=new_split:right
 keybind = super+h=goto_split:left
 keybind = super+l=goto_split:right
 keybind = super+k=goto_split:top
