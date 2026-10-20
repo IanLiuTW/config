@@ -5,9 +5,14 @@ let
   link = path: { source = config.lib.file.mkOutOfStoreSymlink "${configDir}/${path}"; };
 in
 {
-  home.username = "ianliu";
-  home.homeDirectory = "/Users/ianliu";
   home.stateVersion = "24.05";
+
+  # The Sunday system GC runs as root and never expires these generations
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "weekly";
+    timestamp = "-7 days";
+  };
 
   home.packages = with pkgs; [
     # Rust
@@ -39,22 +44,13 @@ in
     ".config/superfile/config.toml" = link "superfile/.config/superfile/config.toml";
     ".config/superfile/hotkeys.toml" = link "superfile/.config/superfile/hotkeys.toml";
     ".config/lazygit/config.yml" = link "lazygit/.config/lazygit/config.yml";
-    ".config/lazydocker/config.yml" = link "lazydocker/.config/lazydocker/config.yml";
     ".config/k9s" = link "k9s/.config/k9s";
 
-    # Nix
-    ".config/nix" = link "nix/.config/nix";
-
     # AI tools
-    ".config/mcphub/servers.json" = link "mcphub/.config/mcphub/servers.json";
-    ".gemini/settings.json" = link "gemini/.gemini/settings.json";
-    ".gemini/commands" = link "gemini/.gemini/commands";
     ".claude/settings.json" = link "claude/.claude/settings.json";
-    ".claude/settings.local.json" = link "claude/.claude/settings.local.json";
     ".claude/agents" = link "claude/.claude/agents";
     ".claude/output-styles" = link "claude/.claude/output-styles";
     ".claude/commands" = link "claude/.claude/commands";
-    ".claude/.claude.json" = link "claude/.claude/.claude.json";
     ".claude/CLAUDE.md" = link "claude/.claude/CLAUDE.md";
     ".claude/statusline.sh" = link "claude/.claude/statusline.sh";
     ".claude/keybindings.json" = link "claude/.claude/keybindings.json";

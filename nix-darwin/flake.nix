@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,11 +26,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    nixpkgs-tp.url = "github:NixOS/nixpkgs/882842d2a908700540d206baa79efb922ac1c33d";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,9 +39,8 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-tp, home-manager, nix-homebrew, rust-overlay, herdr, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, rust-overlay, herdr, ... }:
     let
-      pkgs-tp = import nixpkgs-tp { system = "aarch64-darwin"; };
       configuration = { pkgs, config, ... }: {
         nixpkgs.config.allowUnfree = true;
 
@@ -56,9 +50,9 @@
           # System tools - CLI
           ffmpeg
           gettext
-          mkalias
           cmake
           git
+          git-lfs
           curl
           jq
           fd
@@ -76,7 +70,8 @@
           lua5_1
           lua51Packages.luarocks
           nodejs_24
-          python314
+          pnpm
+          (python314.withPackages (ps: [ ps.pip ]))
           uv
           # CLI tools
           neovim
@@ -107,7 +102,6 @@
           kubernetes-helm
           fluxcd
           k9s
-          pkgs-tp.telepresence2
           # AI tools
           antigravity-cli
           herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -117,7 +111,6 @@
 
         homebrew = {
           enable = true;
-          user = "ianliu";
           brews = [
             # System tools
             "btop"
@@ -180,18 +173,6 @@
             # Remote access and VPN
             "tunnelblick"
           ];
-          # masApps = {
-          #   # Microsoft suite
-          #   "Outlook" = 985367838;
-          #   "Word" = 462054704;
-          #   "Excel" = 462058435;
-          #   "PowerPoint" = 462062816;
-          #   # Communication
-          #   "Slack" = 803453959;
-          #   "Line" = 539883307;
-          #   # VPN
-          #   "Hotspot Shield" = 771076721;
-          # };
           # Declare every tap in the Brewfile so `brew bundle --zap` doesn't
           # untap them on activation: the nix-homebrew-managed ones, plus
           # dannystewart/apps (tapped at runtime for the volumehud cask).
@@ -253,26 +234,6 @@
           victor-mono
           inter
         ];
-        system.activationScripts.applications.text =
-          let
-            env = pkgs.buildEnv {
-              name = "system-applications";
-              paths = config.environment.systemPackages;
-              pathsToLink = [ "/Applications" ];
-            };
-          in
-          pkgs.lib.mkForce ''
-            echo "setting up /Applications..." >&2
-            rm -rf /Applications/Nix\ Apps
-            mkdir -p /Applications/Nix\ Apps
-            find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-            while read -r src; do
-              app_name=$(basename "$src")
-              echo "copying $src" >&2
-              ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-            done
-          '';
-
         # Claude Code settings that must stay out of this public repo live in a
         # gitignored file. Claude Code combines autoMode.environment from managed
         # settings with ~/.claude/settings.json, so it sees both.
@@ -291,15 +252,19 @@
           Defaults timestamp_timeout=60
         '';
 
+        # ~/.claude/skills is a separate private clone; the agent does nothing on
+        # a Mac without it.
         launchd.user.agents.claude-skills-pull = {
           serviceConfig = {
             ProgramArguments = [
               "/bin/sh" "-c"
               ''
+                [ -d "$HOME/.claude/skills/.git" ] || exit 0
+                [ "$(git -C "$HOME/.claude/skills" branch --show-current)" = master ] || exit 0
                 ping -c 1 -W 1000 8.8.8.8 >/dev/null 2>&1 || exit 0
                 i=0
                 while :; do
-                  if { cd "$HOME/.claude/skills" && [ "$(git branch --show-current)" = master ] && git pull; } \
+                  if { cd "$HOME/.claude/skills" && git pull; } \
                        >"$HOME/Library/Logs/claude-skills-pull.log" 2>&1; then
                     exit 0
                   fi
@@ -348,8 +313,9 @@
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
 
-        # Automatic store cleanup: weekly GC of generations older than 7 days,
-        # plus hardlink-dedupe of identical store files. Manual equivalent: `nix-cl`.
+        # Automatic store cleanup: weekly GC of system generations older than 7
+        # days, plus hardlink-dedupe of identical store files. It runs as root, so
+        # Home Manager and user-profile generations need `nix-clean`.
         nix.gc = {
           automatic = true;
           interval = { Weekday = 0; Hour = 3; Minute = 0; };  # weekly, Sun 3am
@@ -359,6 +325,12 @@
 
         # Enable alternative shell support in nix-darwin.
         programs.zsh.enable = true;
+        # .zshrc runs its own cached compinit (zicompinit_fast) and starship sets
+        # the prompt, so skip /etc/zshrc's second compinit, bashcompinit (nothing
+        # uses bash `complete`) and promptinit. Saves ~60 ms per interactive shell.
+        programs.zsh.enableGlobalCompInit = false;
+        programs.zsh.enableBashCompletion = false;
+        programs.zsh.promptInit = "";
 
         # Set Git commit hash for darwin-version.
         system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -394,12 +366,11 @@
           {
             nix-homebrew = {
               enable = true;
-              enableRosetta = true;
+              enableRosetta = false;
               user = "ianliu";
               taps = {
                 "homebrew/homebrew-core" = inputs.homebrew-core;
                 "homebrew/homebrew-cask" = inputs.homebrew-cask;
-                "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
               };
               mutableTaps = true;
             };
@@ -411,14 +382,10 @@
             environment.systemPackages = [
               (pkgs.rust-bin.stable.latest.default.override {
                 extensions = [ "rust-src" ];
-                # targets = [ "arm-unknown-linux-gnueabihf" ];
               })
             ];
           })
         ];
       };
-
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."work".pkgs;
     };
 }
