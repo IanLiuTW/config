@@ -13,16 +13,11 @@
 [delta]
     navigate = true
     dark = true
-    side-by-side = false
     line-numbers = true
 [diff]
     algorithm = histogram
     colorMoved = default
 [transfer]
-    fsckobjects = true
-[receive]
-    fsckObjects = true
-[fetch]
     fsckobjects = true
 [push]
     autoSetupRemote = true
@@ -39,9 +34,6 @@
 [branch]
     sort = -committerdate
 [color]
-    diff = auto
-    status = auto
-    branch = auto
     ui = true
 [init]
 defaultBranch = main

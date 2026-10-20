@@ -24,7 +24,6 @@ symbol = " "
 [jobs]
 symbol = ""
 style = "bold red"
-number_threshold = 1
 format = "[$symbol]($style)"
 
 [git_branch]
@@ -55,13 +54,6 @@ disabled = false
 style = "bold white"
 format = '\[[$time]($style)\]'
 
-[custom.stunnel]
-disabled = true
-when = "pgrep -x stunnel"
-command = "ps -o etime= -p $(pgrep -x stunnel)"
-style = "red"
-format = "[TUNNEL OPEN for $output]($style)"
-
 [username]
 style_user = "green bold"
 style_root = "red bold"
@@ -78,13 +70,11 @@ disabled = false
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
-# vicmd_symbol = "[❮](green)"
 
-# configure directory
 [directory]
 read_only = " "
 truncation_length = 10
-truncate_to_repo = true    # truncates directory to root folder if in github repo
+truncate_to_repo = true
 style = "bold italic blue"
 
 [docker_context]
@@ -96,10 +86,8 @@ detect_folders = []
 
 [python]
 symbol = " "
-#pyenv_version_name = true
 format = 'via [${symbol}Python (${version} )(\($virtualenv\) )]($style)'
 style = "bold bright-yellow"
-pyenv_prefix = "venv "
 python_binary = ["./venv/bin/python", "python", "python3", "python2"]
 detect_extensions = ["py"]
 version_format = "v${raw}"
@@ -113,20 +101,6 @@ impure_msg = '[impure shell](bold red)'
 pure_msg = '[pure shell](bold green)'
 unknown_msg = '[unknown shell](bold yellow)'
 format = '[\[$symbol$state( \($name\))\]](bold blue) '
-
-[package]
-symbol = "󰏗 "
-
-[aws]
-symbol = "  "
-
-[nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
-
-[golang]
-symbol = " "
 
 [c]
 symbol = " "

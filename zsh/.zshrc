@@ -2,33 +2,19 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export LC_ALL=en_US.UTF-8
-export TMPDIR=/var/tmp/
 export EDITOR="nvim"
 
-setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
-setopt hist_save_no_dups hist_ignore_dups hist_find_no_dups noclobber no_beep
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy/mm/dd"
+setopt sharehistory hist_ignore_space hist_ignore_all_dups
+setopt hist_save_no_dups hist_find_no_dups noclobber no_beep
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
 WORDCHARS=${WORDCHARS//[\/.-]}
 
-if [[ -z "$IN_NIX_SHELL" ]]; then
-    if [[ -d "/opt/homebrew" ]]; then
-        export HOMEBREW_PREFIX="/opt/homebrew"
-        export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-        export HOMEBREW_REPOSITORY="/opt/homebrew"
-        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-        export MANPATH="/opt/homebrew/share/man:$MANPATH"
-        export INFOPATH="/opt/homebrew/share/info:$INFOPATH"
-    fi
-fi
-
-USER_PROFILE_FILE="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-[ -f "$USER_PROFILE_FILE" ] && source "$USER_PROFILE_FILE"
+# /etc/zshrc runs brew shellenv, which prepends Homebrew. Move it behind Nix
+# (so nix and devshell tools win) but ahead of the macOS system dirs.
+path=(${path:#/opt/homebrew/(s|)bin})
+path[${path[(i)/usr/local/bin]},0]=(/opt/homebrew/bin /opt/homebrew/sbin)
 
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -46,15 +32,21 @@ zinit light zsh-users/zsh-completions
 zinit ice wait"0" lucid
 zinit snippet OMZP::sudo
 zinit ice wait"0" lucid
-zinit snippet OMZP::command-not-found
-zinit ice wait"0" lucid
 zinit light Aloxaf/fzf-tab
 zinit ice wait"0" lucid depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-# Cache fzf init to avoid subprocess each startup
+# Cache each tool's shell init to avoid a subprocess per startup. Nix store
+# mtimes are fixed, so the cache is keyed on the binary's resolved store path:
+# an upgrade changes the path and regenerates the cache.
+function cache_init() {
+  local cache=$XDG_CACHE_HOME/$1-zsh-init.zsh bin=${commands[$1]:A}
+  [[ -f $cache && -f $cache.key && $(<$cache.key) == $bin ]] && return
+  "$@" >| $cache && print -r -- $bin >| $cache.key
+}
+
 FZF_ZSH_CACHE="${XDG_CACHE_HOME}/fzf-zsh-init.zsh"
-[[ ! -f "$FZF_ZSH_CACHE" || "$(command -v fzf)" -nt "$FZF_ZSH_CACHE" ]] && fzf --zsh > "$FZF_ZSH_CACHE"
+cache_init fzf --zsh
 
 # Source fzf after zvm init so zvm doesn't clobber fzf keybindings
 function zvm_after_init() {
@@ -74,14 +66,11 @@ function zicompinit_fast() {
   if [[ -n $zcd(#qN.mh+24) ]]; then compinit -d $zcd; else compinit -C -d $zcd; fi
 }
 
-# Syntax highlighting loaded last — triggers deferred compinit
-zinit ice wait"0" lucid atinit"zicompinit_fast; zicdreplay"
+# Syntax highlighting loaded last — triggers deferred compinit. This is the
+# only compinit (/etc/zshrc's is off), so compdef does not exist yet when the
+# zoxide init runs and zoxide skips its completion; register it here.
+zinit ice wait"0" lucid atinit"zicompinit_fast; zicdreplay; compdef __zoxide_z_complete z"
 zinit light zsh-users/zsh-syntax-highlighting
-
-bindkey ' ' magic-space
-bindkey '^y' autosuggest-accept
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
@@ -92,19 +81,14 @@ zstyle ':fzf-tab:*' prefix ''
 zstyle ':fzf-tab:*' continuous-trigger 'ctrl-e'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=ctrl-y:accept
 zstyle ':fzf-tab:*' switch-group 'ctrl-h' 'ctrl-l'
-zstyle ':fzf-tab:*' worker 0
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Cache starship init to avoid subprocess each startup
-STARSHIP_ZSH_CACHE="${XDG_CACHE_HOME}/starship-zsh-init.zsh"
-[[ ! -f "$STARSHIP_ZSH_CACHE" || "$(command -v starship)" -nt "$STARSHIP_ZSH_CACHE" ]] && starship init zsh > "$STARSHIP_ZSH_CACHE"
-source "$STARSHIP_ZSH_CACHE"
+cache_init starship init zsh
+source "${XDG_CACHE_HOME}/starship-zsh-init.zsh"
 
-# Cache zoxide init to avoid subprocess each startup
-ZOXIDE_ZSH_CACHE="${XDG_CACHE_HOME}/zoxide-zsh-init.zsh"
-[[ ! -f "$ZOXIDE_ZSH_CACHE" || "$(command -v zoxide)" -nt "$ZOXIDE_ZSH_CACHE" ]] && zoxide init zsh > "$ZOXIDE_ZSH_CACHE"
-source "$ZOXIDE_ZSH_CACHE"
+cache_init zoxide init zsh
+source "${XDG_CACHE_HOME}/zoxide-zsh-init.zsh"
 
 export FZF_DEFAULT_OPTS="--bind shift-tab:toggle-preview"
 export FZF_CTRL_R_OPTS="--bind ctrl-y:accept"
@@ -179,7 +163,6 @@ alias ld="lazydocker"
 alias k="k9s -c svc"
 alias kc="kubectl"
 alias fx="flux"
-alias tp="telepresence"
 alias bt="btop"
 alias di="dua i"
 alias pc="procs"
@@ -187,8 +170,6 @@ alias po="posting"
 alias ssh="TERM=xterm-256color ssh"
 alias ff="fastfetch -c all"
 # [Alias] Navigation
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
@@ -203,26 +184,25 @@ alias .....="cd ../../../.."
 alias -- -='cd -'
 alias zz="__zoxide_zi"
 # [Alias] eza
-alias ls='eza --color=always --group-directories-first --icons=always'
-alias ll='eza -la --icons=always --octal-permissions --group-directories-first'
-alias l='eza -bGF --header --git --color=always --group-directories-first --icons=always'
-alias lm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons=always'
-alias la='eza --long --all --group --group-directories-first --color=always'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons=always'
-alias lS='eza -1 --color=always --group-directories-first --icons=always'
-alias lt='eza --tree --level=2 --color=always --group-directories-first --icons=always'
+alias ls='eza --color=auto --group-directories-first --icons=auto'
+alias ll='eza -la --icons=auto --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=auto --group-directories-first --icons=auto'
+alias lm='eza -lbGd --header --git --sort=modified --color=auto --group-directories-first --icons=auto'
+alias la='eza --long --all --group --group-directories-first --color=auto'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=auto --group-directories-first --icons=auto'
+alias lS='eza -1 --color=auto --group-directories-first --icons=auto'
+alias lt='eza --tree --level=2 --color=auto --group-directories-first --icons=auto'
 alias l.='eza -d .*'
 # [Alias] bat
 if command -v bat >/dev/null 2>&1; then
-  alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
   alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
 # [Alias] nix
-alias nix-re='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
-alias nix-up='nix flake update --flake ~/config/nix-darwin/ && nix-re'
-alias nix-cl="sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimize"
-alias nix-d='nix develop --command zsh'
-alias nix-r='nix run'
+alias nix-rebuild='sudo darwin-rebuild switch --flake ~/config/nix-darwin#work'
+alias nix-update='nix flake update --flake ~/config/nix-darwin/ && nix-rebuild'
+alias nix-clean="sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimize"
+alias nix-dev='nix develop --command zsh'
+alias nix-run='nix run'
 # [Alias] files
 alias vrc="nvim ~/.zshrc"
 alias src="source ~/.zshrc"
@@ -244,10 +224,10 @@ alias co='codex'
 alias h='herdr'
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-# pnpm
-export PNPM_HOME="/Users/ianliu/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# pnpm comes from Nix; PNPM_HOME holds `pnpm add -g` binaries
+export PNPM_HOME="$HOME/Library/pnpm"
+path=($PNPM_HOME $path)
+
+# Drop duplicate entries, keeping the first, so lookup order does not change.
+# Last, because a scalar `PATH=...` assignment bypasses the unique flag.
+typeset -U path fpath
