@@ -1,6 +1,6 @@
 return {
   'lewis6991/gitsigns.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy', -- after the first frame; it attaches to buffers already open
   opts = {
     signcolumn = true,
     numhl = false,

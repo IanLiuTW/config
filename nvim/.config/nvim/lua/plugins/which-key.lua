@@ -62,6 +62,7 @@ return {
         { '<leader>,,',      '<Cmd>Lazy<CR>',                               desc = 'Tools - Lazy' },
         { '<leader>,<',      '<Cmd>Lazy update<CR>',                        desc = 'Tools - Lazy update' },
         { '<leader>,.',      '<cmd>Mason<CR>',                              desc = 'Tools - Mason' },
+        { '<leader>,>',      '<cmd>MasonToolsUpdate<CR>', desc = 'Tools - Mason tools update' },
         { '<leader>,l',      '<cmd>checkhealth vim.lsp<CR>',                desc = 'Tools - LSP info' },
         -- Buffers
         { '<C-\\>',          '<Cmd>ene<CR>', noremap = true, silent = true, desc = 'Buffer - New' },

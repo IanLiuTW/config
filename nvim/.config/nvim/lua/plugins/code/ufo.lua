@@ -9,7 +9,7 @@ local providers = {
 return {
   'kevinhwang91/nvim-ufo',
   dependencies = 'kevinhwang91/promise-async',
-  event = 'BufReadPost',
+  event = 'VeryLazy', -- after the first frame; ufo attaches to buffers already open
   init = function()
     vim.o.foldcolumn = '1'
     vim.o.foldlevel = 99 -- ufo needs a high foldlevel to manage folds itself
@@ -48,4 +48,11 @@ return {
       return providers[filetype]
     end,
   },
+  -- Set up from the main loop: registering ufo's decoration provider while a redraw is in
+  -- progress makes its on_line run before on_start ("attempt to index upvalue 'collection'")
+  config = function(_, opts)
+    vim.schedule(function()
+      require('ufo').setup(opts)
+    end)
+  end,
 }

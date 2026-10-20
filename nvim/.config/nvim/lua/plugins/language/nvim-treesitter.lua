@@ -22,6 +22,7 @@ return {
         if ft == '' then
           return
         end
+        vim.b[buf].ts_setup_done = true
         if not highlight_disabled[ft] then
           pcall(vim.treesitter.start, buf)
         end
@@ -43,7 +44,7 @@ return {
       vim.api.nvim_create_autocmd('BufWinEnter', {
         desc = 'Enable treesitter for session-restored buffers',
         callback = function(ev)
-          if not vim.b[ev.buf].ts_highlight then
+          if not vim.b[ev.buf].ts_setup_done then
             enable_ts(ev.buf)
           end
         end,

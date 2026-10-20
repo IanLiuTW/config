@@ -112,64 +112,29 @@ local function setup_copilot()
 end
 
 return {
-  'neovim/nvim-lspconfig',
-  event = { 'BufReadPre', 'BufNewFile' },
-  dependencies = {
-    {
-      'williamboman/mason.nvim',
-      cmd = 'Mason',
-      opts = {
-        ui = {
-          icons = {
-            package_installed = '✓',
-            package_pending = '➜',
-            package_uninstalled = '✗',
-          },
+  {
+    'mason-org/mason.nvim',
+    cmd = 'Mason',
+    opts = {
+      PATH = 'skip', -- init.lua puts mason/bin on PATH, so servers start without loading mason
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
         },
       },
     },
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    {
-      'folke/lazydev.nvim',
-      ft = 'lua',
-      opts = {
-        library = {
-          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        },
-      },
-    },
-    { 'saghen/blink.cmp' },
   },
-  config = function()
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
-      callback = function(event)
-        local map = function(keys, func, desc, mode)
-          vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'Code - ' .. desc })
-        end
-
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-        map('<leader>cD', vim.lsp.buf.declaration, 'Declaration')
-        map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature help', { 'i', 'n', 'x', 's' })
-
-        -- Inlay hints start on; <leader>ui toggles them per buffer
-        if client and client:supports_method 'textDocument/inlayHint' then
-          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-        end
-
-        -- Semantic tokens are turned off: they override treesitter highlighting
-        if client then
-          client.server_capabilities.semanticTokensProvider = nil
-        end
-      end,
-    })
-
-    -- Mason tools
-    require('mason-tool-installer').setup {
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    event = 'VeryLazy',
+    cmd = { 'MasonToolsInstall', 'MasonToolsInstallSync', 'MasonToolsUpdate', 'MasonToolsUpdateSync', 'MasonToolsClean' },
+    opts = {
       ensure_installed = {
         'stylua',
         'prettier',
+        'prettierd',
         'ruff',
         'codespell',
         'marksman',
@@ -178,74 +143,125 @@ return {
         'nil',
         'rust-analyzer',
         'copilot-language-server',
+        'debugpy',
       },
-      auto_update = true,
+      auto_update = false,
       run_on_start = true,
       start_delay = 3000,
       debounce_hours = 24,
-    }
-
-    -- Language servers
-    vim.lsp.config('lua_ls', {
-      settings = {
-        Lua = {
-          completion = { callSnippet = 'Replace' },
-          diagnostics = { disable = { 'missing-fields' } },
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          doc = {
-            privateName = { '^_' },
-          },
-          hint = {
-            enable = true,
-            setType = false,
-            paramType = true,
-          },
-        },
+    },
+  },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
-    })
-    vim.lsp.enable 'lua_ls'
+    },
+  },
+  {
+    'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      -- Semantic tokens are turned off: they override treesitter highlighting
+      vim.lsp.semantic_tokens.enable(false)
 
-    vim.lsp.config('marksman', {})
-    vim.lsp.enable 'marksman'
-
-    vim.lsp.config('ty', {
-      settings = {
-        ty = {},
-      },
-    })
-    vim.lsp.enable 'ty'
-
-    vim.lsp.config('nil_ls', {
-      settings = {
-        ['nil'] = {
-          formatting = {
-            command = { 'nixfmt' },
-          },
-          nix = {
-            maxMemoryMB = 2048,
-            flake = {
-              autoEvalInputs = false, -- Evaluating every flake input costs too much memory
+      -- What blink.cmp's get_lsp_capabilities() adds to the defaults. Set here so servers
+      -- get it without loading blink (InsertEnter) at file open. Recheck after blink updates:
+      -- :lua =require('blink.cmp').get_lsp_capabilities().textDocument.completion
+      vim.lsp.config('*', {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                insertTextModeSupport = { valueSet = { 1 } },
+                resolveSupport = { properties = { 'documentation', 'detail', 'additionalTextEdits', 'command', 'data' } },
+              },
+              completionList = { itemDefaults = { 'commitCharacters', 'editRange', 'insertTextFormat', 'insertTextMode', 'data' } },
+              insertTextMode = 1,
             },
           },
-          diagnostics = {
-            excludedFiles = {},
+        },
+      })
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
+        callback = function(event)
+          local map = function(keys, func, desc, mode)
+            vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'Code - ' .. desc })
+          end
+
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          map('<leader>cD', vim.lsp.buf.declaration, 'Declaration')
+          map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature help', { 'i', 'n', 'x', 's' })
+
+          -- Inlay hints start on; <leader>ui toggles them per buffer
+          if client and client:supports_method 'textDocument/inlayHint' then
+            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+          end
+        end,
+      })
+
+      -- Language servers
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            completion = { callSnippet = 'Replace' },
+            diagnostics = { disable = { 'missing-fields' } },
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            doc = {
+              privateName = { '^_' },
+            },
+            hint = {
+              enable = true,
+              setType = false,
+              paramType = true,
+            },
           },
         },
-      },
-    })
-    vim.lsp.enable 'nil_ls'
+      })
+      vim.lsp.enable 'lua_ls'
 
-    vim.lsp.config('rust_analyzer', {
-      settings = {
-        ['rust-analyzer'] = {
-          check = { command = 'clippy' },
-          diagnostics = { experimental = { enable = true } },
+      vim.lsp.enable 'marksman'
+
+      vim.lsp.config('ty', {
+        settings = {
+          ty = {},
         },
-      },
-    })
-    vim.lsp.enable 'rust_analyzer'
+      })
+      vim.lsp.enable 'ty'
 
-    setup_copilot()
-  end,
+      vim.lsp.config('nil_ls', {
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { 'nixfmt' },
+            },
+            nix = {
+              maxMemoryMB = 2048,
+              flake = {
+                autoEvalInputs = false, -- Evaluating every flake input costs too much memory
+              },
+            },
+          },
+        },
+      })
+      vim.lsp.enable 'nil_ls'
+
+      vim.lsp.config('rust_analyzer', {
+        settings = {
+          ['rust-analyzer'] = {
+            check = { command = 'clippy' },
+            diagnostics = { experimental = { enable = true } },
+          },
+        },
+      })
+      vim.lsp.enable 'rust_analyzer'
+
+      setup_copilot()
+    end,
+  },
 }

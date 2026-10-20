@@ -53,52 +53,22 @@ return {
           { 'filetype' },
           { -- LSP servers
             function()
-              local buf_clients = vim.lsp.get_clients { bufnr = 0 }
-              if buf_clients == nil then
-                return ''
-              end
-
               local buf_client_names = {}
-              for _, client in pairs(buf_clients) do
+              for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
                 if client.name ~= 'copilot' then
                   table.insert(buf_client_names, client.name)
                 end
+              end
+              if #buf_client_names == 0 then
+                return ''
               end
               return '󰌘 ' .. table.concat(buf_client_names, ' ')
             end,
           },
           { -- Formatters
             function()
-              local status, conform = pcall(require, 'conform')
-              if not status then
-                return 'Conform not installed'
-              end
-
-              local lsp_format = require 'conform.lsp_format'
-
-              local formatters = conform.list_formatters_for_buffer()
-              if formatters and #formatters > 0 then
-                local formatterNames = {}
-
-                for _, formatter in ipairs(formatters) do
-                  if formatter == 'codespell' then
-                    -- Skip codespell
-                  else
-                    table.insert(formatterNames, formatter)
-                  end
-                end
-
-                return '󰷈 ' .. table.concat(formatterNames, ' ')
-              end
-
-              local bufnr = vim.api.nvim_get_current_buf()
-              local lsp_clients = lsp_format.get_format_clients { bufnr = bufnr }
-
-              if not vim.tbl_isempty(lsp_clients) then
-                return '󰷈 LSP Formatter'
-              end
-
-              return ''
+              -- Never empty: conform's `_` entry matches every filetype without its own formatter
+              return '󰷈 ' .. table.concat(require('conform').list_formatters_for_buffer(), ' ')
             end,
           },
         },
@@ -107,7 +77,6 @@ return {
       extensions = {
         'lazy',
         'mason',
-        'fzf',
       },
     }
   end,

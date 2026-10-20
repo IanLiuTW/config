@@ -3,9 +3,6 @@ return {
   lazy=true,
   keys = { { 'g<CR>', '<cmd>Browse<cr>', mode = { 'n', 'x' }, desc = 'File - Open link under cursor' } },
   cmd = { 'Browse' },
-  init = function()
-    vim.g.netrw_nogx = 1
-  end,
   submodules = false, -- Only gx's own tests use them
   config = function()
     require('gx').setup {

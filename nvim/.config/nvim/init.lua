@@ -1,19 +1,17 @@
 vim.loader.enable()
 
 vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.autoread = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.wrap = false
-vim.opt.spell = false
 vim.opt.relativenumber = true
-vim.opt.conceallevel = 0
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
+-- What noice (cmdheight) and lualine (globalstatus) set once loaded, so the first frame has the same layout
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 3
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.breakindent = true
 vim.opt.undofile = true
@@ -27,7 +25,6 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '»─', multispace = ' ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
-vim.opt.cursorline = false
 vim.opt.scrolloff = 5
 vim.opt.fixeol = false -- Keep files without a final newline as they are
 vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- localoptions lets auto-session restore filetype and highlighting
@@ -55,6 +52,30 @@ vim.api.nvim_create_autocmd({ 'bufnewfile', 'bufread' }, {
 })
 
 -- [[ Autocommands ]]
+-- Save each file's folds when it leaves a window and restore them when it comes back. A session
+-- only keeps folds of buffers shown in a window, so a buffer left in the background lost them.
+vim.opt.viewoptions = { 'folds' }
+local view_group = vim.api.nvim_create_augroup('remember-folds', { clear = true })
+local function is_file(buf)
+  return vim.bo[buf].buftype == '' and vim.api.nvim_buf_get_name(buf) ~= ''
+end
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  group = view_group,
+  callback = function(ev)
+    if is_file(ev.buf) and ev.buf == vim.api.nvim_get_current_buf() then
+      vim.cmd 'silent! mkview'
+    end
+  end,
+})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = view_group,
+  callback = function(ev)
+    if is_file(ev.buf) then
+      vim.cmd 'silent! loadview'
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
@@ -64,12 +85,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Diagnostic commands ]]
-vim.api.nvim_create_user_command('VirtualTextSeverityMinHint', function()
-  vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.HINT } } }
-end, {})
-vim.api.nvim_create_user_command('VirtualTextSeverityMinInfo', function()
-  vim.diagnostic.config { virtual_text = { severity = { min = vim.diagnostic.severity.INFO } } }
-end, {})
 vim.api.nvim_create_user_command('VirtualLinesToggle', function()
   local current = vim.diagnostic.config().virtual_lines
   vim.diagnostic.config { virtual_lines = not current }
@@ -85,8 +100,8 @@ end, { nargs = 1 })
 vim.api.nvim_create_user_command('CopyPath', function()
   -- Resolve symlinks (e.g. ~/.config/nvim -> ~/config/...) so the path matches git's real toplevel
   local abs = vim.uv.fs_realpath(vim.fn.expand '%:p') or vim.fn.expand '%:p'
-  local root = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(vim.fn.expand '%:p:h') .. ' rev-parse --show-toplevel')[1]
-  local path = root and vim.startswith(abs, root) and abs:sub(#root + 2) or vim.fn.expand '%'
+  local root = vim.fn.systemlist({ 'git', '-C', vim.fs.dirname(abs), 'rev-parse', '--show-toplevel' })[1]
+  local path = vim.v.shell_error == 0 and vim.startswith(abs, root .. '/') and abs:sub(#root + 2) or vim.fn.expand '%'
   vim.fn.setreg('+', path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
@@ -98,11 +113,8 @@ end, {})
 -- Copy the file itself, not its path, to the macOS clipboard
 vim.api.nvim_create_user_command('CopyFile', function()
   local file = vim.fn.expand('%:p')
-  local script = string.format(
-    'osascript -e \'tell app "Finder" to set the clipboard to (POSIX file "%s")\'',
-    file
-  )
-  local result = vim.fn.system(script)
+  local escaped = file:gsub('[\\"]', '\\%0')
+  local result = vim.fn.system { 'osascript', '-e', ('tell app "Finder" to set the clipboard to (POSIX file "%s")'):format(escaped) }
   if vim.v.shell_error ~= 0 then
     vim.notify('CopyFile failed: ' .. result, vim.log.levels.ERROR)
     return
@@ -186,15 +198,12 @@ vim.diagnostic.handlers.underline = {
           })[severity]
         or 'DiagnosticUnderlineError'
 
-      if diag.tags and vim.tbl_contains(diag.tags, 1) then
-        hl_group = 'DiagnosticUnnecessary'
-      end
-
       pcall(vim.api.nvim_buf_set_extmark, bufnr, extmark_ns, diag.lnum, diag.col, {
         end_row = diag.end_lnum,
         end_col = diag.end_col,
         hl_group = hl_group,
         priority = priority,
+        strict = false,
       })
     end
   end,
@@ -206,9 +215,12 @@ vim.diagnostic.handlers.underline = {
   end,
 }
 
+-- Mason's tools on PATH without loading mason.nvim at startup (its own PATH step is off)
+vim.env.PATH = vim.fn.stdpath 'data' .. '/mason/bin:' .. vim.env.PATH
+
 -- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
   if vim.v.shell_error ~= 0 then
@@ -235,15 +247,8 @@ require('lazy').setup({
     { import = 'plugins.ui' },
   },
   install = { colorscheme = { 'habamax' } },
-  checker = {
-    enabled = false,
-    notify = true,
-    frequency = 86400,
-  },
-  change_detection = {
-    enabled = false,
-    notify = false,
-  },
+  checker = { enabled = false },
+  change_detection = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -252,29 +257,11 @@ require('lazy').setup({
         'matchparen',
         'netrwPlugin',
         'tarPlugin',
-        'tohtml',
         'tutor',
         'zipPlugin',
       },
     },
   },
-  ui = {
-    border = 'rounded',
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
+  ui = { border = 'rounded' },
 })
 -- vim: ts=2 sts=2 sw=2 et

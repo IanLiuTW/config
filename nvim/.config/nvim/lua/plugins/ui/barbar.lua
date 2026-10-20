@@ -1,12 +1,19 @@
 return {
   'romgrk/barbar.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
-  dependencies = {
-    'lewis6991/gitsigns.nvim',
-    'nvim-tree/nvim-web-devicons',
-  },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   init = function()
     vim.g.barbar_auto_setup = false
+    -- Load one tick after the first file buffer, so opening a file does not wait on barbar.
+    -- showtabline is set at once so the tabline row exists in the first frame and text does not shift.
+    vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+      once = true,
+      callback = function()
+        vim.o.showtabline = 2
+        vim.schedule(function()
+          require('lazy').load { plugins = { 'barbar.nvim' } }
+        end)
+      end,
+    })
   end,
   keys = {
     { '<C-,>', '<Cmd>BufferPrevious<CR>', noremap = true, silent = true, desc = 'Buffer - Previous' },

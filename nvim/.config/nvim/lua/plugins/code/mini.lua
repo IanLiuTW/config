@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.nvim',
+  'nvim-mini/mini.nvim',
   event = 'VeryLazy',
   config = function()
     -- `e` selects the whole buffer

@@ -16,9 +16,40 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
+-- Flash-jump to a diagnostic, then run `fn` with the cursor on it
+local function diag_jump(fn)
+  require('flash').jump {
+    matcher = function(win)
+      return vim.tbl_map(function(diag)
+        return {
+          pos = { diag.lnum + 1, diag.col },
+          end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
+        }
+      end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
+    end,
+    search = { mode = "search", max_length = 0 },
+    label = { after = { 0, 0 } },
+    action = function(match, state)
+      vim.api.nvim_win_call(match.win, function()
+        vim.api.nvim_win_set_cursor(match.win, match.pos)
+        fn()
+      end)
+      state:restore()
+    end,
+  }
+end
+
 return {
   'folke/flash.nvim',
   event = 'VeryLazy',
+  init = function()
+    -- Restore the built-in <CR> in the command-line window (q:), which the global flash <CR> mapping would shadow
+    vim.api.nvim_create_autocmd('CmdwinEnter', {
+      callback = function()
+        vim.keymap.set('n', '<CR>', '<CR>', { buffer = true })
+      end,
+    })
+  end,
   ---@type Flash.Config
   opts = {
     rainbow = {
@@ -51,44 +82,10 @@ return {
     },
     { '<leader><CR>', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter_search() end, desc = 'Jump - Treesitter search' },
 
-    { '<leader>xF', mode = { 'n', 'x' }, function() require('flash').jump {
-      matcher = function(win)
-        return vim.tbl_map(function(diag)
-          return {
-            pos = { diag.lnum + 1, diag.col },
-            end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
-          }
-        end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
-      end,
-      search = { mode = "search", max_length = 0 },
-      label = { after = { 0, 0 } },
-      action = function(match, state)
-        vim.api.nvim_win_call(match.win, function()
-          vim.api.nvim_win_set_cursor(match.win, match.pos)
-          vim.diagnostic.open_float({source = true, border="rounded"})
-        end)
-        state:restore()
-      end,
-    } end, desc = 'Diagnostics - Jump to one and show float' },
-    { '<leader>A', mode = { 'n', 'x' }, function() require('flash').jump {
-      matcher = function(win)
-        return vim.tbl_map(function(diag)
-          return {
-            pos = { diag.lnum + 1, diag.col },
-            end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
-          }
-        end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
-      end,
-      search = { mode = "search", max_length = 0 },
-      label = { after = { 0, 0 } },
-      action = function(match, state)
-        vim.api.nvim_win_call(match.win, function()
-          vim.api.nvim_win_set_cursor(match.win, match.pos)
-          vim.lsp.buf.code_action()
-        end)
-        state:restore()
-      end,
-    } end, desc = 'Code - Action at a jumped-to diagnostic' },
+    { '<leader>xF', mode = { 'n', 'x' }, function()
+        diag_jump(function() vim.diagnostic.open_float({source = true, border="rounded"}) end)
+      end, desc = 'Diagnostics - Jump to one and show float' },
+    { '<leader>A', mode = { 'n', 'x' }, function() diag_jump(vim.lsp.buf.code_action) end, desc = 'Code - Action at a jumped-to diagnostic' },
     { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Jump - Toggle flash in search' },
   },
 }

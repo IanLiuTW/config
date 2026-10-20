@@ -304,15 +304,17 @@ return {
     lazygit = {
       enabled = true,
       configure = false,
-      theme = {
-        selectedLineBgColor = { bg = 'black' },
-      },
       win = {
         position = 'float',
         backdrop = 60,
         height = 0.96,
         width = 0.98,
         zindex = 50,
+        -- Let lazygit's move-commit keys through the global terminal window maps
+        keys = {
+          lg_down = { '<C-j>', '<C-j>', mode = 't', expr = true },
+          lg_up = { '<C-k>', '<C-k>', mode = 't', expr = true },
+        },
       },
     },
     gh = {
@@ -534,7 +536,9 @@ return {
               return type(vt) == 'table' and type(vt.severity) == 'table' and vt.severity.min == severity.HINT
             end,
             set = function(state)
-              vim.diagnostic.config { virtual_text = { severity = { min = state and severity.HINT or severity.INFO } } }
+              -- Replace only virtual_text.severity, keeping source/spacing
+              local min = state and severity.HINT or severity.INFO
+              vim.diagnostic.config { virtual_text = vim.tbl_extend('force', vim.diagnostic.config().virtual_text or {}, { severity = { min = min } }) }
             end,
           })
           :map '<leader>uv'

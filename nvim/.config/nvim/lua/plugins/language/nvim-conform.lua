@@ -1,6 +1,5 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
     {
@@ -25,10 +24,7 @@ return {
         'ruff_organize_imports',
         'ruff_format',
       },
-      rust = {
-        'rustfmt',
-        lsp_format = 'fallback',
-      },
+      rust = { 'rustfmt' },
       javascript = {
         'prettierd',
         'prettier',

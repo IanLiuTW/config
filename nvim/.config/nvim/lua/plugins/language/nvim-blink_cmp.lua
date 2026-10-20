@@ -18,7 +18,6 @@ return {
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
       ['<s-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ['<C-s-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 
       ['<C-1>'] = {
         function(cmp)
@@ -130,10 +129,7 @@ return {
       end,
     },
 
-    signature = {
-      enabled = false,
-      window = { border = 'single' },
-    },
+    signature = { enabled = false },
 
     appearance = {
       nerd_font_variant = 'mono',

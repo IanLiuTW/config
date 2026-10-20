@@ -19,9 +19,7 @@ return {
       { '<leader>ra', '<cmd>OverseerTaskAction<cr>', desc = 'Task - Action' },
     },
     config = function()
-      require('overseer').setup {
-        templates = { 'builtin' },
-      }
+      require('overseer').setup {}
 
       vim.api.nvim_create_user_command('OverseerRestartLast', function()
         local overseer = require 'overseer'
