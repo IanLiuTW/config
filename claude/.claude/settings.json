@@ -1,7 +1,6 @@
 {
   "env": {
-    "DISABLE_AUTOUPDATER": "1",
-    "CLAUDE_TIMESTAMPS_TZ": "America/Los_Angeles"
+    "DISABLE_AUTOUPDATER": "1"
   },
   "permissions": {
     "allow": [
@@ -37,14 +36,12 @@
       "Bash(nvim --version)",
       "Bash(node --version)",
       "Bash(npm list *)",
-      "mcp__plugin_atlassian_atlassian__createJiraIssue",
-      "mcp__plugin_atlassian_atlassian__createIssueLink",
-      "mcp__plugin_atlassian_atlassian__editJiraIssue",
-      "mcp__plugin_atlassian_atlassian__transitionJiraIssue",
       "mcp__claude_ai_Atlassian_MCP__createJiraIssue",
       "mcp__claude_ai_Atlassian_MCP__createIssueLink",
       "mcp__claude_ai_Atlassian_MCP__editJiraIssue",
-      "mcp__claude_ai_Atlassian_MCP__transitionJiraIssue"
+      "mcp__claude_ai_Atlassian_MCP__transitionJiraIssue",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)"
     ],
     "deny": [
       "mcp__atlassian__jira_delete_issue",
@@ -102,9 +99,6 @@
   "feedbackDrafts": "off",
   "alwaysThinkingEnabled": true,
   "modelSettings": {
-    "claude-opus-5": {
-      "effortLevel": "high"
-    },
     "claude-fable-5-1": {
       "effortLevel": "xhigh"
     }
@@ -123,6 +117,5 @@
       "$defaults"
     ]
   },
-  "voiceEnabled": true,
-  "allowUnsandboxedCommands": true
+  "voiceEnabled": true
 }
