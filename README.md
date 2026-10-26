@@ -67,10 +67,7 @@ An edit to a linked dotfile needs no command. Some programs read their config on
 
 nix-darwin also runs garbage collection every Sunday at 03:00, and it deletes system generations older than 7 days. It runs as root, so it does not delete Home Manager or user-profile generations. A weekly Home Manager agent expires Home Manager generations older than 7 days; run `nix-clean` for user-profile generations.
 
-Two launchd agents run every day at 08:00. Each one retries up to 3 times and posts a "Cron job failed" notification if all tries fail:
-
-- `nix-flake-update` runs `nix flake update` on this repository. So `nix-darwin/flake.lock` often shows as modified in `git status`, and the next `nix-rebuild` applies the new lock. Log: `~/Library/Logs/nix-flake-update.log`.
-- `claude-skills-pull` runs `git pull` in `~/.claude/skills`, but only while that checkout is on `master`. Log: `~/Library/Logs/claude-skills-pull.log`.
+A launchd agent, `claude-skills-pull`, runs every day at 12:00. It updates `master` in `~/.claude/skills`: `git pull` when that checkout is on `master`, otherwise `git fetch origin master:master`, which fast-forwards `master` and leaves the current branch checked out. On another branch it then runs `git merge --no-edit master`. It skips the merge, with a notification, if tracked files have uncommitted changes, and it aborts the merge, with a notification, on a conflict. It retries the update of `master` up to 3 times and posts a "Cron job failed" notification if all tries fail. Log: `~/Library/Logs/claude-skills-pull.log`.
 
 ## Contents
 
@@ -86,6 +83,7 @@ Two launchd agents run every day at 08:00. Each one retries up to 3 times and po
 | [`git/`](git) | `~/.gitconfig` | Git |
 | [`lazygit/`](lazygit) | `~/.config/lazygit/config.yml` | lazygit |
 | [`k9s/`](k9s) | `~/.config/k9s` | k9s (Kubernetes TUI) |
+| [`colima/`](colima) | `~/.config/colima/default/colima.yaml` | Colima VM (CPU, memory, disk). Applies on the next `colima start`, which rewrites this file |
 | [`superfile/`](superfile) | `~/.config/superfile/` | superfile file manager (config and hotkeys) |
 | [`omniwm/`](omniwm) | `~/.config/omniwm/settings.toml` | OmniWM tiling window manager. Changes made in its Settings window are written back to this file |
 | [`hammerspoon/`](hammerspoon) | `~/.hammerspoon` | Hammerspoon automation |

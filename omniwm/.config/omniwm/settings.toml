@@ -205,7 +205,6 @@ yOffset = 0.0
 [[appRules]]
 bundleId = "com.openai.codex"
 id = "6A31F08A-4051-4354-B439-42F4C71894A3"
-layout = "float"
 minHeight = 600.0
 minWidth = 800.0
 
@@ -268,7 +267,7 @@ layout = "tile"
 assignToWorkspace = "2"
 bundleId = "com.microsoft.teams2"
 id = "3649ED73-69D2-5D7B-AECE-EBEE2ADBC797"
-layout = "tile"
+layout = "float"
 
 [[appRules]]
 assignToWorkspace = "4"
@@ -280,7 +279,6 @@ layout = "tile"
 assignToWorkspace = "7"
 bundleId = "com.microsoft.rdc.macos"
 id = "4EDC9C73-66A0-5F04-8337-5EFF4FEDF630"
-layout = "float"
 
 [[appRules]]
 assignToWorkspace = "8"
@@ -291,16 +289,6 @@ id = "3B9EBF36-3927-5272-ACFD-4667733D1C2B"
 assignToWorkspace = "8"
 bundleId = "com.valvesoftware.steam.helper"
 id = "5A32024D-9D94-54C4-909B-E29C30671023"
-
-[[appRules]]
-bundleId = "com.apple.finder"
-id = "67FEE410-5D75-5CA8-8766-78CC182941B6"
-layout = "float"
-
-[[appRules]]
-bundleId = "sh.loft.devpod"
-id = "21C60BD0-BACC-552C-88DA-04298CC65B17"
-layout = "float"
 
 [[appRules]]
 bundleId = "com.anthropic.claudefordesktop"

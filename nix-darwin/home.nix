@@ -58,6 +58,8 @@ in
     ".claude/themes/tokyonight-night.json" =
       link "claude/.claude/themes/tokyonight-night.json";
     ".config/herdr/config.toml" = link "herdr/.config/herdr/config.toml";
+    # `colima start` rewrites this file through the symlink into the repo.
+    ".config/colima/default/colima.yaml" = link "colima/.config/colima/default/colima.yaml";
 
     # Inline configs
     ".config/pycodestyle".text = ''

@@ -178,8 +178,8 @@
           # dannystewart/apps (tapped at runtime for the volumehud cask).
           taps = builtins.attrNames config.nix-homebrew.taps ++ [ "dannystewart/apps" ];
           onActivation.cleanup = "uninstall"; # remove undeclared packages (keeps their data; use "zap" to also wipe data).
-          # Taps are nix flake inputs (refreshed by the daily nix-flake-update
-          # agent), so `brew update` must never run: it re-clones the git repo
+          # Taps are nix flake inputs (refreshed by `nix flake update`), so
+          # `brew update` must never run: it re-clones the git repo
           # that nix-homebrew's rsync deletes on every activation (a 1+ GiB
           # download each rebuild) and litters the tap with symlinks that make
           # the rsync warn hundreds of times.
@@ -260,48 +260,41 @@
               "/bin/sh" "-c"
               ''
                 [ -d "$HOME/.claude/skills/.git" ] || exit 0
-                [ "$(git -C "$HOME/.claude/skills" branch --show-current)" = master ] || exit 0
                 ping -c 1 -W 1000 8.8.8.8 >/dev/null 2>&1 || exit 0
+                cd "$HOME/.claude/skills" || exit 1
+                log="$HOME/Library/Logs/claude-skills-pull.log"
+                notify() {
+                  /usr/bin/osascript -e "display notification \"$2 (see ~/Library/Logs/claude-skills-pull.log)\" with title \"$1\""
+                }
+                branch=$(git branch --show-current)
                 i=0
-                while :; do
-                  if { cd "$HOME/.claude/skills" && git pull; } \
-                       >"$HOME/Library/Logs/claude-skills-pull.log" 2>&1; then
-                    exit 0
-                  fi
+                # Off master, fast-forward master without leaving the current branch.
+                until { if [ "$branch" = master ]; then
+                          git pull
+                        else
+                          git fetch origin master:master
+                        fi; } >"$log" 2>&1; do
                   i=$((i + 1))
-                  [ "$i" -ge 3 ] && break
+                  if [ "$i" -ge 3 ]; then
+                    notify "Cron job failed" "claude-skills-pull failed after 3 retries"
+                    exit 1
+                  fi
                   sleep 60
                 done
-                /usr/bin/osascript -e 'display notification "claude-skills-pull failed after 3 retries (see ~/Library/Logs/claude-skills-pull.log)" with title "Cron job failed"'
+                [ -n "$branch" ] && [ "$branch" != master ] || exit 0
+                git merge-base --is-ancestor master HEAD && exit 0
+                if ! git diff --quiet HEAD; then
+                  notify "claude-skills-pull" "$branch has uncommitted changes, master not merged"
+                  exit 0
+                fi
+                if ! git merge --no-edit master >>"$log" 2>&1; then
+                  git merge --abort >>"$log" 2>&1
+                  notify "Cron job failed" "merging master into $branch failed and was aborted"
+                  exit 1
+                fi
               ''
             ];
-            StartCalendarInterval = [{ Hour = 8; Minute = 0; }];
-            StandardOutPath = "/dev/null";
-            StandardErrorPath = "/dev/null";
-            RunAtLoad = false;
-          };
-        };
-
-        launchd.user.agents.nix-flake-update = {
-          serviceConfig = {
-            ProgramArguments = [
-              "/bin/sh" "-c"
-              ''
-                i=0
-                while :; do
-                  if ping -c 1 -W 1000 8.8.8.8 >/dev/null 2>&1 \
-                    && /run/current-system/sw/bin/nix flake update --flake "$HOME/config/nix-darwin/" \
-                         >"$HOME/Library/Logs/nix-flake-update.log" 2>&1; then
-                    exit 0
-                  fi
-                  i=$((i + 1))
-                  [ "$i" -ge 3 ] && break
-                  sleep 14400
-                done
-                /usr/bin/osascript -e 'display notification "nix-flake-update failed after 3 retries (see ~/Library/Logs/nix-flake-update.log)" with title "Cron job failed"'
-              ''
-            ];
-            StartCalendarInterval = [{ Hour = 8; Minute = 0; }];
+            StartCalendarInterval = [{ Hour = 12; Minute = 0; }];
             StandardOutPath = "/dev/null";
             StandardErrorPath = "/dev/null";
             RunAtLoad = false;
@@ -314,14 +307,16 @@
         nix.settings.experimental-features = "nix-command flakes";
 
         # Automatic store cleanup: weekly GC of system generations older than 7
-        # days, plus hardlink-dedupe of identical store files. It runs as root, so
-        # Home Manager and user-profile generations need `nix-clean`.
+        # days, plus hardlink-dedupe of identical store files on write. It runs as
+        # root, so Home Manager and user-profile generations need `nix-clean`.
         nix.gc = {
           automatic = true;
           interval = { Weekday = 0; Hour = 3; Minute = 0; };  # weekly, Sun 3am
           options = "--delete-older-than 7d";
         };
-        nix.optimise.automatic = true;
+        # Dedupe on write instead of nix.optimise's weekly full-store rescan,
+        # which takes over a day here.
+        nix.settings.auto-optimise-store = true;
 
         # Enable alternative shell support in nix-darwin.
         programs.zsh.enable = true;
