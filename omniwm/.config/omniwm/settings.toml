@@ -209,7 +209,7 @@ minHeight = 600.0
 minWidth = 800.0
 
 [[appRules]]
-assignToWorkspace = "3"
+assignToWorkspace = "4"
 bundleId = "com.google.Chrome"
 id = "486CEFA6-69AA-4A3C-AF27-BCD38F4F138B"
 layout = "tile"
@@ -236,7 +236,7 @@ minHeight = 600.0
 minWidth = 800.0
 
 [[appRules]]
-assignToWorkspace = "5"
+assignToWorkspace = "1"
 bundleId = "com.mitchellh.ghostty"
 id = "7876C9EF-437E-4D4F-9C27-B1B02F4AABCE"
 layout = "tile"
@@ -244,7 +244,7 @@ minHeight = 48.0
 minWidth = 90.0
 
 [[appRules]]
-assignToWorkspace = "1"
+assignToWorkspace = "2"
 bundleId = "com.microsoft.Outlook"
 id = "8ECAB78B-BCDD-4245-BC25-1609A49B1C86"
 layout = "tile"
@@ -258,19 +258,19 @@ minHeight = 320.0
 minWidth = 660.0
 
 [[appRules]]
-assignToWorkspace = "1"
+assignToWorkspace = "2"
 bundleId = "com.tinyspeck.slackmacgap"
 id = "47613EEC-BEBB-587B-9F60-09353EA262D3"
 layout = "tile"
 
 [[appRules]]
-assignToWorkspace = "2"
+assignToWorkspace = "3"
 bundleId = "com.microsoft.teams2"
 id = "3649ED73-69D2-5D7B-AECE-EBEE2ADBC797"
 layout = "float"
 
 [[appRules]]
-assignToWorkspace = "4"
+assignToWorkspace = "5"
 bundleId = "com.brave.Browser"
 id = "73167361-F7B7-58F3-8FB0-5281FDEE0EC6"
 layout = "tile"
@@ -279,16 +279,6 @@ layout = "tile"
 assignToWorkspace = "7"
 bundleId = "com.microsoft.rdc.macos"
 id = "4EDC9C73-66A0-5F04-8337-5EFF4FEDF630"
-
-[[appRules]]
-assignToWorkspace = "8"
-bundleId = "com.valvesoftware.steam"
-id = "3B9EBF36-3927-5272-ACFD-4667733D1C2B"
-
-[[appRules]]
-assignToWorkspace = "8"
-bundleId = "com.valvesoftware.steam.helper"
-id = "5A32024D-9D94-54C4-909B-E29C30671023"
 
 [[appRules]]
 bundleId = "com.anthropic.claudefordesktop"
@@ -1077,7 +1067,7 @@ id = "toggleSystemStats"
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
-layoutType = "niri"
+layoutType = "default"
 name = "1"
 
 [workspaces.monitorAssignment]
@@ -1085,7 +1075,7 @@ type = "main"
 
 [[workspaces]]
 id = "454CECD4-5E9D-4ED1-95D7-979D48817F5F"
-layoutType = "default"
+layoutType = "niri"
 name = "2"
 
 [workspaces.monitorAssignment]
