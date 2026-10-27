@@ -126,4 +126,29 @@ return {
       end,
     },
   },
+  {
+    'scottmckendry/cyberdream.nvim',
+    lazy = true,
+    opts = {
+      transparent = true,
+      italic_comments = true,
+      -- Load only the extensions for installed plugins; all ~30 add ~100 ms to startup
+      extensions = {
+        default = false,
+        blinkcmp = true,
+        dapui = true,
+        gitsigns = true,
+        lazy = true,
+        markdown = true,
+        mini = true,
+        neogit = true,
+        noice = true,
+        rainbow_delimiters = true,
+        snacks = true,
+        treesitter = true,
+        trouble = true,
+        whichkey = true,
+      },
+    },
+  },
 }
