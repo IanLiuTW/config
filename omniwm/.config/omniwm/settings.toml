@@ -1067,7 +1067,7 @@ id = "toggleSystemStats"
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
-layoutType = "dwindle"
+layoutType = "default"
 name = "1"
 
 [workspaces.monitorAssignment]
