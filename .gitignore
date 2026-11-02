@@ -5,7 +5,7 @@
 TODO.md
 .DS_Store
 
-# JIRA-branch worktrees created by the t-worktree skill
+# git worktrees
 worktrees/
 
 # nix build output symlinks
