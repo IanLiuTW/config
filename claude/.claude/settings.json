@@ -71,6 +71,17 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Tech Style check before sending prose: no em or en dashes (rewrite with period, comma, colon, parentheses); short sentences, one statement each; active voice with a named actor; plain words, no idioms or stock phrases; same term for the same thing; no preamble, recap or closing summary. Long answers: conclusion first in 1-3 sentences, then details; many items as bullets, multi-attribute data as tables. Code, paths and quotes stay as is.'",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
