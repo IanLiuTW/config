@@ -27,7 +27,7 @@ vim.opt.listchars = { tab = '»─', multispace = ' ', trail = '·', nbsp = '␣
 vim.opt.inccommand = 'split'
 vim.opt.scrolloff = 5
 vim.opt.fixeol = false -- Keep files without a final newline as they are
-vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- localoptions lets auto-session restore filetype and highlighting
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal' -- no localoptions: restored buffers rerun their ftplugin instead of keeping stale local options
 vim.opt.spellfile = vim.fn.expand '~/.config/nvim/spell/en.utf-8.add'
 vim.opt.guicursor = {
   'n:block-blinkwait0-blinkoff50-blinkon50',
