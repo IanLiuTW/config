@@ -15,6 +15,16 @@ local function setup_copilot()
   vim.lsp.enable 'copilot'
   ic.enable(true)
 
+  -- Nvim 0.12 bug: disabling a buffer clears client_state but leaves the request in flight, so its
+  -- response indexes nil at inline_completion.lua:135. Drop responses for detached clients.
+  local Completor = require('vim.lsp._capability').all.inline_completion
+  local handler = Completor.handler
+  function Completor:handler(err, result, ctx)
+    if self.client_state[ctx.client_id] then
+      handler(self, err, result, ctx)
+    end
+  end
+
   local function visible()
     return #vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { limit = 1 }) > 0
   end
