@@ -1,11 +1,11 @@
 -- Bar fills the 38 pt notch strip; base 38 / 0.93 scales every item to 0.93 of its default size.
--- All bar text uses the heaviest system font weight.
+-- All bar text uses the heavy system font weight.
 local function text(props)
     if props.color == nil and props.role == "secondary" then
         props.color = "secondaryForeground"
     end
     props.role = nil
-    props.weight = "black"
+    props.weight = "heavy"
     return ui.text(props)
 end
 

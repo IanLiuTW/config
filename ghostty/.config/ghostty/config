@@ -28,7 +28,7 @@ quick-terminal-position = bottom
 quick-terminal-size = 75%
 quick-terminal-animation-duration = 0.1
 
-macos-non-native-fullscreen = true
+macos-non-native-fullscreen = false
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
 macos-option-as-alt = true
