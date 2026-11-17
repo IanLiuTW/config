@@ -24,6 +24,17 @@ vim.api.nvim_create_autocmd('Colorscheme', {
       selection_inactive = color('CursorLine', 'bg'),
     }
 
+    -- Some themes (cyberdream) give CursorLine the Visual bg, so code blocks would hide a
+    -- visual selection; fall back to Visual blended halfway toward the editor background
+    if c.selection_inactive == c.selection_bg and c.selection_bg ~= 'NONE' then
+      local base = get_hl('Normal').bg or (vim.o.background == 'dark' and 0x000000 or 0xffffff)
+      local sel = tonumber(c.selection_bg:sub(2), 16)
+      local function mix(shift)
+        return math.floor((bit.band(bit.rshift(sel, shift), 0xff) + bit.band(bit.rshift(base, shift), 0xff)) / 2)
+      end
+      c.selection_inactive = string.format('#%02x%02x%02x', mix(16), mix(8), mix(0))
+    end
+
     local overrides = {
       -- Windows and floats
       WinSeparator = { fg = '#b3b3b3', bold = true },

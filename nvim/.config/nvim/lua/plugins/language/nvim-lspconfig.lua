@@ -205,7 +205,6 @@ return {
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           map('<leader>cD', vim.lsp.buf.declaration, 'Declaration')
-          map('<c-s-k>', vim.lsp.buf.signature_help, 'Signature help', { 'i', 'n', 'x', 's' })
 
           -- Inlay hints start on; <leader>ui toggles them per buffer
           if client and client:supports_method 'textDocument/inlayHint' then
