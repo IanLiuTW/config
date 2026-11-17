@@ -19,27 +19,42 @@ active_row_bg = "#3b4261"
 selection_bg = "#545c7e"
 
 [keys]
-# Prefix is ctrl+alt+space (default is ctrl+b). Prefix-mode actions:
-prefix = "ctrl+alt+space"
+# Prefix is ctrl+alt+q (default is ctrl+b). Prefix-mode actions:
+prefix = "ctrl+alt+q"
 # One grammar: same keys (\ backspace , . 1-9) at every level. Bare = nvim
 # buffers; prefix+ctrl = herdr tabs; prefix+shift = herdr workspaces.
-# Exception: ctrl+alt+comma/period cycle tabs and ctrl+alt+j/k cycle workspaces
-# without the prefix (nvim and the other TUIs leave these keys free).
+# Exception, without the prefix (nvim and the other TUIs leave these keys free):
+# ctrl+alt+comma/period cycle tabs, ctrl+alt+shift+comma/period move the tab
+# (like nvim C-S-comma/period buffer moves), ctrl+alt+[/] cycle workspaces,
+# ctrl+alt+n/p cycle agents, ctrl+alt+h/j/k/l focus panes, ctrl+alt+space opens
+# the navigator.
 new_tab = "prefix+ctrl+backslash"
 close_tab = "prefix+ctrl+backspace"
 previous_tab = ["prefix+ctrl+comma", "ctrl+alt+comma"]
 next_tab = ["prefix+ctrl+period", "ctrl+alt+period"]
 switch_tab = "prefix+ctrl+1..9"
+rename_tab = "prefix+ctrl+r"
+move_tab_previous = "ctrl+alt+shift+comma"
+move_tab_next = "ctrl+alt+shift+period"
 
 new_workspace = "prefix+shift+backslash"
 close_workspace = "prefix+shift+backspace"
 switch_workspace = "prefix+shift+1..9"
 rename_workspace = "prefix+shift+r"
-previous_workspace = "ctrl+alt+k"
-next_workspace = "ctrl+alt+j"
+previous_workspace = "ctrl+alt+["
+next_workspace = "ctrl+alt+]"
+
+previous_agent = "ctrl+alt+p"
+next_agent = "ctrl+alt+n"
+
+# prefix+h/j/k/l are the defaults; ctrl+alt+h/j/k/l work without the prefix.
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
 
 # Session-wide navigator (default prefix+g).
-goto = "prefix+space"
+goto = "ctrl+alt+space"
 
 # Navigate mode (prefix+w): j/k move the workspace highlight, ctrl+j/k focus
 # panes. Defaults are up/down for workspaces and j/k for panes.
@@ -51,24 +66,42 @@ navigate_pane_up = "ctrl+k"
 # Default is prefix+b.
 toggle_sidebar = "prefix+backslash"
 
+# Panes like nvim's ctrl+w: v splits side by side, s stacks (defaults v and
+# minus); r renames (default shift+p), = enters resize mode (default r).
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+rename_pane = "prefix+r"
+resize_mode = "prefix+="
+
+# Moved off prefix+s (now split_horizontal); like cmd+comma for app settings.
+settings = "prefix+comma"
+
+# Git worktrees on b for branch (default new_worktree is prefix+shift+g; open
+# and remove are unset). Each creates or removes a workspace.
+new_worktree = "prefix+b"
+open_worktree = "prefix+shift+b"
+remove_worktree = "prefix+ctrl+b"
+
+# Scrollback in $EDITOR without the prefix (default prefix+e). Inside the pane,
+# ctrl+; edits in $EDITOR (Claude Code prompt, superfile file).
+edit_scrollback = "ctrl+alt+semicolon"
+
 # Moved off prefix+shift+r (now rename_workspace); mirrors ghostty's
 # super+shift+enter=reload_config.
 reload_config = "prefix+shift+enter"
 
 # Remaining prefix-mode defaults (unchanged):
-#   ?  help        s  settings     q  detach       o  notification
-#   e  edit scrollback in $EDITOR
-#   v  split vert  minus  split horiz   x  close pane   z  zoom   r  resize mode
-#   h/j/k/l  focus pane left/down/up/right   tab / shift+tab  cycle pane
-#   shift+t  rename tab   w  workspace picker   shift+g  new worktree
-#   shift+p  rename pane
+#   ?  help        q  detach       o  notification
+#   [  copy mode   x  close pane   z  zoom   shift+h/j/k/l  swap pane
+#   tab / shift+tab  cycle pane   w  workspace picker
 # NOTE: scrollback lives per-pane inside herdr. Ghostty's cmd+u/cmd+d scroll
 # binds are no-ops here (herdr owns the alternate screen); use the mouse wheel
-# or `prefix e` to page through history.
+# or ctrl+alt+; to page through history.
 
 # Open lazygit in a throwaway pane (lazygit config is also in this repo).
+# shift+g matches nvim's <leader>gG.
 [[keys.command]]
-key = "prefix+alt+g"
+key = "prefix+shift+g"
 type = "pane"
 command = "lazygit"
 

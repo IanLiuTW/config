@@ -20,7 +20,7 @@ function render(ctx)
             local text = if m.artist and m.artist ~= "" then m.artist .. " - " .. m.title else m.title
             local long = (utf8.len(text) or #text) > 28
             props[2] = look.text{ text = text, size = (if long then 10 else 13) * scale,
-                maxWidth = 200 * scale, lines = if long then 2 else 1 }
+                maxWidth = 140 * scale, lines = if long then 2 else 1 }
         end
         button = look.bar(ctx, props)
     end

@@ -3,9 +3,9 @@ profile = "default"
 [profiles]
 
 [profiles.default]
-theme = "tokyo-night"
 center = ["media"]
 leading = ["apple-menu", "app-menu", "stats", "workspaces"]
+theme = "tokyo-night"
 trailing = ["menu-extras", "volume", "battery-details", "control-center", "notifications", "clock"]
 
 [profiles.default.hiddenBar]
@@ -35,6 +35,7 @@ backgroundOpacity = 1.0
 height = 34.0
 hideEmptyWorkspaces = true
 notificationBadges = "text"
+reserveLayoutSpace = false
 showItemBackgrounds = false
 solidBlackBackground = false
 transparentBackground = false

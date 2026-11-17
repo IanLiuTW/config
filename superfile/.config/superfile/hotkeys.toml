@@ -59,7 +59,7 @@ extract_file = ['ctrl+x', '']
 compress_file = ['ctrl+z', '']
 
 #-- Editor Actions
-open_file_with_editor = ['e', 'ctrl+`']
+open_file_with_editor = ['e', 'ctrl+;']
 open_current_directory_with_editor = ['shift+enter', '']
 
 #-- Other Actions
