@@ -8,6 +8,13 @@
 - Push back on overcomplicated designs. Simplest correct solution wins.
 - Unsure of intent: ask, don't guess.
 
+# To-do list
+
+- I add to-dos during a conversation. Keep one running list per conversation: what I ask to note, what I defer, what is still open.
+- Raise it at natural points (a task done, a pause, my "all good?"), not after every reply.
+- Show it as a table: item, one short line of what is left, who acts. No prose list.
+- Before listing, re-check each item against ground truth (notes, files, tickets, this conversation). Drop items that are done or already decided.
+
 # Workflow
 
 - Answer codebase questions only from ground truth: read the code, run the command, check the version. Never from memory, inference or pattern-matching.
