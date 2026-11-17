@@ -3,6 +3,7 @@ profile = "default"
 [profiles]
 
 [profiles.default]
+theme = "tokyo-night"
 center = ["media"]
 leading = ["apple-menu", "app-menu", "stats", "workspaces"]
 trailing = ["menu-extras", "volume", "battery-details", "control-center", "notifications", "clock"]
