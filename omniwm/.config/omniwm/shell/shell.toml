@@ -1,0 +1,37 @@
+profile = "default"
+
+[profiles]
+
+[profiles.default]
+center = ["media"]
+leading = ["apple-menu", "app-menu", "workspaces"]
+trailing = ["menu-extras", "stats", "volume", "battery-details", "control-center", "notifications", "clock"]
+
+[profiles.default.hiddenBar]
+enabled = true
+
+[profiles.default.widgets]
+
+[profiles.default.widgets.clock]
+date = true
+icon = false
+interval = 1
+
+[profiles.default.widgets.stats]
+variant = "graph"
+
+[profiles.default.widgets.workspaces]
+compact = false
+indicator = "pills"
+occupiedBackground = false
+
+[profiles.default.workspaceBar]
+autoHide = false
+backgroundOpacity = 1.0
+height = 38.0
+hideEmptyWorkspaces = true
+notificationBadges = "text"
+showItemBackgrounds = false
+solidBlackBackground = false
+transparentBackground = false
+yOffset = 0.0

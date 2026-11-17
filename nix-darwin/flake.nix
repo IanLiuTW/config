@@ -138,10 +138,8 @@
             "middleclick"
             "linearmouse"
             "hammerspoon"
-            "stats"
             # Fully-qualified so nix-darwin emits `trusted: true` (see below).
             "dannystewart/apps/volumehud"
-            "thaw"
             "raycast"
             # Window manager (replaced AeroSpace + JankyBorders). The cask tracks
             # upstream releases; nixpkgs' omniwm trails them.

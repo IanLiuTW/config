@@ -39,6 +39,10 @@ in
     ".hammerspoon" = link "hammerspoon/.hammerspoon";
     # OmniWM writes Settings-window changes through this symlink into the repo.
     ".config/omniwm/settings.toml" = link "omniwm/.config/omniwm/settings.toml";
+    # OmniShell: only user files; OmniWM manages default/, styles and .backups/ beside them.
+    ".config/omniwm/shell/shell.toml" = link "omniwm/.config/omniwm/shell/shell.toml";
+    ".config/omniwm/shell/lib" = link "omniwm/.config/omniwm/shell/lib";
+    ".config/omniwm/shell/widgets" = link "omniwm/.config/omniwm/shell/widgets";
 
     # TUI tools
     ".config/superfile/config.toml" = link "superfile/.config/superfile/config.toml";
@@ -70,7 +74,7 @@ in
   };
 
   # Per-app macOS menu shortcut overrides. Ghostty: move the native-tab
-  # shortcuts off ctrl+tab so it reaches the terminal (herdr workspace nav).
+  # shortcuts off ctrl+tab to keep the key free for the terminal.
   targets.darwin.defaults."com.mitchellh.ghostty".NSUserKeyEquivalents = {
     "Hide Ghostty" = "@$h";
     "Show Next Tab" = "@~^$n";
