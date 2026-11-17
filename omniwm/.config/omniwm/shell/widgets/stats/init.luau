@@ -18,7 +18,7 @@ local function meter(ctx, entry, variant: string)
     local reading = look.text{ text = ctx.format.percent(entry.value / 100), size = 13 * scale,
         reserve = ctx.format.percent(1) }
     if variant == "graph" then
-        return ui.row{ gap = 2 * scale, glyph, stats.sparkline(entry.history, 20 * scale, 14 * scale, color), reading }
+        return ui.row{ gap = 2 * scale, glyph, stats.sparkline(entry.history, 34 * scale, 18 * scale, color), reading }
     end
     return ui.row{ gap = 2 * scale, glyph, reading,
         ui.progress{ value = entry.value / 100, w = 24 * scale, h = 3 * scale, radius = 1.5 * scale,
