@@ -99,10 +99,6 @@ keybind = super+shift+f=start_search
 keybind = performable:super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 keybind = ctrl+[=text:\x1b
-# Claim ctrl+tab from the macOS native-tab menu shortcuts and forward the
-# kitty CSI-u sequences so herdr still sees the real keys.
-keybind = ctrl+tab=text:\x1b[9;5u
-keybind = ctrl+shift+tab=text:\x1b[9;6u
 
 keybind = "f1=text:nvim "
 keybind = chain=write_screen_file:paste

@@ -19,26 +19,34 @@ active_row_bg = "#3b4261"
 selection_bg = "#545c7e"
 
 [keys]
-# Prefix is ctrl+semicolon (default is ctrl+b). Prefix-mode actions:
-prefix = "ctrl+semicolon"
+# Prefix is ctrl+alt+space (default is ctrl+b). Prefix-mode actions:
+prefix = "ctrl+alt+space"
 # One grammar: same keys (\ backspace , . 1-9) at every level. Bare = nvim
 # buffers; prefix+ctrl = herdr tabs; prefix+shift = herdr workspaces.
-# Exception: ctrl+tab / ctrl+shift+tab cycle workspaces without the prefix.
+# Exception: ctrl+alt+comma/period cycle tabs and ctrl+alt+j/k cycle workspaces
+# without the prefix (nvim and the other TUIs leave these keys free).
 new_tab = "prefix+ctrl+backslash"
 close_tab = "prefix+ctrl+backspace"
-previous_tab = "prefix+ctrl+comma"
-next_tab = "prefix+ctrl+period"
+previous_tab = ["prefix+ctrl+comma", "ctrl+alt+comma"]
+next_tab = ["prefix+ctrl+period", "ctrl+alt+period"]
 switch_tab = "prefix+ctrl+1..9"
 
 new_workspace = "prefix+shift+backslash"
 close_workspace = "prefix+shift+backspace"
 switch_workspace = "prefix+shift+1..9"
 rename_workspace = "prefix+shift+r"
-previous_workspace = "ctrl+shift+tab"
-next_workspace = "ctrl+tab"
+previous_workspace = "ctrl+alt+k"
+next_workspace = "ctrl+alt+j"
 
 # Session-wide navigator (default prefix+g).
 goto = "prefix+space"
+
+# Navigate mode (prefix+w): j/k move the workspace highlight, ctrl+j/k focus
+# panes. Defaults are up/down for workspaces and j/k for panes.
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
 
 # Default is prefix+b.
 toggle_sidebar = "prefix+backslash"
