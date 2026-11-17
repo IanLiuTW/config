@@ -315,6 +315,13 @@ bundleId = "com.microsoft.teams2"
 id = "3649ED73-69D2-5D7B-AECE-EBEE2ADBC797"
 layout = "float"
 
+# Teams main window titles start with its sidebar section ("Chat | ..."); meeting and pop-out windows keep floating.
+[[appRules]]
+bundleId = "com.microsoft.teams2"
+id = "598EFA32-B358-40E5-935E-A04B49BF5BD9"
+layout = "tile"
+titleRegex = "^(Activity|Chat|Calendar|Teams|Calls|Files|OneDrive|Apps|Communities|Copilot|Meet|People|Planner)( \\||$)"
+
 [[appRules]]
 assignToWorkspace = "5"
 bundleId = "com.brave.Browser"
