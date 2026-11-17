@@ -1,4 +1,4 @@
--- Bar fills the 38 pt notch strip; base 38 / 0.93 scales every item to 0.93 of its default size.
+-- Items keep a fixed 0.93 scale, so a bar height override on one monitor does not resize them.
 -- All bar text uses the heavy system font weight.
 local function text(props)
     if props.color == nil and props.role == "secondary" then
@@ -9,4 +9,4 @@ local function text(props)
     return ui.text(props)
 end
 
-return require("./skin")({ capsules = true, base = 38 / 0.93, text = text })
+return require("./skin")({ capsules = true, scale = function() return 0.93 end, text = text })

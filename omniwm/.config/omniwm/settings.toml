@@ -46,14 +46,14 @@ moveMouseToFocusedWindow = false
 raiseOnMouseFocus = false
 
 [gaps]
-fullscreenUsesOuterGaps = false
+fullscreenUsesOuterGaps = true
 size = 6.0
 
 [gaps.outer]
-bottom = 6.0
-left = 6.0
-right = 6.0
-top = 37.0
+bottom = 8.0
+left = 8.0
+right = 8.0
+top = 38.0
 
 [general]
 animationSpeed = 1.0
@@ -225,7 +225,7 @@ fullWidth = false
 fullWidthNotchMode = "rightOfNotch"
 height = 38.0
 hideEmptyWorkspaces = false
-hideInNativeFullscreen = false
+hideInNativeFullscreen = true
 hoverPreviewsEnabled = true
 notchActiveZoneWidth = 180.0
 notchMode = "moveBelowMenuBar"
@@ -315,7 +315,6 @@ bundleId = "com.microsoft.teams2"
 id = "3649ED73-69D2-5D7B-AECE-EBEE2ADBC797"
 layout = "float"
 
-# Teams main window titles start with its sidebar section ("Chat | ..."); meeting and pop-out windows keep floating.
 [[appRules]]
 bundleId = "com.microsoft.teams2"
 id = "598EFA32-B358-40E5-935E-A04B49BF5BD9"
@@ -1232,7 +1231,7 @@ id = "toggleShellWidget.workspaces"
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
-layoutType = "niri"
+layoutType = "default"
 name = "1"
 
 [workspaces.monitorAssignment]
