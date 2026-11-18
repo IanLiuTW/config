@@ -21,7 +21,7 @@ return {
     { 'zM',      function() require('ufo').closeAllFolds() end,              desc = 'Fold - Close all' },
     { 'zr',      function() require('ufo').openFoldsExceptKinds() end,       desc = 'Fold - Open all except kinds' },
     { 'zm',      function() require('ufo').closeFoldsWith() end,             desc = 'Fold - Close at level' },
-    { '<Tab>',   'za',                                                       desc = 'Fold - Toggle' },
+    { '<C-Tab>', 'za',                                                       desc = 'Fold - Toggle' },
     { '<S-Tab>', function() require('ufo').peekFoldedLinesUnderCursor() end, desc = 'Fold - Peek' },
   },
   opts = {

@@ -20,7 +20,9 @@
         "ctrl+space": "voice:pushToTalk",
         "space": null,
         "ctrl+g": null,
-        "ctrl+;": "chat:externalEditor"
+        "ctrl+;": "chat:externalEditor",
+        "meta+p": null,
+        "ctrl+x m": "chat:modelPicker"
       }
     },
     {

@@ -48,7 +48,6 @@ These files are gitignored or live outside the repository, so each Mac creates i
 | `~/.zshrc.local` | Machine-specific shell variables and secrets | `zsh/.zshrc` sources it near the end |
 | `~/.claude/skills` | A separate, private Git clone of Claude Code skills | The daily `claude-skills-pull` agent. Without it, the agent does nothing |
 | `claude/managed-settings.local.json` | Claude Code settings to keep out of this repo, such as `autoMode.environment` entries | `nix-rebuild` copies it to `/Library/Application Support/ClaudeCode/managed-settings.d/50-local.json` |
-| `hammerspoon/.hammerspoon/local.lua` | `return { workProjectDir = "..." }` for the work-hours tracker | `init.lua`. Without it, the tracker stays off |
 | `_exports/Raycast/Raycast.rayconfig` | The Raycast settings export | Imported by hand |
 
 ## Daily use

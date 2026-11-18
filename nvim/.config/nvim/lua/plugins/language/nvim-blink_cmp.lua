@@ -14,7 +14,8 @@ return {
       ['<C-P>'] = { 'select_prev', 'fallback' },
       ['<C-F>'] = { 'scroll_documentation_down' },
       ['<C-B>'] = { 'scroll_documentation_up' },
-      ['<Tab>'] = { 'snippet_forward', 'fallback' },
+      -- Tab accepts Copilot ghost text; get() returns false when none is shown
+      ['<Tab>'] = { function() return vim.lsp.inline_completion.get() end, 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
       ['<s-space>'] = { 'show', 'show_documentation', 'hide_documentation' },

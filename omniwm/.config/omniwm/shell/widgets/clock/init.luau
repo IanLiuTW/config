@@ -39,8 +39,8 @@ function render(ctx)
             if m.showIcon then
                 props[#props + 1] = look.glyph{ name = "calendar", size = look.px(ctx, "symbol") }
             end
-            local text = os.date(if m.showDate then "%m/%d %a %H:%M:%S" else "%H:%M:%S")
-            props[#props + 1] = look.text{ text = text, size = 13 * scale, weight = "medium", reserve = if m.showDate then "00/00 Wed 00:00:00" else "00:00:00" }
+            local text = os.date(if m.showDate then "%m.%d %a %H:%M:%S" else "%H:%M:%S")
+            props[#props + 1] = look.text{ text = text, size = 13 * scale, weight = "medium", reserve = if m.showDate then "00.00 Wed 00:00:00" else "00:00:00" }
         end
         button = look.bar(ctx, props)
     end

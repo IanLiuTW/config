@@ -16,11 +16,16 @@ function render(ctx)
         local props = table.clone(behaviour)
         props[1] = look.glyph{ name = m.symbol, size = 14 * scale }
         if not ctx.data.bar.style.vertical then
-            -- "Artist - Title"; past about one line's worth, wrap to two smaller lines
-            local text = if m.artist and m.artist ~= "" then m.artist .. " - " .. m.title else m.title
-            local long = (utf8.len(text) or #text) > 28
-            props[2] = look.text{ text = text, size = (if long then 10 else 13) * scale,
-                maxWidth = 140 * scale, lines = if long then 2 else 1 }
+            -- Artist above title, each truncated on its own line
+            local width = 240 * scale
+            if m.artist and m.artist ~= "" then
+                local size = 11
+                props[2] = ui.column{ center = false,
+                    look.text{ text = m.artist, size = size, maxWidth = width, lines = 1 },
+                    look.text{ text = m.title, size = size, maxWidth = width, lines = 1 } }
+            else
+                props[2] = look.text{ text = m.title, size = math.round(13 * scale), maxWidth = width, lines = 1 }
+            end
         end
         button = look.bar(ctx, props)
     end

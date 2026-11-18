@@ -75,6 +75,8 @@ keybind = super+8=goto_tab:8
 keybind = super+9=last_tab
 keybind = super+shift+comma=move_tab:-1
 keybind = super+shift+period=move_tab:+1
+keybind = ctrl+tab=csi:9;5u
+keybind = ctrl+shift+tab=csi:9;6u
 
 keybind = super+s=new_split:auto
 keybind = super+h=goto_split:left

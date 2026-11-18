@@ -250,13 +250,13 @@ local function marker(ctx: Context, workspace: BarWorkspace, style: BarStyle, m:
         return ui.row{ h = size, radius = look.radius(size * 0.3),
             fill = if focused then "accent" else "foreground/0.1",
             ui.box{ w = if utf8.len(workspace.name) <= 1 then size * 0.32 else 5, h = 1 },
-            look.text{ text = workspace.name, size = look.px(ctx, "text"), weight = "medium",
+            look.text{ text = workspace.name, size = math.round(look.px(ctx, "text") + 1), weight = "medium",
                 color = if focused then "accentForeground" else "secondaryForeground",
                 maxWidth = if m.vertical then m.item - 10 else nil },
             ui.box{ w = if utf8.len(workspace.name) <= 1 then size * 0.32 else 5, h = 1 } }
     end
     local minimal = m.indicator == "minimal"
-    local label = look.text{ text = workspace.name, size = look.px(ctx, "text"),
+    local label = look.text{ text = workspace.name, size = math.round(look.px(ctx, "text") + 1),
         weight = focused and "semibold" or "medium",
         color = if minimal and not focused then "mutedForeground"
             elseif minimal or (m.capsule and focused) then "foreground"

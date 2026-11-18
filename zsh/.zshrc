@@ -53,6 +53,18 @@ function zvm_after_init() {
   zvm_bindkey viins '^y' autosuggest-accept
   source "$FZF_ZSH_CACHE"
   bindkey '^g' fzf-cd-widget   # remap Alt-C -> Ctrl-G (Alt-C taken by system)
+  # Tab accepts the gray autosuggestion, else completes as before. The leading
+  # underscore keeps zsh-autosuggestions from wrapping it and clearing POSTDISPLAY.
+  _tab_complete_widget=${"$(bindkey -M viins '^I')"##* }
+  function _tab_accept_or_complete() {
+    if [[ -n $POSTDISPLAY ]]; then zle autosuggest-accept; else zle $_tab_complete_widget; fi
+  }
+  zle -N _tab_accept_or_complete
+  bindkey -M viins '^I' _tab_accept_or_complete
+  # Same key as Copilot dismiss in nvim; ctrl+v still quotes. Flow control off so
+  # the tty driver passes ^Q to the line editor instead of taking it as XON.
+  unsetopt flow_control
+  bindkey -M viins '^Q' autosuggest-clear
 }
 
 # compinit's file-count check never matches what compdump writes (fpath holds
