@@ -102,6 +102,6 @@ keybind = performable:super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 keybind = ctrl+[=text:\x1b
 
-keybind = "f1=text:nvim "
+keybind = "super+semicolon=text:nvim "
 keybind = chain=write_screen_file:paste
 keybind = chain=text:\n
