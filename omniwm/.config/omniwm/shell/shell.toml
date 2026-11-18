@@ -6,7 +6,7 @@ profile = "default"
 center = ["media"]
 leading = ["apple-menu", "app-menu", "stats", "workspaces"]
 theme = "tokyo-night"
-trailing = ["menu-extras", "volume", "battery-details", "control-center", "notifications", "clock"]
+trailing = ["menu-extras", "volume", "wifi", "control-center", "battery-details", "clock"]
 
 [profiles.default.hiddenBar]
 enabled = true
